@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="FoxTrader" />
+		<Option makefile="Makefile.mak" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug-Nix">
+				<Option platforms="Unix;" />
+				<Option output="bin/linux/debug/FoxTrader" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/linux/debug/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option='-include &quot;$(PROJECT_DIR)src/pch.h&quot;' />
+					<Add directory="src/classes" />
+					<Add directory="src/classes/" />
+					<Add directory="src/classes/renderer" />
+					<Add directory="src/classes/renderer/gui/" />
+				</Compiler>
+			</Target>
+			<Target title="Release-Nix">
+				<Option platforms="Unix;" />
+				<Option output="bin/linux/release/FoxTrader" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/linux/release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option='-include &quot;$(PROJECT_DIR)src/pch.h&quot;' />
+					<Add directory="src/classes" />
+					<Add directory="src/classes/" />
+					<Add directory="src/classes/renderer" />
+					<Add directory="src/classes/renderer/gui/" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+			<Target title="Debug-Win">
+				<Option platforms="Windows;" />
+				<Option output="bin/win32/debug/FoxTrader" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/win32/debug/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option='-include &quot;$(PROJECT_DIR)src\pch.h&quot;' />
+					<Add directory="libs/sdl/SDL2-2.0.3/i686-w64-mingw32/include/SDL2" />
+					<Add directory="libs/sdl/SDL2_image-2.0.0/i686-w64-mingw32/include/SDL2" />
+					<Add directory="libs/sdl/SDL2_ttf-2.0.12/i686-w64-mingw32/include/SDL2" />
+					<Add directory="src/classes" />
+					<Add directory="src/classes/" />
+					<Add directory="src/classes/renderer" />
+					<Add directory="src/classes/renderer/gui/" />
+				</Compiler>
+				<Linker>
+					<Add option="-lmingw32" />
+					<Add option="-lSDL2main" />
+					<Add option="-lSDL2" />
+					<Add option="-lSDL2_image" />
+					<Add option="-lSDL2_ttf" />
+					<Add option="-lfreetype" />
+					<Add option="-mwindows" />
+					<Add option="-lsqlite3" />
+					<Add option="-Wl,--no-undefined" />
+					<Add option="-lm" />
+					<Add option="-ldinput8" />
+					<Add option="-ldxguid" />
+					<Add option="-ldxerr8" />
+					<Add option="-luser32" />
+					<Add option="-lgdi32" />
+					<Add option="-lwinmm" />
+					<Add option="-limm32" />
+					<Add option="-lole32" />
+					<Add option="-loleaut32" />
+					<Add option="-lshell32" />
+					<Add option="-lversion" />
+					<Add option="-luuid" />
+					<Add directory="libs/sdl/SDL2-2.0.3/i686-w64-mingw32/lib" />
+					<Add directory="libs/sdl/SDL2_image-2.0.0/i686-w64-mingw32/lib" />
+					<Add directory="libs/sdl/SDL2_ttf-2.0.12/i686-w64-mingw32/lib" />
+					<Add directory="libs/sqlite3/win32-mingw32" />
+				</Linker>
+				<ExtraCommands>
+					<Add before="cbp2make -in FoxTrader.cbp -out Makefile --target-case keep" />
+				</ExtraCommands>
+			</Target>
+			<Target title="Release-Win">
+				<Option platforms="Windows;" />
+				<Option output="bin/win32/release/FoxTrader" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/win32/release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option='-include &quot;$(PROJECT_DIR)src\pch.h&quot;' />
+					<Add directory="libs/sdl/SDL2-2.0.3/i686-w64-mingw32/include/SDL2" />
+					<Add directory="libs/sdl/SDL2_image-2.0.0/i686-w64-mingw32/include/SDL2" />
+					<Add directory="libs/sdl/SDL2_ttf-2.0.12/i686-w64-mingw32/include/SDL2" />
+					<Add directory="src/classes" />
+					<Add directory="src/classes/" />
+					<Add directory="src/classes/renderer" />
+					<Add directory="src/classes/renderer/gui/" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-lmingw32" />
+					<Add option="-lSDL2main" />
+					<Add option="-lSDL2" />
+					<Add option="-lSDL2_image" />
+					<Add option="-lSDL2_ttf" />
+					<Add option="-lfreetype" />
+					<Add option="-mwindows" />
+					<Add option="-lsqlite3" />
+					<Add option="-Wl,--no-undefined" />
+					<Add option="-lm" />
+					<Add option="-ldinput8" />
+					<Add option="-ldxguid" />
+					<Add option="-ldxerr8" />
+					<Add option="-luser32" />
+					<Add option="-lgdi32" />
+					<Add option="-lwinmm" />
+					<Add option="-limm32" />
+					<Add option="-lole32" />
+					<Add option="-loleaut32" />
+					<Add option="-lshell32" />
+					<Add option="-lversion" />
+					<Add option="-luuid" />
+					<Add directory="libs/sdl/SDL2-2.0.3/i686-w64-mingw32/lib" />
+					<Add directory="libs/sdl/SDL2_image-2.0.0/i686-w64-mingw32/lib" />
+					<Add directory="libs/sdl/SDL2_ttf-2.0.12/i686-w64-mingw32/lib" />
+					<Add directory="libs/sqlite3/win32-mingw32" />
+				</Linker>
+				<ExtraCommands>
+					<Add before="cbp2make -in FoxTrader.cbp -out Makefile --target-case keep" />
+				</ExtraCommands>
+			</Target>
+			<Target title="Debug-OSX">
+				<Option platforms="Mac;" />
+				<Option output="bin/mac/debug/FoxTrader" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/mac/debug" />
+				<Option type="0" />
+				<Option compiler="clang" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option='-include &quot;$(PROJECT_DIR)src/pch.h&quot;' />
+					<Add directory="/Library/Frameworks/SDL2.framework/Versions/A/Headers" />
+					<Add directory="src/classes" />
+					<Add directory="src/classes/" />
+					<Add directory="src/classes/renderer" />
+					<Add directory="src/classes/renderer/gui/" />
+				</Compiler>
+				<Linker>
+					<Add option="-lSDL2" />
+					<Add directory="/Library/Frameworks/SDL2.framework/" />
+				</Linker>
+			</Target>
+			<Target title="Release-OSX">
+				<Option platforms="Mac;" />
+				<Option output="bin/mac/release/FoxTrader" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/mac/release" />
+				<Option type="0" />
+				<Option compiler="clang" />
+				<Compiler>
+					<Add option='-include &quot;$(PROJECT_DIR)src/pch.h&quot;' />
+					<Add directory="src/classes" />
+					<Add directory="src/classes/" />
+					<Add directory="src/classes/renderer" />
+					<Add directory="src/classes/renderer/gui/" />
+				</Compiler>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-Winvalid-pch" />
+			<Add directory="libs/boost" />
+		</Compiler>
+		<Linker>
+			<Add option="-static-libstdc++" />
+			<Add option="-static-libgcc" />
+		</Linker>
+		<Unit filename="Makefile">
+			<Option target="Debug-Nix" />
+			<Option target="Release-Nix" />
+			<Option target="Debug-Win" />
+			<Option target="Release-Win" />
+		</Unit>
+		<Unit filename="src/classes/agent.cpp">
+			<Option target="Debug-Nix" />
+			<Option target="Release-Nix" />
+			<Option target="Debug-Win" />
+			<Option target="Release-Win" />
+			<Option target="Debug-OSX" />
+		</Unit>
+		<Unit filename="src/classes/galaxy.cpp">
+			<Option target="Debug-Nix" />
+			<Option target="Release-Nix" />
+			<Option target="Debug-Win" />
+			<Option target="Release-Win" />
+			<Option target="Debug-OSX" />
+		</Unit>
+		<Unit filename="src/classes/galaxy.h">
+			<Option target="Debug-Nix" />
+			<Option target="Release-Nix" />
+			<Option target="Debug-Win" />
+			<Option target="Release-Win" />
+			<Option target="Debug-OSX" />
+		</Unit>
+		<Unit filename="src/classes/game.cpp">
+			<Option target="Debug-Nix" />
+			<Option target="Release-Nix" />
+			<Option target="Debug-Win" />
+			<Option target="Release-Win" />
+			<Option target="Debug-OSX" />
+		</Unit>
+		<Unit filename="src/classes/game.h">
+			<Option target="Debug-Nix" />
+			<Option target="Release-Nix" />
+			<Option target="Debug-Win" />
+			<Option target="Release-Win" />
+			<Option target="Debug-OSX" />
+		</Unit>
+		<Unit filename="src/classes/planetoid.cpp">
+			<Option target="Debug-Nix" />
+			<Option target="Release-Nix" />
+			<Option target="Debug-Win" />
+			<Option target="Release-Win" />
+			<Option target="Debug-OSX" />
+		</Unit>
+		<Unit filename="src/classes/planetoid.h">
+			<Option target="Debug-Nix" />
+			<Option target="Release-Nix" />
+			<Option target="Debug-Win" />
+			<Option target="Release-Win" />
+			<Option target="Debug-OSX" />
+		</Unit>
+		<Unit filename="src/classes/player.cpp" />
+		<Unit filename="src/classes/player.h" />
+		<Unit filename="src/classes/renderer/gui/button.cpp" />
+		<Unit filename="src/classes/renderer/gui/button.h" />
+		<Unit filename="src/classes/renderer/gui/delegates.h" />
+		<Unit filename="src/classes/renderer/gui/label.cpp" />
+		<Unit filename="src/classes/renderer/gui/label.h" />
+		<Unit filename="src/classes/renderer/gui/panel.cpp" />
+		<Unit filename="src/classes/renderer/gui/panel.h" />
+		<Unit filename="src/classes/renderer/renderer.cpp" />
+		<Unit filename="src/classes/renderer/renderer.h" />
+		<Unit filename="src/classes/system.cpp">
+			<Option target="Debug-Nix" />
+			<Option target="Release-Nix" />
+			<Option target="Debug-Win" />
+			<Option target="Release-Win" />
+			<Option target="Debug-OSX" />
+		</Unit>
+		<Unit filename="src/classes/system.h">
+			<Option target="Debug-Nix" />
+			<Option target="Release-Nix" />
+			<Option target="Debug-Win" />
+			<Option target="Release-Win" />
+			<Option target="Debug-OSX" />
+		</Unit>
+		<Unit filename="src/classes/tools.cpp">
+			<Option weight="1" />
+			<Option target="Debug-Nix" />
+			<Option target="Release-Nix" />
+			<Option target="Debug-Win" />
+			<Option target="Release-Win" />
+			<Option target="Debug-OSX" />
+		</Unit>
+		<Unit filename="src/classes/tools.h">
+			<Option target="Debug-Nix" />
+			<Option target="Release-Nix" />
+			<Option target="Debug-Win" />
+			<Option target="Release-Win" />
+			<Option target="Debug-OSX" />
+		</Unit>
+		<Unit filename="src/classes/universe.cpp">
+			<Option target="Debug-Nix" />
+			<Option target="Release-Nix" />
+			<Option target="Debug-Win" />
+			<Option target="Release-Win" />
+			<Option target="Debug-OSX" />
+		</Unit>
+		<Unit filename="src/classes/universe.h">
+			<Option target="Debug-Nix" />
+			<Option target="Release-Nix" />
+			<Option target="Debug-Win" />
+			<Option target="Release-Win" />
+			<Option target="Debug-OSX" />
+		</Unit>
+		<Unit filename="src/constants.h">
+			<Option target="Debug-Nix" />
+			<Option target="Release-Nix" />
+			<Option target="Debug-Win" />
+			<Option target="Release-Win" />
+			<Option target="Debug-OSX" />
+		</Unit>
+		<Unit filename="src/defines.h">
+			<Option target="Debug-Nix" />
+			<Option target="Release-Nix" />
+			<Option target="Debug-Win" />
+			<Option target="Release-Win" />
+			<Option target="Debug-OSX" />
+		</Unit>
+		<Unit filename="src/fonts.h">
+			<Option target="Debug-Nix" />
+			<Option target="Release-Nix" />
+			<Option target="Debug-Win" />
+			<Option target="Release-Win" />
+			<Option target="Debug-OSX" />
+		</Unit>
+		<Unit filename="src/main.cpp">
+			<Option target="Debug-Nix" />
+			<Option target="Release-Nix" />
+			<Option target="Debug-Win" />
+			<Option target="Release-Win" />
+			<Option target="Debug-OSX" />
+		</Unit>
+		<Unit filename="src/pch.h">
+			<Option compile="1" />
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="src/sqlite3.h" />
+		<Unit filename="src/structs.h">
+			<Option target="Debug-Nix" />
+			<Option target="Release-Nix" />
+			<Option target="Debug-Win" />
+			<Option target="Release-Win" />
+			<Option target="Debug-OSX" />
+		</Unit>
+		<Extensions>
+			<code_completion>
+				<search_path add="libs\boost" />
+			</code_completion>
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
