@@ -247,6 +247,8 @@
 		<Unit filename="src/classes/renderer/gui/label.h" />
 		<Unit filename="src/classes/renderer/gui/panel.cpp" />
 		<Unit filename="src/classes/renderer/gui/panel.h" />
+		<Unit filename="src/classes/renderer/gui/textbox.cpp" />
+		<Unit filename="src/classes/renderer/gui/textbox.h" />
 		<Unit filename="src/classes/renderer/renderer.cpp" />
 		<Unit filename="src/classes/renderer/renderer.h" />
 		<Unit filename="src/classes/system.cpp">

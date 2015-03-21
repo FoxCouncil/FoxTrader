@@ -7,6 +7,7 @@
 #include <panel.h>
 #include <label.h>
 #include <button.h>
+#include <textbox.h>
 
 #include <game.h>
 #include <player.h>
@@ -284,6 +285,12 @@ namespace FoxTrader
         a_label->SetY(100);
 
         this->m_panels.push_back(a_label);
+
+        TextBox *a_textBox = new TextBox();
+        a_textBox->SetX(200),
+        a_textBox->SetY(150);
+
+        this->m_panels.push_back(a_textBox);
 
         /*Renderer::m_renderObjects.clear();
 

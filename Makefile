@@ -40,9 +40,9 @@ OBJDIR_RELEASE_WIN = obj\\win32\\release
 DEP_RELEASE_WIN = 
 OUT_RELEASE_WIN = bin\\win32\\release\\FoxTrader.exe
 
-OBJ_DEBUG_WIN = $(OBJDIR_DEBUG_WIN)\\src\\main.o $(OBJDIR_DEBUG_WIN)\\src\\classes\\universe.o $(OBJDIR_DEBUG_WIN)\\src\\classes\\system.o $(OBJDIR_DEBUG_WIN)\\src\\classes\\renderer\\renderer.o $(OBJDIR_DEBUG_WIN)\\src\\classes\\agent.o $(OBJDIR_DEBUG_WIN)\\src\\classes\\galaxy.o $(OBJDIR_DEBUG_WIN)\\src\\classes\\game.o $(OBJDIR_DEBUG_WIN)\\src\\classes\\planetoid.o $(OBJDIR_DEBUG_WIN)\\src\\classes\\player.o $(OBJDIR_DEBUG_WIN)\\src\\classes\\renderer\\gui\\button.o $(OBJDIR_DEBUG_WIN)\\src\\classes\\renderer\\gui\\label.o $(OBJDIR_DEBUG_WIN)\\src\\classes\\renderer\\gui\\panel.o $(OBJDIR_DEBUG_WIN)\\src\\classes\\tools.o
+OBJ_DEBUG_WIN = $(OBJDIR_DEBUG_WIN)\\src\\main.o $(OBJDIR_DEBUG_WIN)\\src\\classes\\universe.o $(OBJDIR_DEBUG_WIN)\\src\\classes\\system.o $(OBJDIR_DEBUG_WIN)\\src\\classes\\renderer\\renderer.o $(OBJDIR_DEBUG_WIN)\\src\\classes\\renderer\\gui\\textbox.o $(OBJDIR_DEBUG_WIN)\\src\\classes\\agent.o $(OBJDIR_DEBUG_WIN)\\src\\classes\\galaxy.o $(OBJDIR_DEBUG_WIN)\\src\\classes\\game.o $(OBJDIR_DEBUG_WIN)\\src\\classes\\planetoid.o $(OBJDIR_DEBUG_WIN)\\src\\classes\\player.o $(OBJDIR_DEBUG_WIN)\\src\\classes\\renderer\\gui\\button.o $(OBJDIR_DEBUG_WIN)\\src\\classes\\renderer\\gui\\label.o $(OBJDIR_DEBUG_WIN)\\src\\classes\\renderer\\gui\\panel.o $(OBJDIR_DEBUG_WIN)\\src\\classes\\tools.o
 
-OBJ_RELEASE_WIN = $(OBJDIR_RELEASE_WIN)\\src\\main.o $(OBJDIR_RELEASE_WIN)\\src\\classes\\universe.o $(OBJDIR_RELEASE_WIN)\\src\\classes\\system.o $(OBJDIR_RELEASE_WIN)\\src\\classes\\renderer\\renderer.o $(OBJDIR_RELEASE_WIN)\\src\\classes\\agent.o $(OBJDIR_RELEASE_WIN)\\src\\classes\\galaxy.o $(OBJDIR_RELEASE_WIN)\\src\\classes\\game.o $(OBJDIR_RELEASE_WIN)\\src\\classes\\planetoid.o $(OBJDIR_RELEASE_WIN)\\src\\classes\\player.o $(OBJDIR_RELEASE_WIN)\\src\\classes\\renderer\\gui\\button.o $(OBJDIR_RELEASE_WIN)\\src\\classes\\renderer\\gui\\label.o $(OBJDIR_RELEASE_WIN)\\src\\classes\\renderer\\gui\\panel.o $(OBJDIR_RELEASE_WIN)\\src\\classes\\tools.o
+OBJ_RELEASE_WIN = $(OBJDIR_RELEASE_WIN)\\src\\main.o $(OBJDIR_RELEASE_WIN)\\src\\classes\\universe.o $(OBJDIR_RELEASE_WIN)\\src\\classes\\system.o $(OBJDIR_RELEASE_WIN)\\src\\classes\\renderer\\renderer.o $(OBJDIR_RELEASE_WIN)\\src\\classes\\renderer\\gui\\textbox.o $(OBJDIR_RELEASE_WIN)\\src\\classes\\agent.o $(OBJDIR_RELEASE_WIN)\\src\\classes\\galaxy.o $(OBJDIR_RELEASE_WIN)\\src\\classes\\game.o $(OBJDIR_RELEASE_WIN)\\src\\classes\\planetoid.o $(OBJDIR_RELEASE_WIN)\\src\\classes\\player.o $(OBJDIR_RELEASE_WIN)\\src\\classes\\renderer\\gui\\button.o $(OBJDIR_RELEASE_WIN)\\src\\classes\\renderer\\gui\\label.o $(OBJDIR_RELEASE_WIN)\\src\\classes\\renderer\\gui\\panel.o $(OBJDIR_RELEASE_WIN)\\src\\classes\\tools.o
 
 all: Debug_Win Release_Win
 
@@ -74,6 +74,9 @@ $(OBJDIR_DEBUG_WIN)\\src\\classes\\system.o: src\\classes\\system.cpp
 
 $(OBJDIR_DEBUG_WIN)\\src\\classes\\renderer\\renderer.o: src\\classes\\renderer\\renderer.cpp
 	$(CXX) $(CFLAGS_DEBUG_WIN) $(INC_DEBUG_WIN) -c src\\classes\\renderer\\renderer.cpp -o $(OBJDIR_DEBUG_WIN)\\src\\classes\\renderer\\renderer.o
+
+$(OBJDIR_DEBUG_WIN)\\src\\classes\\renderer\\gui\\textbox.o: src\\classes\\renderer\\gui\\textbox.cpp
+	$(CXX) $(CFLAGS_DEBUG_WIN) $(INC_DEBUG_WIN) -c src\\classes\\renderer\\gui\\textbox.cpp -o $(OBJDIR_DEBUG_WIN)\\src\\classes\\renderer\\gui\\textbox.o
 
 $(OBJDIR_DEBUG_WIN)\\src\\classes\\agent.o: src\\classes\\agent.cpp
 	$(CXX) $(CFLAGS_DEBUG_WIN) $(INC_DEBUG_WIN) -c src\\classes\\agent.cpp -o $(OBJDIR_DEBUG_WIN)\\src\\classes\\agent.o
@@ -136,6 +139,9 @@ $(OBJDIR_RELEASE_WIN)\\src\\classes\\system.o: src\\classes\\system.cpp
 
 $(OBJDIR_RELEASE_WIN)\\src\\classes\\renderer\\renderer.o: src\\classes\\renderer\\renderer.cpp
 	$(CXX) $(CFLAGS_RELEASE_WIN) $(INC_RELEASE_WIN) -c src\\classes\\renderer\\renderer.cpp -o $(OBJDIR_RELEASE_WIN)\\src\\classes\\renderer\\renderer.o
+
+$(OBJDIR_RELEASE_WIN)\\src\\classes\\renderer\\gui\\textbox.o: src\\classes\\renderer\\gui\\textbox.cpp
+	$(CXX) $(CFLAGS_RELEASE_WIN) $(INC_RELEASE_WIN) -c src\\classes\\renderer\\gui\\textbox.cpp -o $(OBJDIR_RELEASE_WIN)\\src\\classes\\renderer\\gui\\textbox.o
 
 $(OBJDIR_RELEASE_WIN)\\src\\classes\\agent.o: src\\classes\\agent.cpp
 	$(CXX) $(CFLAGS_RELEASE_WIN) $(INC_RELEASE_WIN) -c src\\classes\\agent.cpp -o $(OBJDIR_RELEASE_WIN)\\src\\classes\\agent.o
