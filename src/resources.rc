@@ -1,0 +1,26 @@
+1 ICON        "..\\data\\brand\\FoxTrader.ico"
+
+1 VERSIONINFO
+FILEVERSION     1,0,0,0
+PRODUCTVERSION  1,0,0,0
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040904E4"
+    BEGIN
+      VALUE "CompanyName", "Fox Council"
+      VALUE "FileDescription", "FoxTrader: A fox lifestyle simulator."
+      VALUE "FileVersion", "1.0"
+      VALUE "InternalName", "FoxTrader"
+      VALUE "LegalCopyright", "Fox Council's FoxTrader"
+      VALUE "OriginalFilename", "FoxTrader.exe"
+      VALUE "ProductName", "Fox Trader"
+      VALUE "ProductVersion", "1.0"
+    END
+  END
+
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x409, 1252
+  END
+END

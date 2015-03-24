@@ -36,11 +36,12 @@ namespace FoxTrader
         }
 
         // Bring up and check SDL2_Image
-        IMG_Init(0);
-        /*if((() & 0) == false)
+        int a_flagsRequested = IMG_INIT_PNG;
+        int a_flagsEnabled = IMG_Init(a_flagsRequested);
+        if((a_flagsEnabled & a_flagsRequested) != a_flagsRequested)
         {
             Game::TriggerError(Err_Error, std::string("IMG_Init error: ") + SDL_GetError());
-        }*/
+        }
 
         // Bring up and check SDL2_ttf
         if (TTF_Init() != 0)
@@ -55,6 +56,8 @@ namespace FoxTrader
         {
             Game::TriggerError(Err_Error, std::string("SDL_CreateWindow error: ") + SDL_GetError());
         }
+
+        // SDL_SetWindowIcon(Game::m_window, )
 
         Game::m_SDLRenderer = SDL_CreateRenderer(Game::m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
