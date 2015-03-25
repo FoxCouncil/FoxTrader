@@ -13,8 +13,8 @@ namespace FoxTrader
         /* Time Functions */
         this->m_spaceTime = this->m_startTime = time(NULL); 	    // Initialize Time
         this->m_spaceTime--;										// We need atleast a second to count as day one!
-        long startTime = static_cast<long int>(this->m_startTime);
-        tm* timePtr = localtime(&startTime); 						// Grab A Time Pointer
+        // *long int startTime = static_cast<long int>();
+        tm* timePtr = localtime(&this->m_startTime); 				// Grab A Time Pointer
         this->m_startYear = (timePtr->tm_year + 1900) + 500; 		// Save the current year, add 500 years in the future Marty!
         delete timePtr; 											// Clean up after yourself! You're a guest here!
 

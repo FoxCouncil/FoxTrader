@@ -11,7 +11,7 @@ namespace FoxTrader
 	{
 		// State Vars
 		uint16_t m_startYear;
-        uint32_t m_startTime;
+        time_t m_startTime;
 		std::string m_name;
 
 		// Timey Whimey Stuff

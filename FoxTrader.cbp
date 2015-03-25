@@ -84,6 +84,7 @@
 					<Add directory="libs/sdl/SDL2_image-2.0.0/i686-w64-mingw32/lib" />
 					<Add directory="libs/sdl/SDL2_ttf-2.0.12/i686-w64-mingw32/lib" />
 					<Add directory="libs/sqlite3/win32-mingw32" />
+					<Add directory="libs/libfreetype/mingw32" />
 				</Linker>
 				<ExtraCommands>
 					<Add before="cbp2make -in FoxTrader.cbp -out Makefile --target-case keep" />

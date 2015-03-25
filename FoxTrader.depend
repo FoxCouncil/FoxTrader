@@ -7274,3 +7274,4681 @@
 1426927734 w:\dropbox\c++\foxtrader\src\classes\renderer\gui\\textbox.h
 	<panel.h>
 
+1427264132 source:c:\users\fox\documents\foxtrader\src\pch.h
+	<iostream>
+	<vector>
+	<sstream>
+	<map>
+	<stdint.h>
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	<Windows.h>
+	<unistd.h>
+	<boost/format.hpp>
+	<boost/assign/std/vector.hpp>
+	<boost/random.hpp>
+	<boost/function.hpp>
+	<boost/bind.hpp>
+	<SDL.h>
+	<SDL_image.h>
+	<SDL_ttf.h>
+	"sqlite3.h"
+	"typedef.h"
+	"defines.h"
+	"constants.h"
+	"classes/tools.h"
+	"structs.h"
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\format.hpp
+	<vector>
+	<string>
+	<boost/detail/workaround.hpp>
+	<boost/config.hpp>
+	<locale>
+	<boost/format/detail/compat_workarounds.hpp>
+	<cctype>
+	<boost/format/format_fwd.hpp>
+	<boost/format/internals_fwd.hpp>
+	<boost/format/internals.hpp>
+	<boost/format/format_class.hpp>
+	<boost/format/exceptions.hpp>
+	<boost/format/format_implementation.hpp>
+	<boost/format/group.hpp>
+	<boost/format/feed_args.hpp>
+	<boost/format/parsing.hpp>
+	<boost/format/free_funcs.hpp>
+	<boost/format/detail/unset_macros.hpp>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\detail\workaround.hpp
+	<boost/config.hpp>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config.hpp
+	<boost/config/user.hpp>
+	<boost/config/select_compiler_config.hpp>
+	<boost/config/select_stdlib_config.hpp>
+	<boost/config/select_platform_config.hpp>
+	<boost/config/suffix.hpp>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\user.hpp
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\select_compiler_config.hpp
+	"boost/config/compiler/nvcc.hpp"
+	"boost/config/compiler/gcc_xml.hpp"
+	"boost/config/compiler/cray.hpp"
+	"boost/config/compiler/comeau.hpp"
+	"boost/config/compiler/pathscale.hpp"
+	"boost/config/compiler/intel.hpp"
+	"boost/config/compiler/clang.hpp"
+	"boost/config/compiler/digitalmars.hpp"
+	"boost/config/compiler/gcc.hpp"
+	"boost/config/compiler/kai.hpp"
+	"boost/config/compiler/sgi_mipspro.hpp"
+	"boost/config/compiler/compaq_cxx.hpp"
+	"boost/config/compiler/greenhills.hpp"
+	"boost/config/compiler/codegear.hpp"
+	"boost/config/compiler/borland.hpp"
+	"boost/config/compiler/metrowerks.hpp"
+	"boost/config/compiler/sunpro_cc.hpp"
+	"boost/config/compiler/hp_acc.hpp"
+	"boost/config/compiler/mpw.hpp"
+	"boost/config/compiler/vacpp.hpp"
+	"boost/config/compiler/pgi.hpp"
+	"boost/config/compiler/visualc.hpp"
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\compiler\nvcc.hpp
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\compiler\gcc_xml.hpp
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\compiler\cray.hpp
+	"boost/config/compiler/common_edg.hpp"
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\compiler\common_edg.hpp
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\compiler\comeau.hpp
+	"boost/config/compiler/common_edg.hpp"
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\compiler\pathscale.hpp
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\compiler\intel.hpp
+	"boost/config/compiler/common_edg.hpp"
+	<cwchar>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\compiler\clang.hpp
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\compiler\digitalmars.hpp
+	<cstddef>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\compiler\gcc.hpp
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\compiler\kai.hpp
+	"boost/config/compiler/common_edg.hpp"
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\compiler\sgi_mipspro.hpp
+	"boost/config/compiler/common_edg.hpp"
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\compiler\compaq_cxx.hpp
+	"boost/config/compiler/common_edg.hpp"
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\compiler\greenhills.hpp
+	"boost/config/compiler/common_edg.hpp"
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\compiler\codegear.hpp
+	<cstring>
+	<errno.h>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\compiler\borland.hpp
+	<climits>
+	<cwchar>
+	<limits.h>
+	<wchar.h>
+	<cstring>
+	<errno.h>
+	<float.h>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\compiler\metrowerks.hpp
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\compiler\sunpro_cc.hpp
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\compiler\hp_acc.hpp
+	"boost/config/compiler/common_edg.hpp"
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\compiler\mpw.hpp
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\compiler\vacpp.hpp
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\compiler\pgi.hpp
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\compiler\visualc.hpp
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\select_stdlib_config.hpp
+	<cstddef>
+	<stddef.h>
+	<utility>
+	"boost/config/stdlib/stlport.hpp"
+	"boost/config/stdlib/libcomo.hpp"
+	"boost/config/stdlib/roguewave.hpp"
+	"boost/config/stdlib/libcpp.hpp"
+	"boost/config/stdlib/libstdcpp3.hpp"
+	"boost/config/stdlib/sgi.hpp"
+	"boost/config/stdlib/msl.hpp"
+	"boost/config/stdlib/vacpp.hpp"
+	"boost/config/stdlib/modena.hpp"
+	"boost/config/stdlib/dinkumware.hpp"
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\stdlib\stlport.hpp
+	<cstddef>
+	<unistd.h>
+	<stdlib.h>
+	<string.h>
+	<algorithm>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\stdlib\libcomo.hpp
+	<boost/config/no_tr1/utility.hpp>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\no_tr1\utility.hpp
+	<utility>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\stdlib\roguewave.hpp
+	<boost/config/no_tr1/utility.hpp>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\stdlib\libcpp.hpp
+	<ciso646>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\stdlib\libstdcpp3.hpp
+	<unistd.h>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\stdlib\sgi.hpp
+	<boost/config/no_tr1/utility.hpp>
+	<unistd.h>
+	<string>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\stdlib\msl.hpp
+	<boost/config/no_tr1/utility.hpp>
+	<cstddef>
+	<boost/config/posix_features.hpp>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\posix_features.hpp
+	<unistd.h>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\stdlib\vacpp.hpp
+	<unistd.h>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\stdlib\modena.hpp
+	<boost/config/no_tr1/utility.hpp>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\stdlib\dinkumware.hpp
+	<boost/config/no_tr1/utility.hpp>
+	<exception>
+	<typeinfo>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\select_platform_config.hpp
+	<boost/config/posix_features.hpp>
+	"boost/config/platform/linux.hpp"
+	"boost/config/platform/bsd.hpp"
+	"boost/config/platform/solaris.hpp"
+	"boost/config/platform/irix.hpp"
+	"boost/config/platform/hpux.hpp"
+	"boost/config/platform/cygwin.hpp"
+	"boost/config/platform/win32.hpp"
+	"boost/config/platform/beos.hpp"
+	"boost/config/platform/macos.hpp"
+	"boost/config/platform/aix.hpp"
+	"boost/config/platform/amigaos.hpp"
+	"boost/config/platform/qnxnto.hpp"
+	"boost/config/platform/vxworks.hpp"
+	"boost/config/platform/symbian.hpp"
+	"boost/config/platform/cray.hpp"
+	"boost/config/platform/vms.hpp"
+	<boost/config/posix_features.hpp>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\platform\linux.hpp
+	<cstdlib>
+	<stdlib.h>
+	<boost/config/posix_features.hpp>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\platform\bsd.hpp
+	<boost/config/posix_features.hpp>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\platform\solaris.hpp
+	<boost/config/posix_features.hpp>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\platform\irix.hpp
+	<boost/config/posix_features.hpp>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\platform\hpux.hpp
+	<boost/config/posix_features.hpp>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\platform\cygwin.hpp
+	<unistd.h>
+	<sys/types.h>
+	<boost/config/posix_features.hpp>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\platform\win32.hpp
+	<_mingw.h>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\platform\beos.hpp
+	<boost/config/posix_features.hpp>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\platform\macos.hpp
+	<boost/config/posix_features.hpp>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\platform\aix.hpp
+	<boost/config/posix_features.hpp>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\platform\amigaos.hpp
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\platform\qnxnto.hpp
+	<boost/config/posix_features.hpp>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\platform\vxworks.hpp
+	<version.h>
+	<time.h>
+	<sysLib.h>
+	<cstdint>
+	<ioLib.h>
+	<tickLib.h>
+	<sys/time.h>
+	<signal.h>
+	<boost/config/posix_features.hpp>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\platform\symbian.hpp
+	<cstdlib>
+	<stdlib.h>
+	<boost/config/posix_features.hpp>
+	<sys/endian.h>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\platform\cray.hpp
+	<boost/config/posix_features.hpp>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\platform\vms.hpp
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\suffix.hpp
+	<limits.h>
+	<cstddef>
+	<typeinfo>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\format\detail\compat_workarounds.hpp
+	<boost/format/detail/config_macros.hpp>
+	<streambuf>
+	<ostream>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\format\detail\config_macros.hpp
+	<boost/config.hpp>
+	<boost/detail/workaround.hpp>
+	<boost/format/detail/workarounds_gcc-2_95.hpp>
+	<boost/format/detail/workarounds_stlport.hpp>
+	<locale>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\format\detail\workarounds_gcc-2_95.hpp
+	<iostream>
+	<streambuf.h>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\format\detail\workarounds_stlport.hpp
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\format\format_fwd.hpp
+	<string>
+	<iosfwd>
+	<boost/format/detail/compat_workarounds.hpp>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\format\internals_fwd.hpp
+	<boost/format/format_fwd.hpp>
+	<boost/config.hpp>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\format\internals.hpp
+	<string>
+	<boost/assert.hpp>
+	<boost/optional.hpp>
+	<boost/limits.hpp>
+	<boost/format/detail/compat_workarounds.hpp>
+	<boost/format/alt_sstream.hpp>
+
+1427264026 c:\users\fox\documents\foxtrader\libs\boost\boost\assert.hpp
+	<boost/config.hpp>
+	<boost/current_function.hpp>
+	<assert.h>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\current_function.hpp
+
+1427264041 c:\users\fox\documents\foxtrader\libs\boost\boost\optional.hpp
+	"boost/optional/optional.hpp"
+
+1427264041 c:\users\fox\documents\foxtrader\libs\boost\boost\optional\optional.hpp
+	<new>
+	<algorithm>
+	<iosfwd>
+	<boost/config.hpp>
+	<boost/assert.hpp>
+	<boost/core/explicit_operator_bool.hpp>
+	<boost/optional/bad_optional_access.hpp>
+	<boost/static_assert.hpp>
+	<boost/throw_exception.hpp>
+	<boost/type.hpp>
+	<boost/type_traits/alignment_of.hpp>
+	<boost/type_traits/has_nothrow_constructor.hpp>
+	<boost/type_traits/type_with_alignment.hpp>
+	<boost/type_traits/remove_const.hpp>
+	<boost/type_traits/remove_reference.hpp>
+	<boost/type_traits/decay.hpp>
+	<boost/type_traits/is_base_of.hpp>
+	<boost/type_traits/is_lvalue_reference.hpp>
+	<boost/type_traits/is_nothrow_move_assignable.hpp>
+	<boost/type_traits/is_nothrow_move_constructible.hpp>
+	<boost/type_traits/is_reference.hpp>
+	<boost/type_traits/is_rvalue_reference.hpp>
+	<boost/type_traits/is_same.hpp>
+	<boost/mpl/if.hpp>
+	<boost/mpl/bool.hpp>
+	<boost/mpl/not.hpp>
+	<boost/detail/reference_content.hpp>
+	<boost/move/utility.hpp>
+	<boost/none.hpp>
+	<boost/utility/addressof.hpp>
+	<boost/utility/compare_pointees.hpp>
+	<boost/utility/enable_if.hpp>
+	<boost/utility/in_place_factory.hpp>
+	<boost/utility/swap.hpp>
+	<boost/optional/optional_fwd.hpp>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\core\explicit_operator_bool.hpp
+	<boost/config.hpp>
+
+1427264041 c:\users\fox\documents\foxtrader\libs\boost\boost\optional\bad_optional_access.hpp
+	<stdexcept>
+	<string>
+
+1427264049 c:\users\fox\documents\foxtrader\libs\boost\boost\static_assert.hpp
+	<boost/config.hpp>
+	<boost/detail/workaround.hpp>
+
+1427264050 c:\users\fox\documents\foxtrader\libs\boost\boost\throw_exception.hpp
+	<boost/detail/workaround.hpp>
+	<boost/config.hpp>
+	<exception>
+	<boost/exception/exception.hpp>
+	<boost/current_function.hpp>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\exception\exception.hpp
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type.hpp
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\alignment_of.hpp
+	<boost/config.hpp>
+	<cstddef>
+	<boost/type_traits/intrinsics.hpp>
+	<boost/type_traits/detail/size_t_trait_def.hpp>
+	<boost/type_traits/detail/size_t_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\intrinsics.hpp
+	<boost/type_traits/config.hpp>
+	<boost/type_traits/is_same.hpp>
+	<algorithm>
+	<type_traits.h>
+	<msl_utility>
+	<boost/type_traits/is_same.hpp>
+	<boost/type_traits/is_function.hpp>
+	<cstddef>
+	<boost/type_traits/is_same.hpp>
+	<boost/type_traits/is_reference.hpp>
+	<boost/type_traits/is_volatile.hpp>
+	<boost/type_traits/is_same.hpp>
+	<boost/type_traits/is_reference.hpp>
+	<boost/type_traits/is_volatile.hpp>
+	<boost/type_traits/is_same.hpp>
+	<boost/type_traits/is_reference.hpp>
+	<boost/type_traits/is_volatile.hpp>
+	<boost/type_traits/is_same.hpp>
+	<boost/type_traits/is_reference.hpp>
+	<boost/type_traits/is_volatile.hpp>
+	<boost/type_traits/is_void.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\config.hpp
+	<boost/config.hpp>
+	<boost/detail/workaround.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\is_same.hpp
+	<boost/type_traits/config.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\detail\bool_trait_def.hpp
+	<boost/type_traits/detail/template_arity_spec.hpp>
+	<boost/type_traits/integral_constant.hpp>
+	<boost/mpl/bool.hpp>
+	<boost/mpl/aux_/lambda_support.hpp>
+	<boost/config.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\detail\template_arity_spec.hpp
+	<boost/mpl/int.hpp>
+	<boost/mpl/aux_/template_arity_fwd.hpp>
+	<boost/mpl/aux_/preprocessor/params.hpp>
+	<boost/mpl/aux_/config/lambda.hpp>
+	<boost/mpl/aux_/config/overload_resolution.hpp>
+
+1427264039 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\int.hpp
+	<boost/mpl/int_fwd.hpp>
+	<boost/mpl/aux_/integral_wrapper.hpp>
+
+1427264039 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\int_fwd.hpp
+	<boost/mpl/aux_/adl_barrier.hpp>
+	<boost/mpl/aux_/nttp_decl.hpp>
+
+1427264037 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\adl_barrier.hpp
+	<boost/mpl/aux_/config/adl.hpp>
+	<boost/mpl/aux_/config/gcc.hpp>
+	<boost/mpl/aux_/config/workaround.hpp>
+
+1427264037 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\config\adl.hpp
+	<boost/mpl/aux_/config/msvc.hpp>
+	<boost/mpl/aux_/config/intel.hpp>
+	<boost/mpl/aux_/config/gcc.hpp>
+	<boost/mpl/aux_/config/workaround.hpp>
+
+1427264037 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\config\msvc.hpp
+	<boost/config.hpp>
+
+1427264037 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\config\intel.hpp
+	<boost/config.hpp>
+
+1427264037 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\config\gcc.hpp
+
+1427264037 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\config\workaround.hpp
+	<boost/detail/workaround.hpp>
+
+1427264038 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\nttp_decl.hpp
+	<boost/mpl/aux_/config/nttp.hpp>
+	<boost/preprocessor/cat.hpp>
+
+1427264037 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\config\nttp.hpp
+	<boost/mpl/aux_/config/msvc.hpp>
+	<boost/mpl/aux_/config/workaround.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\cat.hpp
+	<boost/preprocessor/config/config.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\config\config.hpp
+
+1427264038 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\integral_wrapper.hpp
+	<boost/mpl/integral_c_tag.hpp>
+	<boost/mpl/aux_/static_cast.hpp>
+	<boost/mpl/aux_/nttp_decl.hpp>
+	<boost/mpl/aux_/config/static_constant.hpp>
+	<boost/mpl/aux_/config/workaround.hpp>
+	<boost/preprocessor/cat.hpp>
+
+1427264039 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\integral_c_tag.hpp
+	<boost/mpl/aux_/adl_barrier.hpp>
+	<boost/mpl/aux_/config/static_constant.hpp>
+
+1427264037 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\config\static_constant.hpp
+	<boost/config.hpp>
+
+1427264039 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\static_cast.hpp
+	<boost/mpl/aux_/config/workaround.hpp>
+
+1427264039 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\template_arity_fwd.hpp
+
+1427264039 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\preprocessor\params.hpp
+	<boost/mpl/aux_/config/preprocessor.hpp>
+	<boost/preprocessor/cat.hpp>
+	<boost/preprocessor/comma_if.hpp>
+	<boost/preprocessor/repeat.hpp>
+	<boost/preprocessor/inc.hpp>
+	<boost/preprocessor/cat.hpp>
+
+1427264037 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\config\preprocessor.hpp
+	<boost/mpl/aux_/config/workaround.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\comma_if.hpp
+	<boost/preprocessor/punctuation/comma_if.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\punctuation\comma_if.hpp
+	<boost/preprocessor/config/config.hpp>
+	<boost/preprocessor/control/if.hpp>
+	<boost/preprocessor/facilities/empty.hpp>
+	<boost/preprocessor/punctuation/comma.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\control\if.hpp
+	<boost/preprocessor/config/config.hpp>
+	<boost/preprocessor/control/iif.hpp>
+	<boost/preprocessor/logical/bool.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\control\iif.hpp
+	<boost/preprocessor/config/config.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\logical\bool.hpp
+	<boost/preprocessor/config/config.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\facilities\empty.hpp
+	<boost/preprocessor/config/config.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\punctuation\comma.hpp
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\repeat.hpp
+	<boost/preprocessor/repetition/repeat.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\repetition\repeat.hpp
+	<boost/preprocessor/cat.hpp>
+	<boost/preprocessor/config/config.hpp>
+	<boost/preprocessor/debug/error.hpp>
+	<boost/preprocessor/detail/auto_rec.hpp>
+	<boost/preprocessor/tuple/eat.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\debug\error.hpp
+	<boost/preprocessor/cat.hpp>
+	<boost/preprocessor/config/config.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\detail\auto_rec.hpp
+	<boost/preprocessor/config/config.hpp>
+	<boost/preprocessor/detail/dmc/auto_rec.hpp>
+	<boost/preprocessor/control/iif.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\detail\dmc\auto_rec.hpp
+	<boost/preprocessor/control/iif.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\tuple\eat.hpp
+	<boost/preprocessor/config/config.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\inc.hpp
+	<boost/preprocessor/arithmetic/inc.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\arithmetic\inc.hpp
+	<boost/preprocessor/config/config.hpp>
+
+1427264037 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\config\lambda.hpp
+	<boost/mpl/aux_/config/ttp.hpp>
+	<boost/mpl/aux_/config/ctps.hpp>
+
+1427264037 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\config\ttp.hpp
+	<boost/mpl/aux_/config/msvc.hpp>
+	<boost/mpl/aux_/config/gcc.hpp>
+	<boost/mpl/aux_/config/workaround.hpp>
+
+1427264037 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\config\ctps.hpp
+	<boost/mpl/aux_/config/workaround.hpp>
+	<boost/config.hpp>
+
+1427264037 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\config\overload_resolution.hpp
+	<boost/mpl/aux_/config/workaround.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\integral_constant.hpp
+	<boost/config.hpp>
+	<boost/mpl/bool.hpp>
+	<boost/mpl/integral_c.hpp>
+
+1427264039 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\bool.hpp
+	<boost/mpl/bool_fwd.hpp>
+	<boost/mpl/integral_c_tag.hpp>
+	<boost/mpl/aux_/config/static_constant.hpp>
+
+1427264039 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\bool_fwd.hpp
+	<boost/mpl/aux_/adl_barrier.hpp>
+
+1427264039 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\integral_c.hpp
+	<boost/mpl/integral_c_fwd.hpp>
+	<boost/mpl/aux_/config/ctps.hpp>
+	<boost/mpl/aux_/config/static_constant.hpp>
+	<boost/mpl/aux_/config/workaround.hpp>
+	<boost/mpl/aux_/integral_wrapper.hpp>
+
+1427264039 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\integral_c_fwd.hpp
+	<boost/mpl/aux_/config/workaround.hpp>
+	<boost/mpl/aux_/adl_barrier.hpp>
+
+1427264038 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\lambda_support.hpp
+	<boost/mpl/aux_/config/lambda.hpp>
+	<boost/mpl/int_fwd.hpp>
+	<boost/mpl/aux_/yes_no.hpp>
+	<boost/mpl/aux_/na_fwd.hpp>
+	<boost/mpl/aux_/preprocessor/params.hpp>
+	<boost/mpl/aux_/preprocessor/enum.hpp>
+	<boost/mpl/aux_/config/msvc.hpp>
+	<boost/mpl/aux_/config/workaround.hpp>
+	<boost/preprocessor/tuple/to_list.hpp>
+	<boost/preprocessor/list/for_each_i.hpp>
+	<boost/preprocessor/inc.hpp>
+	<boost/preprocessor/cat.hpp>
+
+1427264039 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\yes_no.hpp
+	<boost/mpl/aux_/nttp_decl.hpp>
+	<boost/mpl/aux_/config/arrays.hpp>
+	<boost/mpl/aux_/config/msvc.hpp>
+	<boost/mpl/aux_/config/workaround.hpp>
+
+1427264037 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\config\arrays.hpp
+	<boost/mpl/aux_/config/msvc.hpp>
+	<boost/mpl/aux_/config/workaround.hpp>
+
+1427264038 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\na_fwd.hpp
+	<boost/mpl/aux_/adl_barrier.hpp>
+
+1427264039 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\preprocessor\enum.hpp
+	<boost/mpl/aux_/config/preprocessor.hpp>
+	<boost/preprocessor/cat.hpp>
+	<boost/preprocessor/comma_if.hpp>
+	<boost/preprocessor/repeat.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\tuple\to_list.hpp
+	<boost/preprocessor/cat.hpp>
+	<boost/preprocessor/config/config.hpp>
+	<boost/preprocessor/facilities/overload.hpp>
+	<boost/preprocessor/tuple/size.hpp>
+	<boost/preprocessor/variadic/size.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\facilities\overload.hpp
+	<boost/preprocessor/cat.hpp>
+	<boost/preprocessor/variadic/size.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\variadic\size.hpp
+	<boost/preprocessor/cat.hpp>
+	<boost/preprocessor/config/config.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\tuple\size.hpp
+	<boost/preprocessor/cat.hpp>
+	<boost/preprocessor/config/config.hpp>
+	<boost/preprocessor/variadic/size.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\list\for_each_i.hpp
+	<boost/preprocessor/arithmetic/inc.hpp>
+	<boost/preprocessor/config/config.hpp>
+	<boost/preprocessor/list/adt.hpp>
+	<boost/preprocessor/repetition/for.hpp>
+	<boost/preprocessor/tuple/elem.hpp>
+	<boost/preprocessor/tuple/rem.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\list\adt.hpp
+	<boost/preprocessor/config/config.hpp>
+	<boost/preprocessor/detail/is_binary.hpp>
+	<boost/preprocessor/logical/compl.hpp>
+	<boost/preprocessor/tuple/eat.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\detail\is_binary.hpp
+	<boost/preprocessor/config/config.hpp>
+	<boost/preprocessor/detail/check.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\detail\check.hpp
+	<boost/preprocessor/cat.hpp>
+	<boost/preprocessor/config/config.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\logical\compl.hpp
+	<boost/preprocessor/config/config.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\repetition\for.hpp
+	<boost/preprocessor/cat.hpp>
+	<boost/preprocessor/debug/error.hpp>
+	<boost/preprocessor/detail/auto_rec.hpp>
+	<boost/preprocessor/repetition/detail/edg/for.hpp>
+	<boost/preprocessor/repetition/detail/msvc/for.hpp>
+	<boost/preprocessor/repetition/detail/dmc/for.hpp>
+	<boost/preprocessor/repetition/detail/for.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\repetition\detail\edg\for.hpp
+	<boost/preprocessor/control/if.hpp>
+	<boost/preprocessor/tuple/eat.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\repetition\detail\msvc\for.hpp
+	<boost/preprocessor/control/if.hpp>
+	<boost/preprocessor/tuple/eat.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\repetition\detail\dmc\for.hpp
+	<boost/preprocessor/control/expr_iif.hpp>
+	<boost/preprocessor/control/iif.hpp>
+	<boost/preprocessor/logical/bool.hpp>
+	<boost/preprocessor/tuple/eat.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\control\expr_iif.hpp
+	<boost/preprocessor/config/config.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\repetition\detail\for.hpp
+	<boost/preprocessor/control/expr_iif.hpp>
+	<boost/preprocessor/control/iif.hpp>
+	<boost/preprocessor/logical/bool.hpp>
+	<boost/preprocessor/tuple/eat.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\tuple\elem.hpp
+	<boost/preprocessor/cat.hpp>
+	<boost/preprocessor/config/config.hpp>
+	<boost/preprocessor/facilities/expand.hpp>
+	<boost/preprocessor/facilities/overload.hpp>
+	<boost/preprocessor/tuple/rem.hpp>
+	<boost/preprocessor/variadic/elem.hpp>
+	<boost/preprocessor/tuple/detail/is_single_return.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\facilities\expand.hpp
+	<boost/preprocessor/config/config.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\tuple\rem.hpp
+	<boost/preprocessor/cat.hpp>
+	<boost/preprocessor/config/config.hpp>
+	<boost/preprocessor/facilities/expand.hpp>
+	<boost/preprocessor/facilities/overload.hpp>
+	<boost/preprocessor/tuple/detail/is_single_return.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\tuple\detail\is_single_return.hpp
+	<boost/preprocessor/config/config.hpp>
+	<boost/preprocessor/control/iif.hpp>
+	<boost/preprocessor/facilities/is_1.hpp>
+	<boost/preprocessor/tuple/size.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\facilities\is_1.hpp
+	<boost/preprocessor/cat.hpp>
+	<boost/preprocessor/facilities/is_empty.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\facilities\is_empty.hpp
+	<boost/preprocessor/config/config.hpp>
+	<boost/preprocessor/facilities/is_empty_variadic.hpp>
+	<boost/preprocessor/config/config.hpp>
+	<boost/preprocessor/tuple/elem.hpp>
+	<boost/preprocessor/facilities/identity.hpp>
+	<boost/preprocessor/cat.hpp>
+	<boost/preprocessor/detail/split.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\facilities\is_empty_variadic.hpp
+	<boost/preprocessor/config/config.hpp>
+	<boost/preprocessor/punctuation/is_begin_parens.hpp>
+	<boost/preprocessor/facilities/detail/is_empty.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\punctuation\is_begin_parens.hpp
+	<boost/preprocessor/config/config.hpp>
+	<boost/preprocessor/punctuation/detail/is_begin_parens.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\punctuation\detail\is_begin_parens.hpp
+	<boost/preprocessor/facilities/empty.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\facilities\detail\is_empty.hpp
+	<boost/preprocessor/punctuation/is_begin_parens.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\facilities\identity.hpp
+	<boost/preprocessor/facilities/empty.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\detail\split.hpp
+	<boost/preprocessor/config/config.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\variadic\elem.hpp
+	<boost/preprocessor/cat.hpp>
+	<boost/preprocessor/config/config.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\detail\bool_trait_undef.hpp
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\is_function.hpp
+	<boost/type_traits/is_reference.hpp>
+	<boost/type_traits/detail/false_result.hpp>
+	<boost/config.hpp>
+	<boost/type_traits/detail/is_function_ptr_helper.hpp>
+	<boost/type_traits/detail/is_function_ptr_tester.hpp>
+	<boost/type_traits/detail/yes_no_type.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\is_reference.hpp
+	<boost/type_traits/config.hpp>
+	<boost/type_traits/is_lvalue_reference.hpp>
+	<boost/type_traits/is_rvalue_reference.hpp>
+	<boost/type_traits/ice.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\is_lvalue_reference.hpp
+	<boost/type_traits/config.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\is_rvalue_reference.hpp
+	<boost/type_traits/config.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\ice.hpp
+	<boost/type_traits/detail/yes_no_type.hpp>
+	<boost/type_traits/detail/ice_or.hpp>
+	<boost/type_traits/detail/ice_and.hpp>
+	<boost/type_traits/detail/ice_not.hpp>
+	<boost/type_traits/detail/ice_eq.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\detail\yes_no_type.hpp
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\detail\ice_or.hpp
+	<boost/config.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\detail\ice_and.hpp
+	<boost/config.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\detail\ice_not.hpp
+	<boost/config.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\detail\ice_eq.hpp
+	<boost/config.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\detail\false_result.hpp
+	<boost/config.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\detail\is_function_ptr_helper.hpp
+	<boost/type_traits/config.hpp>
+	<boost/preprocessor/iterate.hpp>
+	<boost/preprocessor/enum_params.hpp>
+	<boost/preprocessor/comma_if.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\iterate.hpp
+	<boost/preprocessor/iteration/iterate.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\iteration\iterate.hpp
+	<boost/preprocessor/arithmetic/dec.hpp>
+	<boost/preprocessor/arithmetic/inc.hpp>
+	<boost/preprocessor/array/elem.hpp>
+	<boost/preprocessor/array/size.hpp>
+	<boost/preprocessor/cat.hpp>
+	<boost/preprocessor/slot/slot.hpp>
+	<boost/preprocessor/tuple/elem.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\arithmetic\dec.hpp
+	<boost/preprocessor/config/config.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\array\elem.hpp
+	<boost/preprocessor/array/data.hpp>
+	<boost/preprocessor/array/size.hpp>
+	<boost/preprocessor/config/config.hpp>
+	<boost/preprocessor/tuple/elem.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\array\data.hpp
+	<boost/preprocessor/config/config.hpp>
+	<boost/preprocessor/tuple/elem.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\array\size.hpp
+	<boost/preprocessor/config/config.hpp>
+	<boost/preprocessor/tuple/elem.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\slot\slot.hpp
+	<boost/preprocessor/cat.hpp>
+	<boost/preprocessor/slot/detail/def.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\slot\detail\def.hpp
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\enum_params.hpp
+	<boost/preprocessor/repetition/enum_params.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\repetition\enum_params.hpp
+	<boost/preprocessor/config/config.hpp>
+	<boost/preprocessor/punctuation/comma_if.hpp>
+	<boost/preprocessor/repetition/repeat.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\detail\is_function_ptr_tester.hpp
+	<boost/type_traits/detail/yes_no_type.hpp>
+	<boost/type_traits/config.hpp>
+	<boost/preprocessor/iterate.hpp>
+	<boost/preprocessor/enum_params.hpp>
+	<boost/preprocessor/comma_if.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\is_volatile.hpp
+	<boost/config.hpp>
+	<boost/detail/workaround.hpp>
+	<boost/type_traits/detail/cv_traits_impl.hpp>
+	<boost/type_traits/remove_bounds.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\detail\cv_traits_impl.hpp
+	<cstddef>
+	<boost/config.hpp>
+	<boost/detail/workaround.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\remove_bounds.hpp
+	<boost/config.hpp>
+	<cstddef>
+	<boost/detail/workaround.hpp>
+	<boost/type_traits/detail/type_trait_def.hpp>
+	<boost/type_traits/detail/type_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\detail\type_trait_def.hpp
+	<boost/type_traits/detail/template_arity_spec.hpp>
+	<boost/mpl/aux_/lambda_support.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\detail\type_trait_undef.hpp
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\is_void.hpp
+	<boost/config.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\detail\size_t_trait_def.hpp
+	<boost/type_traits/detail/template_arity_spec.hpp>
+	<boost/type_traits/integral_constant.hpp>
+	<boost/mpl/aux_/lambda_support.hpp>
+	<boost/mpl/size_t.hpp>
+	<cstddef>
+
+1427264040 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\size_t.hpp
+	<boost/mpl/size_t_fwd.hpp>
+	<boost/mpl/aux_/integral_wrapper.hpp>
+
+1427264040 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\size_t_fwd.hpp
+	<boost/mpl/aux_/adl_barrier.hpp>
+	<boost/config.hpp>
+	<cstddef>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\detail\size_t_trait_undef.hpp
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\has_nothrow_constructor.hpp
+	<boost/type_traits/has_trivial_constructor.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\has_trivial_constructor.hpp
+	<boost/type_traits/config.hpp>
+	<boost/type_traits/intrinsics.hpp>
+	<boost/type_traits/is_pod.hpp>
+	<boost/type_traits/detail/ice_or.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\is_pod.hpp
+	<boost/type_traits/config.hpp>
+	<boost/type_traits/is_void.hpp>
+	<boost/type_traits/is_scalar.hpp>
+	<boost/type_traits/detail/ice_or.hpp>
+	<boost/type_traits/intrinsics.hpp>
+	<cstddef>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\is_scalar.hpp
+	<boost/type_traits/is_arithmetic.hpp>
+	<boost/type_traits/is_enum.hpp>
+	<boost/type_traits/is_pointer.hpp>
+	<boost/type_traits/is_member_pointer.hpp>
+	<boost/type_traits/detail/ice_or.hpp>
+	<boost/config.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\is_arithmetic.hpp
+	<boost/type_traits/is_integral.hpp>
+	<boost/type_traits/is_float.hpp>
+	<boost/type_traits/detail/ice_or.hpp>
+	<boost/config.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\is_integral.hpp
+	<boost/config.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\is_float.hpp
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\is_enum.hpp
+	<boost/type_traits/intrinsics.hpp>
+	<boost/type_traits/add_reference.hpp>
+	<boost/type_traits/is_arithmetic.hpp>
+	<boost/type_traits/is_reference.hpp>
+	<boost/type_traits/is_convertible.hpp>
+	<boost/type_traits/is_array.hpp>
+	<boost/type_traits/is_function.hpp>
+	<boost/type_traits/config.hpp>
+	<boost/type_traits/is_class.hpp>
+	<boost/type_traits/is_union.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\add_reference.hpp
+	<boost/type_traits/is_reference.hpp>
+	<boost/detail/workaround.hpp>
+	<boost/config.hpp>
+	<boost/type_traits/detail/type_trait_def.hpp>
+	<boost/type_traits/detail/type_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\is_convertible.hpp
+	<boost/type_traits/intrinsics.hpp>
+	<boost/type_traits/detail/yes_no_type.hpp>
+	<boost/type_traits/config.hpp>
+	<boost/type_traits/is_array.hpp>
+	<boost/type_traits/ice.hpp>
+	<boost/type_traits/is_arithmetic.hpp>
+	<boost/type_traits/is_void.hpp>
+	<boost/type_traits/is_abstract.hpp>
+	<boost/type_traits/add_lvalue_reference.hpp>
+	<boost/type_traits/add_rvalue_reference.hpp>
+	<boost/type_traits/is_function.hpp>
+	<boost/type_traits/remove_reference.hpp>
+	<boost/utility/declval.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\is_array.hpp
+	<boost/type_traits/config.hpp>
+	<cstddef>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\is_abstract.hpp
+	<boost/type_traits/intrinsics.hpp>
+	<boost/static_assert.hpp>
+	<boost/type_traits/detail/yes_no_type.hpp>
+	<boost/type_traits/is_class.hpp>
+	<boost/type_traits/detail/ice_and.hpp>
+	<boost/type_traits/is_polymorphic.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\is_class.hpp
+	<boost/type_traits/config.hpp>
+	<boost/type_traits/intrinsics.hpp>
+	<boost/type_traits/is_union.hpp>
+	<boost/type_traits/detail/ice_and.hpp>
+	<boost/type_traits/detail/ice_not.hpp>
+	<boost/type_traits/detail/yes_no_type.hpp>
+	<boost/type_traits/is_scalar.hpp>
+	<boost/type_traits/is_array.hpp>
+	<boost/type_traits/is_reference.hpp>
+	<boost/type_traits/is_void.hpp>
+	<boost/type_traits/is_function.hpp>
+	<boost/type_traits/remove_cv.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\is_union.hpp
+	<boost/type_traits/remove_cv.hpp>
+	<boost/type_traits/config.hpp>
+	<boost/type_traits/intrinsics.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\remove_cv.hpp
+	<boost/type_traits/detail/cv_traits_impl.hpp>
+	<boost/config.hpp>
+	<boost/detail/workaround.hpp>
+	<cstddef>
+	<boost/type_traits/detail/type_trait_def.hpp>
+	<boost/type_traits/detail/type_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\is_polymorphic.hpp
+	<boost/type_traits/intrinsics.hpp>
+	<boost/type_traits/is_class.hpp>
+	<boost/type_traits/remove_cv.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/detail/workaround.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\add_lvalue_reference.hpp
+	<boost/type_traits/add_reference.hpp>
+	<boost/type_traits/detail/type_trait_def.hpp>
+	<boost/type_traits/detail/type_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\add_rvalue_reference.hpp
+	<boost/config.hpp>
+	<boost/type_traits/is_void.hpp>
+	<boost/type_traits/is_reference.hpp>
+	<boost/type_traits/detail/type_trait_def.hpp>
+	<boost/type_traits/detail/type_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\remove_reference.hpp
+	<boost/config.hpp>
+	<boost/detail/workaround.hpp>
+	<boost/type_traits/detail/type_trait_def.hpp>
+	<boost/type_traits/detail/type_trait_undef.hpp>
+
+1427264054 c:\users\fox\documents\foxtrader\libs\boost\boost\utility\declval.hpp
+	<boost/config.hpp>
+	<boost/type_traits/add_rvalue_reference.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\is_pointer.hpp
+	<boost/type_traits/is_member_pointer.hpp>
+	<boost/type_traits/detail/ice_and.hpp>
+	<boost/type_traits/detail/ice_not.hpp>
+	<boost/type_traits/config.hpp>
+	<boost/type_traits/remove_cv.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\is_member_pointer.hpp
+	<boost/type_traits/config.hpp>
+	<boost/detail/workaround.hpp>
+	<boost/type_traits/is_member_function_pointer.hpp>
+	<boost/type_traits/is_reference.hpp>
+	<boost/type_traits/is_array.hpp>
+	<boost/type_traits/detail/is_mem_fun_pointer_tester.hpp>
+	<boost/type_traits/detail/yes_no_type.hpp>
+	<boost/type_traits/detail/false_result.hpp>
+	<boost/type_traits/detail/ice_or.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\is_member_function_pointer.hpp
+	<boost/type_traits/config.hpp>
+	<boost/detail/workaround.hpp>
+	<boost/type_traits/detail/is_mem_fun_pointer_impl.hpp>
+	<boost/type_traits/remove_cv.hpp>
+	<boost/type_traits/is_reference.hpp>
+	<boost/type_traits/is_array.hpp>
+	<boost/type_traits/detail/yes_no_type.hpp>
+	<boost/type_traits/detail/false_result.hpp>
+	<boost/type_traits/detail/ice_or.hpp>
+	<boost/type_traits/detail/is_mem_fun_pointer_tester.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\detail\is_mem_fun_pointer_impl.hpp
+	<boost/config.hpp>
+	<boost/preprocessor/iterate.hpp>
+	<boost/preprocessor/enum_params.hpp>
+	<boost/preprocessor/comma_if.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\detail\is_mem_fun_pointer_tester.hpp
+	<boost/type_traits/detail/yes_no_type.hpp>
+	<boost/type_traits/config.hpp>
+	<boost/preprocessor/iterate.hpp>
+	<boost/preprocessor/enum_params.hpp>
+	<boost/preprocessor/comma_if.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\type_with_alignment.hpp
+	<boost/mpl/if.hpp>
+	<boost/preprocessor/list/for_each_i.hpp>
+	<boost/preprocessor/tuple/to_list.hpp>
+	<boost/preprocessor/cat.hpp>
+	<boost/preprocessor/list/transform.hpp>
+	<boost/preprocessor/list/append.hpp>
+	<boost/type_traits/alignment_of.hpp>
+	<boost/type_traits/is_pod.hpp>
+	<boost/static_assert.hpp>
+	<boost/config.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<cstddef>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264039 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\if.hpp
+	<boost/mpl/aux_/value_wknd.hpp>
+	<boost/mpl/aux_/static_cast.hpp>
+	<boost/mpl/aux_/na_spec.hpp>
+	<boost/mpl/aux_/lambda_support.hpp>
+	<boost/mpl/aux_/config/integral.hpp>
+	<boost/mpl/aux_/config/ctps.hpp>
+	<boost/mpl/aux_/config/workaround.hpp>
+
+1427264039 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\value_wknd.hpp
+	<boost/mpl/aux_/static_cast.hpp>
+	<boost/mpl/aux_/config/integral.hpp>
+	<boost/mpl/aux_/config/eti.hpp>
+	<boost/mpl/aux_/config/workaround.hpp>
+	<boost/mpl/int.hpp>
+
+1427264037 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\config\integral.hpp
+	<boost/mpl/aux_/config/msvc.hpp>
+	<boost/mpl/aux_/config/workaround.hpp>
+
+1427264037 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\config\eti.hpp
+	<boost/mpl/aux_/config/msvc.hpp>
+	<boost/mpl/aux_/config/workaround.hpp>
+
+1427264038 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\na_spec.hpp
+	<boost/mpl/lambda_fwd.hpp>
+	<boost/mpl/int.hpp>
+	<boost/mpl/bool.hpp>
+	<boost/mpl/aux_/na.hpp>
+	<boost/mpl/aux_/arity.hpp>
+	<boost/mpl/aux_/template_arity_fwd.hpp>
+	<boost/mpl/aux_/preprocessor/params.hpp>
+	<boost/mpl/aux_/preprocessor/enum.hpp>
+	<boost/mpl/aux_/preprocessor/def_params_tail.hpp>
+	<boost/mpl/aux_/lambda_arity_param.hpp>
+	<boost/mpl/aux_/config/dtp.hpp>
+	<boost/mpl/aux_/config/eti.hpp>
+	<boost/mpl/aux_/nttp_decl.hpp>
+	<boost/mpl/aux_/config/ttp.hpp>
+	<boost/mpl/aux_/config/lambda.hpp>
+	<boost/mpl/aux_/config/overload_resolution.hpp>
+
+1427264040 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\lambda_fwd.hpp
+	<boost/mpl/void_fwd.hpp>
+	<boost/mpl/aux_/na.hpp>
+	<boost/mpl/aux_/config/lambda.hpp>
+	<boost/mpl/int.hpp>
+	<boost/mpl/aux_/lambda_arity_param.hpp>
+	<boost/mpl/aux_/template_arity_fwd.hpp>
+	<boost/mpl/bool.hpp>
+
+1427264040 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\void_fwd.hpp
+	<boost/mpl/aux_/adl_barrier.hpp>
+
+1427264038 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\na.hpp
+	<boost/mpl/bool.hpp>
+	<boost/mpl/aux_/na_fwd.hpp>
+	<boost/mpl/aux_/config/msvc.hpp>
+	<boost/mpl/aux_/config/ctps.hpp>
+
+1427264038 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\lambda_arity_param.hpp
+	<boost/mpl/aux_/config/ttp.hpp>
+
+1427264037 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\arity.hpp
+	<boost/mpl/aux_/config/dtp.hpp>
+	<boost/mpl/aux_/nttp_decl.hpp>
+	<boost/mpl/aux_/config/static_constant.hpp>
+
+1427264037 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\config\dtp.hpp
+	<boost/mpl/aux_/config/workaround.hpp>
+
+1427264039 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\preprocessor\def_params_tail.hpp
+	<boost/mpl/limits/arity.hpp>
+	<boost/mpl/aux_/config/dtp.hpp>
+	<boost/mpl/aux_/config/preprocessor.hpp>
+	<boost/preprocessor/comma_if.hpp>
+	<boost/preprocessor/logical/and.hpp>
+	<boost/preprocessor/identity.hpp>
+	<boost/preprocessor/empty.hpp>
+	<boost/mpl/aux_/preprocessor/filter_params.hpp>
+	<boost/mpl/aux_/preprocessor/sub.hpp>
+	<boost/preprocessor/arithmetic/add.hpp>
+	<boost/preprocessor/arithmetic/sub.hpp>
+	<boost/preprocessor/inc.hpp>
+	<boost/preprocessor/tuple/elem.hpp>
+	<boost/preprocessor/repeat.hpp>
+	<boost/preprocessor/cat.hpp>
+
+1427264040 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\limits\arity.hpp
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\logical\and.hpp
+	<boost/preprocessor/config/config.hpp>
+	<boost/preprocessor/logical/bool.hpp>
+	<boost/preprocessor/logical/bitand.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\logical\bitand.hpp
+	<boost/preprocessor/config/config.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\identity.hpp
+	<boost/preprocessor/facilities/identity.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\empty.hpp
+	<boost/preprocessor/facilities/empty.hpp>
+
+1427264039 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\preprocessor\filter_params.hpp
+
+1427264039 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\preprocessor\sub.hpp
+	<boost/mpl/aux_/config/preprocessor.hpp>
+	<boost/mpl/aux_/preprocessor/tuple.hpp>
+	<boost/preprocessor/cat.hpp>
+	<boost/preprocessor/arithmetic/sub.hpp>
+
+1427264039 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\preprocessor\tuple.hpp
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\arithmetic\sub.hpp
+	<boost/preprocessor/arithmetic/dec.hpp>
+	<boost/preprocessor/config/config.hpp>
+	<boost/preprocessor/control/while.hpp>
+	<boost/preprocessor/tuple/elem.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\control\while.hpp
+	<boost/preprocessor/cat.hpp>
+	<boost/preprocessor/config/config.hpp>
+	<boost/preprocessor/debug/error.hpp>
+	<boost/preprocessor/detail/auto_rec.hpp>
+	<boost/preprocessor/list/fold_left.hpp>
+	<boost/preprocessor/list/fold_right.hpp>
+	<boost/preprocessor/logical/bitand.hpp>
+	<boost/preprocessor/control/detail/edg/while.hpp>
+	<boost/preprocessor/control/detail/msvc/while.hpp>
+	<boost/preprocessor/control/detail/dmc/while.hpp>
+	<boost/preprocessor/control/detail/while.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\list\fold_left.hpp
+	<boost/preprocessor/cat.hpp>
+	<boost/preprocessor/control/while.hpp>
+	<boost/preprocessor/debug/error.hpp>
+	<boost/preprocessor/detail/auto_rec.hpp>
+	<boost/preprocessor/list/detail/edg/fold_left.hpp>
+	<boost/preprocessor/list/detail/dmc/fold_left.hpp>
+	<boost/preprocessor/list/detail/fold_left.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\list\detail\edg\fold_left.hpp
+	<boost/preprocessor/control/expr_iif.hpp>
+	<boost/preprocessor/control/iif.hpp>
+	<boost/preprocessor/list/adt.hpp>
+	<boost/preprocessor/tuple/eat.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\list\detail\dmc\fold_left.hpp
+	<boost/preprocessor/control/expr_iif.hpp>
+	<boost/preprocessor/control/iif.hpp>
+	<boost/preprocessor/list/adt.hpp>
+	<boost/preprocessor/tuple/elem.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\list\detail\fold_left.hpp
+	<boost/preprocessor/control/expr_iif.hpp>
+	<boost/preprocessor/control/iif.hpp>
+	<boost/preprocessor/list/adt.hpp>
+	<boost/preprocessor/tuple/eat.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\list\fold_right.hpp
+	<boost/preprocessor/cat.hpp>
+	<boost/preprocessor/control/while.hpp>
+	<boost/preprocessor/debug/error.hpp>
+	<boost/preprocessor/detail/auto_rec.hpp>
+	<boost/preprocessor/list/detail/edg/fold_right.hpp>
+	<boost/preprocessor/list/detail/fold_right.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\list\detail\edg\fold_right.hpp
+	<boost/preprocessor/control/iif.hpp>
+	<boost/preprocessor/list/adt.hpp>
+	<boost/preprocessor/tuple/eat.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\list\detail\fold_right.hpp
+	<boost/preprocessor/list/fold_left.hpp>
+	<boost/preprocessor/list/reverse.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\list\reverse.hpp
+	<boost/preprocessor/config/config.hpp>
+	<boost/preprocessor/list/fold_left.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\control\detail\edg\while.hpp
+	<boost/preprocessor/control/if.hpp>
+	<boost/preprocessor/tuple/eat.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\control\detail\msvc\while.hpp
+	<boost/preprocessor/control/if.hpp>
+	<boost/preprocessor/tuple/eat.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\control\detail\dmc\while.hpp
+	<boost/preprocessor/control/iif.hpp>
+	<boost/preprocessor/logical/bool.hpp>
+	<boost/preprocessor/tuple/eat.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\control\detail\while.hpp
+	<boost/preprocessor/control/iif.hpp>
+	<boost/preprocessor/logical/bool.hpp>
+	<boost/preprocessor/tuple/eat.hpp>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\arithmetic\add.hpp
+	<boost/preprocessor/arithmetic/dec.hpp>
+	<boost/preprocessor/arithmetic/inc.hpp>
+	<boost/preprocessor/config/config.hpp>
+	<boost/preprocessor/control/while.hpp>
+	<boost/preprocessor/tuple/elem.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\list\transform.hpp
+	<boost/preprocessor/config/config.hpp>
+	<boost/preprocessor/list/fold_right.hpp>
+	<boost/preprocessor/tuple/elem.hpp>
+	<boost/preprocessor/tuple/rem.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\list\append.hpp
+	<boost/preprocessor/config/config.hpp>
+	<boost/preprocessor/list/fold_right.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\remove_const.hpp
+	<boost/type_traits/is_volatile.hpp>
+	<boost/type_traits/detail/cv_traits_impl.hpp>
+	<boost/config.hpp>
+	<boost/detail/workaround.hpp>
+	<cstddef>
+	<boost/type_traits/detail/type_trait_def.hpp>
+	<boost/type_traits/detail/type_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\decay.hpp
+	<boost/type_traits/config.hpp>
+	<boost/type_traits/is_array.hpp>
+	<boost/type_traits/is_function.hpp>
+	<boost/type_traits/remove_bounds.hpp>
+	<boost/type_traits/add_pointer.hpp>
+	<boost/type_traits/remove_reference.hpp>
+	<boost/mpl/eval_if.hpp>
+	<boost/mpl/identity.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\add_pointer.hpp
+	<boost/type_traits/remove_reference.hpp>
+	<boost/type_traits/detail/type_trait_def.hpp>
+	<boost/type_traits/detail/type_trait_undef.hpp>
+
+1427264039 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\eval_if.hpp
+	<boost/mpl/if.hpp>
+	<boost/mpl/aux_/na_spec.hpp>
+	<boost/mpl/aux_/lambda_support.hpp>
+	<boost/mpl/aux_/config/msvc.hpp>
+	<boost/mpl/aux_/config/gcc.hpp>
+	<boost/mpl/aux_/config/workaround.hpp>
+
+1427264039 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\identity.hpp
+	<boost/mpl/aux_/na_spec.hpp>
+	<boost/mpl/aux_/lambda_support.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\is_base_of.hpp
+	<boost/type_traits/is_base_and_derived.hpp>
+	<boost/type_traits/is_same.hpp>
+	<boost/type_traits/is_class.hpp>
+	<boost/type_traits/detail/ice_or.hpp>
+	<boost/type_traits/detail/ice_and.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\is_base_and_derived.hpp
+	<boost/type_traits/intrinsics.hpp>
+	<boost/type_traits/is_class.hpp>
+	<boost/type_traits/is_same.hpp>
+	<boost/type_traits/is_convertible.hpp>
+	<boost/type_traits/detail/ice_and.hpp>
+	<boost/config.hpp>
+	<boost/static_assert.hpp>
+	<boost/type_traits/remove_cv.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\is_nothrow_move_assignable.hpp
+	<boost/config.hpp>
+	<boost/type_traits/has_trivial_move_assign.hpp>
+	<boost/type_traits/has_nothrow_assign.hpp>
+	<boost/type_traits/is_array.hpp>
+	<boost/type_traits/is_reference.hpp>
+	<boost/type_traits/detail/ice_and.hpp>
+	<boost/type_traits/detail/ice_or.hpp>
+	<boost/type_traits/detail/ice_not.hpp>
+	<boost/utility/enable_if.hpp>
+	<boost/utility/declval.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\has_trivial_move_assign.hpp
+	<boost/type_traits/config.hpp>
+	<boost/type_traits/is_pod.hpp>
+	<boost/type_traits/is_const.hpp>
+	<boost/type_traits/is_volatile.hpp>
+	<boost/type_traits/detail/ice_and.hpp>
+	<boost/type_traits/detail/ice_not.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\is_const.hpp
+	<boost/config.hpp>
+	<boost/detail/workaround.hpp>
+	<boost/type_traits/detail/cv_traits_impl.hpp>
+	<boost/type_traits/is_reference.hpp>
+	<boost/type_traits/remove_bounds.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\has_nothrow_assign.hpp
+	<boost/type_traits/has_trivial_assign.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\has_trivial_assign.hpp
+	<boost/type_traits/config.hpp>
+	<boost/type_traits/intrinsics.hpp>
+	<boost/type_traits/is_pod.hpp>
+	<boost/type_traits/is_const.hpp>
+	<boost/type_traits/is_volatile.hpp>
+	<boost/type_traits/detail/ice_and.hpp>
+	<boost/type_traits/detail/ice_or.hpp>
+	<boost/type_traits/detail/ice_not.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264054 c:\users\fox\documents\foxtrader\libs\boost\boost\utility\enable_if.hpp
+	<boost/core/enable_if.hpp>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\core\enable_if.hpp
+	"boost/config.hpp"
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\is_nothrow_move_constructible.hpp
+	<boost/config.hpp>
+	<boost/type_traits/has_trivial_move_constructor.hpp>
+	<boost/type_traits/has_nothrow_copy.hpp>
+	<boost/type_traits/is_array.hpp>
+	<boost/type_traits/is_reference.hpp>
+	<boost/type_traits/detail/ice_or.hpp>
+	<boost/type_traits/detail/ice_and.hpp>
+	<boost/utility/declval.hpp>
+	<boost/utility/enable_if.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\has_trivial_move_constructor.hpp
+	<boost/type_traits/config.hpp>
+	<boost/type_traits/intrinsics.hpp>
+	<boost/type_traits/is_pod.hpp>
+	<boost/type_traits/is_volatile.hpp>
+	<boost/type_traits/detail/ice_and.hpp>
+	<boost/type_traits/detail/ice_not.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\has_nothrow_copy.hpp
+	<boost/type_traits/has_trivial_copy.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\has_trivial_copy.hpp
+	<boost/type_traits/config.hpp>
+	<boost/type_traits/intrinsics.hpp>
+	<boost/type_traits/is_volatile.hpp>
+	<boost/type_traits/is_pod.hpp>
+	<boost/type_traits/detail/ice_and.hpp>
+	<boost/type_traits/detail/ice_or.hpp>
+	<boost/type_traits/detail/ice_not.hpp>
+	<boost/type_traits/is_copy_constructible.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\is_copy_constructible.hpp
+	<boost/config.hpp>
+	<boost/type_traits/detail/yes_no_type.hpp>
+	<boost/type_traits/is_base_and_derived.hpp>
+	<boost/type_traits/add_reference.hpp>
+	<boost/type_traits/is_rvalue_reference.hpp>
+	<boost/utility/declval.hpp>
+	<boost/noncopyable.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264041 c:\users\fox\documents\foxtrader\libs\boost\boost\noncopyable.hpp
+	<boost/core/noncopyable.hpp>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\core\noncopyable.hpp
+	<boost/config.hpp>
+
+1427264040 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\not.hpp
+	<boost/mpl/bool.hpp>
+	<boost/mpl/aux_/nttp_decl.hpp>
+	<boost/mpl/aux_/nested_type_wknd.hpp>
+	<boost/mpl/aux_/na_spec.hpp>
+	<boost/mpl/aux_/lambda_support.hpp>
+
+1427264038 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\nested_type_wknd.hpp
+	<boost/mpl/aux_/config/gcc.hpp>
+	<boost/mpl/aux_/config/workaround.hpp>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\detail\reference_content.hpp
+	"boost/config.hpp"
+	"boost/mpl/bool.hpp"
+	"boost/type_traits/has_nothrow_copy.hpp"
+	"boost/mpl/void.hpp"
+
+1427264040 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\void.hpp
+	<boost/mpl/void_fwd.hpp>
+	<boost/mpl/bool.hpp>
+	<boost/mpl/aux_/na_spec.hpp>
+	<boost/mpl/aux_/config/msvc.hpp>
+	<boost/mpl/aux_/config/workaround.hpp>
+
+1427264037 c:\users\fox\documents\foxtrader\libs\boost\boost\move\utility.hpp
+	<boost/move/detail/config_begin.hpp>
+	<boost/move/utility_core.hpp>
+	<boost/move/traits.hpp>
+	<utility>
+	<boost/move/detail/config_end.hpp>
+
+1427264037 c:\users\fox\documents\foxtrader\libs\boost\boost\move\detail\config_begin.hpp
+	<boost/config.hpp>
+
+1427264037 c:\users\fox\documents\foxtrader\libs\boost\boost\move\utility_core.hpp
+	<boost/move/detail/config_begin.hpp>
+	<boost/move/core.hpp>
+	<boost/move/detail/meta_utils.hpp>
+	<boost/static_assert.hpp>
+	<utility>
+	<boost/move/detail/config_end.hpp>
+
+1427264037 c:\users\fox\documents\foxtrader\libs\boost\boost\move\core.hpp
+	<boost/move/detail/config_begin.hpp>
+	<boost/move/detail/meta_utils.hpp>
+	<boost/move/detail/meta_utils.hpp>
+	<boost/move/detail/config_end.hpp>
+
+1427264037 c:\users\fox\documents\foxtrader\libs\boost\boost\move\detail\meta_utils.hpp
+	<boost/move/detail/config_begin.hpp>
+	<cstddef>
+	<boost/move/detail/config_end.hpp>
+
+1427264037 c:\users\fox\documents\foxtrader\libs\boost\boost\move\detail\config_end.hpp
+
+1427264037 c:\users\fox\documents\foxtrader\libs\boost\boost\move\traits.hpp
+	<boost/move/detail/config_begin.hpp>
+	<boost/type_traits/has_trivial_destructor.hpp>
+	<boost/type_traits/is_nothrow_move_constructible.hpp>
+	<boost/type_traits/is_nothrow_move_assignable.hpp>
+	<boost/type_traits/is_copy_constructible.hpp>
+	<boost/move/detail/meta_utils.hpp>
+	<boost/move/core.hpp>
+	<boost/move/detail/config_end.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\has_trivial_destructor.hpp
+	<boost/type_traits/config.hpp>
+	<boost/type_traits/intrinsics.hpp>
+	<boost/type_traits/is_pod.hpp>
+	<boost/type_traits/detail/ice_or.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264041 c:\users\fox\documents\foxtrader\libs\boost\boost\none.hpp
+	"boost/none_t.hpp"
+
+1427264041 c:\users\fox\documents\foxtrader\libs\boost\boost\none_t.hpp
+
+1427264054 c:\users\fox\documents\foxtrader\libs\boost\boost\utility\addressof.hpp
+	<boost/core/addressof.hpp>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\core\addressof.hpp
+	<boost/config.hpp>
+	<boost/detail/workaround.hpp>
+	<cstddef>
+
+1427264054 c:\users\fox\documents\foxtrader\libs\boost\boost\utility\compare_pointees.hpp
+	<functional>
+
+1427264054 c:\users\fox\documents\foxtrader\libs\boost\boost\utility\in_place_factory.hpp
+	<boost/utility/detail/in_place_factory_prefix.hpp>
+	<boost/utility/detail/in_place_factory_suffix.hpp>
+
+1427264054 c:\users\fox\documents\foxtrader\libs\boost\boost\utility\detail\in_place_factory_prefix.hpp
+	<new>
+	<cstddef>
+	<boost/config.hpp>
+	<boost/preprocessor/cat.hpp>
+	<boost/preprocessor/punctuation/paren.hpp>
+	<boost/preprocessor/iteration/iterate.hpp>
+	<boost/preprocessor/repetition/repeat.hpp>
+	<boost/preprocessor/repetition/enum.hpp>
+	<boost/preprocessor/repetition/enum_params.hpp>
+	<boost/preprocessor/repetition/enum_binary_params.hpp>
+	<boost/preprocessor/repetition/enum_trailing_params.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\punctuation\paren.hpp
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\repetition\enum.hpp
+	<boost/preprocessor/cat.hpp>
+	<boost/preprocessor/config/config.hpp>
+	<boost/preprocessor/debug/error.hpp>
+	<boost/preprocessor/detail/auto_rec.hpp>
+	<boost/preprocessor/punctuation/comma_if.hpp>
+	<boost/preprocessor/repetition/repeat.hpp>
+	<boost/preprocessor/tuple/elem.hpp>
+	<boost/preprocessor/tuple/rem.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\repetition\enum_binary_params.hpp
+	<boost/preprocessor/cat.hpp>
+	<boost/preprocessor/config/config.hpp>
+	<boost/preprocessor/punctuation/comma_if.hpp>
+	<boost/preprocessor/repetition/repeat.hpp>
+	<boost/preprocessor/tuple/elem.hpp>
+	<boost/preprocessor/tuple/rem.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\repetition\enum_trailing_params.hpp
+	<boost/preprocessor/config/config.hpp>
+	<boost/preprocessor/repetition/repeat.hpp>
+
+1427264054 c:\users\fox\documents\foxtrader\libs\boost\boost\utility\detail\in_place_factory_suffix.hpp
+
+1427264054 c:\users\fox\documents\foxtrader\libs\boost\boost\utility\swap.hpp
+	<boost/core/swap.hpp>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\core\swap.hpp
+	<utility>
+	<algorithm>
+	<cstddef>
+	<boost/config.hpp>
+
+1427264041 c:\users\fox\documents\foxtrader\libs\boost\boost\optional\optional_fwd.hpp
+
+1427264035 c:\users\fox\documents\foxtrader\libs\boost\boost\limits.hpp
+	<boost/config.hpp>
+	<limits>
+	<climits>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\format\alt_sstream.hpp
+	<string>
+	<boost/format/detail/compat_workarounds.hpp>
+	<boost/utility/base_from_member.hpp>
+	<boost/shared_ptr.hpp>
+	<boost/assert.hpp>
+	<boost/format/alt_sstream_impl.hpp>
+
+1427264054 c:\users\fox\documents\foxtrader\libs\boost\boost\utility\base_from_member.hpp
+	<boost/config.hpp>
+	<boost/preprocessor/arithmetic/inc.hpp>
+	<boost/preprocessor/repetition/enum_binary_params.hpp>
+	<boost/preprocessor/repetition/enum_params.hpp>
+	<boost/preprocessor/repetition/repeat_from_to.hpp>
+	<boost/type_traits/is_same.hpp>
+	<boost/type_traits/remove_cv.hpp>
+	<boost/type_traits/remove_reference.hpp>
+	<boost/utility/enable_if.hpp>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\repetition\repeat_from_to.hpp
+	<boost/preprocessor/arithmetic/add.hpp>
+	<boost/preprocessor/arithmetic/sub.hpp>
+	<boost/preprocessor/cat.hpp>
+	<boost/preprocessor/config/config.hpp>
+	<boost/preprocessor/control/while.hpp>
+	<boost/preprocessor/debug/error.hpp>
+	<boost/preprocessor/detail/auto_rec.hpp>
+	<boost/preprocessor/repetition/repeat.hpp>
+	<boost/preprocessor/tuple/elem.hpp>
+	<boost/preprocessor/tuple/rem.hpp>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\shared_ptr.hpp
+	<boost/smart_ptr/shared_ptr.hpp>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\shared_ptr.hpp
+	<boost/config.hpp>
+	<boost/config/no_tr1/memory.hpp>
+	<boost/assert.hpp>
+	<boost/checked_delete.hpp>
+	<boost/throw_exception.hpp>
+	<boost/smart_ptr/detail/shared_count.hpp>
+	<boost/detail/workaround.hpp>
+	<boost/smart_ptr/detail/sp_convertible.hpp>
+	<boost/smart_ptr/detail/sp_nullptr_t.hpp>
+	<boost/smart_ptr/detail/spinlock_pool.hpp>
+	<algorithm>
+	<functional>
+	<typeinfo>
+	<cstddef>
+	<iosfwd>
+	<ostream>
+	<boost/smart_ptr/detail/operator_bool.hpp>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\no_tr1\memory.hpp
+	<memory>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\checked_delete.hpp
+	<boost/core/checked_delete.hpp>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\core\checked_delete.hpp
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\shared_count.hpp
+	<boost/config.hpp>
+	<boost/checked_delete.hpp>
+	<boost/throw_exception.hpp>
+	<boost/smart_ptr/bad_weak_ptr.hpp>
+	<boost/smart_ptr/detail/sp_counted_base.hpp>
+	<boost/smart_ptr/detail/sp_counted_impl.hpp>
+	<boost/detail/workaround.hpp>
+	<boost/config/no_tr1/memory.hpp>
+	<functional>
+	<new>
+	<boost/utility/addressof.hpp>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\bad_weak_ptr.hpp
+	<exception>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\sp_counted_base.hpp
+	<boost/config.hpp>
+	<boost/smart_ptr/detail/sp_has_sync.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_nt.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_std_atomic.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_spin.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_pt.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_nt.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_snc_ps3.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_gcc_x86.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_acc_ia64.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_gcc_ia64.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_vacpp_ppc.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_cw_ppc.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_gcc_ppc.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_gcc_mips.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_sync.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_gcc_sparc.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_w32.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_aix.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_nt.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_spin.hpp>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\sp_has_sync.hpp
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\sp_counted_base_nt.hpp
+	<boost/detail/sp_typeinfo.hpp>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\detail\sp_typeinfo.hpp
+	<boost/core/typeinfo.hpp>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\core\typeinfo.hpp
+	<boost/config.hpp>
+	<boost/current_function.hpp>
+	<functional>
+	<boost/core/demangle.hpp>
+	<typeinfo>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\core\demangle.hpp
+	<boost/config.hpp>
+	<string>
+	<cxxabi.h>
+	<cstdlib>
+	<cstddef>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\sp_counted_base_std_atomic.hpp
+	<boost/detail/sp_typeinfo.hpp>
+	<atomic>
+	<cstdint>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\sp_counted_base_spin.hpp
+	<boost/detail/sp_typeinfo.hpp>
+	<boost/smart_ptr/detail/spinlock_pool.hpp>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\spinlock_pool.hpp
+	<boost/config.hpp>
+	<boost/smart_ptr/detail/spinlock.hpp>
+	<cstddef>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\spinlock.hpp
+	<boost/config.hpp>
+	<boost/smart_ptr/detail/sp_has_sync.hpp>
+	<boost/smart_ptr/detail/spinlock_std_atomic.hpp>
+	<boost/smart_ptr/detail/spinlock_sync.hpp>
+	<boost/smart_ptr/detail/spinlock_pt.hpp>
+	<boost/smart_ptr/detail/spinlock_gcc_arm.hpp>
+	<boost/smart_ptr/detail/spinlock_sync.hpp>
+	<boost/smart_ptr/detail/spinlock_w32.hpp>
+	<boost/smart_ptr/detail/spinlock_pt.hpp>
+	<boost/smart_ptr/detail/spinlock_nt.hpp>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\spinlock_std_atomic.hpp
+	<boost/smart_ptr/detail/yield_k.hpp>
+	<atomic>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\yield_k.hpp
+	<boost/config.hpp>
+	<boost/predef.h>
+	<thread>
+	<windows.h>
+	<sched.h>
+	<time.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef.h
+	<boost/predef/language.h>
+	<boost/predef/architecture.h>
+	<boost/predef/compiler.h>
+	<boost/predef/library.h>
+	<boost/predef/os.h>
+	<boost/predef/other.h>
+	<boost/predef/platform.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\language.h
+	<boost/predef/language/stdc.h>
+	<boost/predef/language/stdcpp.h>
+	<boost/predef/language/objc.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\language\stdc.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\version_number.h
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\make.h
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\detail\test.h
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\language\stdcpp.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\language\objc.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\architecture.h
+	<boost/predef/architecture/alpha.h>
+	<boost/predef/architecture/arm.h>
+	<boost/predef/architecture/blackfin.h>
+	<boost/predef/architecture/convex.h>
+	<boost/predef/architecture/ia64.h>
+	<boost/predef/architecture/m68k.h>
+	<boost/predef/architecture/mips.h>
+	<boost/predef/architecture/parisc.h>
+	<boost/predef/architecture/ppc.h>
+	<boost/predef/architecture/pyramid.h>
+	<boost/predef/architecture/rs6k.h>
+	<boost/predef/architecture/sparc.h>
+	<boost/predef/architecture/superh.h>
+	<boost/predef/architecture/sys370.h>
+	<boost/predef/architecture/sys390.h>
+	<boost/predef/architecture/x86.h>
+	<boost/predef/architecture/z.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\architecture\alpha.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\architecture\arm.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\architecture\blackfin.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\architecture\convex.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\architecture\ia64.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\architecture\m68k.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\architecture\mips.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\architecture\parisc.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\architecture\ppc.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\architecture\pyramid.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\architecture\rs6k.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\architecture\sparc.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\architecture\superh.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\architecture\sys370.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\architecture\sys390.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\architecture\x86.h
+	<boost/predef/architecture/x86/32.h>
+	<boost/predef/architecture/x86/64.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\architecture\x86\32.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/architecture/x86.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\architecture\x86\64.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/architecture/x86.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\architecture\z.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\compiler.h
+	<boost/predef/compiler/borland.h>
+	<boost/predef/compiler/clang.h>
+	<boost/predef/compiler/comeau.h>
+	<boost/predef/compiler/compaq.h>
+	<boost/predef/compiler/diab.h>
+	<boost/predef/compiler/digitalmars.h>
+	<boost/predef/compiler/dignus.h>
+	<boost/predef/compiler/edg.h>
+	<boost/predef/compiler/ekopath.h>
+	<boost/predef/compiler/gcc_xml.h>
+	<boost/predef/compiler/gcc.h>
+	<boost/predef/compiler/greenhills.h>
+	<boost/predef/compiler/hp_acc.h>
+	<boost/predef/compiler/iar.h>
+	<boost/predef/compiler/ibm.h>
+	<boost/predef/compiler/intel.h>
+	<boost/predef/compiler/kai.h>
+	<boost/predef/compiler/llvm.h>
+	<boost/predef/compiler/metaware.h>
+	<boost/predef/compiler/metrowerks.h>
+	<boost/predef/compiler/microtec.h>
+	<boost/predef/compiler/mpw.h>
+	<boost/predef/compiler/palm.h>
+	<boost/predef/compiler/pgi.h>
+	<boost/predef/compiler/sgi_mipspro.h>
+	<boost/predef/compiler/sunpro.h>
+	<boost/predef/compiler/tendra.h>
+	<boost/predef/compiler/visualc.h>
+	<boost/predef/compiler/watcom.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\compiler\borland.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/comp_detected.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\detail\comp_detected.h
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\compiler\clang.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/comp_detected.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\compiler\comeau.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/comp_detected.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\compiler\compaq.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/comp_detected.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\compiler\diab.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/comp_detected.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\compiler\digitalmars.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/comp_detected.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\compiler\dignus.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/comp_detected.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\compiler\edg.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/comp_detected.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\compiler\ekopath.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/comp_detected.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\compiler\gcc_xml.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/comp_detected.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\compiler\gcc.h
+	<boost/predef/compiler/clang.h>
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/comp_detected.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\compiler\greenhills.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/comp_detected.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\compiler\hp_acc.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/comp_detected.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\compiler\iar.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/comp_detected.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\compiler\ibm.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/comp_detected.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\compiler\intel.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/comp_detected.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\compiler\kai.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/comp_detected.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\compiler\llvm.h
+	<boost/predef/compiler/clang.h>
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/comp_detected.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\compiler\metaware.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/comp_detected.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\compiler\metrowerks.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/comp_detected.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\compiler\microtec.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/comp_detected.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\compiler\mpw.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/comp_detected.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\compiler\palm.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/comp_detected.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\compiler\pgi.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/comp_detected.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\compiler\sgi_mipspro.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/comp_detected.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\compiler\sunpro.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/comp_detected.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\compiler\tendra.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/comp_detected.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\compiler\visualc.h
+	<boost/predef/compiler/clang.h>
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/comp_detected.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\compiler\watcom.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/comp_detected.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\library.h
+	<boost/predef/library/c.h>
+	<boost/predef/library/std.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\library\c.h
+	<boost/predef/library/c/_prefix.h>
+	<boost/predef/library/c/gnu.h>
+	<boost/predef/library/c/uc.h>
+	<boost/predef/library/c/vms.h>
+	<boost/predef/library/c/zos.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\library\c\_prefix.h
+	<boost/predef/detail/_cassert.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\detail\_cassert.h
+	<cassert>
+	<assert.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\library\c\gnu.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/library/c/_prefix.h>
+	<stddef.h>
+	<cstddef>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\library\c\uc.h
+	<boost/predef/library/c/_prefix.h>
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\library\c\vms.h
+	<boost/predef/library/c/_prefix.h>
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\library\c\zos.h
+	<boost/predef/library/c/_prefix.h>
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\library\std.h
+	<boost/predef/library/std/_prefix.h>
+	<boost/predef/library/std/cxx.h>
+	<boost/predef/library/std/dinkumware.h>
+	<boost/predef/library/std/libcomo.h>
+	<boost/predef/library/std/modena.h>
+	<boost/predef/library/std/msl.h>
+	<boost/predef/library/std/roguewave.h>
+	<boost/predef/library/std/sgi.h>
+	<boost/predef/library/std/stdcpp3.h>
+	<boost/predef/library/std/stlport.h>
+	<boost/predef/library/std/vacpp.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\library\std\_prefix.h
+	<boost/predef/detail/_exception.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\detail\_exception.h
+	<exception>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\library\std\cxx.h
+	<boost/predef/library/std/_prefix.h>
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\library\std\dinkumware.h
+	<boost/predef/library/std/_prefix.h>
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\library\std\libcomo.h
+	<boost/predef/library/std/_prefix.h>
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\library\std\modena.h
+	<boost/predef/library/std/_prefix.h>
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\library\std\msl.h
+	<boost/predef/library/std/_prefix.h>
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\library\std\roguewave.h
+	<boost/predef/library/std/_prefix.h>
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\library\std\sgi.h
+	<boost/predef/library/std/_prefix.h>
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\library\std\stdcpp3.h
+	<boost/predef/library/std/_prefix.h>
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\library\std\stlport.h
+	<boost/predef/library/std/_prefix.h>
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\library\std\vacpp.h
+	<boost/predef/library/std/_prefix.h>
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\os.h
+	<boost/predef/os/aix.h>
+	<boost/predef/os/amigaos.h>
+	<boost/predef/os/android.h>
+	<boost/predef/os/beos.h>
+	<boost/predef/os/bsd.h>
+	<boost/predef/os/cygwin.h>
+	<boost/predef/os/hpux.h>
+	<boost/predef/os/irix.h>
+	<boost/predef/os/ios.h>
+	<boost/predef/os/linux.h>
+	<boost/predef/os/macos.h>
+	<boost/predef/os/os400.h>
+	<boost/predef/os/qnxnto.h>
+	<boost/predef/os/solaris.h>
+	<boost/predef/os/unix.h>
+	<boost/predef/os/vms.h>
+	<boost/predef/os/windows.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\os\aix.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/os_detected.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\detail\os_detected.h
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\os\amigaos.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/os_detected.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\os\android.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/os_detected.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\os\beos.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/os_detected.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\os\bsd.h
+	<boost/predef/os/macos.h>
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/os/bsd/bsdi.h>
+	<boost/predef/os/bsd/dragonfly.h>
+	<boost/predef/os/bsd/free.h>
+	<boost/predef/os/bsd/open.h>
+	<boost/predef/os/bsd/net.h>
+	<sys/param.h>
+	<boost/predef/detail/os_detected.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\os\macos.h
+	<boost/predef/os/ios.h>
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/os_detected.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\os\ios.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/os_detected.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\os\bsd\bsdi.h
+	<boost/predef/os/bsd.h>
+	<boost/predef/detail/os_detected.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\os\bsd\dragonfly.h
+	<boost/predef/os/bsd.h>
+	<boost/predef/detail/os_detected.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\os\bsd\free.h
+	<boost/predef/os/bsd.h>
+	<boost/predef/detail/os_detected.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\os\bsd\open.h
+	<boost/predef/os/bsd.h>
+	<boost/predef/detail/os_detected.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\os\bsd\net.h
+	<boost/predef/os/bsd.h>
+	<boost/predef/detail/os_detected.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\os\cygwin.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/os_detected.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\os\hpux.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/os_detected.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\os\irix.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/os_detected.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\os\linux.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/os_detected.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\os\os400.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/os_detected.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\os\qnxnto.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/os_detected.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\os\solaris.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/os_detected.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\os\unix.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\os\vms.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/os_detected.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\os\windows.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/detail/os_detected.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\other.h
+	<boost/predef/other/endian.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\other\endian.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/library/c/gnu.h>
+	<boost/predef/os/macos.h>
+	<boost/predef/os/bsd.h>
+	<endian.h>
+	<machine/endian.h>
+	<machine/endian.h>
+	<sys/endian.h>
+	<boost/predef/architecture.h>
+	<boost/predef/os/windows.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\platform.h
+	<boost/predef/platform/mingw.h>
+	<boost/predef/platform/windows_desktop.h>
+	<boost/predef/platform/windows_store.h>
+	<boost/predef/platform/windows_phone.h>
+	<boost/predef/platform/windows_runtime.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\platform\mingw.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<_mingw.h>
+	<boost/predef/detail/platform_detected.h>
+	<boost/predef/detail/test.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\detail\platform_detected.h
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\platform\windows_desktop.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/os/windows.h>
+	<boost/predef/detail/platform_detected.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\platform\windows_store.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/os/windows.h>
+	<boost/predef/detail/platform_detected.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\platform\windows_phone.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/os/windows.h>
+	<boost/predef/detail/platform_detected.h>
+	<boost/predef/detail/test.h>
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\predef\platform\windows_runtime.h
+	<boost/predef/version_number.h>
+	<boost/predef/make.h>
+	<boost/predef/os/windows.h>
+	<boost/predef/detail/platform_detected.h>
+	<boost/predef/detail/test.h>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\spinlock_sync.hpp
+	<boost/smart_ptr/detail/yield_k.hpp>
+	<ia64intrin.h>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\spinlock_pt.hpp
+	<pthread.h>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\spinlock_gcc_arm.hpp
+	<boost/smart_ptr/detail/yield_k.hpp>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\spinlock_w32.hpp
+	<boost/smart_ptr/detail/sp_interlocked.hpp>
+	<boost/smart_ptr/detail/yield_k.hpp>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\sp_interlocked.hpp
+	<boost/config.hpp>
+	<windows.h>
+	<intrin.h>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\spinlock_nt.hpp
+	<boost/assert.hpp>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\sp_counted_base_pt.hpp
+	<boost/detail/sp_typeinfo.hpp>
+	<boost/assert.hpp>
+	<pthread.h>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\sp_counted_base_snc_ps3.hpp
+	<boost/detail/sp_typeinfo.hpp>
+	<inttypes.h>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\sp_counted_base_gcc_x86.hpp
+	<boost/detail/sp_typeinfo.hpp>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\sp_counted_base_acc_ia64.hpp
+	<boost/detail/sp_typeinfo.hpp>
+	<machine/sys/inline.h>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\sp_counted_base_gcc_ia64.hpp
+	<boost/detail/sp_typeinfo.hpp>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\sp_counted_base_vacpp_ppc.hpp
+	<boost/detail/sp_typeinfo.hpp>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\sp_counted_base_cw_ppc.hpp
+	<boost/detail/sp_typeinfo.hpp>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\sp_counted_base_gcc_ppc.hpp
+	<boost/detail/sp_typeinfo.hpp>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\sp_counted_base_gcc_mips.hpp
+	<boost/detail/sp_typeinfo.hpp>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\sp_counted_base_sync.hpp
+	<boost/detail/sp_typeinfo.hpp>
+	<limits.h>
+	<ia64intrin.h>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\sp_counted_base_gcc_sparc.hpp
+	<boost/detail/sp_typeinfo.hpp>
+	<inttypes.h>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\sp_counted_base_w32.hpp
+	<boost/smart_ptr/detail/sp_interlocked.hpp>
+	<boost/detail/workaround.hpp>
+	<boost/detail/sp_typeinfo.hpp>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\sp_counted_base_aix.hpp
+	<boost/detail/sp_typeinfo.hpp>
+	<builtins.h>
+	<sys/atomic_op.h>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\sp_counted_impl.hpp
+	<boost/config.hpp>
+	<boost/checked_delete.hpp>
+	<boost/smart_ptr/detail/sp_counted_base.hpp>
+	<boost/smart_ptr/detail/quick_allocator.hpp>
+	<memory>
+	<cstddef>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\quick_allocator.hpp
+	<boost/config.hpp>
+	<boost/smart_ptr/detail/lightweight_mutex.hpp>
+	<boost/type_traits/type_with_alignment.hpp>
+	<boost/type_traits/alignment_of.hpp>
+	<new>
+	<cstddef>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\lightweight_mutex.hpp
+	<boost/config.hpp>
+	<boost/smart_ptr/detail/lwm_nop.hpp>
+	<boost/smart_ptr/detail/lwm_pthreads.hpp>
+	<boost/smart_ptr/detail/lwm_win32_cs.hpp>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\lwm_nop.hpp
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\lwm_pthreads.hpp
+	<boost/assert.hpp>
+	<pthread.h>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\lwm_win32_cs.hpp
+	<boost/predef.h>
+	<windows.h>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\sp_convertible.hpp
+	<boost/config.hpp>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\sp_nullptr_t.hpp
+	<boost/config.hpp>
+	<cstddef>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\smart_ptr\detail\operator_bool.hpp
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\format\alt_sstream_impl.hpp
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\format\format_class.hpp
+	<vector>
+	<string>
+	<boost/optional.hpp>
+	<boost/format/format_fwd.hpp>
+	<boost/format/internals_fwd.hpp>
+	<boost/format/internals.hpp>
+	<boost/format/alt_sstream.hpp>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\format\exceptions.hpp
+	<stdexcept>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\format\format_implementation.hpp
+	<boost/config.hpp>
+	<boost/throw_exception.hpp>
+	<boost/assert.hpp>
+	<boost/format/format_class.hpp>
+	<algorithm>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\format\group.hpp
+	<boost/config.hpp>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\format\feed_args.hpp
+	<boost/config.hpp>
+	<boost/assert.hpp>
+	<boost/throw_exception.hpp>
+	<boost/format/format_class.hpp>
+	<boost/format/group.hpp>
+	<boost/format/detail/msvc_disambiguater.hpp>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\format\detail\msvc_disambiguater.hpp
+	<boost/format/group.hpp>
+	<ostream>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\format\parsing.hpp
+	<boost/format/format_class.hpp>
+	<boost/format/exceptions.hpp>
+	<boost/throw_exception.hpp>
+	<boost/assert.hpp>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\format\free_funcs.hpp
+	<boost/format/format_class.hpp>
+	<boost/throw_exception.hpp>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\format\detail\unset_macros.hpp
+
+1427264026 c:\users\fox\documents\foxtrader\libs\boost\boost\assign\std\vector.hpp
+	<boost/assign/list_inserter.hpp>
+	<boost/config.hpp>
+	<vector>
+
+1427264026 c:\users\fox\documents\foxtrader\libs\boost\boost\assign\list_inserter.hpp
+	<boost/detail/workaround.hpp>
+	<boost/mpl/if.hpp>
+	<boost/type_traits/is_same.hpp>
+	<boost/range/begin.hpp>
+	<boost/range/end.hpp>
+	<boost/config.hpp>
+	<cstddef>
+	<boost/preprocessor/repetition/enum_binary_params.hpp>
+	<boost/preprocessor/repetition/enum_params.hpp>
+	<boost/preprocessor/cat.hpp>
+	<boost/preprocessor/iteration/local.hpp>
+	<boost/preprocessor/arithmetic/inc.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\range\begin.hpp
+	<boost/range/config.hpp>
+	<boost/range/detail/begin.hpp>
+	<boost/range/iterator.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\range\config.hpp
+	<boost/detail/workaround.hpp>
+	<boost/config.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\range\detail\begin.hpp
+	<boost/config.hpp>
+	<boost/detail/workaround.hpp>
+	<boost/range/iterator.hpp>
+	<boost/range/detail/common.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\range\iterator.hpp
+	<boost/range/config.hpp>
+	<boost/range/range_fwd.hpp>
+	<boost/range/mutable_iterator.hpp>
+	<boost/range/const_iterator.hpp>
+	<boost/type_traits/is_const.hpp>
+	<boost/type_traits/remove_const.hpp>
+	<boost/mpl/eval_if.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\range\range_fwd.hpp
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\range\mutable_iterator.hpp
+	<boost/range/config.hpp>
+	<boost/range/range_fwd.hpp>
+	<boost/range/detail/extract_optional_type.hpp>
+	<boost/type_traits/remove_reference.hpp>
+	<boost/iterator/iterator_traits.hpp>
+	<cstddef>
+	<utility>
+	<boost/range/detail/msvc_has_iterator_workaround.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\range\detail\extract_optional_type.hpp
+	<boost/config.hpp>
+	<boost/preprocessor/cat.hpp>
+	<boost/mpl/has_xxx.hpp>
+
+1427264039 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\has_xxx.hpp
+	<boost/mpl/bool.hpp>
+	<boost/mpl/aux_/na_spec.hpp>
+	<boost/mpl/aux_/type_wrapper.hpp>
+	<boost/mpl/aux_/yes_no.hpp>
+	<boost/mpl/aux_/config/gcc.hpp>
+	<boost/mpl/aux_/config/has_xxx.hpp>
+	<boost/mpl/aux_/config/msvc_typename.hpp>
+	<boost/mpl/aux_/config/msvc.hpp>
+	<boost/mpl/aux_/config/static_constant.hpp>
+	<boost/mpl/aux_/config/workaround.hpp>
+	<boost/preprocessor/array/elem.hpp>
+	<boost/preprocessor/cat.hpp>
+	<boost/preprocessor/control/if.hpp>
+	<boost/preprocessor/repetition/enum_params.hpp>
+	<boost/preprocessor/repetition/enum_trailing_params.hpp>
+	<boost/type_traits/is_class.hpp>
+	<boost/mpl/if.hpp>
+	<boost/mpl/bool.hpp>
+
+1427264039 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\type_wrapper.hpp
+	<boost/mpl/aux_/config/ctps.hpp>
+
+1427264037 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\config\has_xxx.hpp
+	<boost/mpl/aux_/config/overload_resolution.hpp>
+	<boost/mpl/aux_/config/workaround.hpp>
+
+1427264037 c:\users\fox\documents\foxtrader\libs\boost\boost\mpl\aux_\config\msvc_typename.hpp
+	<boost/mpl/aux_/config/msvc.hpp>
+	<boost/mpl/aux_/config/workaround.hpp>
+
+1427264035 c:\users\fox\documents\foxtrader\libs\boost\boost\iterator\iterator_traits.hpp
+	<boost/detail/iterator.hpp>
+	<boost/detail/workaround.hpp>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\detail\iterator.hpp
+	<iterator>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\range\detail\msvc_has_iterator_workaround.hpp
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\range\const_iterator.hpp
+	<boost/range/config.hpp>
+	<boost/range/range_fwd.hpp>
+	<boost/range/detail/extract_optional_type.hpp>
+	<boost/type_traits/remove_const.hpp>
+	<boost/type_traits/remove_reference.hpp>
+	<cstddef>
+	<utility>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\range\detail\common.hpp
+	<boost/range/config.hpp>
+	<boost/range/detail/sfinae.hpp>
+	<boost/type_traits/is_void.hpp>
+	<boost/type_traits/detail/ice_or.hpp>
+	<boost/mpl/if.hpp>
+	<boost/mpl/int.hpp>
+	<cstddef>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\range\detail\sfinae.hpp
+	<boost/range/config.hpp>
+	<boost/type_traits/is_array.hpp>
+	<boost/type_traits/detail/yes_no_type.hpp>
+	<utility>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\range\end.hpp
+	<boost/range/config.hpp>
+	<boost/range/detail/end.hpp>
+	<boost/range/detail/implementation_help.hpp>
+	<boost/range/iterator.hpp>
+	<boost/range/const_iterator.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\range\detail\end.hpp
+	<boost/config.hpp>
+	<boost/detail/workaround.hpp>
+	<boost/range/detail/implementation_help.hpp>
+	<boost/range/iterator.hpp>
+	<boost/range/detail/common.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\range\detail\implementation_help.hpp
+	<boost/range/config.hpp>
+	<boost/range/detail/common.hpp>
+	<boost/type_traits/is_same.hpp>
+	<cstddef>
+	<string.h>
+	<wchar.h>
+
+1427264044 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\iteration\local.hpp
+	<boost/preprocessor/config/config.hpp>
+	<boost/preprocessor/slot/slot.hpp>
+	<boost/preprocessor/tuple/elem.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random.hpp
+	<boost/random/additive_combine.hpp>
+	<boost/random/discard_block.hpp>
+	<boost/random/independent_bits.hpp>
+	<boost/random/inversive_congruential.hpp>
+	<boost/random/lagged_fibonacci.hpp>
+	<boost/random/linear_congruential.hpp>
+	<boost/random/linear_feedback_shift.hpp>
+	<boost/random/mersenne_twister.hpp>
+	<boost/random/ranlux.hpp>
+	<boost/random/shuffle_order.hpp>
+	<boost/random/shuffle_output.hpp>
+	<boost/random/subtract_with_carry.hpp>
+	<boost/random/taus88.hpp>
+	<boost/random/xor_combine.hpp>
+	<boost/random/generate_canonical.hpp>
+	<boost/random/seed_seq.hpp>
+	<boost/random/random_number_generator.hpp>
+	<boost/random/variate_generator.hpp>
+	<boost/random/bernoulli_distribution.hpp>
+	<boost/random/binomial_distribution.hpp>
+	<boost/random/cauchy_distribution.hpp>
+	<boost/random/chi_squared_distribution.hpp>
+	<boost/random/discrete_distribution.hpp>
+	<boost/random/exponential_distribution.hpp>
+	<boost/random/extreme_value_distribution.hpp>
+	<boost/random/fisher_f_distribution.hpp>
+	<boost/random/gamma_distribution.hpp>
+	<boost/random/geometric_distribution.hpp>
+	<boost/random/lognormal_distribution.hpp>
+	<boost/random/negative_binomial_distribution.hpp>
+	<boost/random/normal_distribution.hpp>
+	<boost/random/piecewise_constant_distribution.hpp>
+	<boost/random/piecewise_linear_distribution.hpp>
+	<boost/random/poisson_distribution.hpp>
+	<boost/random/student_t_distribution.hpp>
+	<boost/random/triangle_distribution.hpp>
+	<boost/random/uniform_01.hpp>
+	<boost/random/uniform_int.hpp>
+	<boost/random/uniform_int_distribution.hpp>
+	<boost/random/uniform_on_sphere.hpp>
+	<boost/random/uniform_real.hpp>
+	<boost/random/uniform_real_distribution.hpp>
+	<boost/random/uniform_smallint.hpp>
+	<boost/random/weibull_distribution.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\additive_combine.hpp
+	<istream>
+	<iosfwd>
+	<algorithm>
+	<boost/config.hpp>
+	<boost/cstdint.hpp>
+	<boost/random/detail/config.hpp>
+	<boost/random/detail/operators.hpp>
+	<boost/random/detail/seed.hpp>
+	<boost/random/linear_congruential.hpp>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\cstdint.hpp
+	<boost/config.hpp>
+	<inttypes.h>
+	<inttypes.h>
+	<stdint.h>
+	<inttypes.h>
+	<boost/limits.hpp>
+	<limits.h>
+	<stddef.h>
+	<limits.h>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\detail\config.hpp
+	<boost/config.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\detail\operators.hpp
+	<boost/random/detail/config.hpp>
+	<boost/detail/workaround.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\detail\seed.hpp
+	<boost/config.hpp>
+	<boost/utility/enable_if.hpp>
+	<boost/type_traits/is_arithmetic.hpp>
+	<boost/type_traits/is_arithmetic.hpp>
+	<boost/mpl/bool.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\linear_congruential.hpp
+	<iostream>
+	<stdexcept>
+	<boost/assert.hpp>
+	<boost/config.hpp>
+	<boost/cstdint.hpp>
+	<boost/limits.hpp>
+	<boost/static_assert.hpp>
+	<boost/integer/static_log2.hpp>
+	<boost/mpl/if.hpp>
+	<boost/type_traits/is_arithmetic.hpp>
+	<boost/random/detail/config.hpp>
+	<boost/random/detail/const_mod.hpp>
+	<boost/random/detail/seed.hpp>
+	<boost/random/detail/seed_impl.hpp>
+	<boost/detail/workaround.hpp>
+	<boost/random/detail/disable_warnings.hpp>
+	<boost/random/detail/enable_warnings.hpp>
+
+1427264034 c:\users\fox\documents\foxtrader\libs\boost\boost\integer\static_log2.hpp
+	"boost/integer_fwd.hpp"
+
+1427264034 c:\users\fox\documents\foxtrader\libs\boost\boost\integer_fwd.hpp
+	<climits>
+	<cstddef>
+	<boost/config.hpp>
+	<boost/limits.hpp>
+	<boost/cstdint.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\detail\const_mod.hpp
+	<boost/assert.hpp>
+	<boost/static_assert.hpp>
+	<boost/integer_traits.hpp>
+	<boost/type_traits/make_unsigned.hpp>
+	<boost/random/detail/large_arithmetic.hpp>
+	<boost/random/detail/disable_warnings.hpp>
+	<boost/random/detail/enable_warnings.hpp>
+
+1427264034 c:\users\fox\documents\foxtrader\libs\boost\boost\integer_traits.hpp
+	<boost/config.hpp>
+	<boost/limits.hpp>
+	<limits.h>
+	<wchar.h>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\make_unsigned.hpp
+	<boost/mpl/if.hpp>
+	<boost/type_traits/is_integral.hpp>
+	<boost/type_traits/is_signed.hpp>
+	<boost/type_traits/is_unsigned.hpp>
+	<boost/type_traits/is_enum.hpp>
+	<boost/type_traits/is_same.hpp>
+	<boost/type_traits/remove_cv.hpp>
+	<boost/type_traits/is_const.hpp>
+	<boost/type_traits/is_volatile.hpp>
+	<boost/type_traits/add_const.hpp>
+	<boost/type_traits/add_volatile.hpp>
+	<boost/type_traits/detail/ice_or.hpp>
+	<boost/type_traits/detail/ice_and.hpp>
+	<boost/type_traits/detail/ice_not.hpp>
+	<boost/static_assert.hpp>
+	<boost/type_traits/detail/type_trait_def.hpp>
+	<boost/type_traits/detail/type_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\is_signed.hpp
+	<boost/type_traits/is_integral.hpp>
+	<boost/type_traits/remove_cv.hpp>
+	<boost/type_traits/is_enum.hpp>
+	<boost/type_traits/detail/ice_or.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\is_unsigned.hpp
+	<boost/type_traits/is_integral.hpp>
+	<boost/type_traits/is_enum.hpp>
+	<boost/type_traits/remove_cv.hpp>
+	<boost/type_traits/detail/ice_or.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\add_const.hpp
+	<boost/config.hpp>
+	<boost/type_traits/detail/type_trait_def.hpp>
+	<boost/type_traits/detail/type_trait_undef.hpp>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\add_volatile.hpp
+	<boost/config.hpp>
+	<boost/type_traits/detail/type_trait_def.hpp>
+	<boost/type_traits/detail/type_trait_undef.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\detail\large_arithmetic.hpp
+	<boost/cstdint.hpp>
+	<boost/integer.hpp>
+	<boost/limits.hpp>
+	<boost/random/detail/integer_log2.hpp>
+	<boost/random/detail/disable_warnings.hpp>
+	<boost/random/detail/enable_warnings.hpp>
+
+1427264034 c:\users\fox\documents\foxtrader\libs\boost\boost\integer.hpp
+	<boost/integer_fwd.hpp>
+	<boost/integer_traits.hpp>
+	<boost/limits.hpp>
+	<boost/cstdint.hpp>
+	<boost/static_assert.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\detail\integer_log2.hpp
+	<boost/config.hpp>
+	<boost/limits.hpp>
+	<boost/pending/integer_log2.hpp>
+
+1427264042 c:\users\fox\documents\foxtrader\libs\boost\boost\pending\integer_log2.hpp
+	<boost/integer/integer_log2.hpp>
+
+1427264034 c:\users\fox\documents\foxtrader\libs\boost\boost\integer\integer_log2.hpp
+	<assert.h>
+	<climits>
+	<boost/limits.hpp>
+	<boost/config.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\detail\disable_warnings.hpp
+	<boost/config.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\detail\enable_warnings.hpp
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\detail\seed_impl.hpp
+	<stdexcept>
+	<boost/cstdint.hpp>
+	<boost/throw_exception.hpp>
+	<boost/config/no_tr1/cmath.hpp>
+	<boost/integer/integer_mask.hpp>
+	<boost/integer/static_log2.hpp>
+	<boost/type_traits/is_signed.hpp>
+	<boost/type_traits/is_integral.hpp>
+	<boost/type_traits/make_unsigned.hpp>
+	<boost/mpl/bool.hpp>
+	<boost/mpl/if.hpp>
+	<boost/mpl/int.hpp>
+	<boost/random/detail/const_mod.hpp>
+	<boost/random/detail/integer_log2.hpp>
+	<boost/random/detail/signed_unsigned_tools.hpp>
+	<boost/random/detail/generator_bits.hpp>
+	<boost/random/detail/disable_warnings.hpp>
+	<boost/random/detail/enable_warnings.hpp>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\no_tr1\cmath.hpp
+	<cmath>
+
+1427264034 c:\users\fox\documents\foxtrader\libs\boost\boost\integer\integer_mask.hpp
+	<boost/integer_fwd.hpp>
+	<boost/config.hpp>
+	<boost/integer.hpp>
+	<climits>
+	<cstddef>
+	<boost/limits.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\detail\signed_unsigned_tools.hpp
+	<boost/limits.hpp>
+	<boost/config.hpp>
+	<boost/type_traits/make_unsigned.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\detail\generator_bits.hpp
+	<boost/limits.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\discard_block.hpp
+	<iostream>
+	<boost/config.hpp>
+	<boost/cstdint.hpp>
+	<boost/limits.hpp>
+	<boost/static_assert.hpp>
+	<boost/random/detail/config.hpp>
+	<boost/random/detail/seed.hpp>
+	<boost/random/detail/seed_impl.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\independent_bits.hpp
+	<istream>
+	<iosfwd>
+	<boost/assert.hpp>
+	<boost/limits.hpp>
+	<boost/config.hpp>
+	<boost/cstdint.hpp>
+	<boost/integer/integer_mask.hpp>
+	<boost/type_traits/make_unsigned.hpp>
+	<boost/random/detail/config.hpp>
+	<boost/random/detail/integer_log2.hpp>
+	<boost/random/detail/operators.hpp>
+	<boost/random/detail/seed.hpp>
+	<boost/random/detail/seed_impl.hpp>
+	<boost/random/detail/signed_unsigned_tools.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\inversive_congruential.hpp
+	<iosfwd>
+	<stdexcept>
+	<boost/assert.hpp>
+	<boost/config.hpp>
+	<boost/cstdint.hpp>
+	<boost/integer/static_log2.hpp>
+	<boost/random/detail/config.hpp>
+	<boost/random/detail/const_mod.hpp>
+	<boost/random/detail/seed.hpp>
+	<boost/random/detail/operators.hpp>
+	<boost/random/detail/seed_impl.hpp>
+	<boost/random/detail/disable_warnings.hpp>
+	<boost/random/detail/enable_warnings.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\lagged_fibonacci.hpp
+	<istream>
+	<iosfwd>
+	<algorithm>
+	<iterator>
+	<boost/config/no_tr1/cmath.hpp>
+	<boost/config.hpp>
+	<boost/limits.hpp>
+	<boost/cstdint.hpp>
+	<boost/integer/integer_mask.hpp>
+	<boost/random/linear_congruential.hpp>
+	<boost/random/uniform_01.hpp>
+	<boost/random/detail/config.hpp>
+	<boost/random/detail/seed.hpp>
+	<boost/random/detail/operators.hpp>
+	<boost/random/detail/generator_seed_seq.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\uniform_01.hpp
+	<iostream>
+	<boost/config.hpp>
+	<boost/limits.hpp>
+	<boost/static_assert.hpp>
+	<boost/random/detail/config.hpp>
+	<boost/random/detail/ptr_helper.hpp>
+	<boost/random/detail/disable_warnings.hpp>
+	<boost/random/detail/enable_warnings.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\detail\ptr_helper.hpp
+	<boost/config.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\detail\generator_seed_seq.hpp
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\linear_feedback_shift.hpp
+	<iosfwd>
+	<stdexcept>
+	<boost/config.hpp>
+	<boost/cstdint.hpp>
+	<boost/static_assert.hpp>
+	<boost/integer/integer_mask.hpp>
+	<boost/random/detail/config.hpp>
+	<boost/random/detail/seed.hpp>
+	<boost/random/detail/operators.hpp>
+	<boost/random/detail/seed_impl.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\mersenne_twister.hpp
+	<iosfwd>
+	<istream>
+	<stdexcept>
+	<boost/config.hpp>
+	<boost/cstdint.hpp>
+	<boost/integer/integer_mask.hpp>
+	<boost/random/detail/config.hpp>
+	<boost/random/detail/ptr_helper.hpp>
+	<boost/random/detail/seed.hpp>
+	<boost/random/detail/seed_impl.hpp>
+	<boost/random/detail/generator_seed_seq.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\ranlux.hpp
+	<boost/config.hpp>
+	<boost/random/subtract_with_carry.hpp>
+	<boost/random/discard_block.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\subtract_with_carry.hpp
+	<boost/config/no_tr1/cmath.hpp>
+	<iostream>
+	<algorithm>
+	<stdexcept>
+	<boost/config.hpp>
+	<boost/limits.hpp>
+	<boost/cstdint.hpp>
+	<boost/static_assert.hpp>
+	<boost/integer/static_log2.hpp>
+	<boost/integer/integer_mask.hpp>
+	<boost/detail/workaround.hpp>
+	<boost/random/detail/config.hpp>
+	<boost/random/detail/seed.hpp>
+	<boost/random/detail/operators.hpp>
+	<boost/random/detail/seed_impl.hpp>
+	<boost/random/detail/generator_seed_seq.hpp>
+	<boost/random/linear_congruential.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\shuffle_order.hpp
+	<iostream>
+	<algorithm>
+	<cassert>
+	<boost/config.hpp>
+	<boost/limits.hpp>
+	<boost/static_assert.hpp>
+	<boost/cstdint.hpp>
+	<boost/random/detail/operators.hpp>
+	<boost/random/detail/seed.hpp>
+	<boost/random/detail/signed_unsigned_tools.hpp>
+	<boost/random/linear_congruential.hpp>
+	<boost/random/detail/disable_warnings.hpp>
+	<boost/random/detail/enable_warnings.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\shuffle_output.hpp
+	<boost/random/shuffle_order.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\taus88.hpp
+	<boost/random/linear_feedback_shift.hpp>
+	<boost/random/xor_combine.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\xor_combine.hpp
+	<istream>
+	<iosfwd>
+	<cassert>
+	<algorithm>
+	<boost/config.hpp>
+	<boost/limits.hpp>
+	<boost/cstdint.hpp>
+	<boost/random/detail/config.hpp>
+	<boost/random/detail/seed.hpp>
+	<boost/random/detail/seed_impl.hpp>
+	<boost/random/detail/operators.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\generate_canonical.hpp
+	<algorithm>
+	<boost/assert.hpp>
+	<boost/config/no_tr1/cmath.hpp>
+	<boost/limits.hpp>
+	<boost/type_traits/is_integral.hpp>
+	<boost/random/detail/signed_unsigned_tools.hpp>
+	<boost/random/detail/generator_bits.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\seed_seq.hpp
+	<boost/config.hpp>
+	<boost/cstdint.hpp>
+	<boost/range/begin.hpp>
+	<boost/range/end.hpp>
+	<cstddef>
+	<vector>
+	<algorithm>
+	<iterator>
+	<initializer_list>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\random_number_generator.hpp
+	<boost/assert.hpp>
+	<boost/random/uniform_int_distribution.hpp>
+	<boost/random/detail/disable_warnings.hpp>
+	<boost/random/detail/enable_warnings.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\uniform_int_distribution.hpp
+	<iosfwd>
+	<ios>
+	<istream>
+	<boost/config.hpp>
+	<boost/limits.hpp>
+	<boost/assert.hpp>
+	<boost/random/detail/config.hpp>
+	<boost/random/detail/operators.hpp>
+	<boost/random/detail/uniform_int_float.hpp>
+	<boost/random/detail/signed_unsigned_tools.hpp>
+	<boost/type_traits/make_unsigned.hpp>
+	<boost/type_traits/is_integral.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\detail\uniform_int_float.hpp
+	<boost/limits.hpp>
+	<boost/config.hpp>
+	<boost/integer.hpp>
+	<boost/random/detail/config.hpp>
+	<boost/random/detail/generator_bits.hpp>
+	<boost/random/detail/disable_warnings.hpp>
+	<boost/random/detail/enable_warnings.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\variate_generator.hpp
+	<boost/random/detail/ptr_helper.hpp>
+	<boost/random/detail/disable_warnings.hpp>
+	<boost/random/detail/enable_warnings.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\bernoulli_distribution.hpp
+	<iosfwd>
+	<boost/assert.hpp>
+	<boost/random/detail/config.hpp>
+	<boost/random/detail/operators.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\binomial_distribution.hpp
+	<boost/config/no_tr1/cmath.hpp>
+	<cstdlib>
+	<iosfwd>
+	<boost/random/detail/config.hpp>
+	<boost/random/uniform_01.hpp>
+	<boost/random/detail/disable_warnings.hpp>
+	<boost/random/detail/enable_warnings.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\cauchy_distribution.hpp
+	<boost/config/no_tr1/cmath.hpp>
+	<iosfwd>
+	<istream>
+	<boost/limits.hpp>
+	<boost/random/detail/config.hpp>
+	<boost/random/detail/operators.hpp>
+	<boost/random/uniform_01.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\chi_squared_distribution.hpp
+	<iosfwd>
+	<boost/limits.hpp>
+	<boost/random/detail/config.hpp>
+	<boost/random/gamma_distribution.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\gamma_distribution.hpp
+	<boost/config/no_tr1/cmath.hpp>
+	<istream>
+	<iosfwd>
+	<boost/assert.hpp>
+	<boost/limits.hpp>
+	<boost/static_assert.hpp>
+	<boost/random/detail/config.hpp>
+	<boost/random/exponential_distribution.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\exponential_distribution.hpp
+	<boost/config/no_tr1/cmath.hpp>
+	<iosfwd>
+	<boost/assert.hpp>
+	<boost/limits.hpp>
+	<boost/random/detail/config.hpp>
+	<boost/random/detail/operators.hpp>
+	<boost/random/uniform_01.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\discrete_distribution.hpp
+	<vector>
+	<limits>
+	<numeric>
+	<utility>
+	<iterator>
+	<boost/assert.hpp>
+	<boost/random/uniform_01.hpp>
+	<boost/random/uniform_int_distribution.hpp>
+	<boost/random/detail/config.hpp>
+	<boost/random/detail/operators.hpp>
+	<boost/random/detail/vector_io.hpp>
+	<initializer_list>
+	<boost/range/begin.hpp>
+	<boost/range/end.hpp>
+	<boost/random/detail/disable_warnings.hpp>
+	<boost/random/detail/enable_warnings.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\detail\vector_io.hpp
+	<vector>
+	<iosfwd>
+	<istream>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\extreme_value_distribution.hpp
+	<boost/config/no_tr1/cmath.hpp>
+	<iosfwd>
+	<istream>
+	<boost/config.hpp>
+	<boost/limits.hpp>
+	<boost/random/detail/operators.hpp>
+	<boost/random/uniform_01.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\fisher_f_distribution.hpp
+	<iosfwd>
+	<istream>
+	<boost/config.hpp>
+	<boost/limits.hpp>
+	<boost/random/detail/operators.hpp>
+	<boost/random/chi_squared_distribution.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\geometric_distribution.hpp
+	<boost/config/no_tr1/cmath.hpp>
+	<iosfwd>
+	<ios>
+	<boost/assert.hpp>
+	<boost/random/detail/config.hpp>
+	<boost/random/detail/operators.hpp>
+	<boost/random/uniform_01.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\lognormal_distribution.hpp
+	<boost/config/no_tr1/cmath.hpp>
+	<cassert>
+	<iosfwd>
+	<istream>
+	<boost/limits.hpp>
+	<boost/random/detail/config.hpp>
+	<boost/random/detail/operators.hpp>
+	<boost/random/normal_distribution.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\normal_distribution.hpp
+	<boost/config/no_tr1/cmath.hpp>
+	<istream>
+	<iosfwd>
+	<boost/assert.hpp>
+	<boost/limits.hpp>
+	<boost/static_assert.hpp>
+	<boost/integer.hpp>
+	<boost/integer/integer_mask.hpp>
+	<boost/type_traits/is_integral.hpp>
+	<boost/type_traits/make_unsigned.hpp>
+	<boost/random/detail/config.hpp>
+	<boost/random/detail/operators.hpp>
+	<boost/random/detail/integer_log2.hpp>
+	<boost/random/uniform_01.hpp>
+	<boost/random/uniform_int_distribution.hpp>
+	<boost/random/exponential_distribution.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\negative_binomial_distribution.hpp
+	<iosfwd>
+	<boost/limits.hpp>
+	<boost/random/detail/config.hpp>
+	<boost/random/gamma_distribution.hpp>
+	<boost/random/poisson_distribution.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\poisson_distribution.hpp
+	<boost/config/no_tr1/cmath.hpp>
+	<cstdlib>
+	<iosfwd>
+	<boost/assert.hpp>
+	<boost/limits.hpp>
+	<boost/random/uniform_01.hpp>
+	<boost/random/detail/config.hpp>
+	<boost/random/detail/disable_warnings.hpp>
+	<boost/random/detail/enable_warnings.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\piecewise_constant_distribution.hpp
+	<vector>
+	<numeric>
+	<boost/assert.hpp>
+	<boost/random/uniform_real.hpp>
+	<boost/random/discrete_distribution.hpp>
+	<boost/random/detail/config.hpp>
+	<boost/random/detail/operators.hpp>
+	<boost/random/detail/vector_io.hpp>
+	<initializer_list>
+	<boost/range/begin.hpp>
+	<boost/range/end.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\uniform_real.hpp
+	<boost/assert.hpp>
+	<boost/config.hpp>
+	<boost/limits.hpp>
+	<boost/random/uniform_real_distribution.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\uniform_real_distribution.hpp
+	<iosfwd>
+	<ios>
+	<istream>
+	<boost/assert.hpp>
+	<boost/config.hpp>
+	<boost/random/detail/config.hpp>
+	<boost/random/detail/operators.hpp>
+	<boost/random/detail/signed_unsigned_tools.hpp>
+	<boost/type_traits/is_integral.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\piecewise_linear_distribution.hpp
+	<vector>
+	<algorithm>
+	<cmath>
+	<cstdlib>
+	<boost/assert.hpp>
+	<boost/random/uniform_real.hpp>
+	<boost/random/discrete_distribution.hpp>
+	<boost/random/detail/config.hpp>
+	<boost/random/detail/operators.hpp>
+	<boost/random/detail/vector_io.hpp>
+	<initializer_list>
+	<boost/range/begin.hpp>
+	<boost/range/end.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\student_t_distribution.hpp
+	<boost/config/no_tr1/cmath.hpp>
+	<iosfwd>
+	<boost/config.hpp>
+	<boost/limits.hpp>
+	<boost/random/detail/operators.hpp>
+	<boost/random/chi_squared_distribution.hpp>
+	<boost/random/normal_distribution.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\triangle_distribution.hpp
+	<boost/config/no_tr1/cmath.hpp>
+	<iosfwd>
+	<ios>
+	<istream>
+	<boost/assert.hpp>
+	<boost/random/detail/config.hpp>
+	<boost/random/detail/operators.hpp>
+	<boost/random/uniform_01.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\uniform_int.hpp
+	<boost/assert.hpp>
+	<boost/random/uniform_int_distribution.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\uniform_on_sphere.hpp
+	<vector>
+	<algorithm>
+	<functional>
+	<boost/assert.hpp>
+	<boost/random/detail/config.hpp>
+	<boost/random/detail/operators.hpp>
+	<boost/random/normal_distribution.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\uniform_smallint.hpp
+	<istream>
+	<iosfwd>
+	<boost/assert.hpp>
+	<boost/config.hpp>
+	<boost/limits.hpp>
+	<boost/type_traits/is_integral.hpp>
+	<boost/random/detail/config.hpp>
+	<boost/random/detail/operators.hpp>
+	<boost/random/detail/signed_unsigned_tools.hpp>
+	<boost/random/uniform_01.hpp>
+	<boost/detail/workaround.hpp>
+
+1427264045 c:\users\fox\documents\foxtrader\libs\boost\boost\random\weibull_distribution.hpp
+	<boost/config/no_tr1/cmath.hpp>
+	<iosfwd>
+	<istream>
+	<boost/config.hpp>
+	<boost/limits.hpp>
+	<boost/random/detail/operators.hpp>
+	<boost/random/uniform_01.hpp>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\function.hpp
+	<functional>
+	<boost/preprocessor/iterate.hpp>
+	<boost/detail/workaround.hpp>
+	<boost/function/detail/prologue.hpp>
+	<boost/function/function0.hpp>
+	<boost/function/function1.hpp>
+	<boost/function/function2.hpp>
+	<boost/function/function3.hpp>
+	<boost/function/function4.hpp>
+	<boost/function/function5.hpp>
+	<boost/function/function6.hpp>
+	<boost/function/function7.hpp>
+	<boost/function/function8.hpp>
+	<boost/function/function9.hpp>
+	<boost/function/function10.hpp>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\function\detail\prologue.hpp
+	<cassert>
+	<algorithm>
+	<boost/config/no_tr1/functional.hpp>
+	<boost/throw_exception.hpp>
+	<boost/config.hpp>
+	<boost/function/function_base.hpp>
+	<boost/mem_fn.hpp>
+	<boost/type_traits/is_integral.hpp>
+	<boost/preprocessor/enum.hpp>
+	<boost/preprocessor/enum_params.hpp>
+	<boost/preprocessor/cat.hpp>
+	<boost/preprocessor/repeat.hpp>
+	<boost/preprocessor/inc.hpp>
+	<boost/type_traits/is_void.hpp>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\config\no_tr1\functional.hpp
+	<functional>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\function\function_base.hpp
+	<stdexcept>
+	<string>
+	<memory>
+	<new>
+	<boost/config.hpp>
+	<boost/detail/sp_typeinfo.hpp>
+	<boost/assert.hpp>
+	<boost/integer.hpp>
+	<boost/type_traits/has_trivial_copy.hpp>
+	<boost/type_traits/has_trivial_destructor.hpp>
+	<boost/type_traits/is_const.hpp>
+	<boost/type_traits/is_integral.hpp>
+	<boost/type_traits/is_volatile.hpp>
+	<boost/type_traits/composite_traits.hpp>
+	<boost/type_traits/ice.hpp>
+	<boost/ref.hpp>
+	<boost/mpl/if.hpp>
+	<boost/detail/workaround.hpp>
+	<boost/type_traits/alignment_of.hpp>
+	"boost/utility/enable_if.hpp"
+	"boost/mpl/bool.hpp"
+	<boost/function_equal.hpp>
+	<boost/function/function_fwd.hpp>
+	<cstring>
+
+1427264051 c:\users\fox\documents\foxtrader\libs\boost\boost\type_traits\composite_traits.hpp
+	<boost/type_traits/is_array.hpp>
+	<boost/type_traits/is_enum.hpp>
+	<boost/type_traits/is_member_pointer.hpp>
+	<boost/type_traits/is_member_function_pointer.hpp>
+	<boost/type_traits/is_pointer.hpp>
+	<boost/type_traits/is_reference.hpp>
+	<boost/type_traits/is_union.hpp>
+
+1427264046 c:\users\fox\documents\foxtrader\libs\boost\boost\ref.hpp
+	<boost/core/ref.hpp>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\core\ref.hpp
+	<boost/config.hpp>
+	<boost/utility/addressof.hpp>
+	<boost/detail/workaround.hpp>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\function_equal.hpp
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\function\function_fwd.hpp
+	<boost/config.hpp>
+
+1427264037 c:\users\fox\documents\foxtrader\libs\boost\boost\mem_fn.hpp
+	<boost/bind/mem_fn.hpp>
+
+1427264026 c:\users\fox\documents\foxtrader\libs\boost\boost\bind\mem_fn.hpp
+	<boost/config.hpp>
+	<boost/get_pointer.hpp>
+	<boost/detail/workaround.hpp>
+	<boost/bind/mem_fn_template.hpp>
+	<boost/bind/mem_fn_template.hpp>
+	<boost/bind/mem_fn_template.hpp>
+	<boost/bind/mem_fn_template.hpp>
+	<boost/bind/mem_fn_template.hpp>
+	<boost/bind/mem_fn_template.hpp>
+	<boost/bind/mem_fn_template.hpp>
+	<boost/bind/mem_fn_template.hpp>
+	<boost/bind/mem_fn_vw.hpp>
+	<boost/bind/mem_fn_vw.hpp>
+	<boost/bind/mem_fn_vw.hpp>
+	<boost/bind/mem_fn_vw.hpp>
+	<boost/bind/mem_fn_template.hpp>
+	<boost/bind/mem_fn_template.hpp>
+	<boost/bind/mem_fn_template.hpp>
+	<boost/bind/mem_fn_template.hpp>
+	<boost/bind/mem_fn_cc.hpp>
+	<boost/bind/mem_fn_cc.hpp>
+	<boost/bind/mem_fn_cc.hpp>
+	<boost/bind/mem_fn_cc.hpp>
+
+1427264033 c:\users\fox\documents\foxtrader\libs\boost\boost\get_pointer.hpp
+	<boost/config.hpp>
+	<boost/config/no_tr1/memory.hpp>
+
+1427264026 c:\users\fox\documents\foxtrader\libs\boost\boost\bind\mem_fn_template.hpp
+
+1427264026 c:\users\fox\documents\foxtrader\libs\boost\boost\bind\mem_fn_vw.hpp
+
+1427264026 c:\users\fox\documents\foxtrader\libs\boost\boost\bind\mem_fn_cc.hpp
+
+1427264043 c:\users\fox\documents\foxtrader\libs\boost\boost\preprocessor\enum.hpp
+	<boost/preprocessor/repetition/enum.hpp>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\function\function0.hpp
+	<boost/function/detail/maybe_include.hpp>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\function\detail\maybe_include.hpp
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+	<boost/function/function_template.hpp>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\function\function_template.hpp
+	<boost/function/detail/prologue.hpp>
+	<boost/detail/no_exceptions_support.hpp>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\detail\no_exceptions_support.hpp
+	<boost/core/no_exceptions_support.hpp>
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\core\no_exceptions_support.hpp
+	<boost/config.hpp>
+	<boost/detail/workaround.hpp>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\function\function1.hpp
+	<boost/function/detail/maybe_include.hpp>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\function\function2.hpp
+	<boost/function/detail/maybe_include.hpp>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\function\function3.hpp
+	<boost/function/detail/maybe_include.hpp>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\function\function4.hpp
+	<boost/function/detail/maybe_include.hpp>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\function\function5.hpp
+	<boost/function/detail/maybe_include.hpp>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\function\function6.hpp
+	<boost/function/detail/maybe_include.hpp>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\function\function7.hpp
+	<boost/function/detail/maybe_include.hpp>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\function\function8.hpp
+	<boost/function/detail/maybe_include.hpp>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\function\function9.hpp
+	<boost/function/detail/maybe_include.hpp>
+
+1427264028 c:\users\fox\documents\foxtrader\libs\boost\boost\function\function10.hpp
+	<boost/function/detail/maybe_include.hpp>
+
+1427264026 c:\users\fox\documents\foxtrader\libs\boost\boost\bind.hpp
+	<boost/bind/bind.hpp>
+
+1427264026 c:\users\fox\documents\foxtrader\libs\boost\boost\bind\bind.hpp
+	<boost/config.hpp>
+	<boost/ref.hpp>
+	<boost/mem_fn.hpp>
+	<boost/type.hpp>
+	<boost/is_placeholder.hpp>
+	<boost/bind/arg.hpp>
+	<boost/detail/workaround.hpp>
+	<boost/visit_each.hpp>
+	<boost/bind/storage.hpp>
+	<boost/bind/bind_template.hpp>
+	<boost/bind/bind_template.hpp>
+	<boost/bind/bind_template.hpp>
+	<boost/bind/bind_cc.hpp>
+	<boost/bind/bind_cc.hpp>
+	<boost/bind/bind_cc.hpp>
+	<boost/bind/bind_cc.hpp>
+	<boost/bind/bind_mf_cc.hpp>
+	<boost/bind/bind_mf2_cc.hpp>
+	<boost/bind/bind_mf_cc.hpp>
+	<boost/bind/bind_mf2_cc.hpp>
+	<boost/bind/bind_mf_cc.hpp>
+	<boost/bind/bind_mf2_cc.hpp>
+	<boost/bind/bind_mf_cc.hpp>
+	<boost/bind/bind_mf2_cc.hpp>
+	<boost/bind/placeholders.hpp>
+
+1427264035 c:\users\fox\documents\foxtrader\libs\boost\boost\is_placeholder.hpp
+
+1427264026 c:\users\fox\documents\foxtrader\libs\boost\boost\bind\arg.hpp
+	<boost/config.hpp>
+	<boost/is_placeholder.hpp>
+	<boost/static_assert.hpp>
+
+1427264054 c:\users\fox\documents\foxtrader\libs\boost\boost\visit_each.hpp
+
+1427264027 c:\users\fox\documents\foxtrader\libs\boost\boost\bind\storage.hpp
+	<boost/config.hpp>
+	<boost/bind/arg.hpp>
+
+1427264026 c:\users\fox\documents\foxtrader\libs\boost\boost\bind\bind_template.hpp
+
+1427264026 c:\users\fox\documents\foxtrader\libs\boost\boost\bind\bind_cc.hpp
+
+1427264026 c:\users\fox\documents\foxtrader\libs\boost\boost\bind\bind_mf_cc.hpp
+
+1427264026 c:\users\fox\documents\foxtrader\libs\boost\boost\bind\bind_mf2_cc.hpp
+
+1427264026 c:\users\fox\documents\foxtrader\libs\boost\boost\bind\placeholders.hpp
+	<boost/bind/arg.hpp>
+	<boost/config.hpp>
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_filesystem.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_haptic.h"
+	"SDL_hints.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_messagebox.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_system.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<float.h>
+	<iconv.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_config.h
+	"SDL_platform.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_platform.h
+	"AvailabilityMacros.h"
+	"TargetConditionals.h"
+	<winapifamily.h>
+	"begin_code.h"
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\begin_code.h
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\close_code.h
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_assert.h
+	"SDL_config.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_endian.h
+	"SDL_stdinc.h"
+	<endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_atomic.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<altivec.h>
+	<mmintrin.h>
+	<mm3dnow.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_pixels.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_scancode.h
+	"SDL_stdinc.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_gamecontroller.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_filesystem.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_haptic.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_messagebox.h
+	"SDL_stdinc.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_system.h
+	"SDL_stdinc.h"
+	"SDL_keyboard.h"
+	"SDL_render.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264130 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2_image-2.0.0\i686-w64-mingw32\include\sdl2\sdl_image.h
+	"SDL.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2_ttf-2.0.12\i686-w64-mingw32\include\sdl2\sdl_ttf.h
+	"SDL.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264134 c:\users\fox\documents\foxtrader\src\sqlite3.h
+	<stdarg.h>
+
+1427264134 c:\users\fox\documents\foxtrader\src\typedef.h
+
+1427264132 c:\users\fox\documents\foxtrader\src\defines.h
+
+1427264132 c:\users\fox\documents\foxtrader\src\constants.h
+
+1427264132 c:\users\fox\documents\foxtrader\src\classes\tools.h
+
+1427264134 c:\users\fox\documents\foxtrader\src\structs.h
+	<stdint.h>
+
+1427264132 source:c:\users\fox\documents\foxtrader\src\classes\tools.cpp
+	"game.h"
+
+1427264132 c:\users\fox\documents\foxtrader\src\classes\game.h
+	"renderer.h"
+	"universe.h"
+	"player.h"
+
+1427264132 c:\users\fox\documents\foxtrader\src\classes\renderer\renderer.h
+	<panel.h>
+
+1427264132 c:\users\fox\documents\foxtrader\src\classes\renderer\gui\\panel.h
+	<delegates.h>
+
+1427264132 c:\users\fox\documents\foxtrader\src\classes\renderer\gui\\delegates.h
+
+1427264729 c:\users\fox\documents\foxtrader\src\classes\universe.h
+
+1427264132 c:\users\fox\documents\foxtrader\src\classes\player.h
+
+1427264132 source:c:\users\fox\documents\foxtrader\src\classes\agent.cpp
+
+1427264132 source:c:\users\fox\documents\foxtrader\src\classes\galaxy.cpp
+	"galaxy.h"
+
+1427264132 c:\users\fox\documents\foxtrader\src\classes\galaxy.h
+	"universe.h"
+	"system.h"
+
+1427264132 c:\users\fox\documents\foxtrader\src\classes\system.h
+	"planetoid.h"
+
+1427264132 c:\users\fox\documents\foxtrader\src\classes\planetoid.h
+
+1427264132 source:c:\users\fox\documents\foxtrader\src\classes\game.cpp
+	"game.h"
+	"renderer.h"
+	"tools.h"
+	"player.h"
+	"galaxy.h"
+
+1427264132 source:c:\users\fox\documents\foxtrader\src\classes\planetoid.cpp
+	"planetoid.h"
+	"system.h"
+
+1427264132 source:c:\users\fox\documents\foxtrader\src\classes\player.cpp
+	"player.h"
+
+1427264132 source:c:\users\fox\documents\foxtrader\src\classes\renderer\gui\button.cpp
+	"button.h"
+
+1427264132 c:\users\fox\documents\foxtrader\src\classes\renderer\gui\button.h
+	<Label.h>
+
+1427264132 c:\users\fox\documents\foxtrader\src\classes\renderer\gui\\label.h
+	<panel.h>
+
+1427264132 source:c:\users\fox\documents\foxtrader\src\classes\renderer\gui\label.cpp
+	"label.h"
+	"renderer.h"
+	"game.h"
+
+1427264132 c:\users\fox\documents\foxtrader\src\classes\renderer\gui\label.h
+	<panel.h>
+
+1427264132 source:c:\users\fox\documents\foxtrader\src\classes\renderer\gui\panel.cpp
+	"panel.h"
+
+1427264132 c:\users\fox\documents\foxtrader\src\classes\renderer\gui\panel.h
+	<delegates.h>
+
+1427264132 source:c:\users\fox\documents\foxtrader\src\classes\renderer\gui\textbox.cpp
+	"textbox.h"
+
+1427264132 c:\users\fox\documents\foxtrader\src\classes\renderer\gui\textbox.h
+	<panel.h>
+
+1427264132 source:c:\users\fox\documents\foxtrader\src\classes\renderer\renderer.cpp
+	"renderer.h"
+	<panel.h>
+	<label.h>
+	<button.h>
+	<textbox.h>
+	<game.h>
+	<player.h>
+	<galaxy.h>
+	<system.h>
+	<../fonts.h>
+
+1427264132 c:\users\fox\documents\foxtrader\src\classes\renderer\gui\\button.h
+	<Label.h>
+
+1427264132 c:\users\fox\documents\foxtrader\src\classes\renderer\gui\\textbox.h
+	<panel.h>
+
+1427264132 c:\users\fox\documents\foxtrader\src\fonts.h
+
+1427264132 source:c:\users\fox\documents\foxtrader\src\classes\system.cpp
+	"system.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_filesystem.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_haptic.h"
+	"SDL_hints.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_messagebox.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_system.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<float.h>
+	<iconv.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_config.h
+	"SDL_platform.h"
+
+1427266327 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_platform.h
+	"AvailabilityMacros.h"
+	"TargetConditionals.h"
+	<winapifamily.h>
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\begin_code.h
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\close_code.h
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_assert.h
+	"SDL_config.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_endian.h
+	"SDL_stdinc.h"
+	<endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_atomic.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<altivec.h>
+	<mmintrin.h>
+	<mm3dnow.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_pixels.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_scancode.h
+	"SDL_stdinc.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_gamecontroller.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_filesystem.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_haptic.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_messagebox.h
+	"SDL_stdinc.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_system.h
+	"SDL_stdinc.h"
+	"SDL_keyboard.h"
+	"SDL_render.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264131 c:\users\fox\documents\foxtrader\libs\sdl\sdl2_image-2.0.0\x86_64-w64-mingw32\include\sdl2\sdl_image.h
+	"SDL.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427264132 c:\users\fox\documents\foxtrader\libs\sdl\sdl2_ttf-2.0.12\x86_64-w64-mingw32\include\sdl2\sdl_ttf.h
+	"SDL.h"
+	"begin_code.h"
+	"close_code.h"
+
+1427266014 source:c:\users\fox\documents\foxtrader\src\classes\universe.cpp
+	"universe.h"
+	"galaxy.h"
+
+1427264132 source:c:\users\fox\documents\foxtrader\src\main.cpp
+	"classes/game.h"
+	"classes/universe.h"
+
