@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1426926411 source:w:\dropbox\c++\foxtrader\src\main.cpp
+1427172707 source:w:\dropbox\c++\foxtrader\src\main.cpp
 	"classes/game.h"
 	"classes/universe.h"
 
@@ -76,11 +76,11 @@
 	"universe.h"
 	"system.h"
 
-1426926411 source:w:\dropbox\c++\foxtrader\src\classes\universe.cpp
+1427356230 source:w:\dropbox\c++\foxtrader\src\classes\universe.cpp
 	"universe.h"
 	"galaxy.h"
 
-1426926411 w:\dropbox\c++\foxtrader\src\classes\universe.h
+1427356271 w:\dropbox\c++\foxtrader\src\classes\universe.h
 
 1426926411 w:\dropbox\c++\foxtrader\src\classes\tools.h
 
@@ -2805,7 +2805,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1426926411 source:w:\dropbox\c++\foxtrader\src\classes\game.cpp
+1427358898 source:w:\dropbox\c++\foxtrader\src\classes\game.cpp
 	"game.h"
 	"renderer.h"
 	"tools.h"
@@ -7265,7 +7265,7 @@
 
 1426926411 w:\dropbox\c++\foxtrader\src\classes\renderer\gui\\delegates.h
 
-1426927817 source:w:\dropbox\c++\foxtrader\src\classes\renderer\gui\textbox.cpp
+1426928099 source:w:\dropbox\c++\foxtrader\src\classes\renderer\gui\textbox.cpp
 	"textbox.h"
 
 1426927734 w:\dropbox\c++\foxtrader\src\classes\renderer\gui\textbox.h

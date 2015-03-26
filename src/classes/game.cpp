@@ -36,7 +36,7 @@ namespace FoxTrader
         }
 
         // Bring up and check SDL2_Image
-        int a_flagsRequested = IMG_INIT_PNG;
+        int a_flagsRequested = IMG_INIT_PNG | IMG_INIT_JPG;
         int a_flagsEnabled = IMG_Init(a_flagsRequested);
         if((a_flagsEnabled & a_flagsRequested) != a_flagsRequested)
         {
@@ -47,6 +47,14 @@ namespace FoxTrader
         if (TTF_Init() != 0)
         {
             Game::TriggerError(Err_Error, std::string("TTF_Init error: ") + SDL_GetError());
+        }
+
+        // Mixer
+        int flags = MIX_INIT_OGG;
+        int initted = Mix_Init(flags);
+        if ((initted & flags) != flags)
+        {
+            Game::TriggerError(Err_Error, std::string("Mix_Init error: ") + Mix_GetError());
         }
 
         // Create Window
