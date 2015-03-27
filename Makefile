@@ -29,13 +29,13 @@ OBJDIR_DEBUG_WIN = obj\\win32\\debug
 DEP_DEBUG_WIN = 
 OUT_DEBUG_WIN = bin\\win32\\debug\\FoxTrader.exe
 
-INC_RELEASE_WIN = $(INC) -Ilibs\sdl\SDL2-2.0.3\i686-w64-mingw32\include\SDL2 -Ilibs\sdl\SDL2_image-2.0.0\i686-w64-mingw32\include\SDL2 -Ilibs\sdl\SDL2_ttf-2.0.12\i686-w64-mingw32\include\SDL2 -Isrc\classes -Isrc\classes\ -Isrc\classes\renderer -Isrc\classes\renderer\gui\
+INC_RELEASE_WIN = $(INC) -Ilibs\sdl\include -Ilibs\sdl\include\SDL2 -Isrc\classes -Isrc\classes\ -Isrc\classes\renderer -Isrc\classes\renderer\gui\
 CFLAGS_RELEASE_WIN = $(CFLAGS) -O2 -include "$(PROJECT_DIR)src\pch.h"
 RESINC_RELEASE_WIN = $(RESINC)
 RCFLAGS_RELEASE_WIN = $(RCFLAGS)
-LIBDIR_RELEASE_WIN = $(LIBDIR) -Llibs\sdl\SDL2-2.0.3\i686-w64-mingw32\lib -Llibs\sdl\SDL2_image-2.0.0\i686-w64-mingw32\lib -Llibs\sdl\SDL2_ttf-2.0.12\i686-w64-mingw32\lib -Llibs\sqlite3\win32-mingw32
+LIBDIR_RELEASE_WIN = $(LIBDIR) -Llibs\sdl\lib -Llibs\sqlite3\win32-mingw64
 LIB_RELEASE_WIN = $(LIB)
-LDFLAGS_RELEASE_WIN = $(LDFLAGS) -s -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lfreetype -mwindows -lsqlite3 -Wl,--no-undefined -lm -ldinput8 -ldxguid -ldxerr8 -luser32 -lgdi32 -lwinmm -limm32 -lole32 -loleaut32 -lshell32 -lversion -luuid
+LDFLAGS_RELEASE_WIN = $(LDFLAGS) -s -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lvorbisfile -lvorbis -logg -lfreetype -ljpeg -lpng12 -lz -mwindows -lsqlite3 -Wl,--no-undefined -lm -ldinput8 -ldxguid -ldxerr8 -luser32 -lgdi32 -lwinmm -limm32 -lole32 -loleaut32 -lshell32 -lversion -luuid
 OBJDIR_RELEASE_WIN = obj\\win32\\release
 DEP_RELEASE_WIN = 
 OUT_RELEASE_WIN = bin\\win32\\release\\FoxTrader.exe

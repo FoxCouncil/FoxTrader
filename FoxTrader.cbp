@@ -91,6 +91,7 @@
 				</Linker>
 				<ExtraCommands>
 					<Add before="cbp2make -in FoxTrader.cbp -out Makefile --target-case keep" />
+					<Mode after="always" />
 				</ExtraCommands>
 			</Target>
 			<Target title="Release-Win">
@@ -102,9 +103,8 @@
 				<Compiler>
 					<Add option="-O2" />
 					<Add option='-include &quot;$(PROJECT_DIR)src\pch.h&quot;' />
-					<Add directory="libs/sdl/SDL2-2.0.3/i686-w64-mingw32/include/SDL2" />
-					<Add directory="libs/sdl/SDL2_image-2.0.0/i686-w64-mingw32/include/SDL2" />
-					<Add directory="libs/sdl/SDL2_ttf-2.0.12/i686-w64-mingw32/include/SDL2" />
+					<Add directory="libs/sdl/include" />
+					<Add directory="libs/sdl/include/SDL2" />
 					<Add directory="src/classes" />
 					<Add directory="src/classes/" />
 					<Add directory="src/classes/renderer" />
@@ -117,7 +117,14 @@
 					<Add option="-lSDL2" />
 					<Add option="-lSDL2_image" />
 					<Add option="-lSDL2_ttf" />
+					<Add option="-lSDL2_mixer" />
+					<Add option="-lvorbisfile" />
+					<Add option="-lvorbis" />
+					<Add option="-logg" />
 					<Add option="-lfreetype" />
+					<Add option="-ljpeg" />
+					<Add option="-lpng12" />
+					<Add option="-lz" />
 					<Add option="-mwindows" />
 					<Add option="-lsqlite3" />
 					<Add option="-Wl,--no-undefined" />
@@ -134,13 +141,12 @@
 					<Add option="-lshell32" />
 					<Add option="-lversion" />
 					<Add option="-luuid" />
-					<Add directory="libs/sdl/SDL2-2.0.3/i686-w64-mingw32/lib" />
-					<Add directory="libs/sdl/SDL2_image-2.0.0/i686-w64-mingw32/lib" />
-					<Add directory="libs/sdl/SDL2_ttf-2.0.12/i686-w64-mingw32/lib" />
-					<Add directory="libs/sqlite3/win32-mingw32" />
+					<Add directory="libs/sdl/lib" />
+					<Add directory="libs/sqlite3/win32-mingw64" />
 				</Linker>
 				<ExtraCommands>
 					<Add before="cbp2make -in FoxTrader.cbp -out Makefile --target-case keep" />
+					<Mode after="always" />
 				</ExtraCommands>
 			</Target>
 			<Target title="Debug-OSX">
