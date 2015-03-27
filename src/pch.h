@@ -29,6 +29,14 @@
 #include <boost/function.hpp>
 #include <boost/bind.hpp>
 
+// GLEW Libs
+#define GL_GLEXT_PROTOTYPES 1
+#ifdef __WIN32__
+#  define GLEW_STATIC
+#endif
+#include <GL/glew.h>
+#include <SDL2/SDL_opengl_glext.h>
+
 // SDL Libs
 #include <SDL.h>
 #include <SDL_image.h>

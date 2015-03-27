@@ -57,8 +57,11 @@ namespace FoxTrader
             Game::TriggerError(Err_Error, std::string("Mix_Init error: ") + Mix_GetError());
         }
 
+        // OpenGL
+        SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+
         // Create Window
-        Game::m_window = SDL_CreateWindow("Fox Trader", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+        Game::m_window = SDL_CreateWindow("Fox Trader", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
 
         if(Game::m_window == NULL)
         {
