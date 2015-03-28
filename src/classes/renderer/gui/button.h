@@ -4,7 +4,7 @@
 #ifndef BUTTON_H
 #define BUTTON_H
 
-#include <Label.h>
+#include <label.h>
 
 namespace FoxTrader
 {
