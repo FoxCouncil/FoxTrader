@@ -22,10 +22,13 @@ namespace FoxTrader
             virtual bool HandleEvent(SDL_Event *c_event);
 
         protected:
+            SDL_Color m_textColor;
             std::string m_text;
             std::string m_font;
+            SDL_Rect m_textDrawRect;
 
         private:
+            SDL_Texture* DrawText(SDL_Renderer *c_renderer, std::string c_font, const std::string &c_message, SDL_Color c_color);
             void Init();
 
             SDL_Rect m_textRect;

@@ -117,7 +117,7 @@ namespace FoxTrader
                 this->m_needsLayout = false;
             }
 
-            SDL_RenderCopy(c_context, this->m_textTexture, NULL, &m_textDrawRect);
+            SDL_RenderCopy(c_context, this->m_textTexture, NULL, &this->m_textDrawRect);
         }
     }
 
