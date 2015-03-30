@@ -7,6 +7,8 @@
 #include "player.h"
 #include "galaxy.h"
 
+#include <gfxicon.h>
+
 namespace FoxTrader
 {
     // Game State Variables
@@ -68,8 +70,10 @@ namespace FoxTrader
             Game::TriggerError(Err_Error, std::string("SDL_CreateWindow error: ") + SDL_GetError());
         }
 
-        // SDL_SetWindowIcon(Game::m_window, )
+        // Set Window Icon
+        SDL_SetWindowIcon(Game::m_window, IMG_LoadPNG_RW(SDL_RWFromMem(GFX::MainIcon32_png, GFX::MainIcon32_png_len)));
 
+        // Create OpenGL renderer...
         Game::m_SDLRenderer = SDL_CreateRenderer(Game::m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
         if(Game::m_SDLRenderer == NULL)

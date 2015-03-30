@@ -56,6 +56,7 @@ SDL_FORCE_INLINE SDL_bool SDL_PointInRect(const SDL_Point *p, const SDL_Rect *r)
 // SQLITE3
 #include "sqlite3.h"
 
+// Game Libs
 #include "typedef.h"
 #include "defines.h"
 #include "constants.h"

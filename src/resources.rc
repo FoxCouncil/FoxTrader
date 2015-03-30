@@ -12,9 +12,9 @@ BEGIN
       VALUE "FileDescription", "FoxTrader: A fox lifestyle simulator."
       VALUE "FileVersion", "1.0"
       VALUE "InternalName", "FoxTrader"
-      VALUE "LegalCopyright", "Fox Council's FoxTrader"
+      VALUE "LegalCopyright", "FoxTrader copyright @FoxCouncil 2015-2022"
       VALUE "OriginalFilename", "FoxTrader.exe"
-      VALUE "ProductName", "Fox Trader"
+      VALUE "ProductName", "FoxTrader"
       VALUE "ProductVersion", "1.0"
     END
   END

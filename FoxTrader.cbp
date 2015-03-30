@@ -21,6 +21,7 @@
 					<Add directory="src/classes/" />
 					<Add directory="src/classes/renderer" />
 					<Add directory="src/classes/renderer/gui/" />
+					<Add directory="src/gfx" />
 				</Compiler>
 				<Linker>
 					<Add option="-lGLEW" />
@@ -37,9 +38,6 @@
 					<Add option="-lm" />
 					<Add option="-ldl" />
 					<Add option="-lasound" />
-					<Add option="-lm" />
-					<Add option="-ldl" />
-					<Add option="-lpthread" />
 					<Add option="-lpulse-simple" />
 					<Add option="-lpulse" />
 					<Add option="-lX11" />
@@ -55,7 +53,6 @@
 					<Add option="-lwayland-cursor" />
 					<Add option="-lxkbcommon" />
 					<Add option="-lts" />
-					<Add option="-lpthread" />
 					<Add option="-lrt" />
 					<Add directory="libs/sqlite3/win32-mingw64" />
 				</Linker>
@@ -91,9 +88,6 @@
 					<Add option="-lm" />
 					<Add option="-ldl" />
 					<Add option="-lasound" />
-					<Add option="-lm" />
-					<Add option="-ldl" />
-					<Add option="-lpthread" />
 					<Add option="-lpulse-simple" />
 					<Add option="-lpulse" />
 					<Add option="-lX11" />
@@ -109,7 +103,6 @@
 					<Add option="-lwayland-cursor" />
 					<Add option="-lxkbcommon" />
 					<Add option="-lts" />
-					<Add option="-lpthread" />
 					<Add option="-lrt" />
 					<Add directory="libs/sqlite3/win32-mingw64" />
 				</Linker>
@@ -129,6 +122,7 @@
 					<Add directory="src/classes/" />
 					<Add directory="src/classes/renderer" />
 					<Add directory="src/classes/renderer/gui/" />
+					<Add directory="src/gfx" />
 				</Compiler>
 				<Linker>
 					<Add option="-lmingw32" />
@@ -183,6 +177,7 @@
 					<Add directory="src/classes/" />
 					<Add directory="src/classes/renderer" />
 					<Add directory="src/classes/renderer/gui/" />
+					<Add directory="src/gfx" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -392,13 +387,8 @@
 			<Option target="Release-Win" />
 			<Option target="Debug-OSX" />
 		</Unit>
-		<Unit filename="src/fonts.h">
-			<Option target="Debug-Nix" />
-			<Option target="Release-Nix" />
-			<Option target="Debug-Win" />
-			<Option target="Release-Win" />
-			<Option target="Debug-OSX" />
-		</Unit>
+		<Unit filename="src/gfx/fonts.h" />
+		<Unit filename="src/gfx/gfxicon.h" />
 		<Unit filename="src/main.cpp">
 			<Option target="Debug-Nix" />
 			<Option target="Release-Nix" />
@@ -413,6 +403,11 @@
 			<Option target="Release-Win" />
 			<Option target="Debug-OSX" />
 			<Option target="Release-OSX" />
+		</Unit>
+		<Unit filename="src/resources.rc">
+			<Option compilerVar="WINDRES" />
+			<Option target="Debug-Win" />
+			<Option target="Release-Win" />
 		</Unit>
 		<Unit filename="src/sqlite3.h" />
 		<Unit filename="src/structs.h">

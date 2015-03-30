@@ -13,7 +13,9 @@
 #include <player.h>
 #include <galaxy.h>
 #include <system.h>
-#include <../fonts.h>
+
+// TEMP
+#include <fonts.h>
 
 namespace FoxTrader
 {
