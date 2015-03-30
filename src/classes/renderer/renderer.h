@@ -25,16 +25,16 @@ namespace FoxTrader
             void HandleEvent(SDL_Event *c_event);
 
             // FPS Display Control
-		    void ToggleFPS();
+            void ToggleFPS();
 
             // Drawing Methods
             //static void Text(std::string c_font, const std::string &c_message, text_align_t c_textAlignment, uint32_t c_x, uint32_t c_y);
             //static void Text(std::string c_font, const std::string &c_message, text_align_t c_textAlignment, SDL_Color c_color, uint32_t c_x, uint32_t c_y);
             //static SDL_Texture* TextToTexture(SDL_Renderer *c_renderer, std::string c_font, const std::string &c_message, SDL_Color c_color);
-		    //static void RenderTexture(SDL_Texture *c_texture, uint32_t c_x, uint32_t c_y, uint32_t c_w, uint32_t c_h);
-		    //static void RenderTexture(SDL_Texture *c_texture, uint32_t c_x, uint32_t c_y);
+            //static void RenderTexture(SDL_Texture *c_texture, uint32_t c_x, uint32_t c_y, uint32_t c_w, uint32_t c_h);
+            //static void RenderTexture(SDL_Texture *c_texture, uint32_t c_x, uint32_t c_y);
 
-		    // Fonts
+            // Fonts
             static void InitFonts();
             static TTF_Font* GetFont(std::string c_fontName);
 

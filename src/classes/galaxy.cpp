@@ -5,7 +5,7 @@
 
 namespace FoxTrader
 {
-	Galaxy::Galaxy(Universe *a_universe, uint32_t a_index)
+    Galaxy::Galaxy(Universe *a_universe, uint32_t a_index)
     {
         this->m_universe = a_universe;
         this->m_index = a_index;

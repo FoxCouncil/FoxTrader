@@ -7,40 +7,40 @@
 namespace FoxTrader
 {
     class Galaxy;
-	class Universe
-	{
-		// State Vars
-		uint16_t m_startYear;
+    class Universe
+    {
+        // State Vars
+        uint16_t m_startYear;
         time_t   m_startTime;
-		std::string m_name;
+        std::string m_name;
 
-		// Timey Whimey Stuff
-		time_t   m_spaceTime;
-		uint16_t m_spaceYear;
-		uint8_t  m_spaceMonth;
-		uint8_t  m_spaceDay;
-		uint8_t  m_spaceHour;
+        // Timey Whimey Stuff
+        time_t   m_spaceTime;
+        uint16_t m_spaceYear;
+        uint8_t  m_spaceMonth;
+        uint8_t  m_spaceDay;
+        uint8_t  m_spaceHour;
 
-		public:
-		    // Matter Storage
+        public:
+            // Matter Storage
             std::vector<Galaxy> m_galaxies;
 
-			// The Default Constructor (The Big Bang)
-			Universe();
-			~Universe();
-			void Tick();
+            // The Default Constructor (The Big Bang)
+            Universe();
+            ~Universe();
+            void Tick();
 
-			// Get Methods
-			std::string GetName();
+            // Get Methods
+            std::string GetName();
 
-			// Time Frabric Reader Methods
-			uint32_t GetSpaceTime();
-			uint16_t GetSpaceYear();
-			uint8_t GetSpaceMonth();
-			uint8_t GetSpaceDay();
-			uint8_t GetSpaceHour();
-			uint8_t GetSpaceMinutes();
-	};
+            // Time Frabric Reader Methods
+            uint32_t GetSpaceTime();
+            uint16_t GetSpaceYear();
+            uint8_t GetSpaceMonth();
+            uint8_t GetSpaceDay();
+            uint8_t GetSpaceHour();
+            uint8_t GetSpaceMinutes();
+    };
 }
 
 #endif // UNIVERSE_H_INCLUDED

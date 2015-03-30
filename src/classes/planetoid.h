@@ -7,24 +7,24 @@
 namespace FoxTrader
 {
     class System;
-	class Planetoid
-	{
-		std::string m_name;
+    class Planetoid
+    {
+        std::string m_name;
 
-		System *m_system;
-		uint32_t m_index;
+        System *m_system;
+        uint32_t m_index;
 
-		planetoid_t p_type;
+        planetoid_t p_type;
 
-		vec3_t m_position;
+        vec3_t m_position;
 
-		public:
-			Planetoid(System *a_system, uint32_t a_index);
-			~Planetoid();
+        public:
+            Planetoid(System *a_system, uint32_t a_index);
+            ~Planetoid();
 
-			// SpaceTime
-			void Tick();
-	};
+            // SpaceTime
+            void Tick();
+    };
 }
 
 #endif // PLANETOID_H_INCLUDED
