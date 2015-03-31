@@ -15,6 +15,7 @@ namespace FoxTrader
 
     TextBox::~TextBox()
     {
+        SDL_DestroyTexture(this->m_textTexture);
     }
 
     void TextBox::Draw(SDL_Renderer* c_context)
@@ -24,10 +25,10 @@ namespace FoxTrader
             Panel::Draw(c_context);
 
             // Draw Caret
-            if ((Tools::GetMilliseconds() & 500) > 250)
+            if (this->m_hasFocus && (Tools::GetMilliseconds() & 500) > 250)
             {
                 SDL_SetRenderDrawColor(c_context, Tools::Colors::Black.r, Tools::Colors::Black.g, Tools::Colors::Black.b, Tools::Colors::Black.a);
-                SDL_RenderDrawLine(c_context, this->m_rect.x + 3, this->m_rect.y + 4, this->m_rect.x + 3, this->m_rect.y + (this->m_rect.h - 5));
+                SDL_RenderDrawLine(c_context, this->m_rect.x + 3, this->m_rect.y + 4, this->m_rect.x + 3, this->m_rect.y + (this->m_rect.h - 4));
             }
 
             if (this->m_needsLayout)
@@ -109,6 +110,10 @@ namespace FoxTrader
 
     void TextBox::Init()
     {
+        this->m_canFocus = true;
+
+        this->m_caretPosition = 0;
+
         this->SetWidth(100);
         this->SetHeight(24);
 

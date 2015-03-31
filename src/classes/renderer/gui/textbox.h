@@ -27,6 +27,8 @@ namespace FoxTrader
             std::string m_font;
             SDL_Rect m_textDrawRect;
 
+            uint8_t m_caretPosition;
+
         private:
             SDL_Texture* DrawText(SDL_Renderer *c_renderer, std::string c_font, const std::string &c_message, SDL_Color c_color);
             void Init();

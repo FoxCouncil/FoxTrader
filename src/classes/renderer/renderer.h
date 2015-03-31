@@ -38,8 +38,13 @@ namespace FoxTrader
             static void InitFonts();
             static TTF_Font* GetFont(std::string c_fontName);
 
+            // Graphics
+
+            // Focus Control
+            static bool RequestFocus(Panel* c_panel);
+
             // Test Shit
-            bool MouseUpEvent(Panel *c_target);
+            bool MouseUpEvent(Panel* c_target);
 
         private:
             // Member Variables
@@ -56,6 +61,9 @@ namespace FoxTrader
 
             // Fonts
             static std::map<std::string, TTF_Font*> m_fontMap;
+
+            // Focus Control
+            static Panel* m_focusedPanel;
     };
 }
 

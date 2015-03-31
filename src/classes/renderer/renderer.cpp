@@ -22,10 +22,15 @@ namespace FoxTrader
     // Font Map is static!
     std::map<std::string, TTF_Font*> Renderer::m_fontMap;
 
+    // Let's focus
+    Panel* Renderer::m_focusedPanel;
+
     // ctor
     Renderer::Renderer()
     {
         Renderer::InitFonts();
+
+        Renderer::m_focusedPanel = NULL;
 
         this->m_context = NULL;
         this->m_showFPS = false;
@@ -265,6 +270,26 @@ namespace FoxTrader
         Renderer::Text("bold_24", std::string(SSTR(round(a_fpsReading))), TextAlign::Left, a_color, 3, 0);*/
     }
 
+    // Focus Control
+    bool Renderer::RequestFocus(Panel* c_panel)
+    {
+        if (!c_panel->GetCanFocus())
+        {
+            return false;
+        }
+
+        if (Renderer::m_focusedPanel != NULL)
+        {
+            Renderer::m_focusedPanel->Blur();
+            Renderer::m_focusedPanel = NULL;
+        }
+
+        Renderer::m_focusedPanel = c_panel;
+        Renderer::m_focusedPanel->Focus();
+
+        return true;
+    }
+
     bool Renderer::MouseUpEvent(Panel *c_target)
     {
         Game::TriggerError(FoxTrader::Err_Information, "HOLY FUCK!");
@@ -278,7 +303,7 @@ namespace FoxTrader
         a_button->SetFont("bold_64");
         a_button->SetX(512 - (a_button->GetWidth() / 2));
         a_button->SetY(288 - (a_button->GetHeight() / 2));
-        // a_button->AddMouseUpDelegate(boost::bind(&Renderer::MouseUpEvent, this, _1));
+        a_button->AddMouseUpDelegate(boost::bind(&Renderer::MouseUpEvent, this, _1));
 
         this->m_panels.push_back(a_button);
 

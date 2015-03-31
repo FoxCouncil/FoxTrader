@@ -5,6 +5,7 @@
 		<Option title="FoxTrader" />
 		<Option makefile="Makefile.mak" />
 		<Option pch_mode="2" />
+		<Option default_target="Debug-Win" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug-Nix">

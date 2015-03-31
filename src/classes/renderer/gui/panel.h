@@ -86,6 +86,7 @@ namespace FoxTrader
             int GetX() { return this->m_rect.x; }
             int GetY() { return this->m_rect.y; }
             SDL_Rect GetRect() { return this->m_rect; }
+            bool GetCanFocus() { return this->m_canFocus; }
 
             // Public Setters
             void SetBorderColor(SDL_Color c_color) { this->m_borderColor = c_color; this->SetNeedsLayout(); }
@@ -98,6 +99,8 @@ namespace FoxTrader
             void SetNeedsLayout() { this->m_needsLayout = true; }
             void SetParent(Panel *c_parentPanel) { this->m_parentPanel = c_parentPanel; }
             void ClearParent() { this->m_parentPanel = NULL; }
+            void Focus() { this->m_hasFocus = true; this->SetNeedsLayout(); }
+            void Blur() { this->m_hasFocus = false; this->SetNeedsLayout(); }
 
             // Children Control
             void AddPanel(Panel *c_panel);
@@ -109,6 +112,7 @@ namespace FoxTrader
             bool m_needsLayout;
             bool m_mouseOver;
             bool m_mouseButtonHeld;
+            bool m_canFocus;
             bool m_hasFocus;
 
             Panel *m_parentPanel;

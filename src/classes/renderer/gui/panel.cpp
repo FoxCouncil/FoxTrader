@@ -2,6 +2,7 @@
 // 2015-02-19T22:09:00-07:00
 
 #include "panel.h"
+#include "renderer.h"
 
 namespace FoxTrader
 {
@@ -171,6 +172,9 @@ namespace FoxTrader
 
     void Panel::OnMouseDown(SDL_Event *c_event)
     {
+        // Panel Event Handlers
+        Renderer::RequestFocus(this);
+
         for (int i = this->m_mouseDownDelegates.size(); i --> 0;)
         {
             this->m_mouseDownDelegates[i](this, c_event);
@@ -360,6 +364,8 @@ namespace FoxTrader
     // Private Methods
     void Panel::Init()
     {
+        this->m_canFocus = false;
+        this->m_hasFocus = false;
         this->m_visible = true;
         this->m_rect = Tools::SDL_RectMake(1, 1, 0, 0);
         this->m_borderColor = Tools::Colors::Transparent;
