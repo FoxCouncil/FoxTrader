@@ -18,9 +18,6 @@ namespace FoxTrader
             // Draw Method
             virtual void Draw(SDL_Renderer *c_context);
 
-            // Events
-            virtual bool HandleEvent(SDL_Event *c_event);
-
         protected:
             SDL_Color m_textColor;
             std::string m_text;

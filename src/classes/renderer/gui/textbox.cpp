@@ -59,11 +59,6 @@ namespace FoxTrader
         }
     }
 
-    bool TextBox::HandleEvent(SDL_Event *c_event)
-    {
-        return false;
-    }
-
     // Private Methods
     SDL_Texture* TextBox::DrawText(SDL_Renderer *c_renderer, std::string c_font, const std::string &c_message, SDL_Color c_color)
     {

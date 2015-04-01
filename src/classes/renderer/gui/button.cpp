@@ -72,6 +72,8 @@ namespace FoxTrader
     {
         this->Padding = padding_t(5, 25);
 
+        this->m_canFocus = true;
+
         this->m_backgroundColor = Tools::Colors::Control;
         this->m_borderColor = Tools::Colors::BlackWolf;
 
