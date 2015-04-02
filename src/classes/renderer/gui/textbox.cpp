@@ -28,7 +28,24 @@ namespace FoxTrader
             if (this->m_hasFocus && (Tools::GetMilliseconds() & 500) > 250)
             {
                 SDL_SetRenderDrawColor(c_context, Tools::Colors::Black.r, Tools::Colors::Black.g, Tools::Colors::Black.b, Tools::Colors::Black.a);
-                SDL_RenderDrawLine(c_context, this->m_rect.x + 3, this->m_rect.y + 4, this->m_rect.x + 3, this->m_rect.y + (this->m_rect.h - 4));
+
+                // Clamp Caret
+                if (this->m_caretPosition > this->m_text.length())
+                {
+                    this->m_caretPosition = this->m_text.length();
+                }
+
+                // Calculate with length of internal text
+                uint32_t a_caretDrawOffset = 3;
+
+                if (this->m_caretPosition != 0)
+                {
+                    int a_stringWidth;
+                    TTF_SizeText(Renderer::GetFont(this->m_font), this->m_text.substr(0, this->m_caretPosition).c_str(), &a_stringWidth, NULL);
+                    a_caretDrawOffset += a_stringWidth;
+                }
+
+                SDL_RenderDrawLine(c_context, this->m_rect.x + a_caretDrawOffset, this->m_rect.y + 4, this->m_rect.x + a_caretDrawOffset, this->m_rect.y + (this->m_rect.h - 4));
             }
 
             if (this->m_needsLayout)
@@ -101,6 +118,84 @@ namespace FoxTrader
         SDL_FreeSurface(a_surface);
 
         return a_texture;
+    }
+
+    void TextBox::OnKeyDown(SDL_Event *c_event)
+    {
+        if (this->m_hasFocus)
+        {
+            switch( c_event->key.keysym.sym )
+            {
+                case SDLK_RIGHT:
+                {
+                    if (this->m_caretPosition < this->m_text.length())
+                    {
+                        this->m_caretPosition++;
+                    }
+                }
+                break;
+
+                case SDLK_LEFT:
+                {
+                    if (this->m_caretPosition != 0)
+                    {
+                        this->m_caretPosition--;
+                    }
+                }
+                break;
+
+                case SDLK_HOME:
+                {
+                    this->m_caretPosition = 0;
+                }
+                break;
+
+                case SDLK_END:
+                {
+                    this->m_caretPosition = this->m_text.length();
+                }
+                break;
+
+                case SDLK_DELETE:
+                {
+                    if (this->m_text.length() != 0)
+                    {
+                        if (this->m_caretPosition != this->m_text.length())
+                        {
+                            this->m_text.erase(this->m_caretPosition, 1);
+                            this->SetNeedsLayout();
+                        }
+                    }
+                }
+                break;
+
+                case SDLK_BACKSPACE:
+                {
+                    if (this->m_caretPosition != 0)
+                    {
+                        this->m_text.erase((this->m_caretPosition - 1), 1);
+                        this->SetNeedsLayout();
+                    }
+                }
+                break;
+            }
+
+            SDL_Keycode a_keyCode = c_event->key.keysym.sym;
+
+            if (a_keyCode > 31 && a_keyCode < 123)
+            {
+                std::string a_keyString(1, (char)a_keyCode);
+
+                if (this->m_caretPosition > this->m_text.length())
+                {
+                    this->m_caretPosition = this->m_text.length();
+                }
+
+                this->m_text.insert(this->m_caretPosition, a_keyString);
+                this->m_caretPosition++;
+                this->SetNeedsLayout();
+            }
+        }
     }
 
     void TextBox::Init()

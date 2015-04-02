@@ -33,6 +33,9 @@ namespace FoxTrader
             SDL_Rect m_textRect;
 
             SDL_Texture *m_textTexture;
+
+            // Internal Events
+            void OnKeyDown(SDL_Event *c_event);
     };
 }
 
