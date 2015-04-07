@@ -7,8 +7,6 @@
 #include "player.h"
 #include "galaxy.h"
 
-#include <gfxicon.h>
-
 namespace FoxTrader
 {
     // Game State Variables
@@ -16,7 +14,7 @@ namespace FoxTrader
     game_state_t Game::m_currentState = GameState::MainMenu;
 
     // Render Object
-    Renderer *Game::m_renderer;
+    Renderer *Game::m_renderer = NULL;
 
     // Player Object
     Player *Game::m_player = NULL;
@@ -24,76 +22,11 @@ namespace FoxTrader
     // Universe Itself
     Universe *Game::m_universe = NULL;
 
-    // SDL Objects
-    SDL_Window *Game::m_window = NULL;
-    SDL_Renderer *Game::m_SDLRenderer = NULL;
-
-    // Flow Control Methods
-    void Game::Initialize()
-    {
-        // Bring up and check SDL2
-        if(SDL_Init(SDL_INIT_VIDEO) < 0)
-        {
-            Game::TriggerError(Err_Error, std::string("SDL_Init error: ") + SDL_GetError());
-        }
-
-        // Bring up and check SDL2_Image
-        int a_flagsRequested = IMG_INIT_PNG | IMG_INIT_JPG;
-        int a_flagsEnabled = IMG_Init(a_flagsRequested);
-        if((a_flagsEnabled & a_flagsRequested) != a_flagsRequested)
-        {
-            Game::TriggerError(Err_Error, std::string("IMG_Init error: ") + SDL_GetError());
-        }
-
-        // Bring up and check SDL2_ttf
-        if (TTF_Init() != 0)
-        {
-            Game::TriggerError(Err_Error, std::string("TTF_Init error: ") + SDL_GetError());
-        }
-
-        // Mixer
-        int flags = MIX_INIT_OGG;
-        int initted = Mix_Init(flags);
-        if ((initted & flags) != flags)
-        {
-            Game::TriggerError(Err_Error, std::string("Mix_Init error: ") + Mix_GetError());
-        }
-
-        // OpenGL
-        SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-
-        // Create Window
-        Game::m_window = SDL_CreateWindow("Fox Trader", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
-
-        if(Game::m_window == NULL)
-        {
-            Game::TriggerError(Err_Error, std::string("SDL_CreateWindow error: ") + SDL_GetError());
-        }
-
-        // Set Window Icon
-        SDL_SetWindowIcon(Game::m_window, IMG_LoadPNG_RW(SDL_RWFromMem(GFX::MainIcon32_png, GFX::MainIcon32_png_len)));
-
-        // Create OpenGL renderer...
-        Game::m_SDLRenderer = SDL_CreateRenderer(Game::m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-
-        if(Game::m_SDLRenderer == NULL)
-        {
-            Game::TriggerError(Err_Error, std::string("SDL_CreateRenderer error: ") + SDL_GetError());
-        }
-
-        Game::m_renderer = new Renderer;
-
-        if (!Game::m_renderer->SetContext(Game::m_SDLRenderer))
-        {
-            Game::TriggerError(Err_Error, std::string("Renderer::SetRenderer error: this->m_renderer was null! "));
-        }
-    }
-
     void Game::Start()
     {
         Game::TriggerError(FoxTrader::Err_Information, "Here we go!");
 
-        Game::Initialize();
+        Game::m_renderer = new Renderer();
 
         Game::m_isRunning = true;
 
@@ -176,14 +109,6 @@ namespace FoxTrader
         {
             Game::m_isRunning = false;
         }
-
-        SDL_DestroyWindow(Game::m_window);
-
-        Game::m_window = NULL;
-
-        TTF_Quit();
-        IMG_Quit();
-        SDL_Quit();
     }
 
     // Access Methods
@@ -238,7 +163,14 @@ namespace FoxTrader
             break;
         }
 
-        SDL_ShowSimpleMessageBox(a_type, a_title.c_str(), c_message.c_str(), Game::m_window);
+        if (Game::m_renderer != NULL)
+        {
+            SDL_ShowSimpleMessageBox(a_type, a_title.c_str(), c_message.c_str(), Game::m_renderer->GetWindowHandle());
+        }
+        else
+        {
+            SDL_ShowSimpleMessageBox(a_type, a_title.c_str(), c_message.c_str(), NULL);
+        }
 
         if (c_error_type == FoxTrader::Err_Error)
         {

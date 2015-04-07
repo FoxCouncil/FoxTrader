@@ -16,7 +16,7 @@ namespace FoxTrader
             virtual ~TextBox();
 
             // Draw Method
-            virtual void Draw(SDL_Renderer *c_context);
+            virtual void Draw(SDL_Renderer* c_context);
 
         protected:
             SDL_Color m_textColor;
@@ -35,7 +35,9 @@ namespace FoxTrader
             SDL_Texture *m_textTexture;
 
             // Internal Events
-            void OnKeyDown(SDL_Event *c_event);
+            void OnText(SDL_Event* c_event);
+            void OnMouseDown(SDL_Event* c_event);
+            void OnKeyDown(SDL_Event* c_event);
     };
 }
 

@@ -17,7 +17,6 @@ namespace FoxTrader
         public:
             // Flow Control
             static void Start();
-            static void Initialize();
             static void ProcessEvent(SDL_Event *c_event);
             static void Tick();
             static void Clean();
@@ -40,17 +39,13 @@ namespace FoxTrader
             static game_state_t m_currentState;
 
             // Render Object
-            static Renderer *m_renderer;
+            static Renderer* m_renderer;
 
             // Player Object
-            static Player *m_player;
+            static Player* m_player;
 
             // Universe Itself
-            static Universe *m_universe;
-
-            // SDL Objects
-            static SDL_Window *m_window;
-            static SDL_Renderer *m_SDLRenderer;
+            static Universe* m_universe;
     };
 }
 

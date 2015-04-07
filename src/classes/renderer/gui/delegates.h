@@ -15,6 +15,7 @@ namespace FoxTrader
     typedef boost::function<bool (Panel*, SDL_Event*)> MouseMoveDelegate;
     typedef boost::function<bool (Panel*, SDL_Event*)> MouseWheelDelegate;
 
+    typedef boost::function<bool (Panel*, SDL_Event*)> TextDelegate;
     typedef boost::function<bool (Panel*, SDL_Event*)> KeyUpDelegate;
     typedef boost::function<bool (Panel*, SDL_Event*)> KeyDownDelegate;
 }

@@ -38,7 +38,7 @@ namespace FoxTrader
         //dtor
     }
 
-    void Panel::Draw(SDL_Renderer *c_context)
+    void Panel::Draw(SDL_Renderer* c_context)
     {
         if (this->m_visible)
         {
@@ -64,7 +64,7 @@ namespace FoxTrader
     }
 
     // Events
-    bool Panel::HandleEvent(SDL_Event *c_event)
+    bool Panel::HandleEvent(SDL_Event* c_event)
     {
         for (int i = this->m_childPanels.size(); i --> 0;)
         {
@@ -78,6 +78,12 @@ namespace FoxTrader
 
         switch (c_event->type)
         {
+            case SDL_TEXTINPUT:
+            {
+                this->OnText(c_event);
+            }
+            break;
+
             case SDL_KEYDOWN:
             {
                 this->OnKeyDown(c_event);
@@ -146,7 +152,7 @@ namespace FoxTrader
     }
 
     // Virtual Mouse Events
-    void Panel::OnMouseOver(SDL_Event *c_event)
+    void Panel::OnMouseOver(SDL_Event* c_event)
     {
         for (int i = this->m_mouseOverDelegates.size(); i --> 0;)
         {
@@ -154,7 +160,7 @@ namespace FoxTrader
         }
     }
 
-    void Panel::OnMouseOut(SDL_Event *c_event)
+    void Panel::OnMouseOut(SDL_Event* c_event)
     {
         for (int i = this->m_mouseOutDelegates.size(); i --> 0;)
         {
@@ -162,7 +168,7 @@ namespace FoxTrader
         }
     }
 
-    void Panel::OnMouseUp(SDL_Event *c_event)
+    void Panel::OnMouseUp(SDL_Event* c_event)
     {
         for (int i = this->m_mouseUpDelegates.size(); i --> 0;)
         {
@@ -170,7 +176,7 @@ namespace FoxTrader
         }
     }
 
-    void Panel::OnMouseDown(SDL_Event *c_event)
+    void Panel::OnMouseDown(SDL_Event* c_event)
     {
         // Panel Event Handlers
         Renderer::RequestFocus(this);
@@ -181,7 +187,7 @@ namespace FoxTrader
         }
     }
 
-    void Panel::OnMouseMove(SDL_Event *c_event)
+    void Panel::OnMouseMove(SDL_Event* c_event)
     {
         for (int i = this->m_mouseMoveDelegates.size(); i --> 0;)
         {
@@ -189,7 +195,7 @@ namespace FoxTrader
         }
     }
 
-    void Panel::OnMouseWheel(SDL_Event *c_event)
+    void Panel::OnMouseWheel(SDL_Event* c_event)
     {
         for (int i = this->m_mouseWheelDelegates.size(); i --> 0;)
         {
@@ -198,7 +204,15 @@ namespace FoxTrader
     }
 
     // Virtual Keyboard Events
-    void Panel::OnKeyUp(SDL_Event *c_event)
+    void Panel::OnText(SDL_Event* c_event)
+    {
+        for (int i = this->m_keyUpDelegates.size(); i --> 0;)
+        {
+            this->m_textDelegates[i](this, c_event);
+        }
+    }
+
+    void Panel::OnKeyUp(SDL_Event* c_event)
     {
         for (int i = this->m_keyUpDelegates.size(); i --> 0;)
         {
@@ -206,7 +220,7 @@ namespace FoxTrader
         }
     }
 
-    void Panel::OnKeyDown(SDL_Event *c_event)
+    void Panel::OnKeyDown(SDL_Event* c_event)
     {
         for (int i = this->m_keyDownDelegates.size(); i --> 0;)
         {
@@ -215,13 +229,13 @@ namespace FoxTrader
     }
 
     // Children Control
-    void Panel::AddPanel(Panel *c_panel)
+    void Panel::AddPanel(Panel* c_panel)
     {
         c_panel->SetParent(this);
         this->m_childPanels.push_back(c_panel);
     }
 
-    void Panel::RemovePanel(Panel *c_panel)
+    void Panel::RemovePanel(Panel* c_panel)
     {
         this->m_childPanels.erase(std::remove(this->m_childPanels.begin(), this->m_childPanels.end(), c_panel), this->m_childPanels.end());
         c_panel->ClearParent();
@@ -239,11 +253,6 @@ namespace FoxTrader
         this->m_mouseOverDelegates.push_back(c_mouseOverDelegate);
     }
 
-    /*void Panel::RemoveMouseOverDelegate(MouseOverDelegate c_mouseOverDelegate)
-    {
-        this->m_mouseOverDelegates.erase(std::remove(this->m_mouseOverDelegates.begin(), this->m_mouseOverDelegates.end(), c_mouseOverDelegate), this->m_mouseOverDelegates.end());
-    }*/
-
     void Panel::ClearAllMouseOverDelegates()
     {
         this->m_mouseOverDelegates.clear();
@@ -254,11 +263,6 @@ namespace FoxTrader
     {
         this->m_mouseOutDelegates.push_back(c_mouseOutDelegate);
     }
-
-    /*void Panel::RemoveMouseOutDelegate(MouseOutDelegate c_mouseOutDelegate)
-    {
-        this->m_mouseOutDelegates.erase(std::remove(this->m_mouseOutDelegates.begin(), this->m_mouseOutDelegates.end(), c_mouseOutDelegate), this->m_mouseOutDelegates.end());
-    }*/
 
     void Panel::ClearAllMouseOutDelegates()
     {
@@ -271,11 +275,6 @@ namespace FoxTrader
         this->m_mouseUpDelegates.push_back(c_mouseUpDelegate);
     }
 
-    /*void Panel::RemoveMouseUpDelegate(MouseUpDelegate c_mouseUpDelegate)
-    {
-        this->m_mouseUpDelegates.erase(std::remove(this->m_mouseUpDelegates.begin(), this->m_mouseUpDelegates.end(), c_mouseUpDelegate), this->m_mouseUpDelegates.end());
-    }*/
-
     void Panel::ClearAllMouseUpDelegates()
     {
         this->m_mouseUpDelegates.clear();
@@ -286,11 +285,6 @@ namespace FoxTrader
     {
         this->m_mouseDownDelegates.push_back(c_mouseDownDelegate);
     }
-
-    /*void Panel::RemoveMouseDownDelegate(MouseUpDelegate c_mouseDownDelegate)
-    {
-        this->m_mouseDownDelegates.erase(std::remove(this->m_mouseDownDelegates.begin(), this->m_mouseDownDelegates.end(), c_mouseDownDelegate), this->m_mouseDownDelegates.end());
-    }*/
 
     void Panel::ClearAllMouseDownDelegates()
     {
@@ -303,11 +297,6 @@ namespace FoxTrader
         this->m_mouseMoveDelegates.push_back(c_mouseMoveDelegate);
     }
 
-    /*void Panel::RemoveMouseMoveDelegate(MouseMoveDelegate c_mouseMoveDelegate)
-    {
-        this->m_mouseMoveDelegates.erase(std::remove(this->m_mouseMoveDelegates.begin(), this->m_mouseMoveDelegates.end(), c_mouseMoveDelegate), this->m_mouseMoveDelegates.end());
-    }*/
-
     void Panel::ClearAllMouseMoveDelegates()
     {
         this->m_mouseMoveDelegates.clear();
@@ -319,14 +308,20 @@ namespace FoxTrader
         this->m_mouseWheelDelegates.push_back(c_mouseWheelDelegate);
     }
 
-    /*void Panel::RemoveMouseWheelDelegate(MouseWheelDelegate c_mouseWheelDelegate)
-    {
-        this->m_mouseWheelDelegates.erase(std::remove(this->m_mouseWheelDelegates.begin(), this->m_mouseWheelDelegates.end(), c_mouseWheelDelegate), this->m_mouseWheelDelegates.end());
-    }*/
-
     void Panel::ClearAllMouseWheelDelegates()
     {
         this->m_mouseWheelDelegates.clear();
+    }
+
+    // Text
+    void Panel::AddTextDelegate(TextDelegate c_textDelegate)
+    {
+        this->m_textDelegates.push_back(c_textDelegate);
+    }
+
+    void Panel::ClearAllTextDelegates()
+    {
+        this->m_textDelegates.clear();
     }
 
     // Key Up
@@ -334,11 +329,6 @@ namespace FoxTrader
     {
         this->m_keyUpDelegates.push_back(c_keyUpDelegate);
     }
-
-    /*void Panel::RemoveKeyUpDelegate(MouseUpDelegate c_keyUpDelegate)
-    {
-        this->m_keyUpDelegates.erase(std::remove(this->m_keyUpDelegates.begin(), this->m_keyUpDelegates.end(), c_keyUpDelegate), this->m_keyUpDelegates.end());
-    }*/
 
     void Panel::ClearAllKeyUpDelegates()
     {
@@ -350,11 +340,6 @@ namespace FoxTrader
     {
         this->m_keyDownDelegates.push_back(c_keyDownDelegate);
     }
-
-    /*void Panel::RemoveKeyDownDelegate(KeyDownDelegate c_keyDownDelegate)
-    {
-        this->m_keyDownDelegates.erase(std::remove(this->m_keyDownDelegates.begin(), this->m_keyDownDelegates.end(), c_keyDownDelegate), this->m_keyDownDelegates.end());
-    }*/
 
     void Panel::ClearAllKeyDownDelegates()
     {

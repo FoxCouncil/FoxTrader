@@ -14,8 +14,9 @@
 #include <galaxy.h>
 #include <system.h>
 
-// TEMP
+// Assets
 #include <fonts.h>
+#include <gfxicon.h>
 
 namespace FoxTrader
 {
@@ -28,33 +29,47 @@ namespace FoxTrader
     // ctor
     Renderer::Renderer()
     {
-        Renderer::InitFonts();
+        this->m_window = NULL;
+        this->m_SDLRenderer = NULL;
 
+        this->InitSDL();
+
+        Renderer::InitFonts();
         Renderer::m_focusedPanel = NULL;
 
-        this->m_context = NULL;
         this->m_showFPS = false;
         this->m_totalFrames = 0;
         this->m_needsLayout = true;
     }
 
+    Renderer::~Renderer()
+    {
+        SDL_DestroyWindow(Renderer::m_window);
+
+        Renderer::m_window = NULL;
+
+        TTF_Quit();
+        IMG_Quit();
+        SDL_Quit();
+    }
+
     // Render Tick
     void Renderer::Tick()
     {
-        if (this->m_context == NULL)
+        if (this->m_SDLRenderer == NULL)
         {
-            Game::TriggerError(Err_Error, std::string("Renderer::Tick() error: m_context was NULL!"));
+            Game::TriggerError(Err_Error, std::string("Renderer::Tick() error: m_SDLRenderer was NULL!"));
         }
 
         // CSelect the color for drawing.
-        SDL_SetRenderDrawColor(this->m_context, 0x14, 0x14, 0x87, 0xFF);
+        SDL_SetRenderDrawColor(this->m_SDLRenderer, 0x14, 0x14, 0x87, 0xFF);
 
         // Clear the entire screen to our selected color.
-        SDL_RenderClear(this->m_context);
+        SDL_RenderClear(this->m_SDLRenderer);
 
         for (int i = this->m_panels.size(); i --> 0;)
         {
-            this->m_panels[i]->Draw(this->m_context);
+            this->m_panels[i]->Draw(this->m_SDLRenderer);
         }
 
         if (this->m_needsLayout)
@@ -124,22 +139,9 @@ namespace FoxTrader
             Renderer::r_fpsMeter();
         }
 
-        SDL_RenderPresent(this->m_context);
+        SDL_RenderPresent(this->m_SDLRenderer);
 
         this->m_totalFrames++;
-    }
-
-    // Context Method
-    bool Renderer::SetContext(SDL_Renderer *c_context)
-    {
-        if (c_context == NULL)
-        {
-            return false;
-        }
-
-        this->m_context = c_context;
-
-        return true;
     }
 
     // Events
@@ -432,6 +434,65 @@ namespace FoxTrader
         */
     }
 
+    SDL_Window* Renderer::GetWindowHandle()
+    {
+        return this->m_window;
+    }
+
+    // Initialize SDL
+    void Renderer::InitSDL()
+    {
+        // Bring up and check SDL2
+        if(SDL_Init(SDL_INIT_VIDEO) < 0)
+        {
+            Game::TriggerError(Err_Error, std::string("SDL_Init error: ") + SDL_GetError());
+        }
+
+        // Bring up and check SDL2_Image
+        int a_flagsRequested = IMG_INIT_PNG | IMG_INIT_JPG;
+        int a_flagsEnabled = IMG_Init(a_flagsRequested);
+        if((a_flagsEnabled & a_flagsRequested) != a_flagsRequested)
+        {
+            Game::TriggerError(Err_Error, std::string("IMG_Init error: ") + SDL_GetError());
+        }
+
+        // Bring up and check SDL2_ttf
+        if (TTF_Init() != 0)
+        {
+            Game::TriggerError(Err_Error, std::string("TTF_Init error: ") + SDL_GetError());
+        }
+
+        // Mixer
+        int flags = MIX_INIT_OGG;
+        int initted = Mix_Init(flags);
+        if ((initted & flags) != flags)
+        {
+            Game::TriggerError(Err_Error, std::string("Mix_Init error: ") + Mix_GetError());
+        }
+
+        // OpenGL
+        SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+
+        // Create Window
+        this->m_window = SDL_CreateWindow("Fox Trader", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
+
+        if(this->m_window == NULL)
+        {
+            Game::TriggerError(Err_Error, std::string("SDL_CreateWindow error: ") + SDL_GetError());
+        }
+
+        // Set Window Icon
+        SDL_SetWindowIcon(this->m_window, IMG_LoadPNG_RW(SDL_RWFromMem(GFX::MainIcon32_png, GFX::MainIcon32_png_len)));
+
+        // Create OpenGL renderer...
+        this->m_SDLRenderer = SDL_CreateRenderer(this->m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+
+        if(this->m_SDLRenderer == NULL)
+        {
+            Game::TriggerError(Err_Error, std::string("SDL_CreateRenderer error: ") + SDL_GetError());
+        }
+    }
+
     // Initialize Fonts
     void Renderer::InitFonts()
     {
@@ -500,6 +561,8 @@ namespace FoxTrader
             Renderer::m_fontMap["bold_small_caps_32"] = TTF_OpenFontRW(SDL_RWFromMem(Fonts::font_small_caps_bold_ttf, Fonts::font_small_caps_bold_ttf_len), 1, 32);
             Renderer::m_fontMap["bold_small_caps_64"] = TTF_OpenFontRW(SDL_RWFromMem(Fonts::font_small_caps_bold_ttf, Fonts::font_small_caps_bold_ttf_len), 1, 64);
             Renderer::m_fontMap["bold_small_caps_96"] = TTF_OpenFontRW(SDL_RWFromMem(Fonts::font_small_caps_bold_ttf, Fonts::font_small_caps_bold_ttf_len), 1, 96);
+
+            TTF_SetFontHinting(Renderer::m_fontMap["regular_12"], TTF_HINTING_LIGHT);
         }
     }
 

@@ -85,7 +85,7 @@ namespace FoxTrader
             return NULL;
         }
 
-        TTF_Font *a_font = Renderer::GetFont(c_font);
+        TTF_Font* a_font = Renderer::GetFont(c_font);
 
         if (a_font == NULL)
         {
@@ -93,9 +93,9 @@ namespace FoxTrader
             return NULL;
         }
 
-        SDL_Surface *a_surface = NULL;
+        SDL_Surface* a_surface = NULL;
 
-        TTF_SetFontKerning(a_font, 0);
+        // TTF_SetFontKerning(a_font, 0);
 
         a_surface = TTF_RenderText_Solid(a_font, c_message.c_str(), c_color);
 
@@ -106,7 +106,7 @@ namespace FoxTrader
             return NULL;
         }
 
-        SDL_Texture *a_texture = SDL_CreateTextureFromSurface(c_renderer, a_surface);
+        SDL_Texture* a_texture = SDL_CreateTextureFromSurface(c_renderer, a_surface);
 
         if (a_texture == NULL)
         {
@@ -120,11 +120,60 @@ namespace FoxTrader
         return a_texture;
     }
 
-    void TextBox::OnKeyDown(SDL_Event *c_event)
+    void TextBox::OnText(SDL_Event* c_event)
     {
+        Panel::OnText(c_event);
+
         if (this->m_hasFocus)
         {
-            switch( c_event->key.keysym.sym )
+            std::string a_keyString(c_event->text.text);
+
+            if (this->m_caretPosition > this->m_text.length())
+            {
+                this->m_caretPosition = this->m_text.length();
+            }
+
+            this->m_text.insert(this->m_caretPosition, a_keyString);
+            this->m_caretPosition++;
+            this->SetNeedsLayout();
+        }
+    }
+
+    void TextBox::OnMouseDown(SDL_Event* c_event)
+    {
+        Panel::OnMouseDown(c_event);
+
+        if (this->m_hasFocus)
+        {
+            int a_mouseX = 0;
+
+            SDL_GetMouseState(&a_mouseX, NULL);
+
+            int a_offsetCalculation = a_mouseX - (this->m_rect.x + 3);  // TODO: Remove magic number and track caret/text offset/padding
+
+            if (a_offsetCalculation < 0)
+            {
+                a_offsetCalculation = 0;
+            }
+            else if (a_offsetCalculation > (this->m_rect.w - 3))        // TODO: Remove magic number and track caret/text offset/padding
+            {
+                a_offsetCalculation = (this->m_rect.w - 3);             // TODO: Remove magic number and track caret/text offset/padding
+            }
+
+            if (a_offsetCalculation >= this->m_textDrawRect.w)
+            {
+                this->m_caretPosition = this->m_text.length();
+            }
+        }
+    }
+
+    void TextBox::OnKeyDown(SDL_Event* c_event)
+    {
+        Panel::OnKeyDown(c_event);
+
+        if (this->m_hasFocus)
+        {
+            switch(c_event->key.keysym.sym)
             {
                 case SDLK_RIGHT:
                 {
@@ -160,7 +209,7 @@ namespace FoxTrader
                 {
                     if (this->m_text.length() != 0)
                     {
-                        if (this->m_caretPosition != this->m_text.length())
+                        if (this->m_caretPosition < this->m_text.length())
                         {
                             this->m_text.erase(this->m_caretPosition, 1);
                             this->SetNeedsLayout();
@@ -171,29 +220,24 @@ namespace FoxTrader
 
                 case SDLK_BACKSPACE:
                 {
-                    if (this->m_caretPosition != 0)
+                    if (this->m_caretPosition > 0)
                     {
-                        this->m_text.erase((this->m_caretPosition - 1), 1);
+                        this->m_text.erase(--this->m_caretPosition, 1);
                         this->SetNeedsLayout();
                     }
                 }
                 break;
-            }
 
-            SDL_Keycode a_keyCode = c_event->key.keysym.sym;
-
-            if (a_keyCode > 31 && a_keyCode < 123)
-            {
-                std::string a_keyString(1, (char)a_keyCode);
-
-                if (this->m_caretPosition > this->m_text.length())
+                // Debug
+                case SDLK_LCTRL:
                 {
-                    this->m_caretPosition = this->m_text.length();
-                }
 
-                this->m_text.insert(this->m_caretPosition, a_keyString);
-                this->m_caretPosition++;
-                this->SetNeedsLayout();
+
+                    /*this->m_text.clear();
+                    this->m_text.append(SSTR(a_offsetCalculation));
+                    this->SetNeedsLayout();*/
+                }
+                break;
             }
         }
     }

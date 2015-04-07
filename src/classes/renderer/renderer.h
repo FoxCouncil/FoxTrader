@@ -13,16 +13,16 @@ namespace FoxTrader
         public:
             // ctor
             Renderer();
+            ~Renderer();
 
             // Render Tick
             void Tick();
 
             // Context Method
-            bool SetContext(SDL_Renderer *c_context);
             SDL_Renderer* GetContext();
 
             // Events
-            void HandleEvent(SDL_Event *c_event);
+            void HandleEvent(SDL_Event* c_event);
 
             // FPS Display Control
             void ToggleFPS();
@@ -35,10 +35,12 @@ namespace FoxTrader
             //static void RenderTexture(SDL_Texture *c_texture, uint32_t c_x, uint32_t c_y);
 
             // Fonts
-            static void InitFonts();
             static TTF_Font* GetFont(std::string c_fontName);
 
             // Graphics
+
+            // SDL Accessors
+            SDL_Window* GetWindowHandle();
 
             // Focus Control
             static bool RequestFocus(Panel* c_panel);
@@ -48,7 +50,6 @@ namespace FoxTrader
 
         private:
             // Member Variables
-            SDL_Renderer *m_context;
             std::vector<Panel *> m_panels;
             bool m_showFPS;
             uint64_t m_totalFrames;
@@ -59,11 +60,19 @@ namespace FoxTrader
             static void r_gameScreen();
             static void r_fpsMeter();
 
+            // Render Target Support
+            void InitSDL();
+
             // Fonts
+            static void InitFonts();
             static std::map<std::string, TTF_Font*> m_fontMap;
 
             // Focus Control
             static Panel* m_focusedPanel;
+
+            // SDL Objects
+            SDL_Window* m_window;
+            SDL_Renderer* m_SDLRenderer;
     };
 }
 

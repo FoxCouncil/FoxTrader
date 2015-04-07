@@ -20,62 +20,59 @@ namespace FoxTrader
             virtual ~Panel();
 
             // Drawing Methods
-            virtual void Draw(SDL_Renderer *c_context);
+            virtual void Draw(SDL_Renderer* c_context);
 
             // Events
-            virtual bool HandleEvent(SDL_Event *c_event);
+            virtual bool HandleEvent(SDL_Event* c_event);
 
             // Virtual Mouse Events
-            virtual void OnMouseOver(SDL_Event *c_event);
-            virtual void OnMouseOut(SDL_Event *c_event);
-            virtual void OnMouseUp(SDL_Event *c_event);
-            virtual void OnMouseDown(SDL_Event *c_event);
-            virtual void OnMouseMove(SDL_Event *c_event);
-            virtual void OnMouseWheel(SDL_Event *c_event);
+            virtual void OnMouseOver(SDL_Event* c_event);
+            virtual void OnMouseOut(SDL_Event* c_event);
+            virtual void OnMouseUp(SDL_Event* c_event);
+            virtual void OnMouseDown(SDL_Event* c_event);
+            virtual void OnMouseMove(SDL_Event* c_event);
+            virtual void OnMouseWheel(SDL_Event* c_event);
 
             // Virtual Keyboard Events
-            virtual void OnKeyDown(SDL_Event *c_event);
-            virtual void OnKeyUp(SDL_Event *c_event);
+            virtual void OnText(SDL_Event* c_event);
+            virtual void OnKeyDown(SDL_Event* c_event);
+            virtual void OnKeyUp(SDL_Event* c_event);
 
             // External Event Handlers
             // Mouse Over
             void AddMouseOverDelegate(MouseOverDelegate c_mouseOverDelegate);
-            // void RemoveMouseOverDelegate(MouseOverDelegate c_mouseOverDelegate);
             void ClearAllMouseOverDelegates();
 
             // Mouse Out
             void AddMouseOutDelegate(MouseOutDelegate c_mouseOutDelegate);
-            // void RemoveMouseOutDelegate(MouseOutDelegate c_mouseOutDelegate);
             void ClearAllMouseOutDelegates();
 
             // Mouse Up
             void AddMouseUpDelegate(MouseUpDelegate c_mouseUpDelegate);
-            // void RemoveMouseUpDelegate(MouseUpDelegate c_mouseUpDelegate);
             void ClearAllMouseUpDelegates();
 
             // Mouse Down
             void AddMouseDownDelegate(MouseDownDelegate c_mouseDownDelegate);
-            // void RemoveMouseDownDelegate(MouseDownDelegate c_mouseDownDelegate);
             void ClearAllMouseDownDelegates();
 
             // Mouse Move
             void AddMouseMoveDelegate(MouseMoveDelegate c_mouseMoveDelegate);
-            // void RemoveMouseMoveDelegate(MouseMoveDelegate c_mouseMoveDelegate);
             void ClearAllMouseMoveDelegates();
 
             // Mouse Wheel
             void AddMouseWheelDelegate(MouseWheelDelegate c_mouseWheelDelegate);
-            // void RemoveMouseWheelDelegate(MouseWheelDelegate c_mouseWheelDelegate);
             void ClearAllMouseWheelDelegates();
+
+            // Text
+            void AddTextDelegate(TextDelegate c_textDelegate);
+            void ClearAllTextDelegates();
 
             // Key Up
             void AddKeyUpDelegate(KeyUpDelegate c_keyUpDelegate);
-            // void RemoveKeyUpDelegate(KeyUpDelegate c_keyUpDelegate);
             void ClearAllKeyUpDelegates();
 
             // Key Down
             void AddKeyDownDelegate(KeyDownDelegate c_keyDownDelegate);
-            // void RemoveKeyDownDelegate(KeyDownDelegate c_keyDownDelegate);
             void ClearAllKeyDownDelegates();
 
             // Public Getters
@@ -103,8 +100,8 @@ namespace FoxTrader
             void Blur() { this->m_hasFocus = false; this->SetNeedsLayout(); }
 
             // Children Control
-            void AddPanel(Panel *c_panel);
-            void RemovePanel(Panel *c_panel);
+            void AddPanel(Panel* c_panel);
+            void RemovePanel(Panel* c_panel);
             void CleanPanels();
 
         protected:
@@ -129,11 +126,12 @@ namespace FoxTrader
             std::vector<MouseDownDelegate> m_mouseDownDelegates;
             std::vector<MouseMoveDelegate> m_mouseMoveDelegates;
             std::vector<MouseWheelDelegate> m_mouseWheelDelegates;
+            std::vector<TextDelegate> m_textDelegates;
             std::vector<KeyUpDelegate> m_keyUpDelegates;
             std::vector<KeyDownDelegate> m_keyDownDelegates;
 
             // Child Panels
-            std::vector<Panel *> m_childPanels;
+            std::vector<Panel*> m_childPanels;
 
             // Core Init Funtion
             void Init();
