@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Colour" xml:space="preserve">
+    <value>カラー</value>
+    <comment>A different wavelength of visible light.</comment>
+  </data>
+  <data name="ico_FoxTrader" xml:space="preserve" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\content\graphics\brand\foxtrader.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LoadGame" xml:space="preserve">
+    <value>ゲームをロードします。</value>
+    <comment>Used to denote loading an already existing saved game.</comment>
+  </data>
+  <data name="NewGame" xml:space="preserve">
+    <value>新しいゲーム</value>
+    <comment>Used primarily in buttons to denote the action of starting a brand new game.</comment>
+  </data>
+  <data name="png_FoxTraderSkin" xml:space="preserve" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\content\graphics\ui\foxtraderskin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="png_FoxTrader_128x128" xml:space="preserve" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\content\graphics\brand\128x128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="png_FoxTrader_16x16" xml:space="preserve" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\content\graphics\brand\16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="png_FoxTrader_24x24" xml:space="preserve" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\content\graphics\brand\24x24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="png_FoxTrader_256x256" xml:space="preserve" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\content\graphics\brand\256x256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="png_FoxTrader_32x32" xml:space="preserve" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\content\graphics\brand\32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="png_FoxTrader_48x48" xml:space="preserve" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\content\graphics\brand\48x48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="png_FoxTrader_512x512" xml:space="preserve" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\content\graphics\brand\512x512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="png_FoxTrader_64x64" xml:space="preserve" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\content\graphics\brand\64x64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="png_FoxTrader_96x96" xml:space="preserve" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\content\graphics\brand\96x96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="QuitGame" xml:space="preserve">
+    <value>終了</value>
+    <comment>Used to denote leaving the game and returning to the operating system.</comment>
+  </data>
+  <data name="SaveGame" xml:space="preserve">
+    <value>ゲームを保存します。</value>
+    <comment>Used to denote saving of a in progress game.</comment>
+  </data>
+  <data name="GameOptions" xml:space="preserve">
+    <value>ゲーム オプション</value>
+    <comment>Used to denote accessing a set of options to control the non game parts of the application.</comment>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>戻る</value>
+    <comment>Used to denote going backwards in an action.</comment>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>言語</value>
+    <comment>Used to denote a human and/or programming language.</comment>
+  </data>
+  <data name="GameTrademark" xml:space="preserve">
+    <value>FoxTrader ™ V {0}</value>
+    <comment>Used to denote the official name of the game in various locations.</comment>
+  </data>
+  <data name="ttf_chicago" xml:space="preserve" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\content\fonts\pixchicago.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+</root>

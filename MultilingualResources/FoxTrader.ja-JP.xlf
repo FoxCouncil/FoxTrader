@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="ja-JP" original="FOXTRADER/PROPERTIES/RESOURCES.RESX" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.1573.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="FOXTRADER/PROPERTIES/RESOURCES.RESX" datatype="resx">
+        <trans-unit id="Colour" translate="yes" xml:space="preserve">
+          <source>Color</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">カラー</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">A different wavelength of visible light.</note>
+        </trans-unit>
+        <trans-unit id="ico_FoxTrader" translate="yes" extype="System.Resources.ResXFileRef, System.Windows.Forms" xml:space="preserve">
+          <source>..\content\graphics\brand\foxtrader.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</source>
+          <target state="needs-review-translation">..\content\graphics\brand\foxtrader.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</target>
+        </trans-unit>
+        <trans-unit id="LoadGame" translate="yes" xml:space="preserve">
+          <source>Load Game</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">ゲームをロードします。</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Used to denote loading an already existing saved game.</note>
+        </trans-unit>
+        <trans-unit id="NewGame" translate="yes" xml:space="preserve">
+          <source>New Game</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">新しいゲーム</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Used primarily in buttons to denote the action of starting a brand new game.</note>
+        </trans-unit>
+        <trans-unit id="png_FoxTraderSkin" translate="yes" extype="System.Resources.ResXFileRef, System.Windows.Forms" xml:space="preserve">
+          <source>..\content\graphics\ui\foxtraderskin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</source>
+          <target state="needs-review-translation">..\content\graphics\ui\foxtraderskin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</target>
+        </trans-unit>
+        <trans-unit id="png_FoxTrader_128x128" translate="yes" extype="System.Resources.ResXFileRef, System.Windows.Forms" xml:space="preserve">
+          <source>..\content\graphics\brand\128x128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</source>
+          <target state="needs-review-translation">..\content\graphics\brand\128x128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</target>
+        </trans-unit>
+        <trans-unit id="png_FoxTrader_16x16" translate="yes" extype="System.Resources.ResXFileRef, System.Windows.Forms" xml:space="preserve">
+          <source>..\content\graphics\brand\16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</source>
+          <target state="needs-review-translation">..\content\graphics\brand\16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</target>
+        </trans-unit>
+        <trans-unit id="png_FoxTrader_24x24" translate="yes" extype="System.Resources.ResXFileRef, System.Windows.Forms" xml:space="preserve">
+          <source>..\content\graphics\brand\24x24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</source>
+          <target state="needs-review-translation">..\content\graphics\brand\24x24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</target>
+        </trans-unit>
+        <trans-unit id="png_FoxTrader_256x256" translate="yes" extype="System.Resources.ResXFileRef, System.Windows.Forms" xml:space="preserve">
+          <source>..\content\graphics\brand\256x256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</source>
+          <target state="needs-review-translation">..\content\graphics\brand\256x256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</target>
+        </trans-unit>
+        <trans-unit id="png_FoxTrader_32x32" translate="yes" extype="System.Resources.ResXFileRef, System.Windows.Forms" xml:space="preserve">
+          <source>..\content\graphics\brand\32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</source>
+          <target state="needs-review-translation">..\content\graphics\brand\32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</target>
+        </trans-unit>
+        <trans-unit id="png_FoxTrader_48x48" translate="yes" extype="System.Resources.ResXFileRef, System.Windows.Forms" xml:space="preserve">
+          <source>..\content\graphics\brand\48x48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</source>
+          <target state="needs-review-translation">..\content\graphics\brand\48x48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</target>
+        </trans-unit>
+        <trans-unit id="png_FoxTrader_512x512" translate="yes" extype="System.Resources.ResXFileRef, System.Windows.Forms" xml:space="preserve">
+          <source>..\content\graphics\brand\512x512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</source>
+          <target state="needs-review-translation">..\content\graphics\brand\512x512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</target>
+        </trans-unit>
+        <trans-unit id="png_FoxTrader_64x64" translate="yes" extype="System.Resources.ResXFileRef, System.Windows.Forms" xml:space="preserve">
+          <source>..\content\graphics\brand\64x64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</source>
+          <target state="needs-review-translation">..\content\graphics\brand\64x64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</target>
+        </trans-unit>
+        <trans-unit id="png_FoxTrader_96x96" translate="yes" extype="System.Resources.ResXFileRef, System.Windows.Forms" xml:space="preserve">
+          <source>..\content\graphics\brand\96x96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</source>
+          <target state="needs-review-translation">..\content\graphics\brand\96x96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</target>
+        </trans-unit>
+        <trans-unit id="QuitGame" translate="yes" xml:space="preserve">
+          <source>Quit</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">終了</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Used to denote leaving the game and returning to the operating system.</note>
+        </trans-unit>
+        <trans-unit id="SaveGame" translate="yes" xml:space="preserve">
+          <source>Save Game</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">ゲームを保存します。</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Used to denote saving of a in progress game.</note>
+        </trans-unit>
+        <trans-unit id="GameOptions" translate="yes" xml:space="preserve">
+          <source>Game Options</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">ゲーム オプション</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Used to denote accessing a set of options to control the non game parts of the application.</note>
+        </trans-unit>
+        <trans-unit id="Back" translate="yes" xml:space="preserve">
+          <source>Back</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">戻る</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Used to denote going backwards in an action.</note>
+        </trans-unit>
+        <trans-unit id="Language" translate="yes" xml:space="preserve">
+          <source>Language</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">言語</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Used to denote a human and/or programming language.</note>
+        </trans-unit>
+        <trans-unit id="GameTrademark" translate="yes" xml:space="preserve">
+          <source>FoxTrader™ V{0}</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">FoxTrader ™ V {0}</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Used to denote the official name of the game in various locations.</note>
+        </trans-unit>
+        <trans-unit id="ttf_chicago" translate="yes" xml:space="preserve" extype="System.Resources.ResXFileRef, System.Windows.Forms">
+          <source>..\content\fonts\pixchicago.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</source>
+          <target state="needs-review-translation">..\content\fonts\pixchicago.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</target>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>

@@ -1,17 +1,23 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
+using System.Resources;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("FoxTrader")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("FoxTrader")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTitle("Fox Trader")]
+[assembly: AssemblyDescription("Fox styled macroeconomic simulator")]
+[assembly: AssemblyConfiguration(
+#if DEBUG
+    "DEBUG"
+#else
+    "RELEASE"
+#endif
+)]
+[assembly: AssemblyCompany("Fox Council")]
+[assembly: AssemblyProduct("Fox Trader Game")]
+[assembly: AssemblyCopyright("Copyright © FoxCouncil 2016-2025")]
+[assembly: AssemblyTrademark("Fox Council")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
@@ -20,7 +26,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("4d76c505-6aaf-403e-bdb5-dcb778a8f8ab")]
+[assembly: Guid("deaddead-beef-403e-bdb5-dcb778a8f8ab")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,5 +38,6 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyVersion("0.1.*")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: NeutralResourcesLanguage("en-US")]

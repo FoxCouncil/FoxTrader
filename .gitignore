@@ -3,3 +3,8 @@ bin/
 FoxTrader.layout
 *.depend
 *.suo
+packages/
+/FoxTrader.sln.DotSettings.user
+/FoxTrader.sln.DotSettings
+/FoxTrader.sdf
+/FoxTrader.csproj.user

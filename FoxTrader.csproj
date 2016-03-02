@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\MSBuild.ILMerge.Task.1.0.2\build\MSBuild.ILMerge.Task.props" Condition="Exists('packages\MSBuild.ILMerge.Task.1.0.2\build\MSBuild.ILMerge.Task.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -12,51 +13,234 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SupportedCultures>en-CA;qps-ploc</SupportedCultures>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\win\debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\win\release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>FoxTrader.FoxTraderGame</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Content\Graphics\Brand\FoxTrader.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Label="MultilingualAppToolkit">
+    <MultilingualAppToolkitVersion>4.0</MultilingualAppToolkitVersion>
+    <MultilingualFallbackLanguage>en-US</MultilingualFallbackLanguage>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <HintPath>packages\OpenTK.1.1.2225.0\lib\net20\OpenTK.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
+    <Compile Include="Constants.cs" />
+    <Compile Include="Window.cs" />
+    <Compile Include="Game\Accountant.cs" />
+    <Compile Include="Game\Delegates.cs" />
+    <Compile Include="Game\Galaxy.cs" />
+    <Compile Include="Game\Player.cs" />
+    <Compile Include="Game\Time.cs" />
+    <Compile Include="I18N.cs" />
+    <Compile Include="Interfaces.cs" />
+    <Compile Include="Game\Planetoid.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Structures.cs" />
+    <Compile Include="Game\Context.cs" />
+    <Compile Include="Game\System.cs" />
+    <Compile Include="Game\Universe.cs" />
+    <Compile Include="Game\Utils\Generator.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\Align.cs" />
+    <Compile Include="UI\Anim\Animation.cs" />
+    <Compile Include="UI\Anim\Size\Height.cs" />
+    <Compile Include="UI\Anim\Size\Width.cs" />
+    <Compile Include="UI\Anim\TimedAnimation.cs" />
+    <Compile Include="UI\ControlInternal\CategoryButton.cs" />
+    <Compile Include="UI\ControlInternal\CategoryHeaderButton.cs" />
+    <Compile Include="UI\ControlInternal\CloseButton.cs" />
+    <Compile Include="UI\ControlInternal\ColorButton.cs" />
+    <Compile Include="UI\ControlInternal\ColorDisplay.cs" />
+    <Compile Include="UI\ControlInternal\DownArrow.cs" />
+    <Compile Include="UI\ControlInternal\Dragger.cs" />
+    <Compile Include="UI\ControlInternal\Highlight.cs" />
+    <Compile Include="UI\ControlInternal\MenuDivider.cs" />
+    <Compile Include="UI\ControlInternal\Modal.cs" />
+    <Compile Include="UI\ControlInternal\PropertyRowLabel.cs" />
+    <Compile Include="UI\ControlInternal\PropertyTreeNode.cs" />
+    <Compile Include="UI\ControlInternal\Resizer.cs" />
+    <Compile Include="UI\ControlInternal\RightArrow.cs" />
+    <Compile Include="UI\ControlInternal\ScrollBarBar.cs" />
+    <Compile Include="UI\ControlInternal\ScrollBarButton.cs" />
+    <Compile Include="UI\ControlInternal\SliderBar.cs" />
+    <Compile Include="UI\ControlInternal\SplitterBar.cs" />
+    <Compile Include="UI\ControlInternal\TabControlInner.cs" />
+    <Compile Include="UI\ControlInternal\Text.cs" />
+    <Compile Include="UI\ControlInternal\TreeNodeLabel.cs" />
+    <Compile Include="UI\ControlInternal\TreeToggleButton.cs" />
+    <Compile Include="UI\ControlInternal\UpDownButton_Down.cs" />
+    <Compile Include="UI\ControlInternal\UpDownButton_Up.cs" />
+    <Compile Include="UI\Control\Button.cs" />
+    <Compile Include="UI\Control\Canvas.cs" />
+    <Compile Include="UI\Control\CheckBox.cs" />
+    <Compile Include="UI\Control\CollapsibleCategory.cs" />
+    <Compile Include="UI\Control\CollapsibleList.cs" />
+    <Compile Include="UI\Control\ColorLerpBox.cs" />
+    <Compile Include="UI\Control\ColorPicker.cs" />
+    <Compile Include="UI\Control\ColorSlider.cs" />
+    <Compile Include="UI\Control\ComboBox.cs" />
+    <Compile Include="UI\Control\GameControl.cs" />
+    <Compile Include="UI\Control\CrossSplitter.cs" />
+    <Compile Include="UI\Control\Panel.cs" />
+    <Compile Include="UI\Control\DockedTabControl.cs" />
+    <Compile Include="UI\Control\GroupBox.cs" />
+    <Compile Include="UI\Control\HorizontalScrollBar.cs" />
+    <Compile Include="UI\Control\HorizontalSlider.cs" />
+    <Compile Include="UI\Control\HorizontalSplitter.cs" />
+    <Compile Include="UI\Control\HSVColorPicker.cs" />
+    <Compile Include="UI\Control\IColorPicker.cs" />
+    <Compile Include="UI\Control\ImagePanel.cs" />
+    <Compile Include="UI\Control\Label.cs" />
+    <Compile Include="UI\Control\LabelClickable.cs" />
+    <Compile Include="UI\Control\LabeledCheckBox.cs" />
+    <Compile Include="UI\Control\LabeledRadioButton.cs" />
+    <Compile Include="UI\Control\Layout\Positioner.cs" />
+    <Compile Include="UI\Control\Layout\Splitter.cs" />
+    <Compile Include="UI\Control\Layout\Table.cs" />
+    <Compile Include="UI\Control\Layout\TableRow.cs" />
+    <Compile Include="UI\Control\ListBox.cs" />
+    <Compile Include="UI\Control\ListBoxRow.cs" />
+    <Compile Include="UI\Control\Menu.cs" />
+    <Compile Include="UI\Control\MenuItem.cs" />
+    <Compile Include="UI\Control\MenuStrip.cs" />
+    <Compile Include="UI\Control\MessageBox.cs" />
+    <Compile Include="UI\Control\NumericUpDown.cs" />
+    <Compile Include="UI\Control\ProgressBar.cs" />
+    <Compile Include="UI\Control\Properties.cs" />
+    <Compile Include="UI\Control\PropertyRow.cs" />
+    <Compile Include="UI\Control\PropertyTree.cs" />
+    <Compile Include="UI\Control\Property\Check.cs" />
+    <Compile Include="UI\Control\Property\Color.cs" />
+    <Compile Include="UI\Control\Property\PropertyBase.cs" />
+    <Compile Include="UI\Control\Property\Text.cs" />
+    <Compile Include="UI\Control\RadioButton.cs" />
+    <Compile Include="UI\Control\RadioButtonGroup.cs" />
+    <Compile Include="UI\Control\ResizableControl.cs" />
+    <Compile Include="UI\Control\RichLabel.cs" />
+    <Compile Include="UI\Control\ScrollBar.cs" />
+    <Compile Include="UI\Control\ScrollControl.cs" />
+    <Compile Include="UI\Control\Slider.cs" />
+    <Compile Include="UI\Control\StatusBar.cs" />
+    <Compile Include="UI\Control\TabButton.cs" />
+    <Compile Include="UI\Control\TabControl.cs" />
+    <Compile Include="UI\Control\TabStrip.cs" />
+    <Compile Include="UI\Control\TabTitleBar.cs" />
+    <Compile Include="UI\Control\TextBox.cs" />
+    <Compile Include="UI\Control\TextBoxNumeric.cs" />
+    <Compile Include="UI\Control\TextBoxPassword.cs" />
+    <Compile Include="UI\Control\TreeControl.cs" />
+    <Compile Include="UI\Control\TreeNode.cs" />
+    <Compile Include="UI\Control\VerticalScrollBar.cs" />
+    <Compile Include="UI\Control\VerticalSlider.cs" />
+    <Compile Include="UI\Control\VerticalSplitter.cs" />
+    <Compile Include="UI\Control\WindowControl.cs" />
+    <Compile Include="UI\Delegates.cs" />
+    <Compile Include="UI\DragDrop\DragAndDrop.cs" />
+    <Compile Include="UI\DragDrop\Package.cs" />
+    <Compile Include="UI\GameFont.cs" />
+    <Compile Include="UI\HSV.cs" />
+    <Compile Include="UI\Input\KeyData.cs" />
+    <Compile Include="UI\Key.cs" />
+    <Compile Include="UI\Margin.cs" />
+    <Compile Include="UI\Padding.cs" />
+    <Compile Include="UI\Platform\Neutral.cs" />
+    <Compile Include="UI\Platform\Windows.cs" />
+    <Compile Include="UI\Renderer\OpenTK.cs" />
+    <Compile Include="UI\Renderer\RendererBase.cs" />
+    <Compile Include="UI\Renderer\TextRenderer.cs" />
+    <Compile Include="UI\Skin\SimpleSkin.cs" />
+    <Compile Include="UI\Skin\SkinBase.cs" />
+    <Compile Include="UI\Skin\SkinColors.cs" />
+    <Compile Include="UI\Skin\TexturedSkin.cs" />
+    <Compile Include="UI\Skin\Texturing\Bordered.cs" />
+    <Compile Include="UI\Skin\Texturing\Single.cs" />
+    <Compile Include="UI\Texture.cs" />
+    <Compile Include="UI\ToolTip.cs" />
+    <Compile Include="UI\Util.cs" />
+    <Compile Include="Views\BumpersView.cs" />
+    <Compile Include="Views\OptionsView.cs" />
+    <Compile Include="Views\MainMenuView.cs" />
+    <Compile Include="Views\TestView.cs" />
+    <Compile Include="UI\GameView.cs" />
+    <EmbeddedResource Include="Properties\Resources.en-CA.resx" />
+    <EmbeddedResource Include="Properties\Resources.fr-CA.resx" />
+    <EmbeddedResource Include="Properties\Resources.ja-JP.resx" />
+    <EmbeddedResource Include="Properties\Resources.qps-PLOC.resx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Content\Fonts\pixChicago.ttf" />
+    <None Include="Content\Graphics\Brand\FoxTrader.hqx" />
+    <None Include="Content\Graphics\Brand\FoxTrader.icns" />
+    <None Include="ILMerge.props" />
+    <None Include="OpenTK.dll.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -70,7 +254,53 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Graphics\Brand\128x128.png" />
+    <Content Include="Content\Graphics\Brand\16x16.png" />
+    <Content Include="Content\Graphics\Brand\24x24.png" />
+    <Content Include="Content\Graphics\Brand\256x256.png" />
+    <Content Include="Content\Graphics\Brand\32x32.png" />
+    <Content Include="Content\Graphics\Brand\48x48.png" />
+    <Content Include="Content\Graphics\Brand\512x512.png" />
+    <Content Include="Content\Graphics\Brand\64x64.png" />
+    <Content Include="Content\Graphics\Brand\96x96.png" />
+    <Content Include="Content\Graphics\UI\FoxTraderSkin.png" />
+    <Content Include="ILMergeOrder.txt" />
+    <None Include="Content\Graphics\Brand\FoxTrader.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <XliffResource Include="MultilingualResources\FoxTrader.en-CA.xlf" />
+    <XliffResource Include="MultilingualResources\FoxTrader.fr-CA.xlf" />
+    <XliffResource Include="MultilingualResources\FoxTrader.ja-JP.xlf" />
+    <XliffResource Include="MultilingualResources\FoxTrader.qps-ploc.xlf" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.ResxResources.targets" Label="MultilingualAppToolkit" Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.ResxResources.targets')" />
+  <Target Name="MATPrerequisite" BeforeTargets="PrepareForBuild" Condition="!Exists('$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.ResxResources.targets')" Label="MultilingualAppToolkit">
+    <Warning Text="$(MSBuildProjectFile) is Multilingual build enabled, but the Multilingual App Toolkit is unavailable during the build. If building with Visual Studio, please check to ensure that toolkit is properly installed." />
+  </Target>
+  <Import Project="packages\Resource.Embedder.1.1.1.0\build\Resource.Embedder.targets" Condition="Exists('packages\Resource.Embedder.1.1.1.0\build\Resource.Embedder.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Resource.Embedder.1.1.1.0\build\Resource.Embedder.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Resource.Embedder.1.1.1.0\build\Resource.Embedder.targets'))" />
+    <Error Condition="!Exists('packages\MSBuild.ILMerge.Task.1.0.2\build\MSBuild.ILMerge.Task.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MSBuild.ILMerge.Task.1.0.2\build\MSBuild.ILMerge.Task.props'))" />
+    <Error Condition="!Exists('packages\MSBuild.ILMerge.Task.1.0.2\build\MSBuild.ILMerge.Task.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MSBuild.ILMerge.Task.1.0.2\build\MSBuild.ILMerge.Task.targets'))" />
+  </Target>
+  <Import Project="packages\MSBuild.ILMerge.Task.1.0.2\build\MSBuild.ILMerge.Task.targets" Condition="Exists('packages\MSBuild.ILMerge.Task.1.0.2\build\MSBuild.ILMerge.Task.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

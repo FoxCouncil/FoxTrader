@@ -10,8 +10,6 @@
 
 namespace FoxTrader.Properties
 {
-
-
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -42,9 +40,9 @@ namespace FoxTrader.Properties
         {
             get
             {
-                if ((resourceMan == null))
+                if (object.ReferenceEquals(resourceMan, null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FoxTrader.Properties.Resources", typeof(Resources).Assembly);
+                    var temp = new global::System.Resources.ResourceManager("FoxTrader.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -65,6 +63,249 @@ namespace FoxTrader.Properties
             set
             {
                 resourceCulture = value;
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Back.
+        /// </summary>
+        internal static string Back
+        {
+            get
+            {
+                return ResourceManager.GetString("Back", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Color.
+        /// </summary>
+        internal static string Colour
+        {
+            get
+            {
+                return ResourceManager.GetString("Colour", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Game Options.
+        /// </summary>
+        internal static string GameOptions
+        {
+            get
+            {
+                return ResourceManager.GetString("GameOptions", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to FoxTrader™ V{0}.
+        /// </summary>
+        internal static string GameTrademark
+        {
+            get
+            {
+                return ResourceManager.GetString("GameTrademark", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon ico_FoxTrader
+        {
+            get
+            {
+                var obj = ResourceManager.GetObject("ico_FoxTrader", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        internal static string Language
+        {
+            get
+            {
+                return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Load Game.
+        /// </summary>
+        internal static string LoadGame
+        {
+            get
+            {
+                return ResourceManager.GetString("LoadGame", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to New Game.
+        /// </summary>
+        internal static string NewGame
+        {
+            get
+            {
+                return ResourceManager.GetString("NewGame", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap png_FoxTrader_128x128
+        {
+            get
+            {
+                var obj = ResourceManager.GetObject("png_FoxTrader_128x128", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap png_FoxTrader_16x16
+        {
+            get
+            {
+                var obj = ResourceManager.GetObject("png_FoxTrader_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap png_FoxTrader_24x24
+        {
+            get
+            {
+                var obj = ResourceManager.GetObject("png_FoxTrader_24x24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap png_FoxTrader_256x256
+        {
+            get
+            {
+                var obj = ResourceManager.GetObject("png_FoxTrader_256x256", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap png_FoxTrader_32x32
+        {
+            get
+            {
+                var obj = ResourceManager.GetObject("png_FoxTrader_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap png_FoxTrader_48x48
+        {
+            get
+            {
+                var obj = ResourceManager.GetObject("png_FoxTrader_48x48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap png_FoxTrader_512x512
+        {
+            get
+            {
+                var obj = ResourceManager.GetObject("png_FoxTrader_512x512", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap png_FoxTrader_64x64
+        {
+            get
+            {
+                var obj = ResourceManager.GetObject("png_FoxTrader_64x64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap png_FoxTrader_96x96
+        {
+            get
+            {
+                var obj = ResourceManager.GetObject("png_FoxTrader_96x96", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap png_FoxTraderSkin
+        {
+            get
+            {
+                var obj = ResourceManager.GetObject("png_FoxTraderSkin", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Quit.
+        /// </summary>
+        internal static string QuitGame
+        {
+            get
+            {
+                return ResourceManager.GetString("QuitGame", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Save Game.
+        /// </summary>
+        internal static string SaveGame
+        {
+            get
+            {
+                return ResourceManager.GetString("SaveGame", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ttf_chicago
+        {
+            get
+            {
+                var obj = ResourceManager.GetObject("ttf_chicago", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }
