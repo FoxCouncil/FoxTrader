@@ -9,7 +9,7 @@ namespace FoxTrader.Game
             get; set;
         }
 
-        public int Money
+        public long Money
         {
             get; set;
         }
@@ -34,12 +34,12 @@ namespace FoxTrader.Game
             Setup(c_playerName);
         }
 
-        public Player(string c_playerName, int c_playerMoney)
+        public Player(string c_playerName, long c_playerMoney)
         {
             Setup(c_playerName, c_playerMoney);
         }
 
-        private void Setup(string c_playerName = kDefaultPlayerName, int c_playerMoney = kDefaultPlayerMoney)
+        private void Setup(string c_playerName = kDefaultPlayerName, long c_playerMoney = kDefaultPlayerMoney)
         {
             Name = c_playerName;
             Money = c_playerMoney;

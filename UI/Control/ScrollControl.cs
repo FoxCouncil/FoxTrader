@@ -33,7 +33,7 @@ namespace FoxTrader.UI.Control
 
             m_innerControl = new GameControl(this);
             m_innerControl.SetPosition(0, 0);
-            m_innerControl.Margin = Margin.m_five;
+            m_innerControl.Margin = Margin.kFive;
             m_innerControl.SendToBack();
             m_innerControl.MouseInputEnabled = false;
 

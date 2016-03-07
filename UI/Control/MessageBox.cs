@@ -17,19 +17,13 @@ namespace FoxTrader.UI.Control
         {
             DeleteOnClose = true;
 
-            m_label = new Label(m_innerControl);
-            m_label.Text = c_text;
-            m_label.Margin = Margin.m_five;
-            m_label.Dock = Pos.Top;
-            m_label.Alignment = Pos.Center;
-            m_label.AutoSizeToContents = true;
+            m_label = new Label(m_innerControl) { Text = c_text, Margin = Margin.kFive, Dock = Pos.Top, Alignment = Pos.Center, AutoSizeToContents = true };
 
-            m_button = new Button(m_innerControl);
-            m_button.Text = "OK"; // TODO: parametrize buttons
+            // TODO: Make buttons parametized
+            m_button = new Button(m_innerControl) { Text = "OK", Margin = Margin.kFive };
+            m_button.SetSize(50, 20);
             m_button.Clicked += CloseButtonPressed;
             m_button.Clicked += DismissedHandler;
-            m_button.Margin = Margin.m_five;
-            m_button.SetSize(50, 20);
 
             Align.Center(this);
         }
@@ -39,10 +33,7 @@ namespace FoxTrader.UI.Control
 
         private void DismissedHandler(GameControl c_control)
         {
-            if (Dismissed != null)
-            {
-                Dismissed.Invoke(this);
-            }
+            Dismissed?.Invoke(this);
         }
 
         /// <summary>Lays out the control's interior according to alignment, padding, dock etc</summary>

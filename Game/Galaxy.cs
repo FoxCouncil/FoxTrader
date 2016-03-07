@@ -23,6 +23,11 @@ namespace FoxTrader.Game
             m_position = Vector3.Random(Constants.kGalaxySizeMax);
 
             m_systems = new List<System>(Constants.kSystemsMax);
+
+            for (var a_idx = 0; a_idx <= Constants.kSystemsMax; a_idx++)
+            {
+                m_systems.Add(new System(this, a_idx));
+            }
         }
 
         public void Tick()

@@ -17,7 +17,7 @@ namespace FoxTrader.UI.Renderer
         /// <param name="c_width">The width of the backing store in pixels</param>
         /// <param name="c_height">The height of the backing store in pixels</param>
         /// <param name="c_renderer">The renderer</param>
-        public TextRenderer(int c_width, int c_height, OpenTK c_renderer)
+        public TextRenderer(int c_width, int c_height, OpenTKRenderer c_renderer)
         {
             if (c_width <= 0)
             {
@@ -72,7 +72,7 @@ namespace FoxTrader.UI.Renderer
         public void DrawString(string c_text, Font c_font, Brush c_brush, Point c_point, StringFormat c_format)
         {
             m_graphics.DrawString(c_text, c_font, c_brush, c_point, c_format); // render text on the bitmap
-            OpenTK.LoadTextureInternal(Texture, m_bitmap); // copy bitmap to gl texture
+            OpenTKRenderer.LoadTextureInternal(Texture, m_bitmap); // copy bitmap to gl texture
         }
 
         private void Dispose(bool c_isManual)

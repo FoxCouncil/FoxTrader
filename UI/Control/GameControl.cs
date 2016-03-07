@@ -50,7 +50,7 @@ namespace FoxTrader.UI.Control
             m_hidden = false;
             m_bounds = new Rectangle(0, 0, 10, 10);
             m_padding = Padding.m_zero;
-            m_margin = Margin.m_zero;
+            m_margin = Margin.kZero;
 
             RestrictToParent = false;
 

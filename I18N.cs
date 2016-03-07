@@ -15,7 +15,7 @@ namespace FoxTrader
 
         private static Dictionary<string, ResourceManager> m_installedLanguages;
 
-        public static string[] InstalledLanguages => m_installedLanguages?.Keys.ToArray() ?? new string[] { "error" };
+        public static string[] InstalledLanguages => m_installedLanguages?.Keys.ToArray() ?? new[] { "error" };
 
         public static string CurrentLanguage => m_currentUICulture.Name;
 
@@ -92,7 +92,15 @@ namespace FoxTrader
 
         public static string GetString(string c_textKey)
         {
-            return GetCurrentUIResourceManager().GetString(c_textKey);
+            var a_translatedString = GetCurrentUIResourceManager().GetString(c_textKey);
+
+            if (a_translatedString == null)
+            {
+
+                a_translatedString = m_installedLanguages[CultureInfo.DefaultThreadCurrentCulture.Name].GetString(c_textKey, CultureInfo.DefaultThreadCurrentUICulture);
+            }
+
+            return a_translatedString;
         }
 
         internal static object GetObject(string c_objectKey)

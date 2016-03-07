@@ -1,4 +1,6 @@
-﻿using FoxTrader.UI;
+﻿using System.Reflection;
+using FoxTrader.Game;
+using FoxTrader.UI;
 using FoxTrader.UI.Control;
 using FoxTrader.UI.Skin;
 using static FoxTrader.Constants;
@@ -21,22 +23,25 @@ namespace FoxTrader.Views
         {
             Dock = Pos.Fill;
 
-            m_menuControl = new GameControl(this);
-            m_menuControl.RestrictToParent = true;
-            m_menuControl.DrawDebugOutlines = true;
+            m_menuControl = new GameControl(this) { RestrictToParent = true, DrawDebugOutlines = true };
 
             var a_controlsParent = m_menuControl;
 
-            m_imagePanel = new ImagePanel(a_controlsParent);
-            m_imagePanel.ImageName = "png_FoxTrader_256x256";
+            m_imagePanel = new ImagePanel(a_controlsParent) { ImageName = "png_FoxTrader_256x256" };
             m_imagePanel.SetSize(256, 256);
-            m_imagePanel.Y = 25;
+            m_imagePanel.Y = 10;
 
-            m_label = new Label(a_controlsParent) { AutoSizeToContents = true, Text = I18N.GetString("GameTrademark"), Font = FoxTraderWindow.Instance.GetFont("pix Chicago", 26) };
+            var a_assemblyVersion = Assembly.GetCallingAssembly().GetName().Version;
+
+            m_label = new Label(a_controlsParent) { AutoSizeToContents = true, Text = string.Format(I18N.GetString("GameTrademark"), a_assemblyVersion.Major + "." + a_assemblyVersion.Minor), Font = FoxTraderWindow.Instance.Renderer.GetFont("pix Chicago", 18) };
             m_label.MakeColorBright();
 
             m_buttonNewGame = new Button(a_controlsParent) { Text = I18N.GetString("NewGame") };
             m_buttonNewGame.SetSize(kMainMenuButtonWidth, kMainMenuButtonHeight);
+            m_buttonNewGame.Clicked += (c_senderControl) =>
+            {
+                GameContext.Instance.New();
+            };
 
             m_buttonLoadGame = new Button(a_controlsParent) { Text = I18N.GetString("LoadGame") };
             m_buttonLoadGame.SetSize(kMainMenuButtonWidth, kMainMenuButtonHeight);
@@ -50,7 +55,7 @@ namespace FoxTrader.Views
             m_buttonOptions.SetSize(kMainMenuButtonWidth, kMainMenuButtonHeight);
             m_buttonOptions.Clicked += (c_senderControl) =>
             {
-                FoxTraderGame.GameContextInstance.ViewOptions();
+                GameContext.Instance.ViewOptions();
             };
 
             m_buttonQuit = new Button(a_controlsParent) { Text = I18N.GetString("QuitGame") };
@@ -60,7 +65,7 @@ namespace FoxTrader.Views
                 FoxTraderWindow.Instance.Exit();
             };
 
-            m_menuControl.SetSize(700, 768);
+            m_menuControl.SetSize(550, 670);
 
             Align.CenterHorizontally(m_imagePanel);
 

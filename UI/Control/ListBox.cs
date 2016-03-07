@@ -25,7 +25,7 @@ namespace FoxTrader.UI.Control
 
             EnableScroll(false, true);
             AutoHideBars = true;
-            Margin = Margin.m_one;
+            Margin = Margin.kOne;
 
             m_table = new Table(this);
             m_table.Dock = Pos.Fill;

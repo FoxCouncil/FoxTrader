@@ -365,10 +365,10 @@ namespace FoxTrader.UI.Skin
 
         private void InitializeTextures()
         {
-            m_textures.m_shadow = new Bordered(m_texture, 448, 0, 31, 31, Margin.m_eight);
-            m_textures.m_tooltip = new Bordered(m_texture, 128, 320, 127, 31, Margin.m_eight);
-            m_textures.m_statusBar = new Bordered(m_texture, 128, 288, 127, 31, Margin.m_eight);
-            m_textures.m_selection = new Bordered(m_texture, 384, 32, 31, 31, Margin.m_four);
+            m_textures.m_shadow = new Bordered(m_texture, 448, 0, 31, 31, Margin.kEight);
+            m_textures.m_tooltip = new Bordered(m_texture, 128, 320, 127, 31, Margin.kEight);
+            m_textures.m_statusBar = new Bordered(m_texture, 128, 288, 127, 31, Margin.kEight);
+            m_textures.m_selection = new Bordered(m_texture, 384, 32, 31, 31, Margin.kFour);
 
             m_textures.m_panel.m_normal = new Bordered(m_texture, 256, 0, 63, 63, new Margin(16, 16, 16, 16));
             m_textures.m_panel.m_bright = new Bordered(m_texture, 256 + 64, 0, 63, 63, new Margin(16, 16, 16, 16));
@@ -388,43 +388,43 @@ namespace FoxTrader.UI.Skin
             m_textures.m_radioButton.m_disabled.m_normal = new Single(m_texture, 448, 80, 15, 15);
             m_textures.m_radioButton.m_disabled.m_normal = new Single(m_texture, 464, 80, 15, 15);
 
-            m_textures.m_textBox.m_normal = new Bordered(m_texture, 0, 150, 127, 21, Margin.m_four);
-            m_textures.m_textBox.m_focus = new Bordered(m_texture, 0, 172, 127, 21, Margin.m_four);
-            m_textures.m_textBox.m_disabled = new Bordered(m_texture, 0, 193, 127, 21, Margin.m_four);
+            m_textures.m_textBox.m_normal = new Bordered(m_texture, 0, 150, 127, 21, Margin.kFour);
+            m_textures.m_textBox.m_focus = new Bordered(m_texture, 0, 172, 127, 21, Margin.kFour);
+            m_textures.m_textBox.m_disabled = new Bordered(m_texture, 0, 193, 127, 21, Margin.kFour);
 
-            m_textures.m_menu.m_strip = new Bordered(m_texture, 0, 128, 127, 21, Margin.m_one);
+            m_textures.m_menu.m_strip = new Bordered(m_texture, 0, 128, 127, 21, Margin.kOne);
             m_textures.m_menu.m_backgroundWithMargin = new Bordered(m_texture, 128, 128, 127, 63, new Margin(24, 8, 8, 8));
-            m_textures.m_menu.m_background = new Bordered(m_texture, 128, 192, 127, 63, Margin.m_eight);
-            m_textures.m_menu.m_hover = new Bordered(m_texture, 128, 256, 127, 31, Margin.m_eight);
+            m_textures.m_menu.m_background = new Bordered(m_texture, 128, 192, 127, 63, Margin.kEight);
+            m_textures.m_menu.m_hover = new Bordered(m_texture, 128, 256, 127, 31, Margin.kEight);
             m_textures.m_menu.m_rightArrow = new Single(m_texture, 464, 112, 15, 15);
             m_textures.m_menu.m_check = new Single(m_texture, 448, 112, 15, 15);
 
-            m_textures.m_tab.m_control = new Bordered(m_texture, 0, 256, 127, 127, Margin.m_eight);
-            m_textures.m_tab.m_bottom.m_active = new Bordered(m_texture, 0, 416, 63, 31, Margin.m_eight);
-            m_textures.m_tab.m_bottom.m_inactive = new Bordered(m_texture, 0 + 128, 416, 63, 31, Margin.m_eight);
-            m_textures.m_tab.m_top.m_active = new Bordered(m_texture, 0, 384, 63, 31, Margin.m_eight);
-            m_textures.m_tab.m_top.m_inactive = new Bordered(m_texture, 0 + 128, 384, 63, 31, Margin.m_eight);
-            m_textures.m_tab.m_left.m_active = new Bordered(m_texture, 64, 384, 31, 63, Margin.m_eight);
-            m_textures.m_tab.m_left.m_inactive = new Bordered(m_texture, 64 + 128, 384, 31, 63, Margin.m_eight);
-            m_textures.m_tab.m_right.m_active = new Bordered(m_texture, 96, 384, 31, 63, Margin.m_eight);
-            m_textures.m_tab.m_right.m_inactive = new Bordered(m_texture, 96 + 128, 384, 31, 63, Margin.m_eight);
-            m_textures.m_tab.m_headerBar = new Bordered(m_texture, 128, 352, 127, 31, Margin.m_four);
+            m_textures.m_tab.m_control = new Bordered(m_texture, 0, 256, 127, 127, Margin.kEight);
+            m_textures.m_tab.m_bottom.m_active = new Bordered(m_texture, 0, 416, 63, 31, Margin.kEight);
+            m_textures.m_tab.m_bottom.m_inactive = new Bordered(m_texture, 0 + 128, 416, 63, 31, Margin.kEight);
+            m_textures.m_tab.m_top.m_active = new Bordered(m_texture, 0, 384, 63, 31, Margin.kEight);
+            m_textures.m_tab.m_top.m_inactive = new Bordered(m_texture, 0 + 128, 384, 63, 31, Margin.kEight);
+            m_textures.m_tab.m_left.m_active = new Bordered(m_texture, 64, 384, 31, 63, Margin.kEight);
+            m_textures.m_tab.m_left.m_inactive = new Bordered(m_texture, 64 + 128, 384, 31, 63, Margin.kEight);
+            m_textures.m_tab.m_right.m_active = new Bordered(m_texture, 96, 384, 31, 63, Margin.kEight);
+            m_textures.m_tab.m_right.m_inactive = new Bordered(m_texture, 96 + 128, 384, 31, 63, Margin.kEight);
+            m_textures.m_tab.m_headerBar = new Bordered(m_texture, 128, 352, 127, 31, Margin.kFour);
 
             m_textures.m_window.m_close = new Single(m_texture, 0, 224, 24, 24);
             m_textures.m_window.m_closeHover = new Single(m_texture, 32, 224, 24, 24);
             m_textures.m_window.m_closeHover = new Single(m_texture, 64, 224, 24, 24);
             m_textures.m_window.m_closeHover = new Single(m_texture, 96, 224, 24, 24);
 
-            m_textures.m_scroller.m_trackV = new Bordered(m_texture, 384, 208, 15, 127, Margin.m_four);
-            m_textures.m_scroller.m_buttonVNormal = new Bordered(m_texture, 384 + 16, 208, 15, 127, Margin.m_four);
-            m_textures.m_scroller.m_buttonVHover = new Bordered(m_texture, 384 + 32, 208, 15, 127, Margin.m_four);
-            m_textures.m_scroller.m_buttonVDown = new Bordered(m_texture, 384 + 48, 208, 15, 127, Margin.m_four);
-            m_textures.m_scroller.m_buttonVDisabled = new Bordered(m_texture, 384 + 64, 208, 15, 127, Margin.m_four);
-            m_textures.m_scroller.m_trackH = new Bordered(m_texture, 384, 128, 127, 15, Margin.m_four);
-            m_textures.m_scroller.m_buttonHNormal = new Bordered(m_texture, 384, 128 + 16, 127, 15, Margin.m_four);
-            m_textures.m_scroller.m_buttonHHover = new Bordered(m_texture, 384, 128 + 32, 127, 15, Margin.m_four);
-            m_textures.m_scroller.m_buttonHDown = new Bordered(m_texture, 384, 128 + 48, 127, 15, Margin.m_four);
-            m_textures.m_scroller.m_buttonHDisabled = new Bordered(m_texture, 384, 128 + 64, 127, 15, Margin.m_four);
+            m_textures.m_scroller.m_trackV = new Bordered(m_texture, 384, 208, 15, 127, Margin.kFour);
+            m_textures.m_scroller.m_buttonVNormal = new Bordered(m_texture, 384 + 16, 208, 15, 127, Margin.kFour);
+            m_textures.m_scroller.m_buttonVHover = new Bordered(m_texture, 384 + 32, 208, 15, 127, Margin.kFour);
+            m_textures.m_scroller.m_buttonVDown = new Bordered(m_texture, 384 + 48, 208, 15, 127, Margin.kFour);
+            m_textures.m_scroller.m_buttonVDisabled = new Bordered(m_texture, 384 + 64, 208, 15, 127, Margin.kFour);
+            m_textures.m_scroller.m_trackH = new Bordered(m_texture, 384, 128, 127, 15, Margin.kFour);
+            m_textures.m_scroller.m_buttonHNormal = new Bordered(m_texture, 384, 128 + 16, 127, 15, Margin.kFour);
+            m_textures.m_scroller.m_buttonHHover = new Bordered(m_texture, 384, 128 + 32, 127, 15, Margin.kFour);
+            m_textures.m_scroller.m_buttonHDown = new Bordered(m_texture, 384, 128 + 48, 127, 15, Margin.kFour);
+            m_textures.m_scroller.m_buttonHDisabled = new Bordered(m_texture, 384, 128 + 64, 127, 15, Margin.kFour);
 
             m_textures.m_scroller.m_button.m_normal = new Bordered[4];
             m_textures.m_scroller.m_button.m_disabled = new Bordered[4];
@@ -435,25 +435,25 @@ namespace FoxTrader.UI.Skin
             m_textures.m_tree.m_plus = new Single(m_texture, 448, 96, 15, 15);
             m_textures.m_tree.m_minus = new Single(m_texture, 464, 96, 15, 15);
 
-            m_textures.m_input.m_button.m_normal = new Bordered(m_texture, 480, 0, 31, 31, Margin.m_eight);
-            m_textures.m_input.m_button.m_hovered = new Bordered(m_texture, 480, 32, 31, 31, Margin.m_eight);
-            m_textures.m_input.m_button.m_disabled = new Bordered(m_texture, 480, 64, 31, 31, Margin.m_eight);
-            m_textures.m_input.m_button.m_pressed = new Bordered(m_texture, 480, 96, 31, 31, Margin.m_eight);
+            m_textures.m_input.m_button.m_normal = new Bordered(m_texture, 480, 0, 31, 31, Margin.kEight);
+            m_textures.m_input.m_button.m_hovered = new Bordered(m_texture, 480, 32, 31, 31, Margin.kEight);
+            m_textures.m_input.m_button.m_disabled = new Bordered(m_texture, 480, 64, 31, 31, Margin.kEight);
+            m_textures.m_input.m_button.m_pressed = new Bordered(m_texture, 480, 96, 31, 31, Margin.kEight);
 
             for (var a_i = 0; a_i < 4; a_i++)
             {
-                m_textures.m_scroller.m_button.m_normal[a_i] = new Bordered(m_texture, 464 + 0, 208 + a_i * 16, 15, 15, Margin.m_two);
-                m_textures.m_scroller.m_button.m_hover[a_i] = new Bordered(m_texture, 480, 208 + a_i * 16, 15, 15, Margin.m_two);
-                m_textures.m_scroller.m_button.m_down[a_i] = new Bordered(m_texture, 464, 272 + a_i * 16, 15, 15, Margin.m_two);
-                m_textures.m_scroller.m_button.m_disabled[a_i] = new Bordered(m_texture, 480 + 48, 272 + a_i * 16, 15, 15, Margin.m_two);
+                m_textures.m_scroller.m_button.m_normal[a_i] = new Bordered(m_texture, 464 + 0, 208 + a_i * 16, 15, 15, Margin.kTwo);
+                m_textures.m_scroller.m_button.m_hover[a_i] = new Bordered(m_texture, 480, 208 + a_i * 16, 15, 15, Margin.kTwo);
+                m_textures.m_scroller.m_button.m_down[a_i] = new Bordered(m_texture, 464, 272 + a_i * 16, 15, 15, Margin.kTwo);
+                m_textures.m_scroller.m_button.m_disabled[a_i] = new Bordered(m_texture, 480 + 48, 272 + a_i * 16, 15, 15, Margin.kTwo);
             }
 
-            m_textures.m_input.m_listBox.m_background = new Bordered(m_texture, 256, 256, 63, 127, Margin.m_eight);
-            m_textures.m_input.m_listBox.m_hovered = new Bordered(m_texture, 320, 320, 31, 31, Margin.m_eight);
-            m_textures.m_input.m_listBox.m_evenLine = new Bordered(m_texture, 352, 256, 31, 31, Margin.m_eight);
-            m_textures.m_input.m_listBox.m_oddLine = new Bordered(m_texture, 352, 288, 31, 31, Margin.m_eight);
-            m_textures.m_input.m_listBox.m_evenLineSelected = new Bordered(m_texture, 320, 270, 31, 31, Margin.m_eight);
-            m_textures.m_input.m_listBox.m_oddLineSelected = new Bordered(m_texture, 320, 288, 31, 31, Margin.m_eight);
+            m_textures.m_input.m_listBox.m_background = new Bordered(m_texture, 256, 256, 63, 127, Margin.kEight);
+            m_textures.m_input.m_listBox.m_hovered = new Bordered(m_texture, 320, 320, 31, 31, Margin.kEight);
+            m_textures.m_input.m_listBox.m_evenLine = new Bordered(m_texture, 352, 256, 31, 31, Margin.kEight);
+            m_textures.m_input.m_listBox.m_oddLine = new Bordered(m_texture, 352, 288, 31, 31, Margin.kEight);
+            m_textures.m_input.m_listBox.m_evenLineSelected = new Bordered(m_texture, 320, 270, 31, 31, Margin.kEight);
+            m_textures.m_input.m_listBox.m_oddLineSelected = new Bordered(m_texture, 320, 288, 31, 31, Margin.kEight);
 
             m_textures.m_input.m_comboBox.m_normal = new Bordered(m_texture, 384, 336, 127, 31, new Margin(8, 8, 32, 8));
             m_textures.m_input.m_comboBox.m_hover = new Bordered(m_texture, 384, 336 + 32, 127, 31, new Margin(8, 8, 32, 8));
@@ -474,8 +474,8 @@ namespace FoxTrader.UI.Skin
             m_textures.m_input.m_upDown.m_down.m_down = new Single(m_texture, 384 + 16, 120, 7, 7);
             m_textures.m_input.m_upDown.m_down.m_disabled = new Single(m_texture, 384 + 24, 120, 7, 7);
 
-            m_textures.m_progressBar.m_back = new Bordered(m_texture, 384, 0, 31, 31, Margin.m_eight);
-            m_textures.m_progressBar.m_front = new Bordered(m_texture, 384 + 32, 0, 31, 31, Margin.m_eight);
+            m_textures.m_progressBar.m_back = new Bordered(m_texture, 384, 0, 31, 31, Margin.kEight);
+            m_textures.m_progressBar.m_front = new Bordered(m_texture, 384 + 32, 0, 31, 31, Margin.kEight);
 
             m_textures.m_input.m_slider.m_h.m_normal = new Single(m_texture, 416, 32, 15, 15);
             m_textures.m_input.m_slider.m_h.m_hover = new Single(m_texture, 416, 32 + 16, 15, 15);
@@ -487,9 +487,9 @@ namespace FoxTrader.UI.Skin
             m_textures.m_input.m_slider.m_v.m_down = new Single(m_texture, 416 + 16, 32 + 32, 15, 15);
             m_textures.m_input.m_slider.m_v.m_disabled = new Single(m_texture, 416 + 16, 32 + 48, 15, 15);
 
-            m_textures.m_categoryList.m_outer = new Bordered(m_texture, 256, 384, 63, 63, Margin.m_eight);
+            m_textures.m_categoryList.m_outer = new Bordered(m_texture, 256, 384, 63, 63, Margin.kEight);
             m_textures.m_categoryList.m_inner = new Bordered(m_texture, 256 + 64, 384, 63, 63, new Margin(8, 21, 8, 8));
-            m_textures.m_categoryList.m_header = new Bordered(m_texture, 320, 352, 63, 31, Margin.m_eight);
+            m_textures.m_categoryList.m_header = new Bordered(m_texture, 320, 352, 63, 31, Margin.kEight);
         }
 
         public override void DrawButton(GameControl c_control, bool c_depressed, bool c_hovered, bool c_disabled)

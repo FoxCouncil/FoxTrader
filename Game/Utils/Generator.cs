@@ -1,12 +1,40 @@
-﻿namespace FoxTrader.Game.Utils
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace FoxTrader.Game.Utils
 {
     public static class Generator
     {
-        private static readonly global::System.Random m_random = new global::System.Random((int)global::System.DateTime.Now.Ticks & (0x0000FFFF + (int)global::System.DateTime.Now.Ticks));
+        private static readonly Dictionary<IEnumerable<int>, DiscreteDistribution> m_discreteDistributionsCache = new Dictionary<IEnumerable<int>, DiscreteDistribution>();
+
+        public static Random Engine
+        {
+            get;
+        } = new Random((int)DateTime.Now.Ticks & (0x0000FFFF + (int)DateTime.Now.Ticks));
 
         public static int RandomRange(int c_min, int c_max)
         {
-            return m_random.Next(c_min, c_max);
+            return Engine.Next(c_min, c_max);
+        }
+
+        public static int RandomDistribution(IEnumerable<int> c_enumerable)
+        {
+            DiscreteDistribution a_discreteDistribution;
+
+            var a_enumerable = c_enumerable as int[] ?? c_enumerable.ToArray();
+
+            if (!m_discreteDistributionsCache.ContainsKey(a_enumerable))
+            {
+                a_discreteDistribution = new DiscreteDistribution(a_enumerable);
+                m_discreteDistributionsCache.Add(a_enumerable, a_discreteDistribution);
+            }
+            else
+            {
+                a_discreteDistribution = m_discreteDistributionsCache[a_enumerable];
+            }
+
+            return a_discreteDistribution.Next();
         }
 
         public static string Name()
@@ -25,7 +53,7 @@
 
         public static string CatalogueName()
         {
-            return Name() + "-" + m_random.Next(1, 257);
+            return Name() + "-" + Engine.Next(1, 257);
         }
 
         static string UppercaseFirst(string c_s)
@@ -39,6 +67,32 @@
             a_a[0] = char.ToUpper(a_a[0]);
 
             return new string(a_a);
+        }
+
+        class DiscreteDistribution
+        {
+            private readonly List<int> m_accumulatedWeights;
+            private readonly int m_totalWeight;
+
+            public DiscreteDistribution(IEnumerable<int> c_weights)
+            {
+                var a_accumulator = 0;
+                m_accumulatedWeights = c_weights.Select(
+                    c_prob =>
+                    {
+                        var a_output = a_accumulator;
+                        a_accumulator += c_prob;
+                        return a_output;
+                    }
+                ).ToList();
+                m_totalWeight = a_accumulator;
+            }
+
+            public int Next()
+            {
+                var a_index = m_accumulatedWeights.BinarySearch(Generator.Engine.Next(m_totalWeight));
+                return (a_index >= 0) ? a_index : ~a_index - 1;
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using FoxTrader.Game;
 using FoxTrader.UI;
 using FoxTrader.UI.Control;
 using FoxTrader.UI.Control.Layout;
@@ -35,9 +36,9 @@ namespace FoxTrader.Views
             if (a_timeDifference.Seconds >= 5)
             {
 #endif
-            FoxTraderGame.GameContextInstance.MarkStateComplete(ContextState.Bumpers);
+            GameContext.Instance.MarkStateComplete(ContextState.Bumpers);
 #if !DEBUG
-        }
+            }
 #endif
         }
     }

@@ -28,7 +28,7 @@ namespace FoxTrader.UI.Control
             m_scrollControl.Dock = Pos.Fill;
             m_scrollControl.EnableScroll(false, true);
             m_scrollControl.AutoHideBars = true;
-            m_scrollControl.Margin = Margin.m_one;
+            m_scrollControl.Margin = Margin.kOne;
 
             m_innerControl = m_scrollControl;
 

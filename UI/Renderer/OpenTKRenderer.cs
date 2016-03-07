@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Drawing.Text;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 using OpenTK.Graphics.OpenGL;
 using PixelFormat = System.Drawing.Imaging.PixelFormat;
 
 namespace FoxTrader.UI.Renderer
 {
-    public class OpenTK : RendererBase
+    public class OpenTKRenderer : RendererBase
     {
         private static int m_lastTextureID;
-        private readonly Graphics m_graphicsContext; // only used for text measurement
+        private readonly Graphics m_graphicsContext; // TODO: Platformize...
 
         private readonly Dictionary<Tuple<string, GameFont>, TextRenderer> m_stringCache;
         private readonly int m_vertexSize;
@@ -33,8 +35,10 @@ namespace FoxTrader.UI.Renderer
         private bool m_wasBlendEnabled;
         private bool m_wasDepthTestEnabled;
         private bool m_wasTexture2DEnabled;
+        private PrivateFontCollection m_privateFontCollection;
+        private Dictionary<string, GameFont> m_fontStore;
 
-        public OpenTK(bool c_restoreRenderState = true)
+        public OpenTKRenderer(bool c_restoreRenderState = true)
         {
             m_vertices = new Vertex[Constants.kMaxVertices];
             m_vertexSize = Marshal.SizeOf(m_vertices[0]);
@@ -43,6 +47,8 @@ namespace FoxTrader.UI.Renderer
             m_stringFormat = new StringFormat(StringFormat.GenericTypographic);
             m_stringFormat.FormatFlags |= StringFormatFlags.MeasureTrailingSpaces;
             m_restoreRenderState = c_restoreRenderState;
+
+            InitFonts();
         }
 
         /// <summary>Returns number of cached strings in the text cache</summary>
@@ -364,40 +370,90 @@ namespace FoxTrader.UI.Renderer
             VertexCount += 4;
         }
 
-        public override bool LoadFont(GameFont c_font)
+        private void InitFonts()
         {
-            Debug.Print("LoadFont {0}", c_font.FaceName);
-            c_font.RealSize = c_font.Size * Scale;
-            var a_sysFont = c_font.RendererData as Font;
+            // Load Internal Fonts
+            m_privateFontCollection = new PrivateFontCollection();
 
-            if (a_sysFont != null)
+            var a_chicagoFont = Properties.Resources.ttf_chicago;
+
+            var a_rawFontData = Marshal.AllocCoTaskMem(a_chicagoFont.Length);
+
+            Marshal.Copy(a_chicagoFont, 0, a_rawFontData, a_chicagoFont.Length);
+
+            m_privateFontCollection.AddMemoryFont(a_rawFontData, a_chicagoFont.Length);
+
+            Marshal.FreeCoTaskMem(a_rawFontData);
+
+            m_fontStore = new Dictionary<string, GameFont>();
+
+            foreach (var a_font in Constants.kDefaultGameFonts)
             {
-                a_sysFont.Dispose();
+                var a_fontData = a_font.Split(',');
+                m_fontStore.Add(a_font, new GameFont(this, a_fontData[0], int.Parse(a_fontData[1])));
+            }
+        }
+
+        public Font GetSystemFont(GameFont c_gameFont)
+        {
+            var a_customFontFamily = m_privateFontCollection.Families.FirstOrDefault(c_childFontFamily => c_childFontFamily.Name == c_gameFont.FaceName);
+
+            if (a_customFontFamily != null)
+            {
+                return new Font(a_customFontFamily, c_gameFont.Size);
             }
 
-            // apaprently this can't fail @_@
-            // "If you attempt to use a font that is not supported, or the font is not installed on the machine that is running the application, the Microsoft Sans Serif font will be substituted."
-            a_sysFont = new Font(c_font.FaceName, c_font.Size);
-            c_font.RendererData = a_sysFont;
-            return true;
+            return new Font(c_gameFont.FaceName, c_gameFont.Size);
+        }
+
+        public GameFont GetFont(string c_fontNameFormatted)
+        {
+            if (!c_fontNameFormatted.Contains(","))
+            {
+                throw new ArgumentException($"A formatted string was expected, except we got this shit: {c_fontNameFormatted}");
+            }
+
+            var a_fontData = c_fontNameFormatted.Split(',');
+
+            return GetFont(a_fontData[0], int.Parse(a_fontData[1]));
+        }
+
+        public GameFont GetFont(string c_fontName, int c_fontSize)
+        {
+            if (string.IsNullOrWhiteSpace(c_fontName) || c_fontSize <= 0)
+            {
+                return m_fontStore[Constants.kDefaultGameFontName];
+            }
+
+            var a_fontKey = $"{c_fontName},{c_fontSize}";
+
+            if (m_fontStore.ContainsKey(a_fontKey))
+            {
+                return m_fontStore[a_fontKey];
+            }
+
+            return m_fontStore[Constants.kDefaultGameFontName];
+        }
+
+        public override void LoadFont(GameFont c_font)
+        {
+            Debug.Print("LoadFont {0}", c_font.FaceName);
+
+            c_font.RealSize = c_font.Size * Scale;
+            c_font.RendererData = GetSystemFont(c_font);
         }
 
         public override void FreeFont(GameFont c_font)
         {
             Debug.Print("FreeFont {0}", c_font.FaceName);
-            if (c_font.RendererData == null)
+
+            if (!(c_font.RendererData is Font))
             {
                 return;
             }
 
-            Debug.Print("FreeFont {0} - actual free", c_font.FaceName);
-            var a_sysFont = c_font.RendererData as Font;
-            if (a_sysFont == null)
-            {
-                throw new InvalidOperationException("Freeing empty font");
-            }
+            ((Font)c_font.RendererData).Dispose();
 
-            a_sysFont.Dispose();
             c_font.RendererData = null;
         }
 
@@ -508,7 +564,7 @@ namespace FoxTrader.UI.Renderer
             switch (a_lockFormat)
             {
                 case PixelFormat.Format32bppArgb:
-                GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, c_texture.Width, c_texture.Height, 0, global::OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, a_data.Scan0);
+                GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, c_texture.Width, c_texture.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, a_data.Scan0);
                 break;
                 default:
                 // invalid
@@ -591,7 +647,7 @@ namespace FoxTrader.UI.Renderer
 
             var a_data = a_bmp.LockBits(new Rectangle(0, 0, a_bmp.Width, a_bmp.Height), ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
 
-            GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, c_t.Width, c_t.Height, 0, global::OpenTK.Graphics.OpenGL.PixelFormat.Rgba, PixelType.UnsignedByte, a_data.Scan0);
+            GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, c_t.Width, c_t.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Rgba, PixelType.UnsignedByte, a_data.Scan0);
 
             m_lastTextureID = a_glTex;
 
@@ -633,7 +689,7 @@ namespace FoxTrader.UI.Renderer
             var a_data = new byte[4 * c_texture.Width * c_texture.Height];
             fixed (byte* a_ptr = &a_data[0])
             {
-                GL.GetTexImage(TextureTarget.Texture2D, 0, global::OpenTK.Graphics.OpenGL.PixelFormat.Rgba, PixelType.UnsignedByte, (IntPtr)a_ptr);
+                GL.GetTexImage(TextureTarget.Texture2D, 0, OpenTK.Graphics.OpenGL.PixelFormat.Rgba, PixelType.UnsignedByte, (IntPtr)a_ptr);
                 a_pixel = Color.FromArgb(a_data[a_offset + 3], a_data[a_offset + 0], a_data[a_offset + 1], a_data[a_offset + 2]);
             }
             // Retrieving the entire texture for a single pixel read

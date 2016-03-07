@@ -4,7 +4,7 @@ namespace FoxTrader
 {
     public static class Constants
     {
-        public const int kDefaultPlayerMoney = 1000; // Kayne West, eat your heart out!
+        public const long kDefaultPlayerMoney = 1000; // Kayne West, eat your heart out!
         public const int kDefaultTimeDilation = 100;  // 88 Gigawatts
         public const int kDefaultFluxCapacitance = 500;  // Marty!
         public const int kUniverseSizeMax = 255;  // In All Directions
@@ -23,6 +23,8 @@ namespace FoxTrader
             MainMenu,
             Options,
             NewGame,
+            Game,
+            Paused,
             LoadGame,
             SaveGame,
             Loader,
@@ -93,18 +95,18 @@ namespace FoxTrader
 
         // Fonts
         public const string kNormalUIFontName = "Arial";
-        public const int kNormalUIFontSize = 14;
+        public const int kNormalUIFontSize = 12;
         public static readonly string[] kDefaultGameFonts = {
-            kNormalUIFontName + ',' + kNormalUIFontSize.ToString(),
-            "Arial,24",
-            "Arial,36",
-            "pix Chicago,26"
+            kNormalUIFontName + ',' + kNormalUIFontSize,
+            "Arial,16",
+            "Arial,20",
+            "pix Chicago,18"
         };
         public static readonly string kDefaultGameFontName = kDefaultGameFonts[0];
 
         // Main Menu
-        public const int kMainMenuButtonWidth = 620;
-        public const int kMainMenuButtonHeight = 45;
+        public const int kMainMenuButtonWidth = 420;
+        public const int kMainMenuButtonHeight = 32;
 
         public const float kKeyRepeatDelay = .5f;
         public const float kMouseDoubleClickSpeed = .5f;

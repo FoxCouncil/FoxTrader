@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Text;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 using FoxTrader.Game;
 using FoxTrader.UI;
 using FoxTrader.UI.Control;
 using FoxTrader.UI.DragDrop;
+using FoxTrader.UI.Renderer;
 using FoxTrader.UI.Skin;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
@@ -20,7 +19,6 @@ namespace FoxTrader
 {
     internal class FoxTraderWindow : GameWindow
     {
-        private UI.Renderer.OpenTK m_renderer;
         private SkinBase m_skin;
         private Point m_mousePosition;
         private static readonly UI.Input.KeyData m_keyData = new UI.Input.KeyData();
@@ -43,8 +41,12 @@ namespace FoxTrader
         private GameView m_currentView;
 
         private static readonly object m_windowContextLock = new object();
-        private PrivateFontCollection m_privateFontCollection;
-        private Dictionary<string, GameFont> m_fontStore;
+
+        public OpenTKRenderer Renderer
+        {
+            get;
+            private set;
+        }
 
         internal static FoxTraderWindow Instance
         {
@@ -115,12 +117,9 @@ namespace FoxTrader
 
             GL.ClearColor(Color.Black);
 
-            m_renderer = new UI.Renderer.OpenTK();
+            Renderer = new OpenTKRenderer();
 
-            InitFonts();
-
-            m_skin = new TexturedSkin(m_renderer, "png_FoxTraderSkin");
-            m_skin.DefaultFont = m_fontStore[kDefaultGameFontName];
+            m_skin = new TexturedSkin(Renderer, "png_FoxTraderSkin") { DefaultFont = Renderer.GetFont(kDefaultGameFontName) };
 
             m_canvas = new Canvas();
 
@@ -131,7 +130,7 @@ namespace FoxTrader
             m_stopwatch.Restart();
             m_lastFrameTime = 0;
 
-            FoxTraderGame.GameContextInstance.StateChanged += GameContextInstance_StateChanged;
+            GameContext.Instance.StateChanged += GameContextInstance_StateChanged;
             GameContextInstance_StateChanged(ContextState.Bumpers);
         }
 
@@ -154,6 +153,18 @@ namespace FoxTrader
                 case ContextState.Options:
                 {
                     ShowView("OptionsView");
+                }
+                break;
+
+                case ContextState.NewGame:
+                {
+                    ShowView("NewGameView");
+                }
+                break;
+
+                case ContextState.Game:
+                {
+                    ShowView("GameView");
                 }
                 break;
             }
@@ -201,7 +212,7 @@ namespace FoxTrader
 
             Time.Tick();
 
-            FoxTraderGame.GameContextInstance.Tick();
+            GameContext.Instance.Tick();
 
             m_canvas.UpdateCanvas();
         }
@@ -215,57 +226,11 @@ namespace FoxTrader
 
             if (m_statusBar != null)
             {
-                m_statusBar.Text = $"{m_fps:F0}fps - {m_renderer.DrawCallCount}dc - {m_renderer.VertexCount}vc";
+                m_statusBar.Text = $"{m_fps:F0}fps - {Renderer.DrawCallCount}dc - {Renderer.VertexCount}vc";
             }
         }
 
-        private void InitFonts()
-        {
-            if (m_renderer == null)
-            {
-                throw new InvalidOperationException("Tried to initialize fonts before the renderer was even created!");
-            }
-
-            // Load Internal Fonts
-            m_privateFontCollection = new PrivateFontCollection();
-
-            var a_chicagoFont = Properties.Resources.ttf_chicago;
-
-            var a_rawFontData = Marshal.AllocCoTaskMem(a_chicagoFont.Length);
-
-            Marshal.Copy(a_chicagoFont, 0, a_rawFontData, a_chicagoFont.Length);
-
-            m_privateFontCollection.AddMemoryFont(a_rawFontData, a_chicagoFont.Length);
-
-            Marshal.FreeCoTaskMem(a_rawFontData);
-
-            m_fontStore = new Dictionary<string, GameFont>();
-
-            foreach (var a_font in kDefaultGameFonts)
-            {
-                var a_fontData = a_font.Split(',');
-                m_fontStore.Add(a_font, new GameFont(m_renderer, a_fontData[0], int.Parse(a_fontData[1])));
-            }
-        }
-
-        public GameFont GetFont(string c_fontName, int c_fontSize)
-        {
-            if (string.IsNullOrWhiteSpace(c_fontName) || c_fontSize <= 0)
-            {
-                return m_fontStore[kDefaultGameFontName];
-            }
-
-            var a_fontKey = $"{c_fontName},{c_fontSize}";
-
-            if (m_fontStore.ContainsKey(a_fontKey))
-            {
-                return m_fontStore[a_fontKey];
-            }
-
-            return m_fontStore[kDefaultGameFontName];
-        }
-
-        public bool ShowView(string c_viewString)
+        public void ShowView(string c_viewString)
         {
             var a_viewType = Type.GetType(string.Format(kViewsFormatString, c_viewString), false);
 
@@ -277,11 +242,11 @@ namespace FoxTrader
                 }
 
                 m_currentView = (GameView)Activator.CreateInstance(a_viewType, m_canvas);
-
-                return true;
             }
-
-            return false;
+            else
+            {
+                new MessageBox(m_canvas, "Cannot find view " + c_viewString, "View Error").MakeModal();
+            }
         }
 
         public bool ClearView()
@@ -299,9 +264,9 @@ namespace FoxTrader
 
         private void FlushTextCache()
         {
-            if (m_renderer.TextCacheSize > 1000)
+            if (Renderer.TextCacheSize > 1000)
             {
-                m_renderer.FlushTextCache();
+                Renderer.FlushTextCache();
             }
         }
 
@@ -798,7 +763,7 @@ namespace FoxTrader
 
             m_canvas.Dispose();
             m_skin.Dispose();
-            m_renderer.Dispose();
+            Renderer.Dispose();
             base.Dispose();
         }
     }

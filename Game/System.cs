@@ -21,6 +21,11 @@ namespace FoxTrader.Game
             m_position = Vector3.Random(Constants.kSystemSizeMax);
 
             m_planetoids = new List<Planetoid>(Constants.kPlanetoidsMax);
+
+            for (var a_idx = 0; a_idx <= Constants.kPlanetoidsMax; a_idx++)
+            {
+                m_planetoids.Add(new Planetoid(this, a_idx));
+            }
         }
 
         public string Name

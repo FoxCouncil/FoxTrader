@@ -11,6 +11,11 @@ namespace FoxTrader.Game
         public Universe()
         {
             m_galaxies = new List<Galaxy>(Constants.kGalaxiesMax);
+
+            for (var a_idx = 0; a_idx <= Constants.kGalaxiesMax; a_idx++)
+            {
+                m_galaxies.Add(new Galaxy(this, a_idx));
+            }
         }
 
         public void Tick()

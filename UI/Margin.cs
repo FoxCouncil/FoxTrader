@@ -11,17 +11,17 @@ namespace FoxTrader.UI
         public int m_right;
 
         // common values
-        public static Margin m_zero = new Margin(0, 0, 0, 0);
-        public static Margin m_one = new Margin(1, 1, 1, 1);
-        public static Margin m_two = new Margin(2, 2, 2, 2);
-        public static Margin m_three = new Margin(3, 3, 3, 3);
-        public static Margin m_four = new Margin(4, 4, 4, 4);
-        public static Margin m_five = new Margin(5, 5, 5, 5);
-        public static Margin m_six = new Margin(6, 6, 6, 6);
-        public static Margin m_seven = new Margin(7, 7, 7, 7);
-        public static Margin m_eight = new Margin(8, 8, 8, 8);
-        public static Margin m_nine = new Margin(9, 9, 9, 9);
-        public static Margin m_ten = new Margin(10, 10, 10, 10);
+        public static readonly Margin kZero = new Margin(0, 0, 0, 0);
+        public static readonly Margin kOne = new Margin(1, 1, 1, 1);
+        public static readonly Margin kTwo = new Margin(2, 2, 2, 2);
+        public static readonly Margin kThree = new Margin(3, 3, 3, 3);
+        public static readonly Margin kFour = new Margin(4, 4, 4, 4);
+        public static readonly Margin kFive = new Margin(5, 5, 5, 5);
+        public static readonly Margin kSix = new Margin(6, 6, 6, 6);
+        public static readonly Margin kSeven = new Margin(7, 7, 7, 7);
+        public static readonly Margin kEight = new Margin(8, 8, 8, 8);
+        public static readonly Margin kNine = new Margin(9, 9, 9, 9);
+        public static readonly Margin kTen = new Margin(10, 10, 10, 10);
 
         public Margin(int c_left, int c_top, int c_right, int c_bottom)
         {

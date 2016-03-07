@@ -2,8 +2,29 @@
 
 namespace FoxTrader.Game
 {
-    class Context
+    class GameContext
     {
+        #region Singleton
+        private static GameContext m_gameContextInstance;
+        private static readonly object m_gameContextLock = new object();
+
+        internal static GameContext Instance
+        {
+            get
+            {
+                lock (m_gameContextLock)
+                {
+                    if (m_gameContextInstance == null)
+                    {
+                        m_gameContextInstance = new GameContext();
+                    }
+                }
+
+                return m_gameContextInstance;
+            }
+        }
+        #endregion
+
         public event ContextStateChangeDelegate StateChanged;
 
         public ContextState State
@@ -21,7 +42,7 @@ namespace FoxTrader.Game
             get; private set;
         }
 
-        public Context()
+        public GameContext()
         {
             State = ContextState.Bumpers;
         }
@@ -36,11 +57,18 @@ namespace FoxTrader.Game
                 case ContextState.Bumpers:
                 {
                     State = ContextState.MainMenu;
+                }
+                break;
 
-                    StateChanged?.Invoke(State);
+                case ContextState.NewGame:
+                {
+                    // TODO: Intro State!
+                    State = ContextState.Game;
                 }
                 break;
             }
+
+            StateChanged?.Invoke(State);
         }
 
         public void Tick()
@@ -49,9 +77,18 @@ namespace FoxTrader.Game
             Universe?.Tick();
         }
 
-        public void Start()
+        public void New()
         {
-            // TODO: Start a new game
+            if (State != ContextState.MainMenu)
+            {
+                return;
+            }
+
+            Universe = new Universe();
+            Player = new Player();
+
+            State = ContextState.NewGame;
+            StateChanged?.Invoke(State);
         }
 
         public void Save(string c_saveName)

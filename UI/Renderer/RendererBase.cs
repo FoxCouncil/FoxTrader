@@ -131,9 +131,8 @@ namespace FoxTrader.UI.Renderer
         /// <summary>Loads the specified font</summary>
         /// <param name="c_font">Font to load</param>
         /// <returns>True if succeeded</returns>
-        public virtual bool LoadFont(GameFont c_font)
+        public virtual void LoadFont(GameFont c_font)
         {
-            return false;
         }
 
         /// <summary>Frees the specified font</summary>

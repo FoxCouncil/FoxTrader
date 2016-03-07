@@ -1,6 +1,4 @@
-﻿
-
-using FoxTrader.Game.Utils;
+﻿using FoxTrader.Game.Utils;
 using static FoxTrader.Constants;
 
 namespace FoxTrader.Game
@@ -20,7 +18,14 @@ namespace FoxTrader.Game
             m_system = c_system;
             m_index = c_index;
 
-            m_planetoidType = (PlanetoidType)Generator.RandomRange(0, (int)PlanetoidType.MAX);
+            if (c_index == 0)
+            {
+                m_planetoidType = (PlanetoidType)Generator.RandomDistribution(new[] { 1000, 1, 0, 1, 1, 0, 0, 0 });
+            }
+            else
+            {
+                m_planetoidType = (PlanetoidType)Generator.RandomDistribution(new[] { 0, 0, 10, 10, 0, 100, 1000, 15 });
+            }
 
             m_name = m_system.Name + "-" + (m_index + 1).ToString();
             m_position = Vector2.Random(kPlanetoidSizeMax);
