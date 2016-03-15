@@ -32,13 +32,13 @@ namespace FoxTrader
         private readonly List<long> m_frameTime;
         private readonly Stopwatch m_stopwatch;
         private long m_lastFrameTime;
-        private bool m_altDown = false;
+        private bool m_altDown;
         private double m_fps;
 
         private const string kViewsFormatString = "FoxTrader.Views.{0}";
         private Canvas m_canvas;
 
-        private GameView m_currentView;
+        private BaseGameView m_currentView;
 
         private static readonly object m_windowContextLock = new object();
 
@@ -220,13 +220,14 @@ namespace FoxTrader
         protected override void OnRenderFrame(FrameEventArgs c_e)
         {
             GL.Clear(ClearBufferMask.DepthBufferBit | ClearBufferMask.ColorBufferBit);
+
             m_canvas.RenderCanvas();
 
             SwapBuffers();
 
             if (m_statusBar != null)
             {
-                m_statusBar.Text = $"{m_fps:F0}fps - {Renderer.DrawCallCount}dc - {Renderer.VertexCount}vc";
+                m_statusBar.Text = $"{m_fps:F0}fps - {Renderer.DrawCallCount}dc - {Renderer.VertexTotalCount}vc";
             }
         }
 
@@ -241,7 +242,7 @@ namespace FoxTrader
                     m_canvas.RemoveChild(m_currentView, true);
                 }
 
-                m_currentView = (GameView)Activator.CreateInstance(a_viewType, m_canvas);
+                m_currentView = (BaseGameView)Activator.CreateInstance(a_viewType, m_canvas);
             }
             else
             {
@@ -303,7 +304,7 @@ namespace FoxTrader
 
             var a_time = UI.Platform.Neutral.GetTimeInSeconds();
 
-            for (var a_idx = 0; a_idx < (int)UI.Key.Count; a_idx++)
+            for (var a_idx = 0; a_idx < 1024; a_idx++)
             {
                 if (m_keyData.m_keyState[a_idx] && m_keyData.m_target != KeyboardFocus)
                 {
@@ -315,69 +316,16 @@ namespace FoxTrader
                 {
                     m_keyData.m_nextRepeat[a_idx] = UI.Platform.Neutral.GetTimeInSeconds() + kKeyRepeatDelay;
 
-                    if (KeyboardFocus != null)
-                    {
-                        KeyboardFocus.InputKeyPressed((UI.Key)a_idx);
-                    }
+                    KeyboardFocus?.InputKeyPressed((Key)a_idx);
                 }
             }
         }
 
-        private UI.Key TranslateKeyCode(OpenTK.Input.Key c_key)
+        private char TranslateChar(Key c_key)
         {
-            switch (c_key)
+            if (c_key >= Key.A && c_key <= Key.Z)
             {
-                case OpenTK.Input.Key.BackSpace:
-                return UI.Key.Backspace;
-                case OpenTK.Input.Key.Enter:
-                return UI.Key.Return;
-                case OpenTK.Input.Key.Escape:
-                return UI.Key.Escape;
-                case OpenTK.Input.Key.Tab:
-                return UI.Key.Tab;
-                case OpenTK.Input.Key.Space:
-                return UI.Key.Space;
-                case OpenTK.Input.Key.Up:
-                return UI.Key.Up;
-                case OpenTK.Input.Key.Down:
-                return UI.Key.Down;
-                case OpenTK.Input.Key.Left:
-                return UI.Key.Left;
-                case OpenTK.Input.Key.Right:
-                return UI.Key.Right;
-                case OpenTK.Input.Key.Home:
-                return UI.Key.Home;
-                case OpenTK.Input.Key.End:
-                return UI.Key.End;
-                case OpenTK.Input.Key.Delete:
-                return UI.Key.Delete;
-                case OpenTK.Input.Key.LControl:
-                m_altDown = true;
-                return UI.Key.Control;
-                case OpenTK.Input.Key.LAlt:
-                return UI.Key.Alt;
-                case OpenTK.Input.Key.LShift:
-                return UI.Key.Shift;
-                case OpenTK.Input.Key.RControl:
-                return UI.Key.Control;
-                case OpenTK.Input.Key.RAlt:
-                if (m_altDown)
-                {
-                    m_canvas.Input_Key(UI.Key.Control, false);
-                }
-                return UI.Key.Alt;
-                case OpenTK.Input.Key.RShift:
-                return UI.Key.Shift;
-            }
-
-            return UI.Key.Invalid;
-        }
-
-        private char TranslateChar(OpenTK.Input.Key c_key)
-        {
-            if (c_key >= OpenTK.Input.Key.A && c_key <= OpenTK.Input.Key.Z)
-            {
-                return (char)('a' + ((int)c_key - (int)OpenTK.Input.Key.A));
+                return (char)('a' + ((int)c_key - (int)Key.A));
             }
 
             return ' ';
@@ -515,11 +463,11 @@ namespace FoxTrader
 
         private void ProcessKeyDownInput(object c_sender, KeyboardKeyEventArgs c_e)
         {
-            if (c_e.Key == OpenTK.Input.Key.Escape)
+            if (c_e.Key == Key.Escape)
             {
                 Exit();
             }
-            else if (c_e.Key == OpenTK.Input.Key.F)
+            else if (c_e.Key == Key.F)
             {
                 if (m_statusBar == null)
                 {
@@ -537,7 +485,7 @@ namespace FoxTrader
                     m_statusBar.Show();
                 }
             }
-            else if (c_e.Key == OpenTK.Input.Key.O)
+            else if (c_e.Key == Key.O)
             {
                 if (m_currentView == null)
                 {
@@ -552,9 +500,7 @@ namespace FoxTrader
                 return;
             }
 
-            var a_key = TranslateKeyCode(c_e.Key);
-
-            m_canvas.Input_Key(a_key, true);
+            m_canvas.Input_Key(c_e.Key, true);
         }
 
         private void ProcessKeyPressInput(object c_sender, KeyPressEventArgs c_e)
@@ -564,19 +510,16 @@ namespace FoxTrader
 
         private void ProcessKeyUpInput(object c_sender, KeyboardKeyEventArgs c_e)
         {
-            var a_key = TranslateKeyCode(c_e.Key);
-
-            m_canvas.Input_Key(a_key, false);
+            m_canvas.Input_Key(c_e.Key, false);
         }
 
-        internal bool OnKeyEvent(UI.Key c_key, bool c_isButtonDown)
+        internal bool OnKeyEvent(Key c_key, bool c_isButtonDown)
         {
-
-            if (MouseFocus is Button && c_key == UI.Key.Space && c_isButtonDown)
+            if (MouseFocus is Button && c_key == Key.Space && c_isButtonDown)
             {
                 var a_button = HoveredControl as Button;
 
-                a_button.Press();
+                a_button?.Press();
 
                 return true;
             }

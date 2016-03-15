@@ -26,7 +26,7 @@ namespace FoxTrader.UI.Control.Layout
         {
             foreach (var a_child in Children) // ok?
             {
-                a_child.Position(Pos);
+                a_child.SetRelativePosition(Pos);
             }
         }
     }

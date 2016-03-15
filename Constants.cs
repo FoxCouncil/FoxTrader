@@ -8,8 +8,8 @@ namespace FoxTrader
         public const int kDefaultTimeDilation = 100;  // 88 Gigawatts
         public const int kDefaultFluxCapacitance = 500;  // Marty!
         public const int kUniverseSizeMax = 255;  // In All Directions
-        public const int kGalaxiesMax = 128;  // Total Galaxies Max
-        public const int kGalaxySizeMax = 255;  // In All Directions
+        public const int kGalaxiesMax = 256;  // Total Galaxies Max
+        public const int kGalaxySizeMax = 2048;  // In All Directions
         public const int kSystemsMax = 42;   // Total Systems Max
         public const int kSystemSizeMax = 255;  // In All Directions
         public const int kPlanetoidsMax = 16;   // 16 + 1 Sun
@@ -29,6 +29,13 @@ namespace FoxTrader
             SaveGame,
             Loader,
             MAX
+        }
+
+        public enum MapZoomState
+        {
+            Universe,
+            Galaxy,
+            System
         }
 
         public enum SpaceShipType

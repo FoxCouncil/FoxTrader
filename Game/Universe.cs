@@ -7,6 +7,7 @@ namespace FoxTrader.Game
         private string m_name = "Fox Universe";
 
         private readonly List<Galaxy> m_galaxies;
+        public List<Galaxy> Galaxies => m_galaxies;
 
         public Universe()
         {

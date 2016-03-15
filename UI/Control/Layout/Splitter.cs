@@ -73,7 +73,7 @@ namespace FoxTrader.UI.Control.Layout
                 }
                 else
                 {
-                    m_panel[0].Position(Pos.Center, 0, (int)(a_h * -0.25f));
+                    m_panel[0].SetRelativePosition(Pos.Center, 0, (int)(a_h * -0.25f));
                 }
             }
 
@@ -86,7 +86,7 @@ namespace FoxTrader.UI.Control.Layout
                 }
                 else
                 {
-                    m_panel[1].Position(Pos.Center, 0, (int)(a_h * 0.25f));
+                    m_panel[1].SetRelativePosition(Pos.Center, 0, (int)(a_h * 0.25f));
                 }
             }
         }

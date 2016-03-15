@@ -118,7 +118,7 @@ namespace FoxTrader.UI.Control
             c_item.Dock = Pos.Top;
             c_item.SizeToContents();
             c_item.Alignment = Pos.CenterV | Pos.Left;
-            c_item.HoverEnter += OnHoverItem;
+            c_item.MouseIn += OnHoverItem;
 
             // Do this here - after Top Docking these values mean nothing in layout
             var a_width = c_item.Width + 10 + 32;

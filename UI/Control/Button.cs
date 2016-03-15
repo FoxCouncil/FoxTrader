@@ -20,7 +20,7 @@ namespace FoxTrader.UI.Control
             MouseInputEnabled = true;
             Alignment = Pos.Center;
             TextPadding = new Padding(3, 3, 3, 3);
-            HoverLeave += c_childControl =>
+            MouseOut += c_childControl =>
             {
                 FoxTraderWindow.Instance.MouseFocus = null;
             };

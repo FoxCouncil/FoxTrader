@@ -66,6 +66,12 @@ namespace FoxTrader.UI.Renderer
             private set;
         }
 
+        public int VertexTotalCount
+        {
+            get;
+            private set;
+        }
+
         public override Color DrawColor
         {
             get
@@ -158,6 +164,7 @@ namespace FoxTrader.UI.Renderer
             {
                 a_textRenderer.Dispose();
             }
+
             m_stringCache.Clear();
         }
 
@@ -168,11 +175,11 @@ namespace FoxTrader.UI.Renderer
                 return;
             }
 
-            fixed (short* a_ptr1 = &m_vertices[0].x)
+            fixed (short* a_ptr1 = &m_vertices[0].X)
             {
-                fixed (byte* a_ptr2 = &m_vertices[0].r)
+                fixed (byte* a_ptr2 = &m_vertices[0].R)
                 {
-                    fixed (float* a_ptr3 = &m_vertices[0].u)
+                    fixed (float* a_ptr3 = &m_vertices[0].U)
                     {
                         GL.VertexPointer(2, VertexPointerType.Short, m_vertexSize, (IntPtr)a_ptr1);
                         GL.ColorPointer(4, ColorPointerType.UnsignedByte, m_vertexSize, (IntPtr)a_ptr2);
@@ -186,6 +193,7 @@ namespace FoxTrader.UI.Renderer
             }
 
             DrawCallCount++;
+            VertexTotalCount = VertexCount;
             VertexCount = 0;
         }
 
@@ -328,44 +336,44 @@ namespace FoxTrader.UI.Renderer
             }
 
             var a_vertexIndex = VertexCount;
-            m_vertices[a_vertexIndex].x = (short)c_rect.X;
-            m_vertices[a_vertexIndex].y = (short)c_rect.Y;
-            m_vertices[a_vertexIndex].u = c_u1;
-            m_vertices[a_vertexIndex].v = c_v1;
-            m_vertices[a_vertexIndex].r = m_color.R;
-            m_vertices[a_vertexIndex].g = m_color.G;
-            m_vertices[a_vertexIndex].b = m_color.B;
-            m_vertices[a_vertexIndex].a = m_color.A;
+            m_vertices[a_vertexIndex].X = (short)c_rect.X;
+            m_vertices[a_vertexIndex].Y = (short)c_rect.Y;
+            m_vertices[a_vertexIndex].U = c_u1;
+            m_vertices[a_vertexIndex].V = c_v1;
+            m_vertices[a_vertexIndex].R = m_color.R;
+            m_vertices[a_vertexIndex].G = m_color.G;
+            m_vertices[a_vertexIndex].B = m_color.B;
+            m_vertices[a_vertexIndex].A = m_color.A;
 
             a_vertexIndex++;
-            m_vertices[a_vertexIndex].x = (short)(c_rect.X + c_rect.Width);
-            m_vertices[a_vertexIndex].y = (short)c_rect.Y;
-            m_vertices[a_vertexIndex].u = c_u2;
-            m_vertices[a_vertexIndex].v = c_v1;
-            m_vertices[a_vertexIndex].r = m_color.R;
-            m_vertices[a_vertexIndex].g = m_color.G;
-            m_vertices[a_vertexIndex].b = m_color.B;
-            m_vertices[a_vertexIndex].a = m_color.A;
+            m_vertices[a_vertexIndex].X = (short)(c_rect.X + c_rect.Width);
+            m_vertices[a_vertexIndex].Y = (short)c_rect.Y;
+            m_vertices[a_vertexIndex].U = c_u2;
+            m_vertices[a_vertexIndex].V = c_v1;
+            m_vertices[a_vertexIndex].R = m_color.R;
+            m_vertices[a_vertexIndex].G = m_color.G;
+            m_vertices[a_vertexIndex].B = m_color.B;
+            m_vertices[a_vertexIndex].A = m_color.A;
 
             a_vertexIndex++;
-            m_vertices[a_vertexIndex].x = (short)(c_rect.X + c_rect.Width);
-            m_vertices[a_vertexIndex].y = (short)(c_rect.Y + c_rect.Height);
-            m_vertices[a_vertexIndex].u = c_u2;
-            m_vertices[a_vertexIndex].v = c_v2;
-            m_vertices[a_vertexIndex].r = m_color.R;
-            m_vertices[a_vertexIndex].g = m_color.G;
-            m_vertices[a_vertexIndex].b = m_color.B;
-            m_vertices[a_vertexIndex].a = m_color.A;
+            m_vertices[a_vertexIndex].X = (short)(c_rect.X + c_rect.Width);
+            m_vertices[a_vertexIndex].Y = (short)(c_rect.Y + c_rect.Height);
+            m_vertices[a_vertexIndex].U = c_u2;
+            m_vertices[a_vertexIndex].V = c_v2;
+            m_vertices[a_vertexIndex].R = m_color.R;
+            m_vertices[a_vertexIndex].G = m_color.G;
+            m_vertices[a_vertexIndex].B = m_color.B;
+            m_vertices[a_vertexIndex].A = m_color.A;
 
             a_vertexIndex++;
-            m_vertices[a_vertexIndex].x = (short)c_rect.X;
-            m_vertices[a_vertexIndex].y = (short)(c_rect.Y + c_rect.Height);
-            m_vertices[a_vertexIndex].u = c_u1;
-            m_vertices[a_vertexIndex].v = c_v2;
-            m_vertices[a_vertexIndex].r = m_color.R;
-            m_vertices[a_vertexIndex].g = m_color.G;
-            m_vertices[a_vertexIndex].b = m_color.B;
-            m_vertices[a_vertexIndex].a = m_color.A;
+            m_vertices[a_vertexIndex].X = (short)c_rect.X;
+            m_vertices[a_vertexIndex].Y = (short)(c_rect.Y + c_rect.Height);
+            m_vertices[a_vertexIndex].U = c_u1;
+            m_vertices[a_vertexIndex].V = c_v2;
+            m_vertices[a_vertexIndex].R = m_color.R;
+            m_vertices[a_vertexIndex].G = m_color.G;
+            m_vertices[a_vertexIndex].B = m_color.B;
+            m_vertices[a_vertexIndex].A = m_color.A;
 
             VertexCount += 4;
         }
@@ -524,7 +532,7 @@ namespace FoxTrader.UI.Renderer
         public static void LoadTextureInternal(Texture c_texture, Bitmap c_bitmap)
         {
             // TODO: convert to proper format
-            var a_lockFormat = PixelFormat.Undefined;
+            PixelFormat a_lockFormat;
 
             switch (c_bitmap.PixelFormat)
             {
@@ -566,9 +574,7 @@ namespace FoxTrader.UI.Renderer
                 case PixelFormat.Format32bppArgb:
                 GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, c_texture.Width, c_texture.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, a_data.Scan0);
                 break;
-                default:
                 // invalid
-                break;
             }
 
             c_bitmap.UnlockBits(a_data);
@@ -582,12 +588,7 @@ namespace FoxTrader.UI.Renderer
 
             try
             {
-                a_bmp = (Bitmap)I18N.GetObject(c_t.Name);
-
-                if (a_bmp == null)
-                {
-                    a_bmp = new Bitmap(c_t.Name);
-                }
+                a_bmp = (Bitmap)I18N.GetObject(c_t.Name) ?? new Bitmap(c_t.Name);
             }
             catch (Exception)
             {
@@ -619,6 +620,7 @@ namespace FoxTrader.UI.Renderer
         public override void LoadTextureRaw(Texture c_t, byte[] c_pixelData)
         {
             Bitmap a_bmp;
+
             try
             {
                 unsafe
@@ -661,11 +663,14 @@ namespace FoxTrader.UI.Renderer
             {
                 return;
             }
+
             var a_tex = (int)c_t.RendererData;
+
             if (a_tex == 0)
             {
                 return;
             }
+
             GL.DeleteTextures(1, ref a_tex);
             c_t.RendererData = null;
         }
@@ -678,6 +683,7 @@ namespace FoxTrader.UI.Renderer
             }
 
             var a_tex = (int)c_texture.RendererData;
+
             if (a_tex == 0)
             {
                 return c_defaultColor;
@@ -687,24 +693,18 @@ namespace FoxTrader.UI.Renderer
             GL.BindTexture(TextureTarget.Texture2D, a_tex);
             var a_offset = 4 * (c_x + c_y * c_texture.Width);
             var a_data = new byte[4 * c_texture.Width * c_texture.Height];
+
             fixed (byte* a_ptr = &a_data[0])
             {
                 GL.GetTexImage(TextureTarget.Texture2D, 0, OpenTK.Graphics.OpenGL.PixelFormat.Rgba, PixelType.UnsignedByte, (IntPtr)a_ptr);
                 a_pixel = Color.FromArgb(a_data[a_offset + 3], a_data[a_offset + 0], a_data[a_offset + 1], a_data[a_offset + 2]);
             }
+
             // Retrieving the entire texture for a single pixel read
             // is kind of a waste - maybe cache this pointer in the texture
             // data and then release later on? It's never called during runtime
             // - only during initialization.
             return a_pixel;
-        }
-
-        [StructLayout(LayoutKind.Sequential, Pack = 1)]
-        public struct Vertex
-        {
-            public short x, y;
-            public float u, v;
-            public byte r, g, b, a;
         }
     }
 }

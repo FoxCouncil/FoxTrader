@@ -52,7 +52,7 @@ namespace FoxTrader.UI.Control
             c_item.Padding = new Padding(10, 0, 10, 0);
             c_item.SizeToContents();
             c_item.IsOnStrip = true;
-            c_item.HoverEnter += OnHoverItem;
+            c_item.MouseIn += OnHoverItem;
         }
     }
 }

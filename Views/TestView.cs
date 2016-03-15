@@ -7,7 +7,8 @@ using static FoxTrader.Constants;
 
 namespace FoxTrader.Views
 {
-    class TestView : GameView
+    // ReSharper disable once UnusedMember.Global
+    class TestView : BaseGameView
     {
         private readonly Label m_label1;
         private readonly Label m_label2;

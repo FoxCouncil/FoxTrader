@@ -4,6 +4,7 @@ using System.Drawing;
 using FoxTrader.UI.Anim;
 using FoxTrader.UI.DragDrop;
 using FoxTrader.UI.Skin;
+using OpenTK.Input;
 
 namespace FoxTrader.UI.Control
 {
@@ -259,11 +260,6 @@ namespace FoxTrader.UI.Control
         /// <returns>True if handled</returns>
         public bool Input_Key(Key c_key, bool c_isButtonDown)
         {
-            if (IsHidden || c_key <= Key.Invalid || c_key >= Key.Count)
-            {
-                return false;
-            }
-
             return FoxTraderWindow.Instance.OnKeyEvent(c_key, c_isButtonDown);
         }
 

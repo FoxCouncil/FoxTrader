@@ -13,8 +13,8 @@ namespace FoxTrader.UI.Input
 
         public KeyData()
         {
-            m_keyState = new bool[(int)Key.Count];
-            m_nextRepeat = new float[(int)Key.Count];
+            m_keyState = new bool[1024];
+            m_nextRepeat = new float[1024];
             // everything is initialized to 0 by default
         }
     }

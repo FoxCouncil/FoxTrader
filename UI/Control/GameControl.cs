@@ -9,6 +9,7 @@ using FoxTrader.UI.ControlInternal;
 using FoxTrader.UI.DragDrop;
 using FoxTrader.UI.Platform;
 using FoxTrader.UI.Skin;
+using OpenTK.Input;
 using static FoxTrader.Constants;
 
 namespace FoxTrader.UI.Control
@@ -40,7 +41,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Initializes a new instance of the <see cref="GameControl" /> class</summary>
         /// <param name="c_parentControl">Parent control</param>
-        public GameControl(GameControl c_parentControl = null)
+        internal GameControl(GameControl c_parentControl = null)
         {
             m_children = new List<GameControl>();
             m_accelerators = new Dictionary<string, GameControlEventHandler>();
@@ -71,21 +72,41 @@ namespace FoxTrader.UI.Control
             PaddingOutlineColor = Color.Blue;
         }
 
+        /// <summary>Control's size and position relative to the parent</summary>
+        public Rectangle Bounds => m_bounds;
+
+        /// <summary>Bounds for the renderer</summary>
+        public Rectangle RenderBounds => m_renderBounds;
+
+        /// <summary>Determines whether hover should be drawn during rendering</summary>
+        protected bool ShouldDrawHover => FoxTraderWindow.Instance.MouseFocus == this || FoxTraderWindow.Instance.MouseFocus == null;
+
+        protected virtual bool AccelOnlyFocus => false;
+
+        protected virtual bool NeedsInputChars => false;
+
+        /// <summary>Indicates whether the control is on top of its parent's children</summary>
+        public virtual bool IsOnTop => Parent != null && this == Parent.m_children.First();
+
         /// <summary>Logical list of children. If InnerControl is not null, returns InnerControl's children</summary>
-        public List<GameControl> Children
-        {
-            get
-            {
-                if (m_innerControl != null)
-                {
-                    return m_innerControl.Children;
-                }
+        public List<GameControl> Children => m_innerControl != null ? m_innerControl.Children : m_children;
 
-                return m_children;
-            }
-        }
+        /// <summary>Indicates whether the control is hovered by mouse pointer</summary>
+        public virtual bool IsHovered => FoxTraderWindow.Instance.HoveredControl == this;
 
-        // TODO: ParentChangedEvent
+        /// <summary>Indicates whether the control has focus</summary>
+        public bool HasFocus => FoxTraderWindow.Instance.KeyboardFocus == this;
+
+        /// <summary>Indicates whether this control is a menu component</summary>
+        internal virtual bool IsMenuComponent => m_parent != null && m_parent.IsMenuComponent;
+
+        /// <summary>Determines whether the control should be clipped to its bounds while rendering</summary>
+        protected virtual bool ShouldClip => true;
+
+        public int Bottom => m_bounds.Bottom + m_margin.m_bottom;
+
+        public int Right => m_bounds.Right + m_margin.m_right;
+
         /// <summary>The logical parent</summary>
         public GameControl Parent
         {
@@ -100,17 +121,106 @@ namespace FoxTrader.UI.Control
                     return;
                 }
 
-                if (m_parent != null)
-                {
-                    m_parent.RemoveChild(this, false);
-                }
+                m_parent?.RemoveChild(this, false);
 
                 m_parent = value;
                 m_actualParent = null;
 
-                if (m_parent != null)
+                m_parent?.AddChild(this);
+
+                ParentChanged?.Invoke(this);
+            }
+        }
+
+        /// <summary>Indicates whether the control and its parents are visible</summary>
+        public bool IsVisible
+        {
+            get
+            {
+                if (IsHidden)
                 {
-                    m_parent.AddChild(this);
+                    return false;
+                }
+
+                if (Parent != null)
+                {
+                    return Parent.IsVisible;
+                }
+
+                return true;
+            }
+        }
+
+        // TODO: Bottom/Right includes margin but X/Y not?
+        /// <summary>Leftmost coordinate of the control</summary>
+        public int X
+        {
+            get
+            {
+                return m_bounds.X;
+            }
+            set
+            {
+                SetPosition(value, Y);
+            }
+        }
+
+        /// <summary>Topmost coordinate of the control</summary>
+        public int Y
+        {
+            get
+            {
+                return m_bounds.Y;
+            }
+            set
+            {
+                SetPosition(X, value);
+            }
+        }
+
+        public int Width
+        {
+            get
+            {
+                return m_bounds.Width;
+            }
+            set
+            {
+                SetSize(value, Height);
+            }
+        }
+
+        public int Height
+        {
+            get
+            {
+                return m_bounds.Height;
+            }
+            set
+            {
+                SetSize(Width, value);
+            }
+        }
+
+        /// <summary>Determines whether margin, padding and bounds outlines for the control will be drawn. Applied recursively to all children</summary>
+        public bool DrawDebugOutlines
+        {
+            get
+            {
+                return m_drawDebugOutlines;
+            }
+            set
+            {
+                if (m_drawDebugOutlines == value)
+                {
+                    return;
+                }
+
+                m_drawDebugOutlines = value;
+
+                foreach (var a_child in Children)
+                {
+                    a_child.DrawDebugOutlines = value;
                 }
             }
         }
@@ -137,7 +247,7 @@ namespace FoxTrader.UI.Control
         }
 
         /// <summary>Current skin</summary>
-        public SkinBase Skin
+        protected SkinBase Skin
         {
             get
             {
@@ -151,45 +261,31 @@ namespace FoxTrader.UI.Control
                     return m_parent.Skin;
                 }
 
-                throw new NullReferenceException("Skin was null!");
+                throw new NullReferenceException("GameControl");
             }
         }
 
-        /// <summary>Current tooltip</summary>
+        /// <summary>Current ToolTip</summary>
         public GameControl ToolTip
         {
             get
             {
                 return m_toolTip;
             }
+
             set
             {
                 m_toolTip = value;
 
-                if (m_toolTip != null)
+                if (m_toolTip == null)
                 {
-                    m_toolTip.Parent = this;
-                    m_toolTip.IsHidden = true;
-                }
-            }
-        }
-
-        /// <summary>Indicates whether this control is a menu component</summary>
-        internal virtual bool IsMenuComponent
-        {
-            get
-            {
-                if (m_parent == null)
-                {
-                    return false;
+                    return;
                 }
 
-                return m_parent.IsMenuComponent;
+                m_toolTip.Parent = this;
+                m_toolTip.IsHidden = true;
             }
         }
-
-        /// <summary>Determines whether the control should be clipped to its bounds while rendering</summary>
-        protected virtual bool ShouldClip => true;
 
         /// <summary>Current padding - inner spacing</summary>
         public Padding Padding
@@ -234,30 +330,6 @@ namespace FoxTrader.UI.Control
             }
         }
 
-        /// TODO: Validate if parent exists!
-        /// <summary>Indicates whether the control is on top of its parent's children</summary>
-        public virtual bool IsOnTop => this == Parent.m_children.First();
-
-        /// <summary>User data associated with the control</summary>
-        public object UserData
-        {
-            get;
-            set;
-        }
-
-        /// <summary>Indicates whether the control is hovered by mouse pointer</summary>
-        public virtual bool IsHovered => FoxTraderWindow.Instance.HoveredControl == this;
-
-        /// <summary>Indicates whether the control has focus</summary>
-        public bool HasFocus => FoxTraderWindow.Instance.KeyboardFocus == this;
-
-        /// <summary>Indicates whether the control is disabled</summary>
-        public bool IsDisabled
-        {
-            get;
-            set;
-        }
-
         /// <summary>Indicates whether the control is hidden</summary>
         public virtual bool IsHidden
         {
@@ -276,6 +348,20 @@ namespace FoxTrader.UI.Control
 
                 Invalidate();
             }
+        }
+
+        /// <summary>User data associated with the control</summary>
+        public object UserData
+        {
+            get;
+            set;
+        }
+
+        /// <summary>Indicates whether the control is disabled</summary>
+        public bool IsDisabled
+        {
+            get;
+            set;
         }
 
         /// <summary>Determines whether the control's position should be restricted to parent's bounds</summary>
@@ -334,12 +420,6 @@ namespace FoxTrader.UI.Control
             set;
         }
 
-        /// <summary>Control's size and position relative to the parent</summary>
-        public Rectangle Bounds => m_bounds;
-
-        /// <summary>Bounds for the renderer</summary>
-        public Rectangle RenderBounds => m_renderBounds;
-
         /// <summary>Bounds adjusted by padding</summary>
         public Rectangle InnerBounds
         {
@@ -360,111 +440,6 @@ namespace FoxTrader.UI.Control
             get;
             set;
         } = new Point(kMaxUIControlSize, kMaxUIControlSize);
-
-        /// <summary>Determines whether hover should be drawn during rendering</summary>
-        protected bool ShouldDrawHover => FoxTraderWindow.Instance.MouseFocus == this || FoxTraderWindow.Instance.MouseFocus == null;
-
-        protected virtual bool AccelOnlyFocus => false;
-
-        protected virtual bool NeedsInputChars => false;
-
-        /// <summary>Indicates whether the control and its parents are visible</summary>
-        public bool IsVisible
-        {
-            get
-            {
-                if (IsHidden)
-                {
-                    return false;
-                }
-
-                if (Parent != null)
-                {
-                    return Parent.IsVisible;
-                }
-
-                return true;
-            }
-        }
-
-        /// <summary>Leftmost coordinate of the control</summary>
-        public int X
-        {
-            get
-            {
-                return m_bounds.X;
-            }
-            set
-            {
-                SetPosition(value, Y);
-            }
-        }
-
-        /// <summary>Topmost coordinate of the control</summary>
-        public int Y
-        {
-            get
-            {
-                return m_bounds.Y;
-            }
-            set
-            {
-                SetPosition(X, value);
-            }
-        }
-
-        // TODO: Bottom/Right includes margin but X/Y not?
-
-        public int Width
-        {
-            get
-            {
-                return m_bounds.Width;
-            }
-            set
-            {
-                SetSize(value, Height);
-            }
-        }
-
-        public int Height
-        {
-            get
-            {
-                return m_bounds.Height;
-            }
-            set
-            {
-                SetSize(Width, value);
-            }
-        }
-
-        public int Bottom => m_bounds.Bottom + m_margin.m_bottom;
-
-        public int Right => m_bounds.Right + m_margin.m_right;
-
-        /// <summary>Determines whether margin, padding and bounds outlines for the control will be drawn. Applied recursively to all children</summary>
-        public bool DrawDebugOutlines
-        {
-            get
-            {
-                return m_drawDebugOutlines;
-            }
-            set
-            {
-                if (m_drawDebugOutlines == value)
-                {
-                    return;
-                }
-
-                m_drawDebugOutlines = value;
-
-                foreach (var a_child in Children)
-                {
-                    a_child.DrawDebugOutlines = value;
-                }
-            }
-        }
 
         public Color PaddingOutlineColor
         {
@@ -490,7 +465,7 @@ namespace FoxTrader.UI.Control
             if (m_isDisposed)
             {
 #if DEBUG
-                throw new ObjectDisposedException(string.Format("Control.Base [{1:X}] disposed twice: {0}", this, GetHashCode()));
+                throw new ObjectDisposedException(string.Format("GameControl [{1:X}] disposed twice: {0}", this, GetHashCode()));
 #else
                 return;
 #endif
@@ -553,32 +528,38 @@ namespace FoxTrader.UI.Control
 
         public override string ToString()
         {
-            if (this is MenuItem)
+            var a_menuItem = this as MenuItem;
+            if (a_menuItem != null)
             {
-                return "[MenuItem: " + (this as MenuItem).Text + "]";
+                return "[MenuItem: " + a_menuItem.Text + "]";
             }
 
-            if (this is Label)
+            var a_label = this as Label;
+            if (a_label != null)
             {
-                return "[Label: " + (this as Label).Text + "]";
+                return "[Label: " + a_label.Text + "]";
             }
 
-            if (this is Text)
+            var a_text = this as Text;
+            if (a_text != null)
             {
-                return "[Text: " + (this as Text).String + "]";
+                return "[Text: " + a_text.String + "]";
             }
 
             return GetType().ToString();
         }
 
         /// <summary>Invoked when mouse pointer enters the control</summary>
-        public event GameControlEventHandler HoverEnter;
+        public event GameControlEventHandler MouseIn;
 
         /// <summary>Invoked when mouse pointer leaves the control</summary>
-        public event GameControlEventHandler HoverLeave;
+        public event GameControlEventHandler MouseOut;
 
         /// <summary>Invoked when control's bounds have been changed</summary>
         public event GameControlEventHandler BoundsChanged;
+
+        /// <summary>Invoked when control's bounds have been changed</summary>
+        public event GameControlEventHandler ParentChanged;
 
         /// <summary>Adds keyboard accelerator</summary>
         /// <param name="c_accelerator">Accelerator text</param>
@@ -619,10 +600,7 @@ namespace FoxTrader.UI.Control
         /// <summary>Invalidates control's parent</summary>
         public void InvalidateParent()
         {
-            if (m_parent != null)
-            {
-                m_parent.Invalidate();
-            }
+            m_parent?.Invalidate();
         }
 
         /// <summary>Invokes mouse wheeled event (used by input system)</summary>
@@ -674,9 +652,9 @@ namespace FoxTrader.UI.Control
         }
 
         /// <summary>Invokes key press event (used by input system)</summary>
-        internal bool InputKeyPressed(Key c_key, bool c_isButtonDown = true)
+        internal bool InputKeyPressed(Key c_keys, bool c_isButtonDown = true)
         {
-            return OnKeyPressed(c_key, c_isButtonDown);
+            return OnKeyPressed(c_keys, c_isButtonDown);
         }
 
         /// <summary>Called during rendering</summary>
@@ -1002,7 +980,7 @@ namespace FoxTrader.UI.Control
         /// <param name="c_position">Target position</param>
         /// <param name="c_xPadding">X padding</param>
         /// <param name="c_yPadding">Y padding</param>
-        public virtual void Position(Pos c_position, int c_xPadding = 0, int c_yPadding = 0) // TODO: a bit ambiguous name
+        public virtual void SetRelativePosition(Pos c_position, int c_xPadding = 0, int c_yPadding = 0)
         {
             var a_x = X;
             var a_y = Y;
@@ -1128,25 +1106,14 @@ namespace FoxTrader.UI.Control
                 return null;
             }
 
-            // TODO: convert to linq FindLast
             var a_reverseList = ((IList<GameControl>)m_children).Reverse(); // IList.Reverse creates new list, List.Reverse works in place.. go figure
 
-            foreach (var a_childControl in a_reverseList)
+            foreach (var a_foundControl in a_reverseList.Select(c_childControl => c_childControl.GetControlAt(c_x - c_childControl.X, c_y - c_childControl.Y)).Where(c_foundControl => c_foundControl != null))
             {
-                var a_foundControl = a_childControl.GetControlAt(c_x - a_childControl.X, c_y - a_childControl.Y);
-
-                if (a_foundControl != null)
-                {
-                    return a_foundControl;
-                }
+                return a_foundControl;
             }
 
-            if (!MouseInputEnabled)
-            {
-                return null;
-            }
-
-            return this;
+            return !MouseInputEnabled ? null : this;
         }
 
         /// <summary>Converts local coordinates to canvas coordinates</summary>
@@ -1557,11 +1524,11 @@ namespace FoxTrader.UI.Control
         }
 
         /// <summary>Handler for keyboard events</summary>
-        /// <param name="c_key">Key pressed</param>
+        /// <param name="c_keys">Key pressed</param>
         /// <returns>True if handled</returns>
-        protected virtual bool OnKeyReleaseed(Key c_key)
+        protected virtual bool OnKeyReleaseed(Key c_keys)
         {
-            return OnKeyPressed(c_key, false);
+            return OnKeyPressed(c_keys, false);
         }
 
         /// <summary>Handler for Tab keyboard event</summary>
@@ -1791,16 +1758,13 @@ namespace FoxTrader.UI.Control
         /// <summary>Handler invoked on mouse cursor entering control's bounds</summary>
         protected virtual void OnMouseEntered()
         {
-            if (HoverEnter != null)
-            {
-                HoverEnter.Invoke(this);
-            }
+            MouseIn?.Invoke(this);
 
             if (ToolTip != null)
             {
                 UI.ToolTip.Enable(this);
             }
-            else if (Parent != null && Parent.ToolTip != null)
+            else if (Parent?.ToolTip != null)
             {
                 UI.ToolTip.Enable(Parent);
             }
@@ -1811,10 +1775,7 @@ namespace FoxTrader.UI.Control
         /// <summary>Handler invoked on mouse cursor leaving control's bounds</summary>
         protected virtual void OnMouseLeft()
         {
-            if (HoverLeave != null)
-            {
-                HoverLeave.Invoke(this);
-            }
+            MouseOut?.Invoke(this);
 
             if (ToolTip != null)
             {
@@ -1934,7 +1895,7 @@ namespace FoxTrader.UI.Control
             {
                 var a_dockPosition = a_childControl.Dock;
 
-                if (!(0 != (a_dockPosition & Pos.Fill)))
+                if ((a_dockPosition & Pos.Fill) == 0)
                 {
                     continue;
                 }
@@ -1983,14 +1944,14 @@ namespace FoxTrader.UI.Control
         }
 
         /// <summary>Handler for keyboard events</summary>
-        /// <param name="c_key">Key pressed</param>
+        /// <param name="c_keys">Key pressed</param>
         /// <param name="c_isButtonDown">Indicates whether the key was pressed or released</param>
         /// <returns>True if handled</returns>
-        protected virtual bool OnKeyPressed(Key c_key, bool c_isButtonDown = true)
+        protected virtual bool OnKeyPressed(Key c_keys, bool c_isButtonDown = true)
         {
             var a_isHandled = false;
 
-            switch (c_key)
+            switch (c_keys)
             {
                 case Key.Tab:
                 a_isHandled = OnKeyTab(c_isButtonDown);
@@ -2004,10 +1965,10 @@ namespace FoxTrader.UI.Control
                 case Key.End:
                 a_isHandled = OnKeyEnd(c_isButtonDown);
                 break;
-                case Key.Return:
+                case Key.Enter:
                 a_isHandled = OnKeyReturn(c_isButtonDown);
                 break;
-                case Key.Backspace:
+                case Key.BackSpace:
                 a_isHandled = OnKeyBackspace(c_isButtonDown);
                 break;
                 case Key.Delete:
@@ -2028,13 +1989,11 @@ namespace FoxTrader.UI.Control
                 case Key.Escape:
                 a_isHandled = OnKeyEscape(c_isButtonDown);
                 break;
-                default:
-                break;
             }
 
-            if (!a_isHandled && Parent != null)
+            if (!a_isHandled)
             {
-                Parent.OnKeyPressed(c_key, c_isButtonDown);
+                Parent?.OnKeyPressed(c_keys, c_isButtonDown);
             }
 
             return a_isHandled;

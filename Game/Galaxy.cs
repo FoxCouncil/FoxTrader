@@ -30,6 +30,8 @@ namespace FoxTrader.Game
             }
         }
 
+        public Vector3 Position => m_position;
+
         public void Tick()
         {
             m_systems.ForEach(c_system => c_system.Tick());

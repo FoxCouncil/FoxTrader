@@ -142,7 +142,7 @@ namespace FoxTrader.UI.Control
         {
             if (m_submenuArrow != null)
             {
-                m_submenuArrow.Position(Pos.Right | Pos.CenterV, 4, 0);
+                m_submenuArrow.SetRelativePosition(Pos.Right | Pos.CenterV, 4, 0);
             }
             base.Layout(c_skin);
         }

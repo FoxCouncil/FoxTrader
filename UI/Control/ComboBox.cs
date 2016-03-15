@@ -127,7 +127,7 @@ namespace FoxTrader.UI.Control
         /// <param name="c_skin">Skin to use</param>
         protected override void Layout(SkinBase c_skin)
         {
-            m_button.Position(Pos.Right | Pos.CenterV, 4, 0);
+            m_button.SetRelativePosition(Pos.Right | Pos.CenterV, 4, 0);
             base.Layout(c_skin);
         }
 

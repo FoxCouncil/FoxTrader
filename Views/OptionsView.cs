@@ -8,7 +8,8 @@ using static FoxTrader.Constants;
 
 namespace FoxTrader.Views
 {
-    class OptionsView : GameView
+    // ReSharper disable once UnusedMember.Global
+    class OptionsView : BaseGameView
     {
         private readonly GameControl m_menuControl;
 

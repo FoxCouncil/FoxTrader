@@ -69,19 +69,6 @@ namespace FoxTrader.UI.Renderer
         {
         }
 
-        /// <summary>Draws a line</summary>
-        /// <param name="c_x"></param>
-        /// <param name="c_y"></param>
-        /// <param name="c_a"></param>
-        /// <param name="c_b"></param>
-        public virtual void DrawLine(int c_x, int c_y, int c_a, int c_b)
-        {
-        }
-
-        /// <summary>Draws a solid filled rectangle</summary>
-        /// <param name="c_rect"></param>
-        public abstract void DrawFilledRect(Rectangle c_rect);
-
         /// <summary>Starts clipping to the current clipping rectangle</summary>
         public virtual void StartClip()
         {
@@ -109,6 +96,20 @@ namespace FoxTrader.UI.Renderer
         /// <summary>Frees the specified texture</summary>
         /// <param name="c_t">Texture to free</param>
         public abstract void FreeTexture(Texture c_t);
+
+        /// <summary>Draws a line</summary>
+        /// <param name="c_x"></param>
+        /// <param name="c_y"></param>
+        /// <param name="c_a"></param>
+        /// <param name="c_b"></param>
+        public virtual void DrawLine(int c_x, int c_y, int c_a, int c_b)
+        {
+
+        }
+
+        /// <summary>Draws a solid filled rectangle</summary>
+        /// <param name="c_rect"></param>
+        public abstract void DrawFilledRect(Rectangle c_rect);
 
         /// <summary>Draws textured rectangle</summary>
         /// <param name="c_t">Texture to use</param>
@@ -157,11 +158,6 @@ namespace FoxTrader.UI.Renderer
         /// <param name="c_position">Top-left corner of the text</param>
         /// <param name="c_text">Text to render</param>
         public abstract void RenderText(GameFont c_font, Point c_position, string c_text);
-
-        //
-        // No need to implement these functions in your derived class, but if 
-        // you can do them faster than the default implementation it's a good idea to.
-        //
 
         /// <summary>Draws a lined rectangle. Used for keyboard focus overlay</summary>
         /// <param name="c_rect">Target rectangle</param>

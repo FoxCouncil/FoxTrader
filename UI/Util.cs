@@ -4,7 +4,6 @@ using System.Text.RegularExpressions;
 
 namespace FoxTrader.UI
 {
-    /// <summary>Misc utility functions</summary>
     public static class Util
     {
         public static int Round(float c_x)

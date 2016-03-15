@@ -7,7 +7,8 @@ using static FoxTrader.Constants;
 
 namespace FoxTrader.Views
 {
-    class BumpersView : GameView
+    // ReSharper disable once UnusedMember.Global
+    class BumpersView : BaseGameView
     {
         private DateTime m_startTime;
 
