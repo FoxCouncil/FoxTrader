@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using FoxTrader.Game;
 using FoxTrader.UI;
@@ -6,20 +7,26 @@ using FoxTrader.UI.Control;
 using FoxTrader.UI.Skin;
 using OpenTK.Input;
 using static FoxTrader.Constants;
+using ButtonState = OpenTK.Input.ButtonState;
+using Label = FoxTrader.UI.Control.Label;
 
 namespace FoxTrader.Views
 {
     // ReSharper disable once UnusedMember.Global
-    class GameView : BaseGameView
+    sealed class GameView : BaseGameView
     {
         private Vector2 m_mapPosition;
         private Vector2 m_mapOffset;
-        private bool m_isDragging;
-        private bool m_isMouseWheelClicked = false;
+        private bool m_isMouseWheelClicked;
+        private bool m_zoomChanged;
         private int m_zoomLevel = 1;
+        private string m_zoomLabelString = I18N.GetString("ZoomLabel");
 
+        private readonly Label m_mousePositionLabel;
         private readonly Label m_coordinateLabel;
         private readonly Label m_zoomLabel;
+
+        private Dictionary<int, Label> m_labelDictionary;
 
         public GameView(GameControl c_controlParent) : base(c_controlParent)
         {
@@ -32,6 +39,19 @@ namespace FoxTrader.Views
 
             m_coordinateLabel = new Label(this) { AutoSizeToContents = true, Text = "X:0, Y:0" };
             m_coordinateLabel.MakeColorBright();
+
+            m_mousePositionLabel = new Label(this) { AutoSizeToContents = true, Text = "X:0, Y:0" };
+            m_mousePositionLabel.MakeColorBright();
+
+            m_labelDictionary = new Dictionary<int, Label>();
+
+            foreach (var a_gameGalaxy in GameContext.Instance.Universe.Galaxies)
+            {
+                var a_galaxyLabel = new Label(this) { AutoSizeToContents = true, Text = a_gameGalaxy.Name, X = a_gameGalaxy.Position.X, Y = a_gameGalaxy.Position.Y, Font = FoxTraderWindow.Instance.Renderer.GetFont("pix Chicago", 6) };
+                a_galaxyLabel.MakeColorBright();
+
+                m_labelDictionary.Add(a_gameGalaxy.Index, a_galaxyLabel);
+            }
 
             KeyboardInputEnabled = true;
             Focus();
@@ -49,20 +69,17 @@ namespace FoxTrader.Views
             return true;
         }
 
-        protected override void OnMouseClickedLeft(int c_x, int c_y, bool c_down)
+        protected override void OnMouseMoved(MouseState c_mouseState, int c_x, int c_y, int c_dx, int c_dy)
         {
-            m_isDragging = c_down;
-        }
-
-        protected override void OnMouseMoved(int c_x, int c_y, int c_dx, int c_dy)
-        {
-            if (m_isDragging)
+            if (c_mouseState.LeftButton != ButtonState.Pressed)
             {
-                m_mapPosition.X += c_dx;
-                m_mapPosition.Y += c_dy;
-
-                CalculatePositions();
+                return;
             }
+
+            m_mapPosition.X += c_dx;
+            m_mapPosition.Y += c_dy;
+
+            CalculatePositions();
         }
 
         protected override bool OnMouseWheeled(int c_delta)
@@ -72,28 +89,55 @@ namespace FoxTrader.Views
                 m_isMouseWheelClicked = true;
                 return true;
             }
-            else
-            {
-                m_isMouseWheelClicked = false;
-            }
+
+            m_isMouseWheelClicked = false;
+
+            var a_mapPosX = m_mapPosition.X - m_mapOffset.X;
+            var a_mapPosY = m_mapPosition.Y - m_mapOffset.Y;
 
             if (c_delta > 0)
             {
-                m_zoomLevel++;
+                switch (m_zoomLevel)
+                {
+                    case 1:
+                        m_zoomLevel = 2;
+                        m_zoomChanged = true;
+                        break;
+                    case 2:
+                        m_zoomLevel = 4;
+                        m_zoomChanged = true;
+                        break;
+                }
+
+                if (m_zoomChanged)
+                {
+                    m_mapPosition.X = a_mapPosX * 2 + m_mapOffset.X;
+                    m_mapPosition.Y = a_mapPosY * 2 + m_mapOffset.Y;
+
+                    m_zoomChanged = false;
+                }
             }
             else
             {
-                m_zoomLevel--;
-            }
+                switch (m_zoomLevel)
+                {
+                    case 4:
+                        m_zoomLevel = 2;
+                        m_zoomChanged = true;
+                        break;
+                    case 2:
+                        m_zoomLevel = 1;
+                        m_zoomChanged = true;
+                        break;
+                }
 
-            if (m_zoomLevel > 3)
-            {
-                m_zoomLevel = 3;
-            }
+                if (m_zoomChanged)
+                {
+                    m_mapPosition.X = a_mapPosX / 2 + m_mapOffset.X;
+                    m_mapPosition.Y = a_mapPosY / 2 + m_mapOffset.Y;
 
-            if (m_zoomLevel < 1)
-            {
-                m_zoomLevel = 1;
+                    m_zoomChanged = false;
+                }
             }
 
             CalculatePositions();
@@ -103,26 +147,27 @@ namespace FoxTrader.Views
 
         private void CalculatePositions()
         {
-            return;
+            var a_mapPosX = m_mapPosition.X - m_mapOffset.X;
+            var a_mapPosY = m_mapPosition.Y - m_mapOffset.Y;
 
-            if (m_mapPosition.X > 0)
+            if (a_mapPosX > 0)
             {
-                m_mapPosition.X = 0;
+                m_mapPosition.X = 0 + m_mapOffset.X;
             }
 
-            var a_xOffset = (kGalaxySizeMax * m_zoomLevel) * -1 + (Width - 100);
+            var a_xOffset = (kGalaxySizeMax * m_zoomLevel - m_mapOffset.X) * -1;
 
             if (m_mapPosition.X < a_xOffset)
             {
                 m_mapPosition.X = a_xOffset;
             }
 
-            if (m_mapPosition.Y > 0)
+            if (a_mapPosY > 0)
             {
-                m_mapPosition.Y = 0;
+                m_mapPosition.Y = 0 + m_mapOffset.Y;
             }
 
-            var a_yOffset = (kGalaxySizeMax * m_zoomLevel) * -1 + (Height - 100);
+            var a_yOffset = (kGalaxySizeMax * m_zoomLevel - m_mapOffset.Y) * -1;
 
             if (m_mapPosition.Y < a_yOffset)
             {
@@ -140,10 +185,16 @@ namespace FoxTrader.Views
         {
             base.Layout(c_skin);
 
+            if (m_zoomLabelString != I18N.GetString("ZoomLabel"))
+            {
+                m_zoomLabelString = I18N.GetString("ZoomLabel");
+            }
+
             CalculatePositions();
 
-            m_zoomLabel.Y = m_coordinateLabel.Y = Height - m_coordinateLabel.Height - 5;
+            m_zoomLabel.Y = m_coordinateLabel.Y = m_mousePositionLabel.Y = Height - m_coordinateLabel.Height - 5;
             Align.CenterHorizontally(m_coordinateLabel);
+            m_mousePositionLabel.X = Width - m_mousePositionLabel.Width - 5;
 
             m_mapOffset.X = Width / 2;
             m_mapOffset.Y = Height / 2;
@@ -153,24 +204,51 @@ namespace FoxTrader.Views
         {
             base.Render(c_skin);
 
+            c_skin.Renderer.DrawColor = Color.FromArgb(24, 128, 0, 0);
+
+            c_skin.Renderer.DrawFilledRect(Rectangle.FromLTRB(m_mapPosition.X, m_mapPosition.Y, m_mapPosition.X + (kGalaxySizeMax * m_zoomLevel), m_mapPosition.Y + (kGalaxySizeMax * m_zoomLevel)));
+
             c_skin.Renderer.DrawColor = Color.FromArgb(24, 255, 255, 255);
+
+            var a_mapPosX = m_mapPosition.X - m_mapOffset.X;
+            var a_mapPosY = m_mapPosition.Y - m_mapOffset.Y;
 
             var a_sectionSize = 16 * m_zoomLevel;
             var a_widthSections = Width / a_sectionSize + 4;
             var a_heightSections = Height / a_sectionSize + 2;
-            var a_yGridOffset = Math.Abs(m_mapPosition.Y % a_sectionSize) + 1;
-            var a_xGridOffset = Math.Abs(m_mapPosition.X % a_sectionSize) + 1;
+            var a_xGridOffset = Math.Abs(m_mapPosition.X) % a_sectionSize + 1;
+            var a_yGridOffset = Math.Abs(m_mapPosition.Y) % a_sectionSize + 1;
 
             for (var a_y = 0; a_y < a_widthSections; ++a_y)
             {
-                var a_yPos = a_y * a_sectionSize - a_xGridOffset;
+                int a_yPos;
+
+                if (m_mapPosition.X > 0)
+                {
+                    a_yPos = a_y * a_sectionSize + a_xGridOffset;
+                }
+                else
+                {
+                    a_yPos = a_y * a_sectionSize - a_xGridOffset;
+                }
+
                 var a_rect = Rectangle.FromLTRB(a_yPos, 0, a_yPos + 1, Height);
                 c_skin.Renderer.DrawFilledRect(a_rect);
             }
 
             for (var a_x = 0; a_x < a_heightSections; ++a_x)
             {
-                var a_xPos = a_x * a_sectionSize - a_yGridOffset;
+                int a_xPos;
+
+                if (m_mapPosition.Y > 0)
+                {
+                    a_xPos = a_x * a_sectionSize + a_yGridOffset;
+                }
+                else
+                {
+                    a_xPos = a_x * a_sectionSize - a_yGridOffset;
+                }
+
                 var a_rect = Rectangle.FromLTRB(0, a_xPos, Width, a_xPos + 1);
                 c_skin.Renderer.DrawFilledRect(a_rect);
             }
@@ -186,10 +264,13 @@ namespace FoxTrader.Views
                 var a_dotSize = 2 * m_zoomLevel;
 
                 c_skin.Renderer.DrawFilledRect(Rectangle.FromLTRB(a_offsetX, a_offsetY, a_offsetX + a_dotSize, a_offsetY + a_dotSize));
+
+                m_labelDictionary[a_gameGalaxy.Index].SetPosition(a_offsetX, a_offsetY - m_labelDictionary[a_gameGalaxy.Index].Height - 1);
             }
 
-            m_coordinateLabel.Text = $"X:{m_mapPosition.X}, Y:{m_mapPosition.Y}";
-            m_zoomLabel.Text = $"Zoom:{m_zoomLevel}";
+            m_coordinateLabel.Text = $"X:{Math.Abs(a_mapPosX)}, Y:{Math.Abs(a_mapPosY)}";
+            m_mousePositionLabel.Text = $"X:{m_mapOffset.X}, Y:{m_mapOffset.Y}";
+            m_zoomLabel.Text = $"{m_zoomLabelString}:{m_zoomLevel}x";
         }
     }
 }

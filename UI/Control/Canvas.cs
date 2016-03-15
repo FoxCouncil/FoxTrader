@@ -207,7 +207,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Handles mouse movement events. Called from Input subsystems</summary>
         /// <returns>True if handled</returns>
-        public bool Input_MouseMoved(int c_x, int c_y, int c_dx, int c_dy)
+        public bool Input_MouseMoved(MouseState c_mouseState, int c_x, int c_y, int c_dx, int c_dy)
         {
             if (IsHidden)
             {
@@ -236,7 +236,7 @@ namespace FoxTrader.UI.Control
                 return false;
             }
 
-            FoxTraderWindow.Instance.HoveredControl.InputMouseMoved(c_x, c_y, c_dx, c_dy);
+            FoxTraderWindow.Instance.HoveredControl.InputMouseMoved(c_mouseState, c_x, c_y, c_dx, c_dy);
             FoxTraderWindow.Instance.HoveredControl.UpdateCursor();
 
             DragAndDrop.OnMouseMoved(FoxTraderWindow.Instance.HoveredControl, c_x, c_y);

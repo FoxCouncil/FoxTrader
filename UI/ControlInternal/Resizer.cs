@@ -1,6 +1,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using FoxTrader.UI.Control;
+using OpenTK.Input;
 using static FoxTrader.Constants;
 
 namespace FoxTrader.UI.ControlInternal
@@ -57,7 +58,7 @@ namespace FoxTrader.UI.ControlInternal
         /// <param name="c_y">Y coordinate</param>
         /// <param name="c_dx">X change</param>
         /// <param name="c_dy">Y change</param>
-        protected override void OnMouseMoved(int c_x, int c_y, int c_dx, int c_dy)
+        protected override void OnMouseMoved(MouseState c_mouseState, int c_x, int c_y, int c_dx, int c_dy)
         {
             if (null == m_target)
             {

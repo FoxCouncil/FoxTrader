@@ -2,6 +2,7 @@ using System;
 using System.Drawing;
 using FoxTrader.UI.Platform;
 using FoxTrader.UI.Skin;
+using OpenTK.Input;
 using static FoxTrader.Constants;
 
 namespace FoxTrader.UI.Control
@@ -579,9 +580,9 @@ namespace FoxTrader.UI.Control
         /// <param name="c_y">Y coordinate</param>
         /// <param name="c_dx">X change</param>
         /// <param name="c_dy">Y change</param>
-        protected override void OnMouseMoved(int c_x, int c_y, int c_dx, int c_dy)
+        protected override void OnMouseMoved(MouseState c_mouseState, int c_x, int c_y, int c_dx, int c_dy)
         {
-            base.OnMouseMoved(c_x, c_y, c_dx, c_dy);
+            base.OnMouseMoved(c_mouseState, c_x, c_y, c_dx, c_dy);
 
             if (FoxTraderWindow.Instance.MouseFocus != this)
             {

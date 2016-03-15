@@ -107,7 +107,12 @@ namespace FoxTrader
             kNormalUIFontName + ',' + kNormalUIFontSize,
             "Arial,16",
             "Arial,20",
-            "pix Chicago,18"
+            "pix Chicago,18",
+            "pix Chicago,14",
+            "pix Chicago,12",
+            "pix Chicago,10",
+            "pix Chicago,8",
+            "pix Chicago,6",
         };
         public static readonly string kDefaultGameFontName = kDefaultGameFonts[0];
 

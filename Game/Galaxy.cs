@@ -6,11 +6,11 @@ namespace FoxTrader.Game
     class Galaxy : ITickable
     {
         private Universe m_universe;
-        private int m_index;
+        private readonly int m_index;
 
-        private string m_name;
+        private readonly string m_name;
 
-        private Vector3 m_position;
+        private readonly Vector3 m_position;
 
         private readonly List<System> m_systems;
 
@@ -31,6 +31,10 @@ namespace FoxTrader.Game
         }
 
         public Vector3 Position => m_position;
+
+        public int Index => m_index;
+
+        public string Name => m_name;
 
         public void Tick()
         {

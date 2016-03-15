@@ -610,9 +610,9 @@ namespace FoxTrader.UI.Control
         }
 
         /// <summary>Invokes mouse moved event (used by input system)</summary>
-        internal void InputMouseMoved(int c_x, int c_y, int c_dx, int c_dy)
+        internal void InputMouseMoved(MouseState c_mouseState, int c_x, int c_y, int c_dx, int c_dy)
         {
-            OnMouseMoved(c_x, c_y, c_dx, c_dy);
+            OnMouseMoved(c_mouseState, c_x, c_y, c_dx, c_dy);
         }
 
         /// <summary>Invokes left mouse click event (used by input system)</summary>
@@ -1719,7 +1719,7 @@ namespace FoxTrader.UI.Control
         /// <param name="c_y">Y coordinate</param>
         /// <param name="c_dx">X change</param>
         /// <param name="c_dy">Y change</param>
-        protected virtual void OnMouseMoved(int c_x, int c_y, int c_dx, int c_dy)
+        protected virtual void OnMouseMoved(MouseState c_mouseState, int c_x, int c_y, int c_dx, int c_dy)
         {
         }
 

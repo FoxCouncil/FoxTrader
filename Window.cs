@@ -447,7 +447,7 @@ namespace FoxTrader
                 m_mousePosition.X = a_mouseMoveEvent.X;
                 m_mousePosition.Y = a_mouseMoveEvent.Y;
 
-                m_canvas.Input_MouseMoved(m_mousePosition.X, m_mousePosition.Y, a_dx, a_dy);
+                m_canvas.Input_MouseMoved(a_mouseMoveEvent.Mouse, m_mousePosition.X, m_mousePosition.Y, a_dx, a_dy);
             }
             else if (c_mouseArgs is MouseButtonEventArgs)
             {

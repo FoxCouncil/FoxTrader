@@ -99,6 +99,11 @@
           <source>..\content\fonts\pixchicago.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</source>
           <target state="needs-review-translation">..\content\fonts\pixchicago.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</target>
         </trans-unit>
+        <trans-unit id="ZoomLabel" translate="yes" xml:space="preserve">
+          <source>Zoom</source>
+          <target state="new">Zoom</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Used to denote a maping zoom level</note>
+        </trans-unit>
       </group>
     </body>
   </file>
