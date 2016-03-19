@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace FoxTrader
 {
@@ -101,20 +102,10 @@ namespace FoxTrader
         public const int kMaxMouseButtons = 5;
 
         // Fonts
-        public const string kNormalUIFontName = "Arial";
+        public const string kNormalUIFontName = "Roboto";
         public const int kNormalUIFontSize = 12;
-        public static readonly string[] kDefaultGameFonts = {
-            kNormalUIFontName + ',' + kNormalUIFontSize,
-            "Arial,16",
-            "Arial,20",
-            "pix Chicago,18",
-            "pix Chicago,14",
-            "pix Chicago,12",
-            "pix Chicago,10",
-            "pix Chicago,8",
-            "pix Chicago,6",
-        };
-        public static readonly string kDefaultGameFontName = kDefaultGameFonts[0];
+        public static readonly List<string> kDefaultGameFonts = new List<string>();
+        public static readonly string kDefaultGameFontName = $"{kNormalUIFontName},{kNormalUIFontSize}";
 
         // Main Menu
         public const int kMainMenuButtonWidth = 420;

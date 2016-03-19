@@ -34,7 +34,7 @@ namespace FoxTrader.Views
 
             var a_assemblyVersion = Assembly.GetCallingAssembly().GetName().Version;
 
-            m_label = new Label(a_controlsParent) { AutoSizeToContents = true, Text = string.Format(I18N.GetString("GameTrademark"), a_assemblyVersion.Major + "." + a_assemblyVersion.Minor), Font = FoxTraderWindow.Instance.Renderer.GetFont("pix Chicago", 18) };
+            m_label = new Label(a_controlsParent) { AutoSizeToContents = true, Text = string.Format(I18N.GetString("GameTrademark"), a_assemblyVersion.Major + "." + a_assemblyVersion.Minor), Font = FoxTraderWindow.Instance.Renderer.GetFont("Roboto Black", 32) };
             m_label.MakeColorBright();
 
             m_buttonNewGame = new Button(a_controlsParent) { Text = I18N.GetString("NewGame") };

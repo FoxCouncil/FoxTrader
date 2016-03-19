@@ -187,11 +187,29 @@
     <value>FoxTrader™ V{0}</value>
     <comment>Used to denote the official name of the game in various locations.</comment>
   </data>
-  <data name="ttf_chicago" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\content\fonts\pixchicago.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="ZoomLabel" xml:space="preserve">
     <value>Zoom</value>
     <comment>Used to denote a maping zoom level</comment>
+  </data>
+  <data name="ttf_RobotoCondensed_Light" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\content\fonts\robotocondensed-light.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ttf_RobotoCondensed_Regular" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\content\fonts\robotocondensed-regular.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ttf_Roboto_Black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\content\fonts\roboto-black.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ttf_Roboto_Light" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\content\fonts\roboto-light.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ttf_Roboto_Medium" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\content\fonts\roboto-medium.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ttf_Roboto_Regular" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\content\fonts\roboto-regular.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ttf_Roboto_Thin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\content\fonts\roboto-thin.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

@@ -9,6 +9,7 @@ namespace FoxTrader
         [STAThread]
         static void Main()
         {
+            Log.Initialize();
             I18N.Initialize();
 
             using (m_gameWindow = new FoxTraderWindow())

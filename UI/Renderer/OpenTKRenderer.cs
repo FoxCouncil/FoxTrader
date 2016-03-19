@@ -1,11 +1,13 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Drawing.Text;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Resources;
 using System.Runtime.InteropServices;
 using OpenTK.Graphics.OpenGL;
 using PixelFormat = System.Drawing.Imaging.PixelFormat;
@@ -14,6 +16,8 @@ namespace FoxTrader.UI.Renderer
 {
     public class OpenTKRenderer : RendererBase
     {
+        private const string kLogName = "RENDER";
+
         private static int m_lastTextureID;
         private readonly Graphics m_graphicsContext; // TODO: Platformize...
 
@@ -383,15 +387,38 @@ namespace FoxTrader.UI.Renderer
             // Load Internal Fonts
             m_privateFontCollection = new PrivateFontCollection();
 
-            var a_chicagoFont = Properties.Resources.ttf_chicago;
+            ResourceSet a_resourceSet = Properties.Resources.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
 
-            var a_rawFontData = Marshal.AllocCoTaskMem(a_chicagoFont.Length);
+            foreach (DictionaryEntry a_entry in a_resourceSet)
+            {
+                var a_resourceKey = a_entry.Key.ToString();
 
-            Marshal.Copy(a_chicagoFont, 0, a_rawFontData, a_chicagoFont.Length);
+                if (!a_resourceKey.Substring(0, 4).Equals("ttf_"))
+                {
+                    continue;
+                }
 
-            m_privateFontCollection.AddMemoryFont(a_rawFontData, a_chicagoFont.Length);
+                Log.Info("Loading GameFont, " + a_resourceKey.Substring(4), kLogName);
 
-            Marshal.FreeCoTaskMem(a_rawFontData);
+                var a_fontResource = (byte[])a_entry.Value;
+
+                var a_rawFontData = Marshal.AllocCoTaskMem(a_fontResource.Length);
+
+                Marshal.Copy(a_fontResource, 0, a_rawFontData, a_fontResource.Length);
+
+                m_privateFontCollection.AddMemoryFont(a_rawFontData, a_fontResource.Length);
+
+                Marshal.FreeCoTaskMem(a_rawFontData);
+            }
+
+            foreach (var a_font in m_privateFontCollection.Families)
+            {
+                for (var a_fontSize = 8; a_fontSize <= 64; a_fontSize += 2)
+                {
+                    var a_fontString = $"{a_font.Name},{a_fontSize}";
+                    Constants.kDefaultGameFonts.Add(a_fontString);
+                }
+            }
 
             m_fontStore = new Dictionary<string, GameFont>();
 
@@ -445,7 +472,7 @@ namespace FoxTrader.UI.Renderer
 
         public override void LoadFont(GameFont c_font)
         {
-            Debug.Print("LoadFont {0}", c_font.FaceName);
+            Log.Info($"Loading Font, {c_font.FaceName}", kLogName);
 
             c_font.RealSize = c_font.Size * Scale;
             c_font.RendererData = GetSystemFont(c_font);
@@ -453,12 +480,12 @@ namespace FoxTrader.UI.Renderer
 
         public override void FreeFont(GameFont c_font)
         {
-            Debug.Print("FreeFont {0}", c_font.FaceName);
-
             if (!(c_font.RendererData is Font))
             {
                 return;
             }
+
+            Log.Info($"Disposing Font, {c_font.FaceName}", kLogName);
 
             ((Font)c_font.RendererData).Dispose();
 
@@ -467,7 +494,6 @@ namespace FoxTrader.UI.Renderer
 
         public override Point MeasureText(GameFont c_font, string c_text)
         {
-            //Debug.Print(String.Format("MeasureText '{0}'", text));
             var a_sysFont = c_font.RendererData as Font;
 
             if (a_sysFont == null || Math.Abs(c_font.RealSize - c_font.Size * Scale) > 2)
@@ -492,10 +518,6 @@ namespace FoxTrader.UI.Renderer
 
         public override void RenderText(GameFont c_font, Point c_position, string c_text)
         {
-            //Debug.Print(String.Format("RenderText {0}", font.FaceName));
-
-            // The DrawString(...) below will bind a new texture
-            // so make sure everything is rendered!
             Flush();
 
             var a_sysFont = c_font.RendererData as Font;
@@ -511,12 +533,9 @@ namespace FoxTrader.UI.Renderer
 
             if (!m_stringCache.ContainsKey(a_key))
             {
-                // not cached - create text renderer
-                // Debug.Print(String.Format("RenderText: caching \"{0}\", {1}", text, font.FaceName));
-
                 var a_size = MeasureText(c_font, c_text);
                 var a_tr = new TextRenderer(a_size.X, a_size.Y, this);
-                a_tr.DrawString(c_text, a_sysFont, Brushes.White, Point.Empty, m_stringFormat); // renders string on the texture
+                a_tr.DrawString(c_text, a_sysFont, Brushes.White, Point.Empty, m_stringFormat);
 
                 DrawTexturedRect(a_tr.Texture, new Rectangle(c_position.X, c_position.Y, a_tr.Texture.Width, a_tr.Texture.Height));
 
@@ -537,22 +556,22 @@ namespace FoxTrader.UI.Renderer
             switch (c_bitmap.PixelFormat)
             {
                 case PixelFormat.Format32bppArgb:
-                {
-                    a_lockFormat = PixelFormat.Format32bppArgb;
-                }
-                break;
+                    {
+                        a_lockFormat = PixelFormat.Format32bppArgb;
+                    }
+                    break;
 
                 case PixelFormat.Format24bppRgb:
-                {
-                    a_lockFormat = PixelFormat.Format32bppArgb;
-                }
-                break;
+                    {
+                        a_lockFormat = PixelFormat.Format32bppArgb;
+                    }
+                    break;
 
                 default:
-                {
-                    c_texture.Failed = true;
-                }
-                return;
+                    {
+                        c_texture.Failed = true;
+                    }
+                    return;
             }
 
             int a_glTexture;
@@ -572,9 +591,9 @@ namespace FoxTrader.UI.Renderer
             switch (a_lockFormat)
             {
                 case PixelFormat.Format32bppArgb:
-                GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, c_texture.Width, c_texture.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, a_data.Scan0);
-                break;
-                // invalid
+                    GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, c_texture.Width, c_texture.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, a_data.Scan0);
+                    break;
+                    // invalid
             }
 
             c_bitmap.UnlockBits(a_data);
