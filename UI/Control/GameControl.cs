@@ -1512,11 +1512,11 @@ namespace FoxTrader.UI.Control
 
             if (m_lastClickedTime[a_buttonIdx] < kMouseDoubleClickSpeed)
             {
-                OnDoubleClicked(c_mouseButtonEventArgs);
+                OnClicked(c_mouseButtonEventArgs);
             }
             else
             {
-                OnClicked(c_mouseButtonEventArgs);
+                OnDoubleClicked(c_mouseButtonEventArgs);
             }
 
             m_lastClickedTime[a_buttonIdx] = Neutral.GetTimeInSeconds();
@@ -1541,7 +1541,7 @@ namespace FoxTrader.UI.Control
             Redraw();
         }
 
-        internal virtual void OnMouseOut(MouseMoveEventArgs c_mouseEventArgs)
+        public virtual void OnMouseOut(MouseMoveEventArgs c_mouseEventArgs)
         {
             MouseOut?.Invoke(this, c_mouseEventArgs);
         }

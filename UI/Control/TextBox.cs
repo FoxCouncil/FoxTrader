@@ -1,7 +1,6 @@
 using System;
 using System.Drawing;
 using FoxTrader.UI.Platform;
-using FoxTrader.UI.Renderer;
 using FoxTrader.UI.Skin;
 using OpenTK.Input;
 using static FoxTrader.Constants;
@@ -392,7 +391,7 @@ namespace FoxTrader.UI.Control
 
                 default:
                 {
-                    var a_filteredCharacter = OpenTKRenderer.TranslateChar(c_keyboardKeyEventArgs.Key);
+                    var a_filteredCharacter = Renderer.TranslateChar(c_keyboardKeyEventArgs.Key);
 
                     if (a_filteredCharacter == '\t')
                     {

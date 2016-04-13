@@ -1,5 +1,4 @@
 using System.Drawing;
-using FoxTrader.UI.Renderer;
 
 namespace FoxTrader.UI.Skin.Texturing
 {
@@ -31,7 +30,7 @@ namespace FoxTrader.UI.Skin.Texturing
             Init(c_texture, c_x, c_y, c_w, c_h, c_inMargin, c_drawMarginScale);
         }
 
-        private void DrawRect(RendererBase c_render, int c_i, int c_x, int c_y, int c_w, int c_h)
+        private void DrawRect(Renderer c_render, int c_i, int c_x, int c_y, int c_w, int c_h)
         {
             c_render.DrawTexturedRect(m_texture, new Rectangle(c_x, c_y, c_w, c_h), m_rects[c_i].m_uv[0], m_rects[c_i].m_uv[1], m_rects[c_i].m_uv[2], m_rects[c_i].m_uv[3]);
         }
@@ -76,12 +75,12 @@ namespace FoxTrader.UI.Skin.Texturing
         }
 
         // can't have this as default param
-        public void Draw(RendererBase c_render, Rectangle c_r)
+        public void Draw(Renderer c_render, Rectangle c_r)
         {
             Draw(c_render, c_r, Color.White);
         }
 
-        public void Draw(RendererBase c_render, Rectangle c_r, Color c_col)
+        public void Draw(Renderer c_render, Rectangle c_r, Color c_col)
         {
             if (m_texture == null)
             {

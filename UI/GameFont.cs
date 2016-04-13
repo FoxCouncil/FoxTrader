@@ -1,15 +1,14 @@
 using System;
-using FoxTrader.UI.Renderer;
 
 namespace FoxTrader.UI
 {
     /// <summary>Represents font resource</summary>
     public class GameFont : IDisposable
     {
-        private readonly RendererBase m_renderer;
+        private readonly Renderer m_renderer;
 
         /// <summary>Initializes a new instance of the <see cref="GameFont" /> class</summary>
-        public GameFont(RendererBase c_renderer) : this(c_renderer, Constants.kNormalUIFontName, Constants.kNormalUIFontSize)
+        public GameFont(Renderer c_renderer) : this(c_renderer, Constants.kNormalUIFontName, Constants.kNormalUIFontSize)
         {
         }
 
@@ -17,7 +16,7 @@ namespace FoxTrader.UI
         /// <param name="c_renderer">Renderer to use</param>
         /// <param name="c_faceName">Face name</param>
         /// <param name="c_fontSize">Font size</param>
-        public GameFont(RendererBase c_renderer, string c_faceName, int c_fontSize = Constants.kNormalUIFontSize)
+        public GameFont(Renderer c_renderer, string c_faceName, int c_fontSize = Constants.kNormalUIFontSize)
         {
             m_renderer = c_renderer;
             FaceName = c_faceName;

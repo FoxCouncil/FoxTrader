@@ -27,7 +27,7 @@ namespace FoxTrader.UI.Control
             m_title = new TreeNodeLabel(this);
             m_title.Dock = Pos.Top;
             m_title.Margin = new Margin(16, 0, 0, 0);
-            m_title.DoubleClickedLeft += OnDoubleClickName;
+            m_title.DoubleClicked += OnDoubleClickName;
             m_title.Clicked += OnClickName;
 
             m_innerControl = new GameControl(this) { Dock = Pos.Top, Height = 100, Margin = new Margin(kTreeIndentation, 1, 0, 0) };

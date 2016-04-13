@@ -1,7 +1,6 @@
 using System;
 using System.Drawing;
 using FoxTrader.UI.Control;
-using FoxTrader.UI.Renderer;
 using static FoxTrader.Constants;
 
 namespace FoxTrader.UI.Skin
@@ -9,7 +8,7 @@ namespace FoxTrader.UI.Skin
     /// <summary>Base skin</summary>
     internal class SkinBase : IDisposable
     {
-        protected readonly RendererBase m_renderer;
+        protected readonly Renderer m_renderer;
 
         /// <summary>Colors of various UI elements</summary>
         public SkinColors m_colors;
@@ -18,7 +17,7 @@ namespace FoxTrader.UI.Skin
 
         /// <summary>Initializes a new instance of the <see cref="SkinBase" /> class</summary>
         /// <param name="c_renderer">Renderer to use</param>
-        protected SkinBase(RendererBase c_renderer)
+        protected SkinBase(Renderer c_renderer)
         {
             m_defaultFont = new GameFont(c_renderer);
             m_renderer = c_renderer;
@@ -39,7 +38,7 @@ namespace FoxTrader.UI.Skin
         }
 
         /// <summary>Renderer used</summary>
-        public RendererBase Renderer => m_renderer;
+        public Renderer Renderer => m_renderer;
 
         /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources</summary>
         public virtual void Dispose()

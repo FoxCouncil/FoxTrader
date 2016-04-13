@@ -214,9 +214,8 @@
     <Compile Include="UI\Margin.cs" />
     <Compile Include="UI\Padding.cs" />
     <Compile Include="UI\Platform\Neutral.cs" />
-    <Compile Include="UI\Renderer\OpenTKRenderer.cs" />
-    <Compile Include="UI\Renderer\RendererBase.cs" />
-    <Compile Include="UI\Renderer\TextRenderer.cs" />
+    <Compile Include="UI\Renderer.cs" />
+    <Compile Include="UI\TextRenderer.cs" />
     <Compile Include="UI\Skin\SimpleSkin.cs" />
     <Compile Include="UI\Skin\SkinBase.cs" />
     <Compile Include="UI\Skin\SkinColors.cs" />

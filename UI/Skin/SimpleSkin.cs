@@ -1,7 +1,6 @@
 using System;
 using System.Drawing;
 using FoxTrader.UI.Control;
-using FoxTrader.UI.Renderer;
 using static FoxTrader.Constants;
 
 namespace FoxTrader.UI.Skin
@@ -25,7 +24,7 @@ namespace FoxTrader.UI.Skin
         private readonly Color m_colToolTipBackground;
         private readonly Color m_colToolTipBorder;
 
-        public SimpleSkin(RendererBase c_renderer) : base(c_renderer)
+        public SimpleSkin(Renderer c_renderer) : base(c_renderer)
         {
             m_colBorderColor = Color.FromArgb(255, 80, 80, 80);
             //m_colBG = Color.FromArgb(255, 248, 248, 248);

@@ -21,10 +21,6 @@ namespace FoxTrader.UI.Control
             MouseInputEnabled = true;
             Alignment = Pos.Center;
             TextPadding = new Padding(3, 3, 3, 3);
-            MouseOut += (c_control, c_args) =>
-            {
-                GetCanvas().MouseFocus = null;
-            };
         }
 
         /// <summary>Indicates whether the button is depressed</summary>
@@ -87,12 +83,6 @@ namespace FoxTrader.UI.Control
             }
         }
 
-        /// <summary>Invoked when the button is pressed</summary>
-        internal event MouseButtonEventHandler Pressed;
-
-        /// <summary>Invoked when the button is released</summary>
-        internal event MouseButtonEventHandler Released;
-
         /// <summary>Invoked when the button's toggle state has changed</summary>
         internal event MouseButtonEventHandler Toggled;
 
@@ -101,9 +91,6 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Invoked when the button's toggle state has changed to Off</summary>
         internal event MouseButtonEventHandler ToggledOff;
-
-        /// <summary>Invoked when the button has been double clicked</summary>
-        internal event MouseButtonEventHandler DoubleClickedLeft;
 
         /// <summary>Toggles the button</summary>
         public virtual void Toggle()
@@ -189,6 +176,7 @@ namespace FoxTrader.UI.Control
         protected override void OnLayout(SkinBase c_skin)
         {
             base.OnLayout(c_skin);
+
             if (m_image != null)
             {
                 Align.CenterVertically(m_image);
@@ -200,9 +188,27 @@ namespace FoxTrader.UI.Control
             }
         }
 
-        /// <summary>Updates control colors</summary>
-        public override void UpdateColors()
+        public override void OnMouseDown(MouseButtonEventArgs c_mouseButtonEventArgs)
         {
+            base.OnMouseDown(c_mouseButtonEventArgs);
+
+            if (!IsDisabled)
+            {
+                m_isDepressed = true;
+            }
+        }
+
+        public override void OnMouseUp(MouseButtonEventArgs c_mouseButtonEventArgs)
+        {
+            base.OnMouseUp(c_mouseButtonEventArgs);
+
+            m_isDepressed = false;
+        }
+
+        public override void OnMouseMoved(MouseMoveEventArgs c_mouseEventArgs)
+        {
+            base.OnMouseMoved(c_mouseEventArgs);
+
             if (IsDisabled)
             {
                 TextColor = Skin.m_colors.m_button.m_disabled;
@@ -212,6 +218,7 @@ namespace FoxTrader.UI.Control
             if (IsDepressed || ToggleState)
             {
                 TextColor = Skin.m_colors.m_button.m_down;
+
                 return;
             }
 

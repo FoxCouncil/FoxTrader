@@ -13,9 +13,9 @@ using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 using PixelFormat = System.Drawing.Imaging.PixelFormat;
 
-namespace FoxTrader.UI.Renderer
+namespace FoxTrader.UI
 {
-    public class OpenTKRenderer : RendererBase
+    public class Renderer : IDisposable
     {
         private const string kLogName = "RENDER";
 
@@ -43,8 +43,11 @@ namespace FoxTrader.UI.Renderer
         private PrivateFontCollection m_privateFontCollection;
         private Dictionary<string, GameFont> m_fontStore;
 
-        public OpenTKRenderer(bool c_restoreRenderState = true)
+        public Renderer(bool c_restoreRenderState = true)
         {
+            RenderOffset = Point.Empty;
+            Scale = 1.0f;
+
             m_vertices = new Vertex[Constants.kMaxVertices];
             m_vertexSize = Marshal.SizeOf(m_vertices[0]);
             m_stringCache = new Dictionary<Tuple<string, GameFont>, TextRenderer>();
@@ -87,7 +90,7 @@ namespace FoxTrader.UI.Renderer
             private set;
         }
 
-        public override Color DrawColor
+        public Color DrawColor
         {
             get
             {
@@ -99,13 +102,13 @@ namespace FoxTrader.UI.Renderer
             }
         }
 
-        public override void Dispose()
+        public void Dispose()
         {
             FlushTextCache();
-            base.Dispose();
+            GC.SuppressFinalize(this);
         }
 
-        public override void Begin()
+        public void Begin()
         {
             if (m_restoreRenderState)
             {
@@ -138,7 +141,7 @@ namespace FoxTrader.UI.Renderer
             GL.EnableClientState(ArrayCap.TextureCoordArray);
         }
 
-        public override void End()
+        public void End()
         {
             Flush();
 
@@ -212,7 +215,7 @@ namespace FoxTrader.UI.Renderer
             VertexCount = 0;
         }
 
-        public override void DrawFilledRect(Rectangle c_rect)
+        public void DrawFilledRect(Rectangle c_rect)
         {
             if (m_textureEnabled)
             {
@@ -226,17 +229,17 @@ namespace FoxTrader.UI.Renderer
             DrawRect(c_rect);
         }
 
-        public override void StartClip()
+        public void StartClip()
         {
             m_clipEnabled = true;
         }
 
-        public override void EndClip()
+        public void EndClip()
         {
             m_clipEnabled = false;
         }
 
-        public override void DrawTexturedRect(Texture c_t, Rectangle c_rect, float c_u1 = 0, float c_v1 = 0, float c_u2 = 1, float c_v2 = 1)
+        public void DrawTexturedRect(Texture c_t, Rectangle c_rect, float c_u1 = 0, float c_v1 = 0, float c_u2 = 1, float c_v2 = 1)
         {
             // Missing image, not loaded properly?
             if (null == c_t.RendererData)
@@ -481,7 +484,7 @@ namespace FoxTrader.UI.Renderer
             return m_fontStore[Constants.kDefaultGameFontName];
         }
 
-        public override void LoadFont(GameFont c_font)
+        public void LoadFont(GameFont c_font)
         {
             Log.Info($"Loading Font, {c_font.FaceName}", kLogName);
 
@@ -489,7 +492,7 @@ namespace FoxTrader.UI.Renderer
             c_font.RendererData = GetSystemFont(c_font);
         }
 
-        public override void FreeFont(GameFont c_font)
+        public void FreeFont(GameFont c_font)
         {
             if (!(c_font.RendererData is Font))
             {
@@ -503,7 +506,7 @@ namespace FoxTrader.UI.Renderer
             c_font.RendererData = null;
         }
 
-        public override Point MeasureText(GameFont c_font, string c_text)
+        public Point MeasureText(GameFont c_font, string c_text)
         {
             var a_sysFont = c_font.RendererData as Font;
 
@@ -527,7 +530,7 @@ namespace FoxTrader.UI.Renderer
             return new Point((int)Math.Round(a_size.Width), (int)Math.Round(a_size.Height));
         }
 
-        public override void RenderText(GameFont c_font, Point c_position, string c_text)
+        public void RenderText(GameFont c_font, Point c_position, string c_text)
         {
             Flush();
 
@@ -612,7 +615,7 @@ namespace FoxTrader.UI.Renderer
             m_lastTextureID = a_glTexture;
         }
 
-        public override void LoadTexture(Texture c_t)
+        public void LoadTexture(Texture c_t)
         {
             Bitmap a_bmp;
 
@@ -630,7 +633,7 @@ namespace FoxTrader.UI.Renderer
             a_bmp.Dispose();
         }
 
-        public override void LoadTextureStream(Texture c_t, Stream c_data)
+        public void LoadTextureStream(Texture c_t, Stream c_data)
         {
             Bitmap a_bmp;
             try
@@ -647,7 +650,7 @@ namespace FoxTrader.UI.Renderer
             a_bmp.Dispose();
         }
 
-        public override void LoadTextureRaw(Texture c_t, byte[] c_pixelData)
+        public void LoadTextureRaw(Texture c_t, byte[] c_pixelData)
         {
             Bitmap a_bmp;
 
@@ -687,7 +690,7 @@ namespace FoxTrader.UI.Renderer
             a_bmp.Dispose();
         }
 
-        public override void FreeTexture(Texture c_t)
+        public void FreeTexture(Texture c_t)
         {
             if (c_t.RendererData == null)
             {
@@ -705,7 +708,7 @@ namespace FoxTrader.UI.Renderer
             c_t.RendererData = null;
         }
 
-        public override unsafe Color PixelColor(Texture c_texture, uint c_x, uint c_y, Color c_defaultColor)
+        public unsafe Color PixelColor(Texture c_texture, uint c_x, uint c_y, Color c_defaultColor)
         {
             if (c_texture.RendererData == null)
             {
@@ -735,6 +738,195 @@ namespace FoxTrader.UI.Renderer
             // data and then release later on? It's never called during runtime
             // - only during initialization.
             return a_pixel;
+        }
+
+        public float Scale
+        {
+            get;
+            set;
+        }
+
+        /// <summary>Rendering offset. No need to touch it usually</summary>
+        public Point RenderOffset
+        {
+            get;
+            set;
+        }
+
+        /// <summary>Clipping rectangle</summary>
+        public Rectangle ClipRegion
+        {
+            get;
+            set;
+        }
+
+        /// <summary>Indicates whether the clip region is visible</summary>
+        public bool ClipRegionVisible => ClipRegion.Width > 0 && ClipRegion.Height > 0;
+
+#if DEBUG
+        ~Renderer()
+        {
+            throw new InvalidOperationException($"IDisposable object finalized: {GetType()}");
+            //Debug.Print(String.Format("IDisposable object finalized: {0}", GetType()));
+        }
+#endif
+        /// <summary>Draws a line</summary>
+        /// <param name="c_x"></param>
+        /// <param name="c_y"></param>
+        /// <param name="c_a"></param>
+        /// <param name="c_b"></param>
+        public virtual void DrawLine(int c_x, int c_y, int c_a, int c_b)
+        {
+
+        }
+
+        /// <summary>Draws "missing image" default texture</summary>
+        /// <param name="c_rect">Target rectangle</param>
+        public virtual void DrawMissingImage(Rectangle c_rect)
+        {
+            //DrawColor = Color.FromArgb(255, rnd.Next(0,255), rnd.Next(0,255), rnd.Next(0, 255));
+            DrawColor = Color.Red;
+            DrawFilledRect(c_rect);
+        }
+
+        /// <summary>Draws a lined rectangle. Used for keyboard focus overlay</summary>
+        /// <param name="c_rect">Target rectangle</param>
+        public virtual void DrawLinedRect(Rectangle c_rect)
+        {
+            DrawFilledRect(new Rectangle(c_rect.X, c_rect.Y, c_rect.Width, 1));
+            DrawFilledRect(new Rectangle(c_rect.X, c_rect.Y + c_rect.Height - 1, c_rect.Width, 1));
+
+            DrawFilledRect(new Rectangle(c_rect.X, c_rect.Y, 1, c_rect.Height));
+            DrawFilledRect(new Rectangle(c_rect.X + c_rect.Width - 1, c_rect.Y, 1, c_rect.Height));
+        }
+
+        /// <summary>Draws a single pixel. Very slow, do not use</summary>
+        /// <param name="c_x">X</param>
+        /// <param name="c_y">Y</param>
+        public virtual void DrawPixel(int c_x, int c_y)
+        {
+            DrawFilledRect(new Rectangle(c_x, c_y, 1, 1));
+        }
+
+        /// <summary>Gets pixel color of a specified texture. Slow</summary>
+        /// <param name="c_texture">Texture</param>
+        /// <param name="c_x">X</param>
+        /// <param name="c_y">Y</param>
+        /// <returns>Pixel color</returns>
+        public virtual Color PixelColor(Texture c_texture, uint c_x, uint c_y)
+        {
+            return PixelColor(c_texture, c_x, c_y, Color.White);
+        }
+
+        /// <summary>Draws a round-corner rectangle</summary>
+        /// <param name="c_rect">Target rectangle</param>
+        /// <param name="c_slight"></param>
+        public virtual void DrawShavedCornerRect(Rectangle c_rect, bool c_slight = false)
+        {
+            // Draw INSIDE the w/h.
+            c_rect.Width -= 1;
+            c_rect.Height -= 1;
+
+            if (c_slight)
+            {
+                DrawFilledRect(new Rectangle(c_rect.X + 1, c_rect.Y, c_rect.Width - 1, 1));
+                DrawFilledRect(new Rectangle(c_rect.X + 1, c_rect.Y + c_rect.Height, c_rect.Width - 1, 1));
+
+                DrawFilledRect(new Rectangle(c_rect.X, c_rect.Y + 1, 1, c_rect.Height - 1));
+                DrawFilledRect(new Rectangle(c_rect.X + c_rect.Width, c_rect.Y + 1, 1, c_rect.Height - 1));
+                return;
+            }
+
+            DrawPixel(c_rect.X + 1, c_rect.Y + 1);
+            DrawPixel(c_rect.X + c_rect.Width - 1, c_rect.Y + 1);
+
+            DrawPixel(c_rect.X + 1, c_rect.Y + c_rect.Height - 1);
+            DrawPixel(c_rect.X + c_rect.Width - 1, c_rect.Y + c_rect.Height - 1);
+
+            DrawFilledRect(new Rectangle(c_rect.X + 2, c_rect.Y, c_rect.Width - 3, 1));
+            DrawFilledRect(new Rectangle(c_rect.X + 2, c_rect.Y + c_rect.Height, c_rect.Width - 3, 1));
+
+            DrawFilledRect(new Rectangle(c_rect.X, c_rect.Y + 2, 1, c_rect.Height - 3));
+            DrawFilledRect(new Rectangle(c_rect.X + c_rect.Width, c_rect.Y + 2, 1, c_rect.Height - 3));
+        }
+
+        private int TranslateX(int c_x)
+        {
+            var a_x1 = c_x + RenderOffset.X;
+            return Util.Round(a_x1 * Scale);
+        }
+
+        private int TranslateY(int c_y)
+        {
+            var a_y1 = c_y + RenderOffset.Y;
+            return Util.Round(a_y1 * Scale);
+        }
+
+        /// <summary>Translates a panel's local drawing coordinate into view space, taking offsets into account</summary>
+        /// <param name="c_x"></param>
+        /// <param name="c_y"></param>
+        public void Translate(ref int c_x, ref int c_y)
+        {
+            c_x += RenderOffset.X;
+            c_y += RenderOffset.Y;
+
+            c_x = Util.Round(c_x * Scale);
+            c_y = Util.Round(c_y * Scale);
+        }
+
+        /// <summary>Translates a panel's local drawing coordinate into view space, taking offsets into account</summary>
+        public Point Translate(Point c_p)
+        {
+            var a_x = c_p.X;
+            var a_y = c_p.Y;
+            Translate(ref a_x, ref a_y);
+            return new Point(a_x, a_y);
+        }
+
+        /// <summary>Translates a panel's local drawing coordinate into view space, taking offsets into account</summary>
+        public Rectangle Translate(Rectangle c_rect)
+        {
+            return new Rectangle(TranslateX(c_rect.X), TranslateY(c_rect.Y), Util.Round(c_rect.Width * Scale), Util.Round(c_rect.Height * Scale));
+        }
+
+        /// <summary>Adds a point to the render offset</summary>
+        /// <param name="c_offset">Point to add</param>
+        public void AddRenderOffset(Rectangle c_offset)
+        {
+            RenderOffset = new Point(RenderOffset.X + c_offset.X, RenderOffset.Y + c_offset.Y);
+        }
+
+        /// <summary>Adds a rectangle to the clipping region</summary>
+        /// <param name="c_rect">Rectangle to add</param>
+        public void AddClipRegion(Rectangle c_rect)
+        {
+            c_rect.X = RenderOffset.X;
+            c_rect.Y = RenderOffset.Y;
+
+            var a_r = c_rect;
+            if (c_rect.X < ClipRegion.X)
+            {
+                a_r.Width -= (ClipRegion.X - a_r.X);
+                a_r.X = ClipRegion.X;
+            }
+
+            if (c_rect.Y < ClipRegion.Y)
+            {
+                a_r.Height -= (ClipRegion.Y - a_r.Y);
+                a_r.Y = ClipRegion.Y;
+            }
+
+            if (c_rect.Right > ClipRegion.Right)
+            {
+                a_r.Width = ClipRegion.Right - a_r.X;
+            }
+
+            if (c_rect.Bottom > ClipRegion.Bottom)
+            {
+                a_r.Height = ClipRegion.Bottom - a_r.Y;
+            }
+
+            ClipRegion = a_r;
         }
     }
 }

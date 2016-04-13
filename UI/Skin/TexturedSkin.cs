@@ -1,7 +1,6 @@
 using System.Drawing;
 using System.IO;
 using FoxTrader.UI.Control;
-using FoxTrader.UI.Renderer;
 using FoxTrader.UI.Skin.Texturing;
 using static FoxTrader.Constants;
 
@@ -277,7 +276,7 @@ namespace FoxTrader.UI.Skin
         /// <summary>Initializes a new instance of the <see cref="TexturedSkin" /> class</summary>
         /// <param name="c_renderer">Renderer to use</param>
         /// <param name="c_textureName">Name of the skin texture map</param>
-        public TexturedSkin(RendererBase c_renderer, string c_textureName) : base(c_renderer)
+        public TexturedSkin(Renderer c_renderer, string c_textureName) : base(c_renderer)
         {
             m_texture = new Texture(Renderer);
             m_texture.Load(c_textureName);
@@ -286,7 +285,7 @@ namespace FoxTrader.UI.Skin
             InitializeTextures();
         }
 
-        public TexturedSkin(RendererBase c_renderer, Stream c_textureData) : base(c_renderer)
+        public TexturedSkin(Renderer c_renderer, Stream c_textureData) : base(c_renderer)
         {
             m_texture = new Texture(Renderer);
             m_texture.LoadStream(c_textureData);

@@ -1,17 +1,16 @@
 using System;
 using System.IO;
-using FoxTrader.UI.Renderer;
 
 namespace FoxTrader.UI
 {
     /// <summary>Represents a texture</summary>
     public class Texture : IDisposable
     {
-        private readonly RendererBase m_renderer;
+        private readonly Renderer m_renderer;
 
         /// <summary>Initializes a new instance of the <see cref="Texture" /> class</summary>
         /// <param name="c_renderer">Renderer to use</param>
-        public Texture(RendererBase c_renderer)
+        public Texture(Renderer c_renderer)
         {
             m_renderer = c_renderer;
             Width = 4;

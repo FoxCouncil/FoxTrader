@@ -7,7 +7,6 @@ using FoxTrader.Game;
 using FoxTrader.UI;
 using FoxTrader.UI.Control;
 using FoxTrader.UI.Input;
-using FoxTrader.UI.Renderer;
 using FoxTrader.UI.Skin;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
@@ -36,7 +35,7 @@ namespace FoxTrader
 
         private static readonly object m_windowContextLock = new object();
 
-        public OpenTKRenderer Renderer
+        public Renderer Renderer
         {
             get;
             private set;
@@ -129,7 +128,7 @@ namespace FoxTrader
 
             GL.ClearColor(Color.Black);
 
-            Renderer = new OpenTKRenderer();
+            Renderer = new Renderer();
 
             m_skin = new TexturedSkin(Renderer, "png_FoxTraderSkin") { DefaultFont = Renderer.GetFont(kDefaultGameFontName) };
 
@@ -572,7 +571,7 @@ namespace FoxTrader
 
         internal bool OnMouseClicked(int c_mouseButton, bool c_isButtonDown)
         {
-           
+
         }*/
 
         public override void Dispose()
