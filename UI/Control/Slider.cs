@@ -2,6 +2,7 @@ using System;
 using System.Drawing;
 using FoxTrader.UI.ControlInternal;
 using FoxTrader.UI.Skin;
+using OpenTK.Input;
 
 namespace FoxTrader.UI.Control
 {
@@ -119,90 +120,36 @@ namespace FoxTrader.UI.Control
         /// <summary>Invoked when the value has been changed</summary>
         public event ValueEventHandler ValueChanged;
 
-        /// <summary>Handler for Right Arrow keyboard event</summary>
-        /// <param name="c_isButtonDown">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected override bool OnKeyRight(bool c_isButtonDown)
+        public override void OnKeyDown(KeyboardKeyEventArgs c_keyboardKeyEventArgs)
         {
-            if (c_isButtonDown)
+            switch (c_keyboardKeyEventArgs.Key)
             {
-                Value = Value + 1;
+                case Key.Right:
+                case Key.Up:
+                {
+                    Value = Value + 1;
+                }
+                break;
+
+                case Key.Left:
+                case Key.Down:
+                {
+                    Value = Value - 1;
+                }
+                break;
+
+                case Key.Home:
+                {
+                    Value = m_min;
+                }
+                break;
+
+                case Key.End:
+                {
+                    Value = m_max;
+                }
+                break;
             }
-
-            return true;
-        }
-
-        /// <summary>Handler for Up Arrow keyboard event</summary>
-        /// <param name="c_down">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected override bool OnKeyUp(bool c_down)
-        {
-            if (c_down)
-            {
-                Value = Value + 1;
-            }
-
-            return true;
-        }
-
-        /// <summary>Handler for Left Arrow keyboard event</summary>
-        /// <param name="c_isButtonDown">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected override bool OnKeyLeft(bool c_isButtonDown)
-        {
-            if (c_isButtonDown)
-            {
-                Value = Value - 1;
-            }
-
-            return true;
-        }
-
-        /// <summary>Handler for Down Arrow keyboard event</summary>
-        /// <param name="c_down">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected override bool OnKeyDown(bool c_down)
-        {
-            if (c_down)
-            {
-                Value = Value - 1;
-            }
-
-            return true;
-        }
-
-        /// <summary>Handler for Home keyboard event</summary>
-        /// <param name="c_isButtonDown">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected override bool OnKeyHome(bool c_isButtonDown)
-        {
-            if (c_isButtonDown)
-            {
-                Value = m_min;
-            }
-
-            return true;
-        }
-
-        /// <summary>Handler for End keyboard event</summary>
-        /// <param name="c_isButtonDown">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected override bool OnKeyEnd(bool c_isButtonDown)
-        {
-            if (c_isButtonDown)
-            {
-                Value = m_max;
-            }
-
-            return true;
-        }
-
-        /// <summary>Handler invoked on mouse click (left) event</summary>
-        /// <param name="c_x">X coordinate</param>
-        /// <param name="c_y">Y coordinate</param>
-        /// <param name="c_down">If set to <c>true</c> mouse button is down</param>
-        protected override void OnMouseClickedLeft(int c_x, int c_y, bool c_down)
-        {
         }
 
         protected virtual void OnMoved(GameControl c_control)
@@ -231,10 +178,7 @@ namespace FoxTrader.UI.Control
             {
                 m_value = c_value;
 
-                if (ValueChanged != null)
-                {
-                    ValueChanged.Invoke(this);
-                }
+                ValueChanged?.Invoke(this);
             }
 
             UpdateBarFromValue();
@@ -253,7 +197,7 @@ namespace FoxTrader.UI.Control
         /// <param name="c_skin">Skin to use</param>
         protected override void RenderFocus(SkinBase c_skin)
         {
-            if (FoxTraderWindow.Instance.KeyboardFocus != this || !IsTabable)
+            if (GetCanvas().KeyboardFocus != this || !IsTabable)
             {
                 return;
             }

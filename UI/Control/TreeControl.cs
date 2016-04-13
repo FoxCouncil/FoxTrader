@@ -1,5 +1,6 @@
 using System.Drawing;
 using FoxTrader.UI.Skin;
+using OpenTK.Input;
 using static FoxTrader.Constants;
 
 namespace FoxTrader.UI.Control
@@ -78,7 +79,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Handler for node selected event</summary>
         /// <param name="c_control">Node selected</param>
-        protected virtual void OnNodeSelected(GameControl c_control)
+        protected virtual void OnNodeSelected(GameControl c_control, MouseButtonEventArgs c_args)
         {
             if (!AllowMultiSelect /*|| InputHandler.InputHandler.IsKeyDown(Key.Control)*/)
             {

@@ -509,6 +509,7 @@ namespace FoxTrader.UI.Skin
                 m_textures.m_input.m_button.m_hovered.Draw(Renderer, c_control.RenderBounds);
                 return;
             }
+
             m_textures.m_input.m_button.m_normal.Draw(Renderer, c_control.RenderBounds);
         }
 

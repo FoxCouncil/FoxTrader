@@ -1,6 +1,7 @@
 using System.Drawing;
 using FoxTrader.UI.ControlInternal;
 using FoxTrader.UI.Skin;
+using OpenTK.Input;
 using static FoxTrader.Constants;
 
 namespace FoxTrader.UI.Control
@@ -138,17 +139,17 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Lays out the control's interior according to alignment, padding, dock etc</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void Layout(SkinBase c_skin)
+        protected override void OnLayout(SkinBase c_skin)
         {
             if (m_submenuArrow != null)
             {
                 m_submenuArrow.SetRelativePosition(Pos.Right | Pos.CenterV, 4, 0);
             }
-            base.Layout(c_skin);
+            base.OnLayout(c_skin);
         }
 
         /// <summary>Internal OnPressed implementation</summary>
-        protected override void OnClicked()
+        public override void OnClicked(MouseButtonEventArgs c_mouseButtonEventArgs)
         {
             if (m_menu != null)
             {
@@ -157,13 +158,11 @@ namespace FoxTrader.UI.Control
             else if (!IsOnStrip)
             {
                 IsChecked = !IsChecked;
-                if (Selected != null)
-                {
-                    Selected.Invoke(this);
-                }
+                Selected?.Invoke(this);
                 GetCanvas().CloseMenus();
             }
-            base.OnClicked();
+
+            base.OnClicked(c_mouseButtonEventArgs);
         }
 
         /// <summary>Toggles the menu open state</summary>

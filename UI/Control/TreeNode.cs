@@ -1,6 +1,7 @@
 using System.Linq;
 using FoxTrader.UI.ControlInternal;
 using FoxTrader.UI.Skin;
+using OpenTK.Input;
 using static FoxTrader.Constants;
 
 namespace FoxTrader.UI.Control
@@ -141,7 +142,7 @@ namespace FoxTrader.UI.Control
         }
 
         /// <summary>Invoked when the node label has been pressed</summary>
-        public event ButtonEventHandler LabelPressed;
+        public event MouseButtonEventHandler LabelPressed;
 
         /// <summary>Invoked when the node's selected state has changed</summary>
         public event SelectionEventHandler SelectionChanged;
@@ -173,7 +174,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Lays out the control's interior according to alignment, padding, dock etc</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void Layout(SkinBase c_skin)
+        protected override void OnLayout(SkinBase c_skin)
         {
             if (m_toggleButton != null)
             {
@@ -195,7 +196,7 @@ namespace FoxTrader.UI.Control
                 }
             }
 
-            base.Layout(c_skin);
+            base.OnLayout(c_skin);
         }
 
         /// <summary>Function invoked after layout</summary>
@@ -306,7 +307,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Handler for the toggle button</summary>
         /// <param name="c_control">Event source</param>
-        protected virtual void OnToggleButtonPress(GameControl c_control)
+        protected virtual void OnToggleButtonPress(GameControl c_control, MouseButtonEventArgs c_args)
         {
             if (m_toggleButton.ToggleState)
             {
@@ -320,7 +321,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Handler for label double click</summary>
         /// <param name="c_control">Event source</param>
-        protected virtual void OnDoubleClickName(GameControl c_control)
+        protected virtual void OnDoubleClickName(GameControl c_control, MouseButtonEventArgs c_args)
         {
             if (!m_toggleButton.IsVisible)
             {
@@ -331,12 +332,9 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Handler for label click</summary>
         /// <param name="c_control">Event source</param>
-        protected virtual void OnClickName(GameControl c_control)
+        protected virtual void OnClickName(GameControl c_control, MouseButtonEventArgs c_args)
         {
-            if (LabelPressed != null)
-            {
-                LabelPressed.Invoke(this);
-            }
+            LabelPressed?.Invoke(this, c_args);
             IsSelected = !IsSelected;
         }
     }

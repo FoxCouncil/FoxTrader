@@ -1,5 +1,5 @@
-using System.Drawing;
 using FoxTrader.UI.Skin;
+using OpenTK.Input;
 using static FoxTrader.Constants;
 
 namespace FoxTrader.UI.Control
@@ -59,9 +59,9 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Lays out the control's interior according to alignment, padding, dock etc</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void Layout(SkinBase c_skin)
+        protected override void OnLayout(SkinBase c_skin)
         {
-            base.Layout(c_skin);
+            base.OnLayout(c_skin);
 
             m_scrollButton[0].Height = Width;
             m_scrollButton[0].Dock = Pos.Top;
@@ -94,7 +94,7 @@ namespace FoxTrader.UI.Control
             }
         }
 
-        public virtual void NudgeUp(GameControl c_control)
+        public virtual void NudgeUp(GameControl c_control, MouseButtonEventArgs c_args)
         {
             if (!IsDisabled)
             {
@@ -102,7 +102,7 @@ namespace FoxTrader.UI.Control
             }
         }
 
-        public virtual void NudgeDown(GameControl c_control)
+        public virtual void NudgeDown(GameControl c_control, MouseButtonEventArgs c_args)
         {
             if (!IsDisabled)
             {
@@ -120,34 +120,30 @@ namespace FoxTrader.UI.Control
             SetScrollAmount(1, true);
         }
 
-        /// <summary>Handler invoked on mouse click (left) event</summary>
-        /// <param name="c_x">X coordinate</param>
-        /// <param name="c_y">Y coordinate</param>
-        /// <param name="c_down">If set to <c>true</c> mouse button is down</param>
-        protected override void OnMouseClickedLeft(int c_x, int c_y, bool c_down)
+        public override void OnMouseDown(MouseButtonEventArgs c_mouseButtonEventArgs)
         {
-            if (c_down)
+            m_isDepressed = true;
+            GetCanvas().MouseFocus = this;
+        }
+
+        public override void OnMouseUp(MouseButtonEventArgs c_mouseButtonEventArgs)
+        {
+            base.OnMouseUp(c_mouseButtonEventArgs);
+
+            var a_clickPosition = CanvasPosToLocal(c_mouseButtonEventArgs.Position);
+
+            if (a_clickPosition.Y < m_bar.Y)
             {
-                m_isDepressed = true;
-                FoxTraderWindow.Instance.MouseFocus = this;
+                NudgeUp(this, c_mouseButtonEventArgs);
             }
-            else
+            else if (a_clickPosition.Y > m_bar.Y + m_bar.Height)
             {
-                var a_clickPosition = CanvasPosToLocal(new Point(c_x, c_y));
-
-                if (a_clickPosition.Y < m_bar.Y)
-                {
-                    NudgeUp(this);
-                }
-                else if (a_clickPosition.Y > m_bar.Y + m_bar.Height)
-                {
-                    NudgeDown(this);
-                }
-
-                m_isDepressed = false;
-
-                FoxTraderWindow.Instance.MouseFocus = null;
+                NudgeDown(this, c_mouseButtonEventArgs);
             }
+
+            m_isDepressed = false;
+
+            GetCanvas().MouseFocus = null;
         }
 
         protected override float CalculateScrolledAmount()

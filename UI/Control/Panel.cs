@@ -78,15 +78,6 @@ namespace FoxTrader.UI.Control
             }
         }
 
-        /// <summary>Handler for Space keyboard event</summary>
-        /// <param name="c_down">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected override bool OnKeySpace(bool c_down)
-        {
-            // No action on space (default button action is to press)
-            return false;
-        }
-
         /// <summary>Initializes an inner docked control for the specified position</summary>
         /// <param name="c_pos">Dock position</param>
         protected virtual void SetupChildPanel(Pos c_pos)
@@ -149,40 +140,40 @@ namespace FoxTrader.UI.Control
             switch (c_pos)
             {
                 case Pos.Left:
-                if (m_left == null)
-                {
-                    m_left = new Panel(this);
-                    m_left.SetupChildPanel(c_pos);
-                }
-                a_dock = m_left;
-                break;
+                    if (m_left == null)
+                    {
+                        m_left = new Panel(this);
+                        m_left.SetupChildPanel(c_pos);
+                    }
+                    a_dock = m_left;
+                    break;
 
                 case Pos.Right:
-                if (m_right == null)
-                {
-                    m_right = new Panel(this);
-                    m_right.SetupChildPanel(c_pos);
-                }
-                a_dock = m_right;
-                break;
+                    if (m_right == null)
+                    {
+                        m_right = new Panel(this);
+                        m_right.SetupChildPanel(c_pos);
+                    }
+                    a_dock = m_right;
+                    break;
 
                 case Pos.Top:
-                if (m_top == null)
-                {
-                    m_top = new Panel(this);
-                    m_top.SetupChildPanel(c_pos);
-                }
-                a_dock = m_top;
-                break;
+                    if (m_top == null)
+                    {
+                        m_top = new Panel(this);
+                        m_top.SetupChildPanel(c_pos);
+                    }
+                    a_dock = m_top;
+                    break;
 
                 case Pos.Bottom:
-                if (m_bottom == null)
-                {
-                    m_bottom = new Panel(this);
-                    m_bottom.SetupChildPanel(c_pos);
-                }
-                a_dock = m_bottom;
-                break;
+                    if (m_bottom == null)
+                    {
+                        m_bottom = new Panel(this);
+                        m_bottom.SetupChildPanel(c_pos);
+                    }
+                    a_dock = m_bottom;
+                    break;
             }
 
             if (a_dock != null)

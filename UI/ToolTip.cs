@@ -1,5 +1,7 @@
+using System.Drawing;
 using FoxTrader.UI.Control;
 using FoxTrader.UI.Skin;
+using OpenTK.Input;
 
 namespace FoxTrader.UI
 {
@@ -43,7 +45,7 @@ namespace FoxTrader.UI
             {
                 var a_render = c_skin.Renderer;
                 var a_oldRenderOffset = a_render.RenderOffset;
-                var a_mousePos = FoxTraderWindow.Instance.MousePosition;
+                var a_mousePos = new Point(Mouse.GetState().X, Mouse.GetState().Y);
                 var a_bounds = m_toolTip.ToolTip.Bounds;
                 var a_offset = Util.FloatRect(a_mousePos.X - a_bounds.Width * 0.5f, a_mousePos.Y - a_bounds.Height - 10, a_bounds.Width, a_bounds.Height);
 

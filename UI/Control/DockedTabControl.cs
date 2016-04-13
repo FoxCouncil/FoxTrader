@@ -35,11 +35,11 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Lays out the control's interior according to alignment, padding, dock etc</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void Layout(SkinBase c_skin)
+        protected override void OnLayout(SkinBase c_skin)
         {
             TabStrip.IsHidden = (TabCount <= 1);
             UpdateTitleBar();
-            base.Layout(c_skin);
+            base.OnLayout(c_skin);
         }
 
         private void UpdateTitleBar()

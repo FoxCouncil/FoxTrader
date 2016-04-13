@@ -1,6 +1,7 @@
 using System.Drawing;
 using FoxTrader.UI.Control.Layout;
 using FoxTrader.UI.Skin;
+using OpenTK.Input;
 
 namespace FoxTrader.UI.Control
 {
@@ -39,13 +40,9 @@ namespace FoxTrader.UI.Control
             c_skin.DrawListBoxLine(this, IsSelected, EvenRow);
         }
 
-        /// <summary>Handler invoked on mouse click (left) event</summary>
-        /// <param name="c_x">X coordinate</param>
-        /// <param name="c_y">Y coordinate</param>
-        /// <param name="c_down">If set to <c>true</c> mouse button is down</param>
-        protected override void OnMouseClickedLeft(int c_x, int c_y, bool c_down)
+        public override void OnClicked(MouseButtonEventArgs c_mouseButtonEventArgs)
         {
-            if (c_down)
+            if (c_mouseButtonEventArgs.IsPressed)
             {
                 OnRowSelected();
             }

@@ -8,13 +8,12 @@ namespace FoxTrader
         public const long kDefaultPlayerMoney = 1000; // Kayne West, eat your heart out!
         public const int kDefaultTimeDilation = 100;  // 88 Gigawatts
         public const int kDefaultFluxCapacitance = 500;  // Marty!
-        public const int kUniverseSizeMax = 255;  // In All Directions
+        public const int kUniverseSizeMax = 2048;  // In All Directions
         public const int kGalaxiesMax = 256;  // Total Galaxies Max
-        public const int kGalaxySizeMax = 2048;  // In All Directions
+        public const int kGalaxySizeMax = 1024;  // In All Directions
         public const int kSystemsMax = 42;   // Total Systems Max
-        public const int kSystemSizeMax = 255;  // In All Directions
+        public const int kSystemSizeMax = 256;  // In All Directions
         public const int kPlanetoidsMax = 16;   // 16 + 1 Sun
-        public const int kPlanetoidSizeMax = 16;   // In Two Directions
 
         public const string kDefaultPlayerName = "Fox";
 
@@ -103,7 +102,7 @@ namespace FoxTrader
 
         // Fonts
         public const string kNormalUIFontName = "Roboto";
-        public const int kNormalUIFontSize = 12;
+        public const int kNormalUIFontSize = 14;
         public static readonly List<string> kDefaultGameFonts = new List<string>();
         public static readonly string kDefaultGameFontName = $"{kNormalUIFontName},{kNormalUIFontSize}";
 

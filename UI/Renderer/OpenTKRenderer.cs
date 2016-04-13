@@ -10,6 +10,7 @@ using System.Linq;
 using System.Resources;
 using System.Runtime.InteropServices;
 using OpenTK.Graphics.OpenGL;
+using OpenTK.Input;
 using PixelFormat = System.Drawing.Imaging.PixelFormat;
 
 namespace FoxTrader.UI.Renderer
@@ -53,6 +54,16 @@ namespace FoxTrader.UI.Renderer
             m_restoreRenderState = c_restoreRenderState;
 
             InitFonts();
+        }
+
+        public static char TranslateChar(Key c_key)
+        {
+            if (c_key >= Key.A && c_key <= Key.Z)
+            {
+                return (char)('a' + ((int)c_key - (int)Key.A));
+            }
+
+            return ' ';
         }
 
         /// <summary>Returns number of cached strings in the text cache</summary>
@@ -435,10 +446,10 @@ namespace FoxTrader.UI.Renderer
 
             if (a_customFontFamily != null)
             {
-                return new Font(a_customFontFamily, c_gameFont.Size);
+                return new Font(a_customFontFamily, c_gameFont.Size, GraphicsUnit.Pixel);
             }
 
-            return new Font(c_gameFont.FaceName, c_gameFont.Size);
+            return new Font(c_gameFont.FaceName, c_gameFont.Size, GraphicsUnit.Pixel);
         }
 
         public GameFont GetFont(string c_fontNameFormatted)
@@ -556,22 +567,22 @@ namespace FoxTrader.UI.Renderer
             switch (c_bitmap.PixelFormat)
             {
                 case PixelFormat.Format32bppArgb:
-                    {
-                        a_lockFormat = PixelFormat.Format32bppArgb;
-                    }
-                    break;
+                {
+                    a_lockFormat = PixelFormat.Format32bppArgb;
+                }
+                break;
 
                 case PixelFormat.Format24bppRgb:
-                    {
-                        a_lockFormat = PixelFormat.Format32bppArgb;
-                    }
-                    break;
+                {
+                    a_lockFormat = PixelFormat.Format32bppArgb;
+                }
+                break;
 
                 default:
-                    {
-                        c_texture.Failed = true;
-                    }
-                    return;
+                {
+                    c_texture.Failed = true;
+                }
+                return;
             }
 
             int a_glTexture;
@@ -591,9 +602,9 @@ namespace FoxTrader.UI.Renderer
             switch (a_lockFormat)
             {
                 case PixelFormat.Format32bppArgb:
-                    GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, c_texture.Width, c_texture.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, a_data.Scan0);
-                    break;
-                    // invalid
+                GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, c_texture.Width, c_texture.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, a_data.Scan0);
+                break;
+                // invalid
             }
 
             c_bitmap.UnlockBits(a_data);

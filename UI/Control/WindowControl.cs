@@ -2,6 +2,7 @@ using System.Drawing;
 using System.Linq;
 using FoxTrader.UI.ControlInternal;
 using FoxTrader.UI.Skin;
+using OpenTK.Input;
 using static FoxTrader.Constants;
 
 namespace FoxTrader.UI.Control
@@ -20,35 +21,20 @@ namespace FoxTrader.UI.Control
         /// <param name="c_modal">Determines whether the window should be modal</param>
         public WindowControl(GameControl c_parentControl, string c_caption = "", bool c_modal = false) : base(c_parentControl)
         {
-            m_titleBar = new Dragger(this);
-            m_titleBar.Height = 24;
-            m_titleBar.Padding = Padding.m_zero;
-            m_titleBar.Margin = new Margin(0, 0, 0, 4);
-            m_titleBar.Target = this;
-            m_titleBar.Dock = Pos.Top;
+            m_titleBar = new Dragger(this) { Height = 24, Padding = Padding.m_zero, Margin = new Margin(0, 0, 0, 4), Target = this, Dock = Pos.Top };
 
-            m_caption = new Label(m_titleBar);
-            m_caption.Alignment = Pos.Left | Pos.CenterV;
-            m_caption.Text = c_caption;
-            m_caption.Dock = Pos.Fill;
-            m_caption.Padding = new Padding(8, 0, 0, 0);
-            m_caption.TextColor = Skin.m_colors.m_window.m_titleInactive;
+            m_caption = new Label(m_titleBar) { Alignment = Pos.Left | Pos.CenterV, Text = c_caption, Dock = Pos.Fill, Padding = new Padding(8, 0, 0, 0), TextColor = Skin.m_colors.m_window.m_titleInactive };
 
-            m_closeButton = new CloseButton(m_titleBar, this);
-            //m_CloseButton.Text = String.Empty;
-            m_closeButton.SetSize(24, 24);
-            m_closeButton.Dock = Pos.Right;
+            m_closeButton = new CloseButton(m_titleBar, this) { Dock = Pos.Right, IsTabable = false, Name = "closeButton" };
             m_closeButton.Clicked += CloseButtonPressed;
-            m_closeButton.IsTabable = false;
-            m_closeButton.Name = "closeButton";
+            m_closeButton.SetSize(24, 24);
 
             //Create a blank content control, dock it to the top - Should this be a ScrollControl?
-            m_innerControl = new GameControl(this);
-            m_innerControl.Dock = Pos.Fill;
+            m_innerControl = new GameControl(this) { Dock = Pos.Fill };
             GetResizer(8).Hide();
             BringToFront();
             IsTabable = false;
-            Focus();
+            OnFocus();
             MinimumSize = new Point(100, 40);
             ClampMovement = true;
             KeyboardInputEnabled = false;
@@ -105,6 +91,7 @@ namespace FoxTrader.UI.Control
                 {
                     BringToFront();
                 }
+
                 base.IsHidden = value;
             }
         }
@@ -114,11 +101,11 @@ namespace FoxTrader.UI.Control
         {
             get
             {
-                return Parent.Children.Where(c_x => c_x is WindowControl).Last() == this;
+                return Parent.Children.Last(c_x => c_x is WindowControl) == this;
             }
         }
 
-        protected virtual void CloseButtonPressed(GameControl c_control)
+        protected virtual void CloseButtonPressed(GameControl c_control, MouseButtonEventArgs c_args)
         {
             IsHidden = true;
 
@@ -146,14 +133,7 @@ namespace FoxTrader.UI.Control
             m_modal = new Modal(GetCanvas());
             Parent = m_modal;
 
-            if (c_dim)
-            {
-                m_modal.ShouldDrawBackground = true;
-            }
-            else
-            {
-                m_modal.ShouldDrawBackground = false;
-            }
+            m_modal.ShouldDrawBackground = c_dim;
         }
 
         /// <summary>Renders the control using specified skin</summary>
@@ -162,14 +142,7 @@ namespace FoxTrader.UI.Control
         {
             var a_hasFocus = IsOnTop;
 
-            if (a_hasFocus)
-            {
-                m_caption.TextColor = Skin.m_colors.m_window.m_titleActive;
-            }
-            else
-            {
-                m_caption.TextColor = Skin.m_colors.m_window.m_titleInactive;
-            }
+            m_caption.TextColor = a_hasFocus ? Skin.m_colors.m_window.m_titleActive : Skin.m_colors.m_window.m_titleInactive;
 
             c_skin.DrawWindow(this, m_titleBar.Bottom, a_hasFocus);
         }

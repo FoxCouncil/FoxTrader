@@ -21,7 +21,7 @@ namespace FoxTrader.UI.Control
 
             m_label = new LabelClickable(this);
             m_label.Dock = Pos.Fill;
-            m_label.Clicked += m_checkBox.Press;
+            m_label.Clicked += (c_control, c_args) => m_checkBox.OnClicked(c_args);
             m_label.IsTabable = false;
 
             IsTabable = false;
@@ -67,38 +67,14 @@ namespace FoxTrader.UI.Control
         {
             if (m_checkBox.IsChecked)
             {
-                if (Checked != null)
-                {
-                    Checked.Invoke(this);
-                }
+                Checked?.Invoke(this);
             }
             else
             {
-                if (UnChecked != null)
-                {
-                    UnChecked.Invoke(this);
-                }
+                UnChecked?.Invoke(this);
             }
 
-            if (CheckChanged != null)
-            {
-                CheckChanged.Invoke(this);
-            }
-        }
-
-        /// <summary>Handler for Space keyboard event</summary>
-        /// <param name="c_down">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected override bool OnKeySpace(bool c_down)
-        {
-            base.OnKeySpace(c_down);
-
-            if (!c_down)
-            {
-                m_checkBox.IsChecked = !m_checkBox.IsChecked;
-            }
-
-            return true;
+            CheckChanged?.Invoke(this);
         }
     }
 }

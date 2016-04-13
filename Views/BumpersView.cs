@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using FoxTrader.Game;
 using FoxTrader.UI;
 using FoxTrader.UI.Control;
@@ -24,7 +25,7 @@ namespace FoxTrader.Views
             a_label.AutoSizeToContents = true;
             a_label.Text = "A Fox Council Game";
             a_label.Dock = Pos.CenterH | Pos.CenterV;
-            a_label.MakeColorBright();
+            a_label.TextColor = Color.White;
 
             m_startTime = DateTime.Now;
         }

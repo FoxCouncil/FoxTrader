@@ -43,14 +43,9 @@ namespace FoxTrader.UI.ControlInternal
             base.Render(c_skin);
         }
 
-        /// <summary>Handler invoked on mouse moved event</summary>
-        /// <param name="c_x">X coordinate</param>
-        /// <param name="c_y">Y coordinate</param>
-        /// <param name="c_dx">X change</param>
-        /// <param name="c_dy">Y change</param>
-        protected override void OnMouseMoved(MouseState c_mouseState, int c_x, int c_y, int c_dx, int c_dy)
+        public override void OnMouseMoved(MouseMoveEventArgs c_mouseEventArgs)
         {
-            base.OnMouseMoved(c_mouseState, c_x, c_y, c_dx, c_dy);
+            base.OnMouseMoved(c_mouseEventArgs);
 
             if (!m_held)
             {
@@ -60,19 +55,15 @@ namespace FoxTrader.UI.ControlInternal
             InvalidateParent();
         }
 
-        /// <summary>Handler invoked on mouse click (left) event</summary>
-        /// <param name="c_x">X coordinate</param>
-        /// <param name="c_y">Y coordinate</param>
-        /// <param name="c_down">If set to <c>true</c> mouse button is down</param>
-        protected override void OnMouseClickedLeft(int c_x, int c_y, bool c_down)
+        public override void OnClicked(MouseButtonEventArgs c_mouseButtonEventArgs)
         {
-            base.OnMouseClickedLeft(c_x, c_y, c_down);
+            base.OnClicked(c_mouseButtonEventArgs);
             InvalidateParent();
         }
 
         /// <summary>Lays out the control's interior according to alignment, padding, dock etc</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void Layout(SkinBase c_skin)
+        protected override void OnLayout(SkinBase c_skin)
         {
             if (null == Parent)
             {

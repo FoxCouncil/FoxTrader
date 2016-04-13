@@ -1,27 +1,40 @@
 ﻿using System.Collections.Generic;
+using static FoxTrader.Constants;
 
 namespace FoxTrader.Game
 {
     class Universe : ITickable
     {
-        private string m_name = "Fox Universe";
+        public List<Galaxy> Galaxies
+        {
+            get;
+        }
 
-        private readonly List<Galaxy> m_galaxies;
-        public List<Galaxy> Galaxies => m_galaxies;
+        public string Name
+        {
+            get;
+        } = $"{kDefaultPlayerName}'s Universe";
 
         public Universe()
         {
-            m_galaxies = new List<Galaxy>(Constants.kGalaxiesMax);
+            Galaxies = new List<Galaxy>(kGalaxiesMax);
 
-            for (var a_idx = 0; a_idx <= Constants.kGalaxiesMax; a_idx++)
+            for (var a_idx = 0; a_idx <= kGalaxiesMax; a_idx++)
             {
-                m_galaxies.Add(new Galaxy(this, a_idx));
+                Galaxies.Add(new Galaxy(this, a_idx));
             }
+
+
+            var a_testGalaxy = new Galaxy(this, kGalaxiesMax + 1);
+            a_testGalaxy.Position = new Vector2(0, 0);
+            a_testGalaxy.Name = "Test Galaxy";
+
+            Galaxies.Add(a_testGalaxy);
         }
 
         public void Tick()
         {
-            m_galaxies.ForEach(c_galaxy => c_galaxy.Tick());
+            Galaxies.ForEach(c_galaxy => c_galaxy.Tick());
         }
     }
 }

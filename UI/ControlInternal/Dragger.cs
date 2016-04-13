@@ -38,38 +38,34 @@ namespace FoxTrader.UI.ControlInternal
         /// <summary>Event invoked when the control position has been changed</summary>
         public event DragEventHandler Dragged;
 
-        /// <summary>Handler invoked on mouse click (left) event</summary>
-        /// <param name="c_x">X coordinate</param>
-        /// <param name="c_y">Y coordinate</param>
-        /// <param name="c_down">If set to <c>true</c> mouse button is down</param>
-        protected override void OnMouseClickedLeft(int c_x, int c_y, bool c_down)
+        public override void OnMouseDown(MouseButtonEventArgs c_mouseButtonEventArgs)
         {
-            if (null == m_target)
+            if (m_target == null)
             {
                 return;
             }
 
-            if (c_down)
-            {
-                m_held = true;
-                m_holdPos = m_target.CanvasPosToLocal(new Point(c_x, c_y));
-                FoxTraderWindow.Instance.MouseFocus = this;
-            }
-            else
-            {
-                m_held = false;
-
-                FoxTraderWindow.Instance.MouseFocus = null;
-            }
+            m_held = true;
+            m_holdPos = m_target.CanvasPosToLocal(c_mouseButtonEventArgs.Position);
+            GetCanvas().MouseFocus = this;
         }
 
-        /// <summary>Handler invoked on mouse moved event</summary>
-        /// <param name="c_x">X coordinate</param>
-        /// <param name="c_y">Y coordinate</param>
-        /// <param name="c_dx">X change</param>
-        /// <param name="c_dy">Y change</param>
-        protected override void OnMouseMoved(MouseState c_mouseState, int c_x, int c_y, int c_dx, int c_dy)
+        public override void OnMouseUp(MouseButtonEventArgs c_mouseButtonEventArgs)
         {
+            if (m_target == null)
+            {
+                return;
+            }
+
+            m_held = false;
+
+            GetCanvas().MouseFocus = null;
+        }
+
+        public override void OnMouseMoved(MouseMoveEventArgs c_mouseEventArgs)
+        {
+            base.OnMouseMoved(c_mouseEventArgs);
+
             if (null == m_target)
             {
                 return;
@@ -79,7 +75,7 @@ namespace FoxTrader.UI.ControlInternal
                 return;
             }
 
-            var a_p = new Point(c_x - m_holdPos.X, c_y - m_holdPos.Y);
+            var a_p = new Point(c_mouseEventArgs.X - m_holdPos.X, c_mouseEventArgs.Y - m_holdPos.Y);
 
             // Translate to parent
             if (m_target.Parent != null)
@@ -87,12 +83,9 @@ namespace FoxTrader.UI.ControlInternal
                 a_p = m_target.Parent.CanvasPosToLocal(a_p);
             }
 
-            //m_Target->SetPosition( p.x, p.y );
             m_target.MoveTo(a_p.X, a_p.Y);
-            if (Dragged != null)
-            {
-                Dragged.Invoke(this);
-            }
+
+            Dragged?.Invoke(this);
         }
 
         /// <summary>Renders the control using specified skin</summary>

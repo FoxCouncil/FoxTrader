@@ -4,6 +4,8 @@ using System.Windows.Forms;
 using FoxTrader.UI.Control;
 using FoxTrader.UI.Platform;
 using FoxTrader.UI.Skin;
+using OpenTK.Input;
+using MouseEventArgs = OpenTK.Input.MouseEventArgs;
 
 namespace FoxTrader.UI.DragDrop
 {
@@ -69,7 +71,7 @@ namespace FoxTrader.UI.DragDrop
 
             // Now we're dragging something!
             m_sourceControl = m_lastPressedControl;
-            FoxTraderWindow.Instance.MouseFocus = null;
+            m_sourceControl.GetCanvas().MouseFocus = null;
             m_lastPressedControl = null;
             m_currentPackage.m_drawControl = null;
 
@@ -136,10 +138,7 @@ namespace FoxTrader.UI.DragDrop
             m_hoveredControl = m_newHoveredControl;
 
             // If we exist, tell us that we've started hovering.
-            if (m_hoveredControl != null)
-            {
-                m_hoveredControl.DragAndDrop_HoverEnter(m_currentPackage, c_x, c_y);
-            }
+            m_hoveredControl?.DragAndDrop_HoverEnter(m_currentPackage, c_x, c_y);
 
             m_newHoveredControl = null;
         }
@@ -156,9 +155,9 @@ namespace FoxTrader.UI.DragDrop
             return true;
         }
 
-        public static bool OnMouseButton(GameControl c_hoveredControl, int c_x, int c_y, bool c_isButtonDown)
+        public static bool OnMouseButton(GameControl c_hoveredControl, MouseButtonEventArgs c_mouseButtonEventArgs)
         {
-            if (!c_isButtonDown)
+            if (!c_mouseButtonEventArgs.IsPressed)
             {
                 m_lastPressedControl = null;
 
@@ -169,7 +168,7 @@ namespace FoxTrader.UI.DragDrop
                 }
 
                 // We were carrying something, drop it.
-                OnDrop(c_x, c_y);
+                OnDrop(c_mouseButtonEventArgs.X, c_mouseButtonEventArgs.Y);
 
                 return true;
             }
@@ -182,27 +181,27 @@ namespace FoxTrader.UI.DragDrop
             // Store the last clicked on control. Don't do anything yet, 
             // we'll check it in OnMouseMoved, and if it moves further than
             // x pixels with the mouse down, we'll start to drag.
-            m_lastPressedPos = new Point(c_x, c_y);
+            m_lastPressedPos = new Point(c_mouseButtonEventArgs.X, c_mouseButtonEventArgs.Y);
             m_lastPressedControl = c_hoveredControl;
 
             return false;
         }
 
-        public static void OnMouseMoved(GameControl c_hoveredControl, int c_x, int c_y)
+        public static void OnMouseMoved(GameControl c_hoveredControl, MouseEventArgs c_mouseEventArgs)
         {
             // Always keep these up to date, they're used to draw the dragged control.
-            m_mouseX = c_x;
-            m_mouseY = c_y;
+            m_mouseX = c_mouseEventArgs.X;
+            m_mouseY = c_mouseEventArgs.Y;
 
             // If we're not carrying anything, then check to see if we should
             // pick up from a control that we're holding down. If not, then forget it.
-            if (m_currentPackage == null && !ShouldStartDraggingControl(c_x, c_y))
+            if (m_currentPackage == null && !ShouldStartDraggingControl(m_mouseX, m_mouseY))
             {
                 return;
             }
 
             // Swap to this new hovered control and notify them of the change.
-            UpdateHoveredControl(c_hoveredControl, c_x, c_y);
+            UpdateHoveredControl(c_hoveredControl, m_mouseX, m_mouseY);
 
             if (m_hoveredControl == null)
             {
@@ -211,7 +210,7 @@ namespace FoxTrader.UI.DragDrop
 
             // Update the hovered control every mouse move, so it can show where
             // the dropped control will land etc..
-            m_hoveredControl.DragAndDrop_Hover(m_currentPackage, c_x, c_y);
+            m_hoveredControl.DragAndDrop_Hover(m_currentPackage, m_mouseX, m_mouseY);
 
             // Override the cursor - since it might have been set my underlying controls
             // Ideally this would show the 'being dragged' control. TODO

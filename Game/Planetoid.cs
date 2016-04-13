@@ -3,32 +3,51 @@ using static FoxTrader.Constants;
 
 namespace FoxTrader.Game
 {
-    class Planetoid : ITickable
+    class Planetoid : ITickable, IMapObject
     {
-        private readonly System m_system;
-        private readonly int m_index;
+        public System System
+        {
+            get;
+        }
 
-        private PlanetoidType m_planetoidType;
+        public int Index
+        {
+            get;
+        }
 
-        private string m_name;
-        private Vector2 m_position;
+        public PlanetoidType Type
+        {
+            get;
+        }
+
+        public string Name
+        {
+            get;
+            set;
+        }
+
+        public Vector2 Position
+        {
+            get;
+            set;
+        }
 
         public Planetoid(System c_system, int c_index)
         {
-            m_system = c_system;
-            m_index = c_index;
+            System = c_system;
+            Index = c_index;
 
             if (c_index == 0)
             {
-                m_planetoidType = (PlanetoidType)Generator.RandomDistribution(new[] { 1000, 1, 0, 1, 1, 0, 0, 0 });
+                Type = (PlanetoidType)Generator.RandomDistribution(new[] { 1000, 1, 0, 1, 1, 0, 0, 0 });
             }
             else
             {
-                m_planetoidType = (PlanetoidType)Generator.RandomDistribution(new[] { 0, 0, 10, 10, 0, 100, 1000, 15 });
+                Type = (PlanetoidType)Generator.RandomDistribution(new[] { 0, 0, 10, 10, 0, 100, 1000, 15 });
             }
 
-            m_name = m_system.Name + "-" + (m_index + 1).ToString();
-            m_position = Vector2.Random(kPlanetoidSizeMax);
+            Name = System.Name + "-" + (Index + 1);
+            Position = Vector2.Random(kSystemSizeMax);
         }
 
         public void Tick()

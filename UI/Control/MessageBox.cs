@@ -1,4 +1,5 @@
 using FoxTrader.UI.Skin;
+using OpenTK.Input;
 using static FoxTrader.Constants;
 
 namespace FoxTrader.UI.Control
@@ -31,16 +32,16 @@ namespace FoxTrader.UI.Control
         /// <summary>Invoked when the message box has been dismissed</summary>
         public event MessageBoxEventHandler Dismissed;
 
-        private void DismissedHandler(GameControl c_control)
+        private void DismissedHandler(GameControl c_control, MouseButtonEventArgs c_args)
         {
             Dismissed?.Invoke(this);
         }
 
         /// <summary>Lays out the control's interior according to alignment, padding, dock etc</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void Layout(SkinBase c_skin)
+        protected override void OnLayout(SkinBase c_skin)
         {
-            base.Layout(c_skin);
+            base.OnLayout(c_skin);
 
             Align.PlaceDownLeft(m_button, m_label, 10);
             Align.CenterHorizontally(m_button);

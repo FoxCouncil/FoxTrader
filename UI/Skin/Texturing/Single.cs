@@ -3,7 +3,6 @@ using FoxTrader.UI.Renderer;
 
 namespace FoxTrader.UI.Skin.Texturing
 {
-    /// <summary>Single textured element</summary>
     public struct Single
     {
         private readonly Texture m_texture;
@@ -28,7 +27,6 @@ namespace FoxTrader.UI.Skin.Texturing
             m_height = (int)c_h;
         }
 
-        // can't have this as default param
         public void Draw(RendererBase c_render, Rectangle c_r)
         {
             Draw(c_render, c_r, Color.White);

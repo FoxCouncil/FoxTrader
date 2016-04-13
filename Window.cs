@@ -3,41 +3,35 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using FoxTrader.Game;
 using FoxTrader.UI;
 using FoxTrader.UI.Control;
-using FoxTrader.UI.DragDrop;
+using FoxTrader.UI.Input;
 using FoxTrader.UI.Renderer;
 using FoxTrader.UI.Skin;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
-using OpenTK.Input;
 using static FoxTrader.Constants;
 
 namespace FoxTrader
 {
     internal class FoxTraderWindow : GameWindow
     {
-        private SkinBase m_skin;
-        private Point m_mousePosition;
-        private static readonly UI.Input.KeyData m_keyData = new UI.Input.KeyData();
-        private static readonly float[] m_lastClickedTime = new float[kMaxMouseButtons];
-        private static Point m_lastClickedPosition;
+        const int kFpsFrames = 50;
+
         private static FoxTraderWindow m_gameWindowInstance;
 
+        private SkinBase m_skin;
         private StatusBar m_statusBar;
 
-        const int kFpsFrames = 50;
         private readonly List<long> m_frameTime;
         private readonly Stopwatch m_stopwatch;
         private long m_lastFrameTime;
-        private bool m_altDown;
         private double m_fps;
 
         private const string kViewsFormatString = "FoxTrader.Views.{0}";
-        private Canvas m_canvas;
 
+        private Canvas m_canvas;
         private BaseGameView m_currentView;
 
         private static readonly object m_windowContextLock = new object();
@@ -54,40 +48,53 @@ namespace FoxTrader
             {
                 lock (m_windowContextLock)
                 {
-                    return m_gameWindowInstance;
+                    if (m_gameWindowInstance != null)
+                    {
+                        return m_gameWindowInstance;
+                    }
+
+                    throw new AccessViolationException("Too early baby...");
                 }
             }
         }
 
         public FoxTraderWindow() : base(kDefaultWinWidth, kDefaultWinHeight)
         {
-            Location = new Point(42, 42);
+            lock (m_windowContextLock)
+            {
+                Location = new Point(42, 42);
 
-            HookInputEvents();
+                HookInputEvents();
 
-            m_frameTime = new List<long>(kFpsFrames);
-            m_stopwatch = new Stopwatch();
+                m_frameTime = new List<long>(kFpsFrames);
+                m_stopwatch = new Stopwatch();
 
-            m_gameWindowInstance = this;
+                m_gameWindowInstance = this;
+
+                Log.Info("New Instance Created", "WINDOW");
+            }
         }
 
         public SkinBase Skin => m_skin;
-
+        /*
         public GameControl MouseFocus
         {
             get;
             internal set;
         }
+
         public GameControl HoveredControl
         {
             get;
             internal set;
         }
+
         public GameControl KeyboardFocus
         {
             get;
             internal set;
         }
+
         public bool IsControlDown
         {
             get;
@@ -109,6 +116,11 @@ namespace FoxTrader
             {
                 m_mousePosition = value;
             }
+        } */
+
+        public GameControlDevices GetGameControlDevices()
+        {
+            return new GameControlDevices { Keyboard = Keyboard, Mouse = Mouse };
         }
 
         protected override void OnLoad(EventArgs c_e)
@@ -132,10 +144,14 @@ namespace FoxTrader
 
             GameContext.Instance.StateChanged += GameContextInstance_StateChanged;
             GameContextInstance_StateChanged(ContextState.Bumpers);
+
+            Log.Info("Window is ready", "WINDOW");
         }
 
         private void GameContextInstance_StateChanged(ContextState c_newState)
         {
+            Log.Info($"StateChanged: {c_newState}", "WINDOW");
+
             switch (c_newState)
             {
                 case ContextState.Bumpers:
@@ -189,6 +205,8 @@ namespace FoxTrader
             GL.Ortho(0, Width, Height, 0, -1, 1);
 
             m_canvas.SetSize(Width, Height);
+
+            Log.Info($"OnResize: {Width}, {Height}", "WINDOW");
         }
 
         protected override void OnUpdateFrame(FrameEventArgs c_e)
@@ -233,6 +251,8 @@ namespace FoxTrader
 
         public void ShowView(string c_viewString)
         {
+            Log.Info($"Showing view: {c_viewString}", "WINDOW");
+
             var a_viewType = Type.GetType(string.Format(kViewsFormatString, c_viewString), false);
 
             if (a_viewType != null)
@@ -254,6 +274,8 @@ namespace FoxTrader
         {
             if (m_currentView != null)
             {
+                Log.Info($"Clearing view: {m_currentView}", "WINDOW");
+
                 m_canvas.RemoveChild(m_currentView, true);
                 m_currentView = null;
 
@@ -267,12 +289,14 @@ namespace FoxTrader
         {
             if (Renderer.TextCacheSize > 1000)
             {
+                Log.Info($"Flushing text cache: {Renderer.TextCacheSize}", "WINDOW");
                 Renderer.FlushTextCache();
             }
         }
 
         private void HookInputEvents()
         {
+            /*
             // Keyboard Events
             Keyboard.KeyDown += ProcessKeyDownInput;
             KeyPress += ProcessKeyPressInput;
@@ -283,156 +307,98 @@ namespace FoxTrader
             Mouse.ButtonUp += ProcessMouseInput;
             Mouse.Move += ProcessMouseInput;
             Mouse.WheelChanged += ProcessMouseInput;
+            */
         }
 
-        internal void OnCanvasThink()
-        {
-            if (MouseFocus != null && !MouseFocus.IsVisible)
-            {
-                MouseFocus = null;
-            }
+        //internal void OnCanvasThink()
+        //{
+        //    if (MouseFocus != null && !MouseFocus.IsVisible)
+        //    {
+        //        MouseFocus = null;
+        //    }
 
-            if (KeyboardFocus != null && (!KeyboardFocus.IsVisible || !KeyboardFocus.KeyboardInputEnabled))
-            {
-                KeyboardFocus = null;
-            }
+        //    if (KeyboardFocus != null && (!KeyboardFocus.IsVisible || !KeyboardFocus.KeyboardInputEnabled))
+        //    {
+        //        KeyboardFocus = null;
+        //    }
 
-            if (KeyboardFocus == null)
-            {
-                return;
-            }
+        //    if (KeyboardFocus == null)
+        //    {
+        //        return;
+        //    }
 
-            var a_time = UI.Platform.Neutral.GetTimeInSeconds();
+        //    var a_time = UI.Platform.Neutral.GetTimeInSeconds();
 
-            for (var a_idx = 0; a_idx < 1024; a_idx++)
-            {
-                if (m_keyData.m_keyState[a_idx] && m_keyData.m_target != KeyboardFocus)
-                {
-                    m_keyData.m_keyState[a_idx] = false;
-                    continue;
-                }
+        //    for (var a_idx = 0; a_idx < 1024; a_idx++)
+        //    {
+        //        if (m_keyData.m_keyState[a_idx] && m_keyData.m_target != KeyboardFocus)
+        //        {
+        //            m_keyData.m_keyState[a_idx] = false;
+        //            continue;
+        //        }
 
-                if (m_keyData.m_keyState[a_idx] && a_time > m_keyData.m_nextRepeat[a_idx])
-                {
-                    m_keyData.m_nextRepeat[a_idx] = UI.Platform.Neutral.GetTimeInSeconds() + kKeyRepeatDelay;
+        //        if (m_keyData.m_keyState[a_idx] && a_time > m_keyData.m_nextRepeat[a_idx])
+        //        {
+        //            m_keyData.m_nextRepeat[a_idx] = UI.Platform.Neutral.GetTimeInSeconds() + kKeyRepeatDelay;
 
-                    KeyboardFocus?.InputKeyPressed((Key)a_idx);
-                }
-            }
-        }
+        //            KeyboardFocus?.InputKeyPressed((Key)a_idx);
+        //        }
+        //    }
+        //}
 
-        private char TranslateChar(Key c_key)
-        {
-            if (c_key >= Key.A && c_key <= Key.Z)
-            {
-                return (char)('a' + ((int)c_key - (int)Key.A));
-            }
+        //private bool DoSpecialKeys(char c_char)
+        //{
+        //    if (null == KeyboardFocus)
+        //    {
+        //        return false;
+        //    }
 
-            return ' ';
-        }
+        //    if (KeyboardFocus.GetCanvas() != m_canvas)
+        //    {
+        //        return false;
+        //    }
 
-        private bool DoSpecialKeys(char c_char)
-        {
-            if (null == KeyboardFocus)
-            {
-                return false;
-            }
+        //    if (!KeyboardFocus.IsVisible)
+        //    {
+        //        return false;
+        //    }
 
-            if (KeyboardFocus.GetCanvas() != m_canvas)
-            {
-                return false;
-            }
+        //    if (!IsControlDown)
+        //    {
+        //        return false;
+        //    }
 
-            if (!KeyboardFocus.IsVisible)
-            {
-                return false;
-            }
+        //    if (c_char == 'C' || c_char == 'c')
+        //    {
+        //        KeyboardFocus.InputCopy(null);
 
-            if (!IsControlDown)
-            {
-                return false;
-            }
+        //        return true;
+        //    }
 
-            if (c_char == 'C' || c_char == 'c')
-            {
-                KeyboardFocus.InputCopy(null);
+        //    if (c_char == 'V' || c_char == 'v')
+        //    {
+        //        KeyboardFocus.InputPaste(null);
+        //        return true;
+        //    }
 
-                return true;
-            }
+        //    if (c_char == 'X' || c_char == 'x')
+        //    {
+        //        KeyboardFocus.InputCut(null);
+        //        return true;
+        //    }
 
-            if (c_char == 'V' || c_char == 'v')
-            {
-                KeyboardFocus.InputPaste(null);
-                return true;
-            }
+        //    if (c_char == 'A' || c_char == 'a')
+        //    {
+        //        KeyboardFocus.InputSelectAll(null);
+        //        return true;
+        //    }
 
-            if (c_char == 'X' || c_char == 'x')
-            {
-                KeyboardFocus.InputCut(null);
-                return true;
-            }
+        //    return false;
+        //}
 
-            if (c_char == 'A' || c_char == 'a')
-            {
-                KeyboardFocus.InputSelectAll(null);
-                return true;
-            }
 
-            return false;
-        }
 
-        private void UpdateHoveredControl()
-        {
-            var a_hoveredControl = m_canvas.GetControlAt(m_mousePosition.X, m_mousePosition.Y);
-
-            if (HoveredControl != a_hoveredControl)
-            {
-                if (HoveredControl != null)
-                {
-                    var a_oldHoveredControl = HoveredControl;
-                    HoveredControl = null;
-                    a_oldHoveredControl.InputMouseLeft();
-                }
-
-                HoveredControl = a_hoveredControl;
-            }
-
-            if (MouseFocus != null && MouseFocus.GetCanvas() == m_canvas)
-            {
-                if (HoveredControl != null)
-                {
-                    var a_oldHoveredControl = HoveredControl;
-                    HoveredControl = null;
-                    a_oldHoveredControl.Redraw();
-                }
-
-                HoveredControl = MouseFocus;
-            }
-        }
-
-        private void FindKeyboardFocusedControl(GameControl c_hoveredControl)
-        {
-            if (c_hoveredControl == null)
-            {
-                return;
-            }
-
-            if (c_hoveredControl.KeyboardInputEnabled)
-            {
-                if (c_hoveredControl.Children.Any(c_childControl => c_childControl == KeyboardFocus))
-                {
-                    return;
-                }
-
-                c_hoveredControl.Focus();
-
-                return;
-            }
-
-            FindKeyboardFocusedControl(c_hoveredControl.Parent);
-        }
-
-        public void ProcessMouseInput(object c_sender, EventArgs c_mouseArgs)
+        /*public void ProcessMouseInput(object c_sender, EventArgs c_mouseArgs)
         {
             if (m_canvas == null)
             {
@@ -463,16 +429,11 @@ namespace FoxTrader
 
         private void ProcessKeyDownInput(object c_sender, KeyboardKeyEventArgs c_e)
         {
-            if (c_e.Key == Key.Escape)
-            {
-                Exit();
-            }
-            else if (c_e.Key == Key.F)
+            if (c_e.Key == Key.F)
             {
                 if (m_statusBar == null)
                 {
-                    m_statusBar = new StatusBar(m_canvas);
-                    m_statusBar.Dock = Pos.Bottom;
+                    m_statusBar = new StatusBar(m_canvas) { Dock = Pos.Bottom };
                     m_statusBar.Hide();
                 }
 
@@ -611,94 +572,8 @@ namespace FoxTrader
 
         internal bool OnMouseClicked(int c_mouseButton, bool c_isButtonDown)
         {
-            if (c_isButtonDown && (HoveredControl == null || !HoveredControl.IsMenuComponent))
-            {
-                m_canvas.CloseMenus();
-            }
-
-            if (HoveredControl == null || HoveredControl.GetCanvas() != m_canvas || !HoveredControl.IsVisible || HoveredControl == m_canvas)
-            {
-                return false;
-            }
-
-            if (c_mouseButton > kMaxMouseButtons)
-            {
-                return false;
-            }
-
-            if (c_mouseButton == 0)
-            {
-                m_keyData.m_leftMouseDown = c_isButtonDown;
-            }
-            else if (c_mouseButton == 1)
-            {
-                m_keyData.m_rightMouseDown = c_isButtonDown;
-            }
-
-            var a_isDoubleClick = false;
-
-            if (c_isButtonDown && m_lastClickedPosition.X == m_mousePosition.X && m_lastClickedPosition.Y == m_lastClickedPosition.Y && (UI.Platform.Neutral.GetTimeInSeconds() - m_lastClickedTime[c_mouseButton] < kMouseDoubleClickSpeed))
-            {
-                a_isDoubleClick = true;
-            }
-
-            if (c_isButtonDown && a_isDoubleClick)
-            {
-                m_lastClickedTime[c_mouseButton] = UI.Platform.Neutral.GetTimeInSeconds();
-                m_lastClickedPosition = MousePosition;
-            }
-
-            if (c_isButtonDown)
-            {
-                FindKeyboardFocusedControl(HoveredControl);
-            }
-
-            HoveredControl.UpdateCursor();
-
-            if (c_isButtonDown)
-            {
-                HoveredControl.Touch();
-            }
-
-            switch (c_mouseButton)
-            {
-                case 0:
-                {
-                    if (DragAndDrop.OnMouseButton(HoveredControl, MousePosition.X, MousePosition.Y, c_isButtonDown))
-                    {
-                        return true;
-                    }
-
-                    if (a_isDoubleClick)
-                    {
-                        HoveredControl.InputMouseDoubleClickedLeft(MousePosition.X, MousePosition.Y);
-                    }
-                    else
-                    {
-                        HoveredControl.InputMouseClickedLeft(MousePosition.X, MousePosition.Y, c_isButtonDown);
-                    }
-
-                    return true;
-                }
-
-                case 1:
-                {
-                    if (a_isDoubleClick)
-                    {
-                        HoveredControl.InputMouseDoubleClickedRight(MousePosition.X, MousePosition.Y);
-                    }
-                    else
-                    {
-                        HoveredControl.InputMouseClickedRight(MousePosition.X, MousePosition.Y, c_isButtonDown);
-                    }
-
-                    return true;
-
-                }
-            }
-
-            return false;
-        }
+           
+        }*/
 
         public override void Dispose()
         {

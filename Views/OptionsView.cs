@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using FoxTrader.Game;
 using FoxTrader.UI;
@@ -26,7 +27,7 @@ namespace FoxTrader.Views
             var a_controlsParent = m_menuControl;
 
             m_labelLanguage = new Label(a_controlsParent) { AutoSizeToContents = true, Text = I18N.GetString("Language") };
-            m_labelLanguage.MakeColorBright();
+            m_labelLanguage.TextColor = Color.White;
             m_labelLanguage.SetPosition(10, 10);
 
             var a_comboBoxLanguage = new ComboBox(a_controlsParent);
@@ -37,7 +38,7 @@ namespace FoxTrader.Views
 
             var a_installedLanguages = I18N.InstalledLanguages.Select(c_installedLanguage => a_comboBoxLanguage.AddItem(new CultureInfo(c_installedLanguage).NativeName, c_installedLanguage)).ToList();
 
-            a_installedLanguages[I18N.CurrentLanguageIndex].Press();
+            a_installedLanguages[I18N.CurrentLanguageIndex].OnClicked(null);
 
             a_comboBoxLanguage.ItemSelected += (c_controlSender) =>
             {
@@ -53,7 +54,7 @@ namespace FoxTrader.Views
 
             m_buttonBack = new Button(a_controlsParent) { Text = I18N.GetString("Back") };
             m_buttonBack.SetSize(kMainMenuButtonWidth, kMainMenuButtonHeight);
-            m_buttonBack.Clicked += (c_senderControl) =>
+            m_buttonBack.Clicked += (c_senderControl, c_args) =>
             {
                 GameContext.Instance.MarkStateComplete(ContextState.Options);
             };
@@ -65,9 +66,9 @@ namespace FoxTrader.Views
             m_menuControl.SetSize(700, 700);
         }
 
-        protected override void Layout(SkinBase c_skin)
+        protected override void OnLayout(SkinBase c_skin)
         {
-            base.Layout(c_skin);
+            base.OnLayout(c_skin);
 
             Align.CenterHorizontally(m_menuControl);
             Align.CenterVertically(m_menuControl);

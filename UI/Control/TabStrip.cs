@@ -103,7 +103,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Lays out the control's interior according to alignment, padding, dock etc</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void Layout(SkinBase c_skin)
+        protected override void OnLayout(SkinBase c_skin)
         {
             var a_largestTab = new Point(5, 5);
 
@@ -162,7 +162,7 @@ namespace FoxTrader.UI.Control
                 SetSize(a_largestTab.X, Height);
             }
 
-            base.Layout(c_skin);
+            base.OnLayout(c_skin);
         }
 
         public override void DragAndDrop_HoverEnter(Package c_p, int c_x, int c_y)

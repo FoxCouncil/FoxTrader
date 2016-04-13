@@ -1,5 +1,6 @@
 using FoxTrader.UI.Control.Layout;
 using FoxTrader.UI.ControlInternal;
+using OpenTK.Input;
 using static FoxTrader.Constants;
 
 namespace FoxTrader.UI.Control
@@ -82,40 +83,34 @@ namespace FoxTrader.UI.Control
         /// <summary>Invoked when the value has been changed</summary>
         public event ValueEventHandler ValueChanged;
 
-        /// <summary>Handler for Up Arrow keyboard event</summary>
-        /// <param name="c_down">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected override bool OnKeyUp(bool c_down)
+        public override void OnKeyDown(KeyboardKeyEventArgs c_keyboardKeyEventArgs)
         {
-            if (c_down)
+            switch (c_keyboardKeyEventArgs.Key)
             {
-                OnButtonUp(null);
-            }
-            return true;
-        }
+                case Key.Up:
+                {
+                    OnButtonUp(this, null);
+                }
+                break;
 
-        /// <summary>Handler for Down Arrow keyboard event</summary>
-        /// <param name="c_down">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected override bool OnKeyDown(bool c_down)
-        {
-            if (c_down)
-            {
-                OnButtonDown(null);
+                case Key.Down:
+                {
+                    OnButtonDown(this, null);
+                }
+                break;
             }
-            return true;
         }
 
         /// <summary>Handler for the button up event</summary>
         /// <param name="c_control">Event source</param>
-        protected virtual void OnButtonUp(GameControl c_control)
+        protected virtual void OnButtonUp(GameControl c_control, MouseButtonEventArgs c_args)
         {
             Value = m_value + 1;
         }
 
         /// <summary>Handler for the button down event</summary>
         /// <param name="c_control">Event source</param>
-        protected virtual void OnButtonDown(GameControl c_control)
+        protected virtual void OnButtonDown(GameControl c_control, MouseButtonEventArgs c_args)
         {
             Value = m_value - 1;
         }

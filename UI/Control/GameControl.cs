@@ -17,8 +17,8 @@ namespace FoxTrader.UI.Control
     /// <summary>Base game control class</summary>
     internal class GameControl : IDisposable
     {
-        /// <summary>Accelerator map</summary>
         private readonly Dictionary<string, GameControlEventHandler> m_accelerators;
+        private readonly float[] m_lastClickedTime = new float[kMaxMouseButtons];
 
         private readonly List<GameControl> m_children;
         private GameControl m_actualParent;
@@ -79,7 +79,7 @@ namespace FoxTrader.UI.Control
         public Rectangle RenderBounds => m_renderBounds;
 
         /// <summary>Determines whether hover should be drawn during rendering</summary>
-        protected bool ShouldDrawHover => FoxTraderWindow.Instance.MouseFocus == this || FoxTraderWindow.Instance.MouseFocus == null;
+        protected bool ShouldDrawHover => GetCanvas().MouseFocus == this || GetCanvas().MouseFocus == null;
 
         protected virtual bool AccelOnlyFocus => false;
 
@@ -92,10 +92,10 @@ namespace FoxTrader.UI.Control
         public List<GameControl> Children => m_innerControl != null ? m_innerControl.Children : m_children;
 
         /// <summary>Indicates whether the control is hovered by mouse pointer</summary>
-        public virtual bool IsHovered => FoxTraderWindow.Instance.HoveredControl == this;
+        public virtual bool IsHovered => GetCanvas().HoveredControl == this;
 
         /// <summary>Indicates whether the control has focus</summary>
-        public bool HasFocus => FoxTraderWindow.Instance.KeyboardFocus == this;
+        public bool HasFocus => GetCanvas().KeyboardFocus == this;
 
         /// <summary>Indicates whether this control is a menu component</summary>
         internal virtual bool IsMenuComponent => m_parent != null && m_parent.IsMenuComponent;
@@ -471,19 +471,19 @@ namespace FoxTrader.UI.Control
 #endif
             }
 
-            if (FoxTraderWindow.Instance.HoveredControl == this)
+            if (GetCanvas().HoveredControl == this)
             {
-                FoxTraderWindow.Instance.HoveredControl = null;
+                GetCanvas().HoveredControl = null;
             }
 
-            if (FoxTraderWindow.Instance.KeyboardFocus == this)
+            if (GetCanvas().KeyboardFocus == this)
             {
-                FoxTraderWindow.Instance.KeyboardFocus = null;
+                GetCanvas().KeyboardFocus = null;
             }
 
-            if (FoxTraderWindow.Instance.MouseFocus == this)
+            if (GetCanvas().MouseFocus == this)
             {
-                FoxTraderWindow.Instance.MouseFocus = null;
+                GetCanvas().MouseFocus = null;
             }
 
             DragAndDrop.ControlDeleted(this);
@@ -502,18 +502,11 @@ namespace FoxTrader.UI.Control
             GC.SuppressFinalize(this);
         }
 
-        /// <summary>Default accelerator handler</summary>
-        /// <param name="c_control">Event source</param>
-        private void DefaultAcceleratorHandler(GameControl c_control)
-        {
-            OnAccelerator();
-        }
-
         /// <summary>Renders the focus overlay</summary>
         /// <param name="c_skin">Skin to use</param>
         protected virtual void RenderFocus(SkinBase c_skin)
         {
-            if (FoxTraderWindow.Instance.KeyboardFocus != this)
+            if (GetCanvas().KeyboardFocus != this)
             {
                 return;
             }
@@ -549,11 +542,41 @@ namespace FoxTrader.UI.Control
             return GetType().ToString();
         }
 
+        // Keyboard Based Events
+        public event KeyboardEventHandler KeyDown;
+
+        public event KeyboardEventHandler KeyPress;
+
+        public event KeyboardEventHandler KeyUp;
+
+        // Mouse Based Events
+        /// <summary></summary>
+        public event MouseWheelEventHandler MouseWheel;
+
+        /// <summary></summary>
+        public event MouseButtonEventHandler MouseDown;
+
+        /// <summary>Invoked when both a down and up press of the mouse happened on the control</summary>
+        public event MouseButtonEventHandler Clicked;
+
+        /// <summary>Invoked when both a down and up press of the mouse happened on the control</summary>
+        public event MouseButtonEventHandler DoubleClicked;
+
+        /// <summary></summary>
+        public event MouseButtonEventHandler MouseUp;
+
         /// <summary>Invoked when mouse pointer enters the control</summary>
-        public event GameControlEventHandler MouseIn;
+        public event MouseMoveEventHandler MouseOver;
+
+        /// <summary></summary>
+        public event MouseMoveEventHandler MouseMove;
 
         /// <summary>Invoked when mouse pointer leaves the control</summary>
-        public event GameControlEventHandler MouseOut;
+        public event MouseMoveEventHandler MouseOut;
+
+        // Control Based Events
+        public event GameControlEventHandler Focus;
+        public event GameControlEventHandler Blur;
 
         /// <summary>Invoked when control's bounds have been changed</summary>
         public event GameControlEventHandler BoundsChanged;
@@ -568,13 +591,6 @@ namespace FoxTrader.UI.Control
         {
             c_accelerator = c_accelerator.Trim().ToUpperInvariant();
             m_accelerators[c_accelerator] = c_handler;
-        }
-
-        /// <summary>Adds keyboard accelerator with a default handler</summary>
-        /// <param name="c_accelerator">Accelerator text</param>
-        public void AddAccelerator(string c_accelerator)
-        {
-            m_accelerators[c_accelerator] = DefaultAcceleratorHandler;
         }
 
         /// <summary>Disables the control</summary>
@@ -603,60 +619,6 @@ namespace FoxTrader.UI.Control
             m_parent?.Invalidate();
         }
 
-        /// <summary>Invokes mouse wheeled event (used by input system)</summary>
-        internal bool InputMouseWheeled(int c_delta)
-        {
-            return OnMouseWheeled(c_delta);
-        }
-
-        /// <summary>Invokes mouse moved event (used by input system)</summary>
-        internal void InputMouseMoved(MouseState c_mouseState, int c_x, int c_y, int c_dx, int c_dy)
-        {
-            OnMouseMoved(c_mouseState, c_x, c_y, c_dx, c_dy);
-        }
-
-        /// <summary>Invokes left mouse click event (used by input system)</summary>
-        internal void InputMouseClickedLeft(int c_x, int c_y, bool c_isButtonDown)
-        {
-            OnMouseClickedLeft(c_x, c_y, c_isButtonDown);
-        }
-
-        /// <summary>Invokes right mouse click event (used by input system)</summary>
-        internal void InputMouseClickedRight(int c_x, int c_y, bool c_isButtonDown)
-        {
-            OnMouseClickedRight(c_x, c_y, c_isButtonDown);
-        }
-
-        /// <summary>Invokes left double mouse click event (used by input system)</summary>
-        internal void InputMouseDoubleClickedLeft(int c_x, int c_y)
-        {
-            OnMouseDoubleClickedLeft(c_x, c_y);
-        }
-
-        /// <summary>Invokes right double mouse click event (used by input system)</summary>
-        internal void InputMouseDoubleClickedRight(int c_x, int c_y)
-        {
-            OnMouseDoubleClickedRight(c_x, c_y);
-        }
-
-        /// <summary>Invokes mouse enter event (used by input system)</summary>
-        internal void InputMouseEntered()
-        {
-            OnMouseEntered();
-        }
-
-        /// <summary>Invokes mouse leave event (used by input system)</summary>
-        internal void InputMouseLeft()
-        {
-            OnMouseLeft();
-        }
-
-        /// <summary>Invokes key press event (used by input system)</summary>
-        internal bool InputKeyPressed(Key c_keys, bool c_isButtonDown = true)
-        {
-            return OnKeyPressed(c_keys, c_isButtonDown);
-        }
-
         /// <summary>Called during rendering</summary>
         public virtual void Think()
         {
@@ -678,12 +640,7 @@ namespace FoxTrader.UI.Control
         /// <param name="c_text">Tooltip text</param>
         public virtual void SetToolTipText(string c_text)
         {
-            var a_tooltip = new Label(this);
-
-            a_tooltip.AutoSizeToContents = true;
-            a_tooltip.Text = c_text;
-            a_tooltip.TextColorOverride = Skin.m_colors.m_tooltipText;
-            a_tooltip.Padding = new Padding(5, 3, 5, 3);
+            var a_tooltip = new Label(this) { AutoSizeToContents = true, Text = c_text, TextColorOverride = Skin.m_colors.m_tooltipText, Padding = new Padding(5, 3, 5, 3) };
             a_tooltip.SizeToContents();
 
             ToolTip = a_tooltip;
@@ -968,10 +925,7 @@ namespace FoxTrader.UI.Control
 
             OnBoundsChanged(a_oldBounds);
 
-            if (BoundsChanged != null)
-            {
-                BoundsChanged.Invoke(this);
-            }
+            BoundsChanged?.Invoke(this);
 
             return true;
         }
@@ -1037,7 +991,6 @@ namespace FoxTrader.UI.Control
 
             Invalidate();
             Redraw();
-            OnSkinChanged(c_skin);
 
             if (c_changeChildren)
             {
@@ -1049,45 +1002,42 @@ namespace FoxTrader.UI.Control
         }
 
         /// <summary>Focuses the control</summary>
-        public virtual void Focus()
+        public virtual void OnFocus()
         {
-            if (FoxTraderWindow.Instance.KeyboardFocus == this)
+            if (GetCanvas().KeyboardFocus == this)
             {
                 return;
             }
 
-            if (FoxTraderWindow.Instance.KeyboardFocus != null)
+            if (GetCanvas().KeyboardFocus != null)
             {
-                FoxTraderWindow.Instance.KeyboardFocus.OnLostKeyboardFocus();
+                GetCanvas().KeyboardFocus.OnBlur();
             }
 
-            FoxTraderWindow.Instance.KeyboardFocus = this;
+            GetCanvas().KeyboardFocus = this;
 
-            OnKeyboardFocus();
+            Focus?.Invoke(this);
             Redraw();
         }
 
         /// <summary>Unfocuses the control</summary>
-        public virtual void Blur()
+        public virtual void OnBlur()
         {
-            if (FoxTraderWindow.Instance.KeyboardFocus != this)
+            if (GetCanvas().KeyboardFocus != this)
             {
                 return;
             }
 
-            FoxTraderWindow.Instance.KeyboardFocus = null;
+            GetCanvas().KeyboardFocus = null;
 
-            OnLostKeyboardFocus();
+            Blur?.Invoke(this);
             Redraw();
         }
 
         /// <summary>Control has been clicked - invoked by input system. Windows use it to propagate activation</summary>
         public virtual void Touch()
         {
-            if (Parent != null)
-            {
-                Parent.OnChildTouched(this);
-            }
+            Parent?.OnChildTouched(this);
         }
 
         /// <summary>Gets a child by its coordinates</summary>
@@ -1121,23 +1071,23 @@ namespace FoxTrader.UI.Control
         /// <returns>Canvas coordinates</returns>
         public virtual Point LocalPosToCanvas(Point c_point)
         {
-            if (m_parent != null)
+            if (m_parent == null)
             {
-                var a_x = c_point.X + X;
-                var a_y = c_point.Y + Y;
-
-                // If our parent has an innerpanel and we're a child of it
-                // add its offset onto us.
-                if (m_parent.m_innerControl != null && m_parent.m_innerControl.IsChild(this))
-                {
-                    a_x += m_parent.m_innerControl.X;
-                    a_y += m_parent.m_innerControl.Y;
-                }
-
-                return m_parent.LocalPosToCanvas(new Point(a_x, a_y));
+                return c_point;
             }
 
-            return c_point;
+            var a_x = c_point.X + X;
+            var a_y = c_point.Y + Y;
+
+            // If our parent has an innerpanel and we're a child of it
+            // add its offset onto us.
+            if (m_parent.m_innerControl != null && m_parent.m_innerControl.IsChild(this))
+            {
+                a_x += m_parent.m_innerControl.X;
+                a_y += m_parent.m_innerControl.Y;
+            }
+
+            return m_parent.LocalPosToCanvas(new Point(a_x, a_y));
         }
 
         /// <summary>Converts canvas coordinates to local coordinates</summary>
@@ -1145,29 +1095,29 @@ namespace FoxTrader.UI.Control
         /// <returns>Local coordinates</returns>
         public virtual Point CanvasPosToLocal(Point c_point)
         {
-            if (m_parent != null)
+            if (m_parent == null)
             {
-                var a_x = c_point.X - X;
-                var a_y = c_point.Y - Y;
-
-                // If our parent has an innerpanel and we're a child of it
-                // add its offset onto us.
-                if (m_parent.m_innerControl != null && m_parent.m_innerControl.IsChild(this))
-                {
-                    a_x -= m_parent.m_innerControl.X;
-                    a_y -= m_parent.m_innerControl.Y;
-                }
-
-                return m_parent.CanvasPosToLocal(new Point(a_x, a_y));
+                return c_point;
             }
 
-            return c_point;
+            var a_x = c_point.X - X;
+            var a_y = c_point.Y - Y;
+
+            // If our parent has an innerpanel and we're a child of it
+            // add its offset onto us.
+            if (m_parent.m_innerControl != null && m_parent.m_innerControl.IsChild(this))
+            {
+                a_x -= m_parent.m_innerControl.X;
+                a_y -= m_parent.m_innerControl.Y;
+            }
+
+            return m_parent.CanvasPosToLocal(new Point(a_x, a_y));
         }
 
         /// <summary>Closes all menus recursively</summary>
         public virtual void CloseMenus()
         {
-            // TODO: not very efficient with the copying and recursive closing, maybe store currently open menus somewhere (canvas)?
+            // TODO: Bad Perf, store open menus somewhere
             var a_childrenCopy = m_children.FindAll(c_x => true);
 
             foreach (var a_childControl in a_childrenCopy)
@@ -1191,24 +1141,18 @@ namespace FoxTrader.UI.Control
         // giver
         public virtual bool DragAndDrop_Draggable()
         {
-            if (m_package == null)
-            {
-                return false;
-            }
-
-            return m_package.m_isDraggable;
+            return m_package != null && m_package.m_isDraggable;
         }
 
         // giver
         public virtual void DragAndDrop_SetPackage(bool c_isDraggable, string c_name = "", object c_userData = null)
         {
-            if (m_package == null)
+            if (m_package != null)
             {
-                m_package = new Package();
-                m_package.m_isDraggable = c_isDraggable;
-                m_package.m_name = c_name;
-                m_package.m_userData = c_userData;
+                return;
             }
+
+            m_package = new Package { m_isDraggable = c_isDraggable, m_name = c_name, m_userData = c_userData };
         }
 
         // giver
@@ -1279,13 +1223,8 @@ namespace FoxTrader.UI.Control
         {
             var a_size = Point.Empty;
 
-            foreach (var a_childControl in m_children)
+            foreach (var a_childControl in m_children.Where(c_childControl => !c_childControl.IsHidden))
             {
-                if (a_childControl.IsHidden)
-                {
-                    continue;
-                }
-
                 a_size.X = Math.Max(a_size.X, a_childControl.Right);
                 a_size.Y = Math.Max(a_size.Y, a_childControl.Bottom);
             }
@@ -1300,10 +1239,7 @@ namespace FoxTrader.UI.Control
 
             m_cacheTextureDirty = true;
 
-            if (m_parent != null)
-            {
-                m_parent.Redraw();
-            }
+            m_parent?.Redraw();
         }
 
         /// <summary>Updates control colors</summary>
@@ -1316,31 +1252,25 @@ namespace FoxTrader.UI.Control
         /// <returns></returns>
         internal virtual Canvas GetCanvas()
         {
-            var a_canvasParent = m_parent;
-
-            if (a_canvasParent == null)
-            {
-                return null;
-            }
-
-            return a_canvasParent.GetCanvas();
+            return m_parent?.GetCanvas();
         }
 
         /// <summary>Updating logic implementation</summary>
         internal virtual void DoUpdate()
         {
-            if (m_children.Count > 0)
+            if (m_children.Count <= 0)
             {
-                //Now render my kids
-                foreach (var a_childControl in m_children.ToList())
-                {
-                    /*if (a_childControl.IsHidden)
+                return;
+            }
+            //Now render my kids
+            foreach (var a_childControl in m_children.ToList())
+            {
+                /*if (a_childControl.IsHidden)
                     {
                         continue;
                     }*/
 
-                    a_childControl.DoUpdate();
-                }
+                a_childControl.DoUpdate();
             }
         }
 
@@ -1361,112 +1291,6 @@ namespace FoxTrader.UI.Control
             {
                 c_skin.DrawDebugOutlines(this);
             }
-        }
-
-        /// <summary>Handles keyboard accelerator</summary>
-        /// <param name="c_accelerator">Accelerator text</param>
-        /// <returns>True if handled</returns>
-        internal virtual bool HandleAccelerator(string c_accelerator)
-        {
-            if (FoxTraderWindow.Instance.KeyboardFocus == this || !AccelOnlyFocus)
-            {
-                if (m_accelerators.ContainsKey(c_accelerator))
-                {
-                    m_accelerators[c_accelerator].Invoke(this);
-
-                    return true;
-                }
-            }
-
-            return m_children.Any(c_child => c_child.HandleAccelerator(c_accelerator));
-        }
-
-        /// <summary>Handler for Space keyboard event</summary>
-        /// <param name="c_down">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected virtual bool OnKeySpace(bool c_down)
-        {
-            return false;
-        }
-
-        /// <summary>Handler for Return keyboard event</summary>
-        /// <param name="c_isButtonDown">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected virtual bool OnKeyReturn(bool c_isButtonDown)
-        {
-            return false;
-        }
-
-        /// <summary>Handler for Backspace keyboard event</summary>
-        /// <param name="c_isButtonDown">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected virtual bool OnKeyBackspace(bool c_isButtonDown)
-        {
-            return false;
-        }
-
-        /// <summary>Handler for Delete keyboard event</summary>
-        /// <param name="c_isButtonDown">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected virtual bool OnKeyDelete(bool c_isButtonDown)
-        {
-            return false;
-        }
-
-        /// <summary>Handler for Right Arrow keyboard event</summary>
-        /// <param name="c_isButtonDown">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected virtual bool OnKeyRight(bool c_isButtonDown)
-        {
-            return false;
-        }
-
-        /// <summary>Handler for Left Arrow keyboard event</summary>
-        /// <param name="c_isButtonDown">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected virtual bool OnKeyLeft(bool c_isButtonDown)
-        {
-            return false;
-        }
-
-        /// <summary>Handler for Home keyboard event</summary>
-        /// <param name="c_isButtonDown">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected virtual bool OnKeyHome(bool c_isButtonDown)
-        {
-            return false;
-        }
-
-        /// <summary>Handler for End keyboard event</summary>
-        /// <param name="c_isButtonDown">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected virtual bool OnKeyEnd(bool c_isButtonDown)
-        {
-            return false;
-        }
-
-        /// <summary>Handler for Up Arrow keyboard event</summary>
-        /// <param name="c_down">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected virtual bool OnKeyUp(bool c_down)
-        {
-            return false;
-        }
-
-        /// <summary>Handler for Down Arrow keyboard event</summary>
-        /// <param name="c_down">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected virtual bool OnKeyDown(bool c_down)
-        {
-            return false;
-        }
-
-        /// <summary>Handler for Escape keyboard event</summary>
-        /// <param name="c_isButtonDown">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected virtual bool OnKeyEscape(bool c_isButtonDown)
-        {
-            return false;
         }
 
         /// <summary>Handler for Paste event</summary>
@@ -1502,56 +1326,6 @@ namespace FoxTrader.UI.Control
         /// <summary>Renders over the actual control (overlays)</summary>
         /// <param name="c_skin">Skin to use</param>
         protected virtual void RenderOver(SkinBase c_skin)
-        {
-        }
-
-        /// <summary>Handler for gaining keyboard focus</summary>
-        protected virtual void OnKeyboardFocus()
-        {
-        }
-
-        /// <summary>Handler for losing keyboard focus</summary>
-        protected virtual void OnLostKeyboardFocus()
-        {
-        }
-
-        /// <summary>Handler for character input event</summary>
-        /// <param name="c_char">Character typed</param>
-        /// <returns>True if handled</returns>
-        protected virtual bool OnChar(char c_char)
-        {
-            return false;
-        }
-
-        /// <summary>Handler for keyboard events</summary>
-        /// <param name="c_keys">Key pressed</param>
-        /// <returns>True if handled</returns>
-        protected virtual bool OnKeyReleaseed(Key c_keys)
-        {
-            return OnKeyPressed(c_keys, false);
-        }
-
-        /// <summary>Handler for Tab keyboard event</summary>
-        /// <param name="c_isButtonDown">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected virtual bool OnKeyTab(bool c_isButtonDown)
-        {
-            if (!c_isButtonDown)
-            {
-                return true;
-            }
-
-            if (GetCanvas().m_nextTab != null)
-            {
-                GetCanvas().m_nextTab.Focus();
-                Redraw();
-            }
-
-            return true;
-        }
-
-        /// <summary>Default accelerator handler</summary>
-        protected virtual void OnAccelerator()
         {
         }
 
@@ -1601,10 +1375,7 @@ namespace FoxTrader.UI.Control
         /// <param name="c_oldBounds">Old bounds</param>
         protected virtual void OnBoundsChanged(Rectangle c_oldBounds)
         {
-            if (Parent != null)
-            {
-                Parent.OnChildBoundsChanged(c_oldBounds, this);
-            }
+            Parent?.OnChildBoundsChanged(c_oldBounds, this);
 
             if (m_bounds.Width != c_oldBounds.Width || m_bounds.Height != c_oldBounds.Height)
             {
@@ -1676,13 +1447,8 @@ namespace FoxTrader.UI.Control
             if (m_children.Count > 0)
             {
                 //Now render my kids
-                foreach (var a_childControl in m_children)
+                foreach (var a_childControl in m_children.Where(c_childControl => !c_childControl.IsHidden))
                 {
-                    if (a_childControl.IsHidden)
-                    {
-                        continue;
-                    }
-
                     a_childControl.DoRender(c_skin);
                 }
             }
@@ -1696,69 +1462,72 @@ namespace FoxTrader.UI.Control
             a_renderer.RenderOffset = a_oldRenderOffset;
         }
 
-        /// <summary>Handler invoked when control's skin changes</summary>
-        /// <param name="c_newSkin">New skin</param>
-        protected virtual void OnSkinChanged(SkinBase c_newSkin)
+        public virtual void OnKeyDown(KeyboardKeyEventArgs c_keyboardKeyEventArgs)
         {
+            KeyDown?.Invoke(this, c_keyboardKeyEventArgs);
         }
 
-        /// <summary>Handler invoked on mouse wheel event</summary>
-        /// <param name="c_delta">Scroll delta</param>
-        protected virtual bool OnMouseWheeled(int c_delta)
+        public virtual void OnKeyUp(KeyboardKeyEventArgs c_keyboardKeyEvent)
+        {
+            KeyPress?.Invoke(this, c_keyboardKeyEvent);
+            KeyUp?.Invoke(this, c_keyboardKeyEvent);
+        }
+
+        public virtual void OnMouseWheel(MouseWheelEventArgs c_mouseWheelEventArgs)
         {
             if (m_actualParent != null)
             {
-                return m_actualParent.OnMouseWheeled(c_delta);
+                m_actualParent.OnMouseWheel(c_mouseWheelEventArgs);
+            }
+            else
+            {
+                MouseWheel?.Invoke(this, c_mouseWheelEventArgs);
+            }
+        }
+
+        public virtual void OnMouseMoved(MouseMoveEventArgs c_mouseEventArgs)
+        {
+            MouseMove?.Invoke(this, c_mouseEventArgs);
+        }
+
+        public virtual void OnMouseDown(MouseButtonEventArgs c_mouseButtonEventArgs)
+        {
+            GetCanvas().MouseFocus = this;
+            MouseDown?.Invoke(this, c_mouseButtonEventArgs);
+        }
+
+        public virtual void OnClicked(MouseButtonEventArgs c_mouseButtonEventArgs)
+        {
+            Clicked?.Invoke(this, c_mouseButtonEventArgs);
+        }
+
+        public virtual void OnDoubleClicked(MouseButtonEventArgs c_mouseButtonEventArgs)
+        {
+            DoubleClicked?.Invoke(this, c_mouseButtonEventArgs);
+        }
+
+        public virtual void OnMouseUp(MouseButtonEventArgs c_mouseButtonEventArgs)
+        {
+            var a_buttonIdx = (int)c_mouseButtonEventArgs.Button;
+
+            if (m_lastClickedTime[a_buttonIdx] < kMouseDoubleClickSpeed)
+            {
+                OnDoubleClicked(c_mouseButtonEventArgs);
+            }
+            else
+            {
+                OnClicked(c_mouseButtonEventArgs);
             }
 
-            return false;
-        }
+            m_lastClickedTime[a_buttonIdx] = Neutral.GetTimeInSeconds();
 
-        /// <summary>Handler invoked on mouse moved event</summary>
-        /// <param name="c_x">X coordinate</param>
-        /// <param name="c_y">Y coordinate</param>
-        /// <param name="c_dx">X change</param>
-        /// <param name="c_dy">Y change</param>
-        protected virtual void OnMouseMoved(MouseState c_mouseState, int c_x, int c_y, int c_dx, int c_dy)
-        {
-        }
-
-        /// <summary>Handler invoked on mouse click (left) event</summary>
-        /// <param name="c_x">X coordinate</param>
-        /// <param name="c_y">Y coordinate</param>
-        /// <param name="c_down">If set to <c>true</c> mouse button is down</param>
-        protected virtual void OnMouseClickedLeft(int c_x, int c_y, bool c_down)
-        {
-        }
-
-        /// <summary>Handler invoked on mouse click (right) event</summary>
-        /// <param name="c_x">X coordinate</param>
-        /// <param name="c_y">Y coordinate</param>
-        /// <param name="c_isButtonDown">If set to <c>true</c> mouse button is down</param>
-        protected virtual void OnMouseClickedRight(int c_x, int c_y, bool c_isButtonDown)
-        {
-        }
-
-        /// <summary>Handler invoked on mouse double click (left) event</summary>
-        /// <param name="c_x">X coordinate</param>
-        /// <param name="c_xY">Y coordinate</param>
-        protected virtual void OnMouseDoubleClickedLeft(int c_x, int c_xY)
-        {
-            OnMouseClickedLeft(c_x, c_xY, true);
-        }
-
-        /// <summary>Handler invoked on mouse double click (right) event</summary>
-        /// <param name="c_x">X coordinate</param>
-        /// <param name="c_y">Y coordinate</param>
-        protected virtual void OnMouseDoubleClickedRight(int c_x, int c_y)
-        {
-            OnMouseClickedRight(c_x, c_y, true);
+            MouseUp?.Invoke(this, c_mouseButtonEventArgs);
         }
 
         /// <summary>Handler invoked on mouse cursor entering control's bounds</summary>
-        protected virtual void OnMouseEntered()
+        public virtual void OnMouseOver(MouseMoveEventArgs c_mouseEventArgs)
         {
-            MouseIn?.Invoke(this);
+            MouseOver?.Invoke(this, c_mouseEventArgs);
 
             if (ToolTip != null)
             {
@@ -1772,17 +1541,9 @@ namespace FoxTrader.UI.Control
             Redraw();
         }
 
-        /// <summary>Handler invoked on mouse cursor leaving control's bounds</summary>
-        protected virtual void OnMouseLeft()
+        internal virtual void OnMouseOut(MouseMoveEventArgs c_mouseEventArgs)
         {
-            MouseOut?.Invoke(this);
-
-            if (ToolTip != null)
-            {
-                UI.ToolTip.Disable(this);
-            }
-
-            Redraw();
+            MouseOut?.Invoke(this, c_mouseEventArgs);
         }
 
         protected virtual void OnChildTouched(GameControl c_control)
@@ -1792,7 +1553,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Lays out the control's interior according to alignment, padding, dock etc</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected virtual void Layout(SkinBase c_skin)
+        protected virtual void OnLayout(SkinBase c_skin)
         {
         }
 
@@ -1812,7 +1573,7 @@ namespace FoxTrader.UI.Control
 
             if (m_needsLayout)
             {
-                Layout(c_skin);
+                OnLayout(c_skin);
                 m_needsLayout = false;
             }
 
@@ -1921,7 +1682,7 @@ namespace FoxTrader.UI.Control
                 }
             }
 
-            if (FoxTraderWindow.Instance.KeyboardFocus == this)
+            if (GetCanvas().KeyboardFocus == this)
             {
                 GetCanvas().m_nextTab = null;
             }
@@ -1941,87 +1702,6 @@ namespace FoxTrader.UI.Control
         /// <param name="c_skin">Skin to use</param>
         protected virtual void PostLayout(SkinBase c_skin)
         {
-        }
-
-        /// <summary>Handler for keyboard events</summary>
-        /// <param name="c_keys">Key pressed</param>
-        /// <param name="c_isButtonDown">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected virtual bool OnKeyPressed(Key c_keys, bool c_isButtonDown = true)
-        {
-            var a_isHandled = false;
-
-            switch (c_keys)
-            {
-                case Key.Tab:
-                a_isHandled = OnKeyTab(c_isButtonDown);
-                break;
-                case Key.Space:
-                a_isHandled = OnKeySpace(c_isButtonDown);
-                break;
-                case Key.Home:
-                a_isHandled = OnKeyHome(c_isButtonDown);
-                break;
-                case Key.End:
-                a_isHandled = OnKeyEnd(c_isButtonDown);
-                break;
-                case Key.Enter:
-                a_isHandled = OnKeyReturn(c_isButtonDown);
-                break;
-                case Key.BackSpace:
-                a_isHandled = OnKeyBackspace(c_isButtonDown);
-                break;
-                case Key.Delete:
-                a_isHandled = OnKeyDelete(c_isButtonDown);
-                break;
-                case Key.Right:
-                a_isHandled = OnKeyRight(c_isButtonDown);
-                break;
-                case Key.Left:
-                a_isHandled = OnKeyLeft(c_isButtonDown);
-                break;
-                case Key.Up:
-                a_isHandled = OnKeyUp(c_isButtonDown);
-                break;
-                case Key.Down:
-                a_isHandled = OnKeyDown(c_isButtonDown);
-                break;
-                case Key.Escape:
-                a_isHandled = OnKeyEscape(c_isButtonDown);
-                break;
-            }
-
-            if (!a_isHandled)
-            {
-                Parent?.OnKeyPressed(c_keys, c_isButtonDown);
-            }
-
-            return a_isHandled;
-        }
-
-        internal void InputCopy(GameControl c_fromControl)
-        {
-            OnCopy(c_fromControl);
-        }
-
-        internal void InputPaste(GameControl c_fromControl)
-        {
-            OnPaste(c_fromControl);
-        }
-
-        internal void InputCut(GameControl c_fromControl)
-        {
-            OnCut(c_fromControl);
-        }
-
-        internal void InputSelectAll(GameControl c_fromControl)
-        {
-            OnSelectAll(c_fromControl);
-        }
-
-        internal bool InputChar(char c_char)
-        {
-            return OnChar(c_char);
         }
 
         public virtual void Anim_WidthIn(float c_length, float c_delay = 0.0f, float c_ease = 1.0f)

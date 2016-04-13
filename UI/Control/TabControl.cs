@@ -1,5 +1,6 @@
 using FoxTrader.UI.ControlInternal;
 using FoxTrader.UI.Skin;
+using OpenTK.Input;
 using static FoxTrader.Constants;
 
 namespace FoxTrader.UI.Control
@@ -123,22 +124,16 @@ namespace FoxTrader.UI.Control
             c_button.Parent = TabStrip;
             c_button.Dock = Pos.Left;
             c_button.SizeToContents();
-            if (c_button.TabControl != null)
-            {
-                c_button.TabControl.UnsubscribeTabEvent(c_button);
-            }
+            c_button.TabControl?.UnsubscribeTabEvent(c_button);
             c_button.TabControl = this;
             c_button.Clicked += OnTabPressed;
 
             if (null == CurrentButton)
             {
-                c_button.Press();
+                c_button.OnClicked(null);
             }
 
-            if (TabAdded != null)
-            {
-                TabAdded.Invoke(this);
-            }
+            TabAdded?.Invoke(this);
 
             Invalidate();
         }
@@ -150,16 +145,12 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Handler for tab selection</summary>
         /// <param name="c_control">Event source (TabButton)</param>
-        internal virtual void OnTabPressed(GameControl c_control)
+        internal virtual void OnTabPressed(GameControl c_control, MouseButtonEventArgs c_args)
         {
             var a_button = c_control as TabButton;
-            if (null == a_button)
-            {
-                return;
-            }
 
-            var a_page = a_button.Page;
-            if (null == a_page)
+            var a_page = a_button?.Page;
+            if (a_page == null)
             {
                 return;
             }
@@ -241,12 +232,12 @@ namespace FoxTrader.UI.Control
             m_scroll[1].SetPosition(m_scroll[0].Right, 5);
         }
 
-        protected virtual void ScrollPressedLeft(GameControl c_control)
+        protected virtual void ScrollPressedLeft(GameControl c_control, MouseButtonEventArgs c_args)
         {
             m_scrollOffset -= 120;
         }
 
-        protected virtual void ScrollPressedRight(GameControl c_control)
+        protected virtual void ScrollPressedRight(GameControl c_control, MouseButtonEventArgs c_args)
         {
             m_scrollOffset += 120;
         }

@@ -120,7 +120,8 @@ namespace FoxTrader.UI.Control
                 return;
             }
 
-            (Children[c_index] as LabeledRadioButton).RadioButton.Press();
+            var a_labeledRadioButton = Children[c_index] as LabeledRadioButton;
+            a_labeledRadioButton?.RadioButton.OnClicked(null);
         }
     }
 }

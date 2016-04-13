@@ -9,6 +9,8 @@ namespace FoxTrader
         {
             Trace.Listeners.Add(new TextWriterTraceListener("game.log"));
             Trace.AutoFlush = true;
+
+            Info("====================================================================================================", "LOGLOG");
         }
 
         public static void Error(string c_message, string c_module)

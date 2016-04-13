@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Drawing;
+using System.Reflection;
 using FoxTrader.Game;
 using FoxTrader.UI;
 using FoxTrader.UI.Control;
@@ -35,11 +36,11 @@ namespace FoxTrader.Views
             var a_assemblyVersion = Assembly.GetCallingAssembly().GetName().Version;
 
             m_label = new Label(a_controlsParent) { AutoSizeToContents = true, Text = string.Format(I18N.GetString("GameTrademark"), a_assemblyVersion.Major + "." + a_assemblyVersion.Minor), Font = FoxTraderWindow.Instance.Renderer.GetFont("Roboto Black", 32) };
-            m_label.MakeColorBright();
+            m_label.TextColor = Color.White;
 
             m_buttonNewGame = new Button(a_controlsParent) { Text = I18N.GetString("NewGame") };
             m_buttonNewGame.SetSize(kMainMenuButtonWidth, kMainMenuButtonHeight);
-            m_buttonNewGame.Clicked += (c_senderControl) =>
+            m_buttonNewGame.Clicked += (c_senderControl, c_args) =>
             {
                 GameContext.Instance.New();
             };
@@ -54,14 +55,14 @@ namespace FoxTrader.Views
 
             m_buttonOptions = new Button(a_controlsParent) { Text = I18N.GetString("GameOptions") };
             m_buttonOptions.SetSize(kMainMenuButtonWidth, kMainMenuButtonHeight);
-            m_buttonOptions.Clicked += (c_senderControl) =>
+            m_buttonOptions.Clicked += (c_senderControl, a_args) =>
             {
                 GameContext.Instance.ViewOptions();
             };
 
             m_buttonQuit = new Button(a_controlsParent) { Text = I18N.GetString("QuitGame") };
             m_buttonQuit.SetSize(kMainMenuButtonWidth, kMainMenuButtonHeight);
-            m_buttonQuit.Clicked += (c_senderControl) =>
+            m_buttonQuit.Clicked += (c_senderControl, c_args) =>
             {
                 FoxTraderWindow.Instance.Exit();
             };
@@ -85,9 +86,9 @@ namespace FoxTrader.Views
             Align.PlaceDownLeft(m_buttonQuit, m_buttonOptions, 25);
         }
 
-        protected override void Layout(SkinBase c_skin)
+        protected override void OnLayout(SkinBase c_skin)
         {
-            base.Layout(c_skin);
+            base.OnLayout(c_skin);
 
             Align.CenterHorizontally(m_menuControl);
             Align.CenterVertically(m_menuControl);

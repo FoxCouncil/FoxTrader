@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using FoxTrader.UI.Anim;
 using FoxTrader.UI.DragDrop;
+using FoxTrader.UI.Input;
 using FoxTrader.UI.Skin;
 using OpenTK.Input;
 
@@ -11,16 +13,48 @@ namespace FoxTrader.UI.Control
     /// <summary>Base class to display UI elements, handles drawing and colors..</summary>
     internal class Canvas : GameControl
     {
+        private readonly KeyData m_keyData = new KeyData();
         private readonly List<IDisposable> m_disposeQueue; // dictionary for faster access?
 
         // These are not created by us, so no disposing
         internal GameControl m_firstTab;
         internal GameControl m_nextTab;
+
+        private readonly GameControlDevices m_gameControlDevices;
+
         private float m_scale;
+        private Point m_lastClickedPosition;
+
+
+        public GameControl MouseFocus
+        {
+            get;
+            internal set;
+        }
+
+        public GameControl HoveredControl
+        {
+            get;
+            internal set;
+        }
+
+        public GameControl KeyboardFocus
+        {
+            get;
+            internal set;
+        }
 
         /// <summary>Initializes a new instance of the <see cref="Canvas" /> class</summary>
         public Canvas()
         {
+            m_gameControlDevices = FoxTraderWindow.Instance.GetGameControlDevices();
+
+            HookKeyboard();
+            HookMouse();
+
+            MouseInputEnabled = true;
+            KeyboardInputEnabled = true;
+
             SetBounds(0, 0, 10000, 10000);
             SetSkin(FoxTraderWindow.Instance.Skin);
             Scale = 1.0f;
@@ -28,6 +62,153 @@ namespace FoxTrader.UI.Control
             ShouldDrawBackground = false;
 
             m_disposeQueue = new List<IDisposable>();
+        }
+
+        private void HookKeyboard()
+        {
+            m_gameControlDevices.Keyboard.KeyDown += (c_sender, c_args) =>
+            {
+                if (IsHidden || !KeyboardInputEnabled)
+                {
+                    return;
+                }
+
+                HoveredControl.OnKeyDown(c_args);
+            };
+
+            m_gameControlDevices.Keyboard.KeyUp += (c_sender, c_args) =>
+            {
+                if (IsHidden || !KeyboardInputEnabled)
+                {
+                    return;
+                }
+
+                if (MouseFocus is Button && c_args.Key == Key.Space)
+                {
+                    var a_button = HoveredControl as Button;
+
+                    a_button?.OnClicked(new MouseButtonEventArgs());
+                }
+
+                HoveredControl.OnKeyUp(c_args);
+            };
+        }
+
+        private void HookMouse()
+        {
+            m_gameControlDevices.Mouse.Move += (c_sender, c_args) =>
+            {
+                if (IsHidden || !MouseInputEnabled)
+                {
+                    return;
+                }
+
+                if (HoveredControl != null)
+                {
+                    HoveredControl.OnMouseMoved(c_args);
+
+                    DragAndDrop.OnMouseMoved(HoveredControl, c_args);
+                }
+
+                var a_hoveredControl = GetControlAt(c_args.X, c_args.Y);
+
+                if (HoveredControl != a_hoveredControl)
+                {
+                    if (HoveredControl != null)
+                    {
+                        HoveredControl.OnMouseOut(c_args);
+                        HoveredControl = null;
+                    }
+
+                    HoveredControl = a_hoveredControl;
+                    HoveredControl?.OnMouseOver(c_args);
+                }
+
+                if (MouseFocus == null)
+                {
+                    return;
+                }
+
+                if (HoveredControl != null)
+                {
+                    HoveredControl.Redraw();
+                    HoveredControl = null;
+                }
+
+                HoveredControl = MouseFocus;
+            };
+
+            m_gameControlDevices.Mouse.ButtonDown += (c_sender, c_args) =>
+            {
+                if (IsHidden || !MouseInputEnabled)
+                {
+                    return;
+                }
+
+                if (HoveredControl == null || !HoveredControl.IsMenuComponent)
+                {
+                    CloseMenus();
+                }
+
+                if (HoveredControl == null || !HoveredControl.IsVisible || HoveredControl == this)
+                {
+                    return;
+                }
+
+                FindKeyboardFocusedControl(HoveredControl);
+
+                if (c_args.Button == MouseButton.Left && DragAndDrop.OnMouseButton(HoveredControl, c_args))
+                {
+                    return;
+                }
+
+                HoveredControl.OnMouseDown(c_args);
+            };
+
+            m_gameControlDevices.Mouse.ButtonUp += (c_sender, c_args) =>
+            {
+                if (IsHidden || !MouseInputEnabled)
+                {
+                    return;
+                }
+
+                HoveredControl?.OnMouseUp(c_args);
+            };
+
+            m_gameControlDevices.Mouse.WheelChanged += (c_sender, c_args) =>
+            {
+                if (IsHidden || !MouseInputEnabled)
+                {
+                    return;
+                }
+
+                HoveredControl.OnMouseWheel(c_args);
+            };
+        }
+
+        private void FindKeyboardFocusedControl(GameControl c_hoveredControl)
+        {
+            while (true)
+            {
+                if (c_hoveredControl == null)
+                {
+                    return;
+                }
+
+                if (c_hoveredControl.KeyboardInputEnabled)
+                {
+                    if (c_hoveredControl.Children.Any(c_childControl => c_childControl == KeyboardFocus))
+                    {
+                        return;
+                    }
+
+                    c_hoveredControl.OnFocus();
+
+                    return;
+                }
+
+                c_hoveredControl = c_hoveredControl.Parent;
+            }
         }
 
         /// <summary>Scale for rendering</summary>
@@ -46,7 +227,7 @@ namespace FoxTrader.UI.Control
 
                 m_scale = value;
 
-                if (Skin != null && Skin.Renderer != null)
+                if (Skin?.Renderer != null)
                 {
                     Skin.Renderer.Scale = m_scale;
                 }
@@ -171,7 +352,40 @@ namespace FoxTrader.UI.Control
                 m_nextTab = m_firstTab;
             }
 
-            FoxTraderWindow.Instance.OnCanvasThink();
+            if (MouseFocus != null && !MouseFocus.IsVisible)
+            {
+                MouseFocus = null;
+            }
+
+            if (KeyboardFocus != null && (!KeyboardFocus.IsVisible || !KeyboardFocus.KeyboardInputEnabled))
+            {
+                KeyboardFocus = null;
+            }
+
+            if (KeyboardFocus == null)
+            {
+                return;
+            }
+
+
+            // Key Repeat On OpenTK??
+            /*var a_time = Platform.Neutral.GetTimeInSeconds();
+
+            for (var a_idx = 0; a_idx < 1024; a_idx++)
+            {
+                if (m_keyData.m_keyState[a_idx] && m_keyData.m_target != KeyboardFocus)
+                {
+                    m_keyData.m_keyState[a_idx] = false;
+                    continue;
+                }
+
+                if (m_keyData.m_keyState[a_idx] && a_time > m_keyData.m_nextRepeat[a_idx])
+                {
+                    m_keyData.m_nextRepeat[a_idx] = Platform.Neutral.GetTimeInSeconds() + kKeyRepeatDelay;
+
+                    KeyboardFocus?.OnKeyDown((Key)a_idx);
+                }
+            }*/
         }
 
         /// <summary>Adds given control to the delete queue and detaches it from canvas. Don't call from Dispose, it modifies child list</summary>
@@ -205,56 +419,7 @@ namespace FoxTrader.UI.Control
             }
         }
 
-        /// <summary>Handles mouse movement events. Called from Input subsystems</summary>
-        /// <returns>True if handled</returns>
-        public bool Input_MouseMoved(MouseState c_mouseState, int c_x, int c_y, int c_dx, int c_dy)
-        {
-            if (IsHidden)
-            {
-                return false;
-            }
-
-            var a_inverseScale = 1.0f / Scale;
-
-            c_x = Util.Round(c_x * a_inverseScale);
-            c_y = Util.Round(c_y * a_inverseScale);
-            c_dx = Util.Round(c_dx * a_inverseScale);
-            c_dy = Util.Round(c_dy * a_inverseScale);
-
-            FoxTraderWindow.Instance.OnMouseMoved(c_x, c_y, c_dx, c_dy);
-
-            if (FoxTraderWindow.Instance.HoveredControl == null)
-            {
-                return false;
-            }
-            if (FoxTraderWindow.Instance.HoveredControl == this)
-            {
-                return false;
-            }
-            if (FoxTraderWindow.Instance.HoveredControl.GetCanvas() != this)
-            {
-                return false;
-            }
-
-            FoxTraderWindow.Instance.HoveredControl.InputMouseMoved(c_mouseState, c_x, c_y, c_dx, c_dy);
-            FoxTraderWindow.Instance.HoveredControl.UpdateCursor();
-
-            DragAndDrop.OnMouseMoved(FoxTraderWindow.Instance.HoveredControl, c_x, c_y);
-
-            return true;
-        }
-
-        /// <summary>Handles mouse button events. Called from Input subsystems</summary>
-        /// <returns>True if handled</returns>
-        public bool Input_MouseButton(int c_mouseButton, bool c_isButtonDown)
-        {
-            if (IsHidden)
-            {
-                return false;
-            }
-
-            return FoxTraderWindow.Instance.OnMouseClicked(c_mouseButton, c_isButtonDown);
-        }
+        /*
 
         /// <summary>Handles keyboard events. Called from Input subsystems</summary>
         /// <returns>True if handled</returns>
@@ -287,16 +452,6 @@ namespace FoxTrader.UI.Control
             return FoxTraderWindow.Instance.KeyboardFocus.InputChar(c_char);
         }
 
-        /// <summary>Handles the mouse wheel events. Called from Input subsystems</summary>
-        /// <returns>True if handled</returns>
-        public bool Input_MouseWheel(int c_value)
-        {
-            if (IsHidden || FoxTraderWindow.Instance.HoveredControl == null || FoxTraderWindow.Instance.HoveredControl == this || FoxTraderWindow.Instance.HoveredControl.GetCanvas() != this)
-            {
-                return false;
-            }
-
-            return FoxTraderWindow.Instance.HoveredControl.InputMouseWheeled(c_value);
-        }
+      */
     }
 }

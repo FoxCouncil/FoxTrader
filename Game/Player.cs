@@ -19,7 +19,7 @@ namespace FoxTrader.Game
             get; set;
         }
 
-        public Vector3 Position
+        public Vector2 Position
         {
             get; private set;
         }

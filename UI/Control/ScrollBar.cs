@@ -116,14 +116,6 @@ namespace FoxTrader.UI.Control
             return true;
         }
 
-        /// <summary>Handler invoked on mouse click (left) event</summary>
-        /// <param name="c_x">X coordinate</param>
-        /// <param name="c_y">Y coordinate</param>
-        /// <param name="c_down">If set to <c>true</c> mouse button is down</param>
-        protected override void OnMouseClickedLeft(int c_x, int c_y, bool c_down)
-        {
-        }
-
         /// <summary>Renders the control using specified skin</summary>
         /// <param name="c_skin">Skin to use</param>
         protected override void Render(SkinBase c_skin)
@@ -135,10 +127,7 @@ namespace FoxTrader.UI.Control
         /// <param name="c_control">The control</param>
         protected virtual void OnBarMoved(GameControl c_control)
         {
-            if (BarMoved != null)
-            {
-                BarMoved.Invoke(this);
-            }
+            BarMoved?.Invoke(this);
         }
 
         protected virtual float CalculateScrolledAmount()

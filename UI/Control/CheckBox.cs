@@ -1,4 +1,5 @@
 using FoxTrader.UI.Skin;
+using OpenTK.Input;
 
 namespace FoxTrader.UI.Control
 {
@@ -88,7 +89,7 @@ namespace FoxTrader.UI.Control
         }
 
         /// <summary>Internal OnPressed implementation</summary>
-        protected override void OnClicked()
+        public override void OnClicked(MouseButtonEventArgs c_mouseButtonEventArgs)
         {
             if (IsDisabled)
             {

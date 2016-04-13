@@ -1,6 +1,8 @@
+using System.Drawing;
 using System.Linq;
 using FoxTrader.UI.ControlInternal;
 using FoxTrader.UI.Skin;
+using OpenTK.Input;
 using static FoxTrader.Constants;
 
 namespace FoxTrader.UI.Control
@@ -63,14 +65,14 @@ namespace FoxTrader.UI.Control
 
             BringToFront();
 
-            var a_mousePosition = FoxTraderWindow.Instance.MousePosition;
+            var a_mousePosition = new Point(Mouse.GetState().X, Mouse.GetState().Y);
 
             SetPosition(a_mousePosition.X, a_mousePosition.Y);
         }
 
         /// <summary>Lays out the control's interior according to alignment, padding, dock etc</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void Layout(SkinBase c_skin)
+        protected override void OnLayout(SkinBase c_skin)
         {
             var a_childrenHeight = Children.Sum(c_child => c_child != null ? c_child.Height : 0);
 
@@ -81,7 +83,7 @@ namespace FoxTrader.UI.Control
 
             SetSize(Width, a_childrenHeight);
 
-            base.Layout(c_skin);
+            base.OnLayout(c_skin);
         }
 
         /// <summary>Adds a new menu item</summary>
@@ -118,7 +120,7 @@ namespace FoxTrader.UI.Control
             c_item.Dock = Pos.Top;
             c_item.SizeToContents();
             c_item.Alignment = Pos.CenterV | Pos.Left;
-            c_item.MouseIn += OnHoverItem;
+            c_item.MouseOver += OnHoverItem;
 
             // Do this here - after Top Docking these values mean nothing in layout
             var a_width = c_item.Width + 10 + 32;
@@ -159,7 +161,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Mouse hover handler</summary>
         /// <param name="c_control">Event source</param>
-        protected virtual void OnHoverItem(GameControl c_control)
+        protected virtual void OnHoverItem(GameControl c_control, MouseMoveEventArgs c_args)
         {
             if (!ShouldHoverOpenMenu)
             {

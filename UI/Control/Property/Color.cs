@@ -1,4 +1,5 @@
 using FoxTrader.UI.ControlInternal;
+using OpenTK.Input;
 using static FoxTrader.Constants;
 
 namespace FoxTrader.UI.Control.Property
@@ -33,11 +34,11 @@ namespace FoxTrader.UI.Control.Property
         }
 
         /// <summary>Indicates whether the property value is being edited</summary>
-        public override bool IsEditing => FoxTraderWindow.Instance.KeyboardFocus == m_textBox;
+        public override bool IsEditing => GetCanvas().KeyboardFocus == m_textBox;
 
         /// <summary>Color-select button press handler</summary>
         /// <param name="c_control">Event source</param>
-        protected virtual void OnButtonPressed(GameControl c_control)
+        protected virtual void OnButtonPressed(GameControl c_control, MouseButtonEventArgs c_args)
         {
             var a_menu = new Menu(GetCanvas());
             a_menu.SetSize(256, 180);

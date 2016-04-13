@@ -1,4 +1,3 @@
-using System.Drawing;
 using System.Windows.Forms;
 using FoxTrader.UI.Control;
 using OpenTK.Input;
@@ -53,32 +52,25 @@ namespace FoxTrader.UI.ControlInternal
         /// <summary>Invoked when the control has been resized</summary>
         public event SizeEventHandler Resized;
 
-        /// <summary>Handler invoked on mouse moved event</summary>
-        /// <param name="c_x">X coordinate</param>
-        /// <param name="c_y">Y coordinate</param>
-        /// <param name="c_dx">X change</param>
-        /// <param name="c_dy">Y change</param>
-        protected override void OnMouseMoved(MouseState c_mouseState, int c_x, int c_y, int c_dx, int c_dy)
+        public override void OnMouseMoved(MouseMoveEventArgs c_mouseEventArgs)
         {
-            if (null == m_target)
+            if (m_target == null)
             {
                 return;
             }
+
             if (!m_held)
             {
                 return;
             }
 
-            var a_oldBounds = m_target.Bounds;
             var a_bounds = m_target.Bounds;
-
             var a_min = m_target.MinimumSize;
-
-            var a_pCursorPos = m_target.CanvasPosToLocal(new Point(c_x, c_y));
-
+            var a_pCursorPos = m_target.CanvasPosToLocal(c_mouseEventArgs.Position);
             var a_delta = m_target.LocalPosToCanvas(m_holdPos);
-            a_delta.X -= c_x;
-            a_delta.Y -= c_y;
+
+            a_delta.X -= c_mouseEventArgs.X;
+            a_delta.Y -= c_mouseEventArgs.Y;
 
             if (0 != (m_resizeDir & Pos.Left))
             {
@@ -122,11 +114,14 @@ namespace FoxTrader.UI.ControlInternal
 
                 var a_woff = a_bounds.Width - m_holdPos.X;
                 var a_diff = a_bounds.Width;
+
                 a_bounds.Width = a_pCursorPos.X + a_woff;
+
                 if (a_bounds.Width < a_min.X)
                 {
                     a_bounds.Width = a_min.X;
                 }
+
                 a_diff -= a_bounds.Width;
 
                 m_holdPos.X -= a_diff;
@@ -136,11 +131,14 @@ namespace FoxTrader.UI.ControlInternal
             {
                 var a_hoff = a_bounds.Height - m_holdPos.Y;
                 var a_diff = a_bounds.Height;
+
                 a_bounds.Height = a_pCursorPos.Y + a_hoff;
+
                 if (a_bounds.Height < a_min.Y)
                 {
                     a_bounds.Height = a_min.Y;
                 }
+
                 a_diff -= a_bounds.Height;
 
                 m_holdPos.Y -= a_diff;
@@ -148,10 +146,7 @@ namespace FoxTrader.UI.ControlInternal
 
             m_target.SetBounds(a_bounds);
 
-            if (Resized != null)
-            {
-                Resized.Invoke(this);
-            }
+            Resized?.Invoke(this);
         }
     }
 }

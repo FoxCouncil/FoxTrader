@@ -1,6 +1,7 @@
 using System.Drawing;
 using FoxTrader.UI.ControlInternal;
 using FoxTrader.UI.Skin;
+using OpenTK.Input;
 using static FoxTrader.Constants;
 
 namespace FoxTrader.UI.Control
@@ -72,7 +73,7 @@ namespace FoxTrader.UI.Control
         }
 
         /// <summary>Internal Pressed implementation</summary>
-        protected override void OnClicked()
+        public override void OnClicked(MouseButtonEventArgs c_mouseButtonEventArgs)
         {
             if (IsOpen)
             {
@@ -119,28 +120,28 @@ namespace FoxTrader.UI.Control
 
             ItemSelected?.Invoke(this);
 
-            Focus();
+            OnFocus();
             Invalidate();
         }
 
         /// <summary>Lays out the control's interior according to alignment, padding, dock etc</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void Layout(SkinBase c_skin)
+        protected override void OnLayout(SkinBase c_skin)
         {
             m_button.SetRelativePosition(Pos.Right | Pos.CenterV, 4, 0);
-            base.Layout(c_skin);
-        }
-
-        /// <summary>Handler for losing keyboard focus</summary>
-        protected override void OnLostKeyboardFocus()
-        {
-            TextColor = Color.Black;
+            base.OnLayout(c_skin);
         }
 
         /// <summary>Handler for gaining keyboard focus</summary>
-        protected override void OnKeyboardFocus()
+        public override void OnFocus()
         {
             //Until we add the blue highlighting again
+            TextColor = Color.Black;
+        }
+
+        /// <summary>Handler for losing keyboard focus</summary>
+        public override void OnBlur()
+        {
             TextColor = Color.Black;
         }
 
@@ -175,35 +176,33 @@ namespace FoxTrader.UI.Control
         /// <summary>Handler for Down Arrow keyboard event</summary>
         /// <param name="c_down">Indicates whether the key was pressed or released</param>
         /// <returns>True if handled</returns>
-        protected override bool OnKeyDown(bool c_down)
+        public override void OnKeyDown(KeyboardKeyEventArgs c_keyboardKeyEventArgs)
         {
-            if (c_down)
+            switch (c_keyboardKeyEventArgs.Key)
             {
-                var a_idx = m_menu.Children.FindIndex(c_x => c_x == m_selectedItem);
+                case Key.Down:
+                    {
+                        var a_idx = m_menu.Children.FindIndex(c_x => c_x == m_selectedItem);
 
-                if (a_idx + 1 < m_menu.Children.Count)
-                {
-                    OnItemSelected(m_menu.Children[a_idx + 1]);
-                }
+                        if (a_idx + 1 < m_menu.Children.Count)
+                        {
+                            OnItemSelected(m_menu.Children[a_idx + 1]);
+                        }
+                    }
+                    break;
+
+                case Key.Up:
+                    {
+                        var a_idx = m_menu.Children.FindLastIndex(c_x => c_x == m_selectedItem);
+
+                        if (a_idx - 1 >= 0)
+                        {
+                            OnItemSelected(m_menu.Children[a_idx - 1]);
+                        }
+                    }
+                    break;
             }
-            return true;
-        }
 
-        /// <summary>Handler for Up Arrow keyboard event</summary>
-        /// <param name="c_down">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected override bool OnKeyUp(bool c_down)
-        {
-            if (c_down)
-            {
-                var a_idx = m_menu.Children.FindLastIndex(c_x => c_x == m_selectedItem);
-
-                if (a_idx - 1 >= 0)
-                {
-                    OnItemSelected(m_menu.Children[a_idx - 1]);
-                }
-            }
-            return true;
         }
 
         /// <summary>Renders the focus overlay</summary>

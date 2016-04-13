@@ -1,5 +1,6 @@
 using System;
 using FoxTrader.UI.Skin;
+using OpenTK.Input;
 using static FoxTrader.Constants;
 
 namespace FoxTrader.UI.Control
@@ -20,9 +21,9 @@ namespace FoxTrader.UI.Control
             MouseInputEnabled = true;
             Alignment = Pos.Center;
             TextPadding = new Padding(3, 3, 3, 3);
-            MouseOut += c_childControl =>
+            MouseOut += (c_control, c_args) =>
             {
-                FoxTraderWindow.Instance.MouseFocus = null;
+                GetCanvas().MouseFocus = null;
             };
         }
 
@@ -71,61 +72,43 @@ namespace FoxTrader.UI.Control
 
                 m_toggleStatus = value;
 
-                if (Toggled != null)
-                {
-                    Toggled.Invoke(this);
-                }
+                Toggled?.Invoke(this, new MouseButtonEventArgs());
 
                 if (m_toggleStatus)
                 {
-                    if (ToggledOn != null)
-                    {
-                        ToggledOn.Invoke(this);
-                    }
+                    ToggledOn?.Invoke(this, new MouseButtonEventArgs());
                 }
                 else
                 {
-                    if (ToggledOff != null)
-                    {
-                        ToggledOff.Invoke(this);
-                    }
+                    ToggledOff?.Invoke(this, new MouseButtonEventArgs());
                 }
 
                 Redraw();
             }
         }
 
-        /// <summary>Invoked when the button is released</summary>
-        internal event ButtonEventHandler Clicked;
-
         /// <summary>Invoked when the button is pressed</summary>
-        internal event ButtonEventHandler Pressed;
+        internal event MouseButtonEventHandler Pressed;
 
         /// <summary>Invoked when the button is released</summary>
-        internal event ButtonEventHandler Released;
+        internal event MouseButtonEventHandler Released;
 
         /// <summary>Invoked when the button's toggle state has changed</summary>
-        internal event ButtonEventHandler Toggled;
+        internal event MouseButtonEventHandler Toggled;
 
         /// <summary>Invoked when the button's toggle state has changed to On</summary>
-        internal event ButtonEventHandler ToggledOn;
+        internal event MouseButtonEventHandler ToggledOn;
 
         /// <summary>Invoked when the button's toggle state has changed to Off</summary>
-        internal event ButtonEventHandler ToggledOff;
+        internal event MouseButtonEventHandler ToggledOff;
 
         /// <summary>Invoked when the button has been double clicked</summary>
-        internal event ButtonEventHandler DoubleClickedLeft;
+        internal event MouseButtonEventHandler DoubleClickedLeft;
 
         /// <summary>Toggles the button</summary>
         public virtual void Toggle()
         {
             ToggleState = !ToggleState;
-        }
-
-        /// <summary>"Clicks" the button</summary>
-        public virtual void Press(GameControl c_control = null)
-        {
-            OnClicked();
         }
 
         /// <summary>Renders the control using specified skin</summary>
@@ -134,67 +117,32 @@ namespace FoxTrader.UI.Control
         {
             base.Render(c_skin);
 
-            if (ShouldDrawBackground)
+            if (!ShouldDrawBackground)
             {
-                var a_drawDepressed = IsDepressed && IsHovered;
-                if (IsToggle)
-                {
-                    a_drawDepressed = a_drawDepressed || ToggleState;
-                }
-
-                var a_bDrawHovered = IsHovered && ShouldDrawHover;
-
-                c_skin.DrawButton(this, a_drawDepressed, a_bDrawHovered, IsDisabled);
-            }
-        }
-
-        /// <summary>Handler invoked on mouse left clicked event</summary>
-        /// <param name="c_x">X coordinate</param>
-        /// <param name="c_y">Y coordinate</param>
-        /// <param name="c_down">If set to <c>true</c> mouse button is down</param>
-        protected override void OnMouseClickedLeft(int c_x, int c_y, bool c_down)
-        {
-            if (c_down)
-            {
-                IsDepressed = true;
-
-                FoxTraderWindow.Instance.MouseFocus = this;
-
-                if (Pressed != null)
-                {
-                    Pressed.Invoke(this);
-                }
-            }
-            else
-            {
-                if (IsHovered && m_isDepressed)
-                {
-                    OnClicked();
-                }
-
-                IsDepressed = false;
-
-                if (Released != null)
-                {
-                    Released.Invoke(this);
-                }
+                return;
             }
 
-            Redraw();
+            var a_drawDepressed = IsDepressed && IsHovered;
+
+            if (IsToggle)
+            {
+                a_drawDepressed = a_drawDepressed || ToggleState;
+            }
+
+            var a_bDrawHovered = IsHovered && ShouldDrawHover;
+
+            c_skin.DrawButton(this, a_drawDepressed, a_bDrawHovered, IsDisabled);
         }
 
         /// <summary>Internal OnPressed implementation</summary>
-        protected virtual void OnClicked()
+        public override void OnClicked(MouseButtonEventArgs c_mouseButtonEventArgs)
         {
             if (IsToggle)
             {
                 Toggle();
             }
 
-            if (Clicked != null)
-            {
-                Clicked.Invoke(this);
-            }
+            base.OnClicked(c_mouseButtonEventArgs);
         }
 
         /// <summary>Sets the button's image</summary>
@@ -204,10 +152,7 @@ namespace FoxTrader.UI.Control
         {
             if (string.IsNullOrEmpty(c_textureName))
             {
-                if (m_image != null)
-                {
-                    m_image.Dispose();
-                }
+                m_image?.Dispose();
                 m_image = null;
                 return;
             }
@@ -239,29 +184,11 @@ namespace FoxTrader.UI.Control
             }
         }
 
-        /// <summary>Handler for Space keyboard event</summary>
-        /// <param name="c_down">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected override bool OnKeySpace(bool c_down)
-        {
-            if (c_down)
-            {
-                OnClicked();
-            }
-            return true;
-        }
-
-        /// <summary>Default accelerator handler</summary>
-        protected override void OnAccelerator()
-        {
-            OnClicked();
-        }
-
         /// <summary>Lays out the control's interior according to alignment, padding, dock etc</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void Layout(SkinBase c_skin)
+        protected override void OnLayout(SkinBase c_skin)
         {
-            base.Layout(c_skin);
+            base.OnLayout(c_skin);
             if (m_image != null)
             {
                 Align.CenterVertically(m_image);
@@ -295,18 +222,6 @@ namespace FoxTrader.UI.Control
             }
 
             TextColor = Skin.m_colors.m_button.m_normal;
-        }
-
-        /// <summary>Handler invoked on mouse double click (left) event</summary>
-        /// <param name="c_x">X coordinate</param>
-        /// <param name="c_xY">Y coordinate</param>
-        protected override void OnMouseDoubleClickedLeft(int c_x, int c_xY)
-        {
-            OnMouseClickedLeft(c_x, c_xY, true);
-            if (DoubleClickedLeft != null)
-            {
-                DoubleClickedLeft.Invoke(this);
-            }
         }
     }
 }

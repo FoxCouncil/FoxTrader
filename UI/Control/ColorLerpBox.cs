@@ -77,11 +77,11 @@ namespace FoxTrader.UI.Control
         /// <param name="c_y">Y coordinate</param>
         /// <param name="c_dx">X change</param>
         /// <param name="c_dy">Y change</param>
-        protected override void OnMouseMoved(MouseState c_mouseState, int c_x, int c_y, int c_dx, int c_dy)
+        public override void OnMouseMoved(MouseMoveEventArgs c_mouseEventArgs)
         {
             if (m_isDepressed)
             {
-                m_cursorPosition = CanvasPosToLocal(new Point(c_x, c_y));
+                m_cursorPosition = CanvasPosToLocal(c_mouseEventArgs.Position);
 
                 //Do we have clamp?
                 if (m_cursorPosition.X < 0)
@@ -104,10 +104,7 @@ namespace FoxTrader.UI.Control
                     m_cursorPosition.Y = Height;
                 }
 
-                if (ColorChanged != null)
-                {
-                    ColorChanged.Invoke(this);
-                }
+                ColorChanged?.Invoke(this);
             }
         }
 
@@ -115,20 +112,20 @@ namespace FoxTrader.UI.Control
         /// <param name="c_x">X coordinate</param>
         /// <param name="c_y">Y coordinate</param>
         /// <param name="c_down">If set to <c>true</c> mouse button is down</param>
-        protected override void OnMouseClickedLeft(int c_x, int c_y, bool c_down)
+        public override void OnMouseDown(MouseButtonEventArgs c_mouseButtonEventArgs)
         {
-            m_isDepressed = c_down;
+            m_isDepressed = true;
+            GetCanvas().MouseFocus = this;
 
-            if (c_down)
-            {
-                FoxTraderWindow.Instance.MouseFocus = this;
-            }
-            else
-            {
-                FoxTraderWindow.Instance.MouseFocus = null;
-            }
+            OnMouseMoved(new MouseMoveEventArgs(c_mouseButtonEventArgs.Position.X, c_mouseButtonEventArgs.Position.Y, 0, 0));
+        }
 
-            OnMouseMoved(new MouseState(), c_x, c_y, 0, 0);
+        public override void OnMouseUp(MouseButtonEventArgs c_mouseButtonEventArgs)
+        {
+            m_isDepressed = false;
+            GetCanvas().MouseFocus = null;
+
+            OnMouseMoved(new MouseMoveEventArgs(c_mouseButtonEventArgs.Position.X, c_mouseButtonEventArgs.Position.Y, 0, 0));
         }
 
         /// <summary>Gets the color from specified coordinates</summary>

@@ -2,6 +2,7 @@ using System;
 using System.Drawing;
 using System.Linq;
 using FoxTrader.UI.Skin;
+using OpenTK.Input;
 using static FoxTrader.Constants;
 
 namespace FoxTrader.UI.Control
@@ -139,34 +140,32 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Lays out the control's interior according to alignment, padding, dock etc</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void Layout(SkinBase c_skin)
+        protected override void OnLayout(SkinBase c_skin)
         {
             UpdateScrollBars();
-            base.Layout(c_skin);
+            base.OnLayout(c_skin);
         }
 
         /// <summary>Handler invoked on mouse wheel event</summary>
         /// <param name="c_delta">Scroll delta</param>
         /// <returns></returns>
-        protected override bool OnMouseWheeled(int c_delta)
+        public override void OnMouseWheel(MouseWheelEventArgs c_mouseWheelEventArgs)
         {
             if (CanScrollV && m_verticalScrollBar.IsVisible)
             {
-                if (m_verticalScrollBar.SetScrollAmount(m_verticalScrollBar.ScrollAmount - m_verticalScrollBar.NudgeAmount * (c_delta / 60.0f), true))
+                if (m_verticalScrollBar.SetScrollAmount(m_verticalScrollBar.ScrollAmount - m_verticalScrollBar.NudgeAmount * (c_mouseWheelEventArgs.Delta / 60.0f), true))
                 {
-                    return true;
+                    return;
                 }
             }
 
             if (CanScrollH && m_horizontalScrollBar.IsVisible)
             {
-                if (m_horizontalScrollBar.SetScrollAmount(m_horizontalScrollBar.ScrollAmount - m_horizontalScrollBar.NudgeAmount * (c_delta / 60.0f), true))
+                if (m_horizontalScrollBar.SetScrollAmount(m_horizontalScrollBar.ScrollAmount - m_horizontalScrollBar.NudgeAmount * (c_mouseWheelEventArgs.Delta / 60.0f), true))
                 {
-                    return true;
+                    return;
                 }
             }
-
-            return false;
         }
 
         /// <summary>Renders the control using specified skin</summary>

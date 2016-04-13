@@ -1,8 +1,10 @@
-﻿using FoxTrader.Game;
+﻿using System.Drawing;
+using FoxTrader.Game;
 using FoxTrader.Game.Utils;
 using FoxTrader.UI;
 using FoxTrader.UI.Control;
 using FoxTrader.UI.Skin;
+using OpenTK.Input;
 using static FoxTrader.Constants;
 
 namespace FoxTrader.Views
@@ -48,35 +50,35 @@ namespace FoxTrader.Views
             m_label1.Text = "[ ]";
             m_label1.SetSize(640, 40);
             m_label1.SetPosition(270, 10);
-            m_label1.MakeColorBright();
+            m_label1.TextColor = Color.White;
             m_label1.Alignment = Pos.Left | Pos.CenterV;
 
             m_label2 = new Label(this);
             m_label2.Text = "[ ]";
             m_label2.SetSize(640, 40);
             m_label2.SetPosition(270, 60);
-            m_label2.MakeColorBright();
+            m_label2.TextColor = Color.White;
             m_label2.Alignment = Pos.Left | Pos.CenterV;
 
             m_label3 = new Label(this);
             m_label3.Text = "[ ]";
             m_label3.SetSize(640, 40);
             m_label3.SetPosition(270, 110);
-            m_label3.MakeColorBright();
+            m_label3.TextColor = Color.White;
             m_label3.Alignment = Pos.Left | Pos.CenterV;
 
             m_label4 = new Label(this);
             m_label4.Text = "[ ]";
             m_label4.SetSize(640, 40);
             m_label4.SetPosition(270, 160);
-            m_label4.MakeColorBright();
+            m_label4.TextColor = Color.White;
             m_label4.Alignment = Pos.Left | Pos.CenterV;
 
             m_label5 = new Label(this);
             m_label5.Text = "[ ]";
             m_label5.SetSize(920, 40);
             m_label5.SetPosition(10, 210);
-            m_label5.MakeColorBright();
+            m_label5.TextColor = Color.White;
             m_label5.Alignment = Pos.Left | Pos.CenterV;
         }
 
@@ -87,7 +89,7 @@ namespace FoxTrader.Views
             base.Render(c_skin);
         }
 
-        private void button_Clicked(GameControl c_control)
+        private void button_Clicked(GameControl c_control, MouseButtonEventArgs c_args)
         {
             var a_button = c_control as Button;
 

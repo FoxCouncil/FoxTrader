@@ -1,5 +1,6 @@
 using FoxTrader.UI.DragDrop;
 using FoxTrader.UI.Skin;
+using OpenTK.Input;
 using static FoxTrader.Constants;
 
 namespace FoxTrader.UI.Control
@@ -77,72 +78,44 @@ namespace FoxTrader.UI.Control
             c_skin.DrawTabButton(this, IsActive, m_tabControl.TabStrip.Dock);
         }
 
-        /// <summary>Handler for Down Arrow keyboard event</summary>
-        /// <param name="c_down">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected override bool OnKeyDown(bool c_down)
+        public override void OnKeyDown(KeyboardKeyEventArgs c_keyboardKeyEventArgs)
         {
-            OnKeyRight(c_down);
-
-            return true;
-        }
-
-        /// <summary>Handler for Up Arrow keyboard event</summary>
-        /// <param name="c_down">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected override bool OnKeyUp(bool c_down)
-        {
-            OnKeyLeft(c_down);
-
-            return true;
-        }
-
-        /// <summary>Handler for Right Arrow keyboard event</summary>
-        /// <param name="c_isButtonDown">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected override bool OnKeyRight(bool c_isButtonDown)
-        {
-            if (c_isButtonDown)
+            switch (c_keyboardKeyEventArgs.Key)
             {
-                var a_count = Parent.Children.Count;
-
-                var a_idx = Parent.Children.IndexOf(this);
-
-                if (a_idx + 1 < a_count)
+                case Key.Down:
+                case Key.Right:
                 {
-                    var a_nextTab = Parent.Children[a_idx + 1];
+                    var a_count = Parent.Children.Count;
 
-                    TabControl.OnTabPressed(a_nextTab);
+                    var a_idx = Parent.Children.IndexOf(this);
 
-                    FoxTraderWindow.Instance.KeyboardFocus = a_nextTab;
+                    if (a_idx + 1 < a_count)
+                    {
+                        var a_nextTab = Parent.Children[a_idx + 1];
+
+                        TabControl.OnTabPressed(a_nextTab, null);
+
+                        GetCanvas().KeyboardFocus = a_nextTab;
+                    }
                 }
-            }
+                break;
 
-            return true;
-        }
-
-        /// <summary>Handler for Left Arrow keyboard event</summary>
-        /// <param name="c_isButtonDown">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected override bool OnKeyLeft(bool c_isButtonDown)
-        {
-            if (c_isButtonDown)
-            {
-                var a_count = Parent.Children.Count;
-
-                var a_idx = Parent.Children.IndexOf(this);
-
-                if (a_idx - 1 >= 0)
+                case Key.Up:
+                case Key.Left:
                 {
-                    var a_prevTab = Parent.Children[a_idx - 1];
+                    var a_idx = Parent.Children.IndexOf(this);
 
-                    TabControl.OnTabPressed(a_prevTab);
+                    if (a_idx - 1 >= 0)
+                    {
+                        var a_prevTab = Parent.Children[a_idx - 1];
 
-                    FoxTraderWindow.Instance.KeyboardFocus = a_prevTab;
+                        TabControl.OnTabPressed(a_prevTab, null);
+
+                        GetCanvas().KeyboardFocus = a_prevTab;
+                    }
                 }
+                break;
             }
-
-            return true;
         }
 
         /// <summary>Updates control colors</summary>

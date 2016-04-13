@@ -38,7 +38,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Lays out the control's interior according to alignment, padding, dock etc</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void Layout(SkinBase c_skin)
+        protected override void OnLayout(SkinBase c_skin)
         {
             //TODO: We don't want to do vertical sizing the same as Menu, do nothing for now
         }
@@ -52,7 +52,7 @@ namespace FoxTrader.UI.Control
             c_item.Padding = new Padding(10, 0, 10, 0);
             c_item.SizeToContents();
             c_item.IsOnStrip = true;
-            c_item.MouseIn += OnHoverItem;
+            c_item.MouseOver += OnHoverItem;
         }
     }
 }

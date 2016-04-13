@@ -163,9 +163,9 @@ namespace FoxTrader.UI.Control.Layout
 
         /// <summary>Lays out the control's interior according to alignment, padding, dock etc</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void Layout(SkinBase c_skin)
+        protected override void OnLayout(SkinBase c_skin)
         {
-            base.Layout(c_skin);
+            base.OnLayout(c_skin);
 
             var a_even = false;
             foreach (TableRow a_row in Children)

@@ -1,4 +1,5 @@
 ﻿using FoxTrader.UI.Control;
+using OpenTK.Input;
 
 namespace FoxTrader.UI
 {
@@ -6,9 +7,19 @@ namespace FoxTrader.UI
     /// <param name="c_control">Event source</param>
     internal delegate void GameControlEventHandler(GameControl c_control);
 
+    internal delegate void KeyboardEventHandler(GameControl c_control, KeyboardKeyEventArgs c_args);
+
     /// <summary>Delegate used for all button's event handlers</summary>
     /// <param name="c_control">Event source</param>
-    internal delegate void ButtonEventHandler(GameControl c_control);
+    internal delegate void MouseButtonEventHandler(GameControl c_control, MouseButtonEventArgs c_args);
+
+    /// <summary>Delegate used for all button's event handlers</summary>
+    /// <param name="c_control">Event source</param>
+    internal delegate void MouseMoveEventHandler(GameControl c_control, MouseMoveEventArgs c_args);
+
+    /// <summary>Delegate used for all button's event handlers</summary>
+    /// <param name="c_control">Event source</param>
+    internal delegate void MouseWheelEventHandler(GameControl c_control, MouseWheelEventArgs c_args);
 
     /// <summary>Delegate used for all checkbox's event handlers</summary>
     /// <param name="c_control">Event source</param>

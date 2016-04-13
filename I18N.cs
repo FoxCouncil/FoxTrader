@@ -21,6 +21,10 @@ namespace FoxTrader
 
         public static int CurrentLanguageIndex => Array.IndexOf(InstalledLanguages, m_currentUICulture.Name);
 
+        public static CultureInfo CurrentCulture => m_currentCulture;
+
+        public static CultureInfo CurrentUICulture => m_currentUICulture;
+
         public static void Initialize()
         {
             m_installedLanguages = new Dictionary<string, ResourceManager> { { "en-US", Resources.ResourceManager } };

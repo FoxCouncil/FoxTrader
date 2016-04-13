@@ -1,5 +1,6 @@
 using FoxTrader.UI.ControlInternal;
 using FoxTrader.UI.Skin;
+using OpenTK.Input;
 using static FoxTrader.Constants;
 
 namespace FoxTrader.UI.Control
@@ -78,17 +79,14 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Handler for header button toggle event</summary>
         /// <param name="c_control">Source control</param>
-        protected virtual void OnHeaderToggle(GameControl c_control)
+        protected virtual void OnHeaderToggle(GameControl c_control, MouseButtonEventArgs c_args)
         {
-            if (Collapsed != null)
-            {
-                Collapsed.Invoke(this);
-            }
+            Collapsed?.Invoke(this);
         }
 
         /// <summary>Handler for Selected event</summary>
         /// <param name="c_control">Event source</param>
-        protected virtual void OnSelected(GameControl c_control)
+        protected virtual void OnSelected(GameControl c_control, MouseButtonEventArgs c_args)
         {
             var a_childControl = c_control as CategoryButton;
 

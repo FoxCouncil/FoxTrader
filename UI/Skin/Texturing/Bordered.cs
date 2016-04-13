@@ -8,7 +8,6 @@ namespace FoxTrader.UI.Skin.Texturing
         public float[] m_uv;
     }
 
-    /// <summary>3x3 texture grid</summary>
     public struct Bordered
     {
         private Texture m_texture;
@@ -23,6 +22,7 @@ namespace FoxTrader.UI.Skin.Texturing
         public Bordered(Texture c_texture, float c_x, float c_y, float c_w, float c_h, Margin c_inMargin, float c_drawMarginScale = 1.0f) : this()
         {
             m_rects = new SubRect[9];
+
             for (var a_i = 0; a_i < m_rects.Length; a_i++)
             {
                 m_rects[a_i].m_uv = new float[4];
@@ -41,17 +41,11 @@ namespace FoxTrader.UI.Skin.Texturing
             float a_texw = m_texture.Width;
             float a_texh = m_texture.Height;
 
-            //x -= 1.0f;
-            //y -= 1.0f;
-
             m_rects[c_num].m_uv[0] = c_x / a_texw;
             m_rects[c_num].m_uv[1] = c_y / a_texh;
 
             m_rects[c_num].m_uv[2] = (c_x + c_w) / a_texw;
             m_rects[c_num].m_uv[3] = (c_y + c_h) / a_texh;
-
-            //	rects[num].UV[0] += 1.0f / m_Texture->width;
-            //	rects[num].UV[1] += 1.0f / m_Texture->width;
         }
 
         private void Init(Texture c_texture, float c_x, float c_y, float c_w, float c_h, Margin c_inMargin, float c_drawMarginScale = 1.0f)

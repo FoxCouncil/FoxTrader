@@ -18,13 +18,9 @@ namespace FoxTrader.UI.Control
         public Label(GameControl c_parentControl) : base(c_parentControl)
         {
             m_text = new Text(this);
-            //m_Text.Font = Skin.DefaultFont;
 
             MouseInputEnabled = false;
-            SetSize(100, 10);
             Alignment = Pos.Left | Pos.Top;
-
-            m_autoSizeToContents = false;
         }
 
         /// <summary>Text alignment</summary>
@@ -155,33 +151,13 @@ namespace FoxTrader.UI.Control
             }
         }
 
-        public virtual void MakeColorNormal()
-        {
-            TextColor = Skin.m_colors.m_label.m_default;
-        }
-
-        public virtual void MakeColorBright()
-        {
-            TextColor = Skin.m_colors.m_label.m_bright;
-        }
-
-        public virtual void MakeColorDark()
-        {
-            TextColor = Skin.m_colors.m_label.m_dark;
-        }
-
-        public virtual void MakeColorHighlight()
-        {
-            TextColor = Skin.m_colors.m_label.m_highlight;
-        }
-
         /// <summary>Returns index of the character closest to specified point (in canvas coordinates)</summary>
         /// <param name="c_x"></param>
         /// <param name="c_y"></param>
         /// <returns></returns>
-        protected int GetClosestCharacter(int c_x, int c_y)
+        protected int GetClosestCharacter(Point c_point)
         {
-            return m_text.GetClosestCharacter(m_text.CanvasPosToLocal(new Point(c_x, c_y)));
+            return m_text.GetClosestCharacter(m_text.CanvasPosToLocal(c_point));
         }
 
         /// <summary>Sets the position of the internal text control</summary>
@@ -199,9 +175,9 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Lays out the control's interior according to alignment, padding, dock etc</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void Layout(SkinBase c_skin)
+        protected override void OnLayout(SkinBase c_skin)
         {
-            base.Layout(c_skin);
+            base.OnLayout(c_skin);
 
             var a_align = m_align;
 
@@ -245,10 +221,12 @@ namespace FoxTrader.UI.Control
             }
 
             m_text.String = c_str;
+
             if (m_autoSizeToContents)
             {
                 SizeToContents();
             }
+
             Invalidate();
             InvalidateParent();
 

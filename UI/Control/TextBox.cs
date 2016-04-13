@@ -1,6 +1,7 @@
 using System;
 using System.Drawing;
 using FoxTrader.UI.Platform;
+using FoxTrader.UI.Renderer;
 using FoxTrader.UI.Skin;
 using OpenTK.Input;
 using static FoxTrader.Constants;
@@ -44,6 +45,11 @@ namespace FoxTrader.UI.Control
             AddAccelerator("Ctrl + X", OnCut);
             AddAccelerator("Ctrl + V", OnPaste);
             AddAccelerator("Ctrl + A", OnSelectAll);
+
+            DoubleClicked += (c_control, c_args) =>
+            {
+                OnSelectAll(this);
+            };
         }
 
         protected override bool AccelOnlyFocus => true;
@@ -115,7 +121,7 @@ namespace FoxTrader.UI.Control
         public event TextEventHandler TextChanged;
 
         /// <summary>Invoked when the submit key has been pressed</summary>
-        public event ButtonEventHandler SubmitPressed;
+        public event MouseButtonEventHandler SubmitPressed;
 
         /// <summary>Determines whether the control can insert text at a given cursor position</summary>
         /// <param name="c_text">Text to check</param>
@@ -152,23 +158,6 @@ namespace FoxTrader.UI.Control
             {
                 TextChanged.Invoke(this);
             }
-        }
-
-        /// <summary>Handler for character input event</summary>
-        /// <param name="c_char">Character typed</param>
-        /// <returns>True if handled</returns>
-        protected override bool OnChar(char c_char)
-        {
-            base.OnChar(c_char);
-
-            if (c_char == '\t')
-            {
-                return false;
-            }
-
-            InsertText(c_char.ToString());
-
-            return true;
         }
 
         /// <summary>Inserts text at current cursor position, erasing selection if any</summary>
@@ -303,189 +292,137 @@ namespace FoxTrader.UI.Control
             RefreshCursorBounds();
         }
 
-        /// <summary>Handler invoked on mouse double click (left) event</summary>
-        /// <param name="c_x">X coordinate</param>
-        /// <param name="c_xY">Y coordinate</param>
-        protected override void OnMouseDoubleClickedLeft(int c_x, int c_xY)
+        public override void OnKeyDown(KeyboardKeyEventArgs c_keyboardKeyEventArgs)
         {
-            OnSelectAll(this);
+            base.OnKeyDown(c_keyboardKeyEventArgs);
+
+            switch (c_keyboardKeyEventArgs.Key)
+            {
+                case Key.BackSpace:
+                {
+                    if (HasSelection)
+                    {
+                        EraseSelection();
+                        return;
+                    }
+
+                    if (m_cursorPos == 0)
+                    {
+                        return;
+                    }
+
+                    DeleteText(m_cursorPos - 1, 1);
+                }
+                break;
+
+                case Key.Delete:
+                {
+                    if (HasSelection)
+                    {
+                        EraseSelection();
+                        return;
+                    }
+
+                    if (m_cursorPos >= TextLength)
+                    {
+                        return;
+                    }
+
+                    DeleteText(m_cursorPos, 1);
+                }
+                break;
+
+                case Key.Left:
+                {
+                    if (m_cursorPos > 0)
+                    {
+                        m_cursorPos--;
+                    }
+
+                    if (!c_keyboardKeyEventArgs.Keyboard.IsKeyDown(Key.ShiftLeft))
+                    {
+                        m_cursorEnd = m_cursorPos;
+                    }
+
+                    RefreshCursorBounds();
+                }
+                break;
+
+                case Key.Right:
+                {
+                    if (m_cursorPos < TextLength)
+                    {
+                        m_cursorPos++;
+                    }
+
+                    if (!c_keyboardKeyEventArgs.Keyboard.IsKeyDown(Key.ShiftLeft))
+                    {
+                        m_cursorEnd = m_cursorPos;
+                    }
+
+                    RefreshCursorBounds();
+                }
+                break;
+
+                case Key.Home:
+                {
+                    m_cursorPos = 0;
+
+                    if (!c_keyboardKeyEventArgs.Keyboard.IsKeyDown(Key.ShiftLeft))
+                    {
+                        m_cursorEnd = m_cursorPos;
+                    }
+
+                    RefreshCursorBounds();
+                }
+                break;
+
+                case Key.End:
+                {
+                    m_cursorPos = TextLength;
+
+                    if (!c_keyboardKeyEventArgs.Keyboard.IsKeyDown(Key.ShiftLeft))
+                    {
+                        m_cursorEnd = m_cursorPos;
+                    }
+
+                    RefreshCursorBounds();
+                }
+                break;
+
+                default:
+                {
+                    var a_filteredCharacter = OpenTKRenderer.TranslateChar(c_keyboardKeyEventArgs.Key);
+
+                    if (a_filteredCharacter == '\t')
+                    {
+                        return;
+                    }
+
+                    InsertText(a_filteredCharacter.ToString());
+                }
+                break;
+            }
         }
 
-        /// <summary>Handler for Return keyboard event</summary>
-        /// <param name="c_isButtonDown">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected override bool OnKeyReturn(bool c_isButtonDown)
+        public override void OnKeyUp(KeyboardKeyEventArgs c_keyboardKeyEventArgs)
         {
-            base.OnKeyReturn(c_isButtonDown);
+            base.OnKeyUp(c_keyboardKeyEventArgs);
 
-            if (c_isButtonDown)
+            switch (c_keyboardKeyEventArgs.Key)
             {
-                return true;
+                case Key.Enter:
+                case Key.KeypadEnter:
+                {
+                    OnReturn();
+
+                    if (HasFocus)
+                    {
+                        OnBlur();
+                    }
+                }
+                break;
             }
-
-            OnReturn();
-
-            OnKeyTab(true);
-
-            if (HasFocus)
-            {
-                Blur();
-            }
-
-            return true;
-        }
-
-        /// <summary>Handler for Backspace keyboard event</summary>
-        /// <param name="c_isButtonDown">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected override bool OnKeyBackspace(bool c_isButtonDown)
-        {
-            base.OnKeyBackspace(c_isButtonDown);
-
-            if (!c_isButtonDown)
-            {
-                return true;
-            }
-
-            if (HasSelection)
-            {
-                EraseSelection();
-                return true;
-            }
-
-            if (m_cursorPos == 0)
-            {
-                return true;
-            }
-
-            DeleteText(m_cursorPos - 1, 1);
-
-            return true;
-        }
-
-        /// <summary>Handler for Delete keyboard event</summary>
-        /// <param name="c_isButtonDown">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected override bool OnKeyDelete(bool c_isButtonDown)
-        {
-            base.OnKeyDelete(c_isButtonDown);
-
-            if (!c_isButtonDown)
-            {
-                return true;
-            }
-
-            if (HasSelection)
-            {
-                EraseSelection();
-                return true;
-            }
-
-            if (m_cursorPos >= TextLength)
-            {
-                return true;
-            }
-
-            DeleteText(m_cursorPos, 1);
-
-            return true;
-        }
-
-        /// <summary>Handler for Left Arrow keyboard event</summary>
-        /// <param name="c_isButtonDown">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected override bool OnKeyLeft(bool c_isButtonDown)
-        {
-            base.OnKeyLeft(c_isButtonDown);
-
-            if (!c_isButtonDown)
-            {
-                return true;
-            }
-
-            if (m_cursorPos > 0)
-            {
-                m_cursorPos--;
-            }
-
-            if (!FoxTraderWindow.Instance.IsShiftDown)
-            {
-                m_cursorEnd = m_cursorPos;
-            }
-
-            RefreshCursorBounds();
-
-            return true;
-        }
-
-        /// <summary>Handler for Right Arrow keyboard event</summary>
-        /// <param name="c_isButtonDown">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected override bool OnKeyRight(bool c_isButtonDown)
-        {
-            base.OnKeyRight(c_isButtonDown);
-
-            if (!c_isButtonDown)
-            {
-                return true;
-            }
-
-            if (m_cursorPos < TextLength)
-            {
-                m_cursorPos++;
-            }
-
-            if (!FoxTraderWindow.Instance.IsShiftDown)
-            {
-                m_cursorEnd = m_cursorPos;
-            }
-
-            RefreshCursorBounds();
-
-            return true;
-        }
-
-        /// <summary>Handler for Home keyboard event</summary>
-        /// <param name="c_isButtonDown">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected override bool OnKeyHome(bool c_isButtonDown)
-        {
-            base.OnKeyHome(c_isButtonDown);
-
-            if (!c_isButtonDown)
-            {
-                return true;
-            }
-
-            m_cursorPos = 0;
-
-            if (!FoxTraderWindow.Instance.IsShiftDown)
-            {
-                m_cursorEnd = m_cursorPos;
-            }
-
-            RefreshCursorBounds();
-
-            return true;
-        }
-
-        /// <summary>Handler for End keyboard event</summary>
-        /// <param name="c_isButtonDown">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected override bool OnKeyEnd(bool c_isButtonDown)
-        {
-            base.OnKeyEnd(c_isButtonDown);
-
-            m_cursorPos = TextLength;
-
-            if (!FoxTraderWindow.Instance.IsShiftDown)
-            {
-                m_cursorEnd = m_cursorPos;
-            }
-
-            RefreshCursorBounds();
-
-            return true;
         }
 
         /// <summary>Returns currently selected text</summary>
@@ -538,13 +475,9 @@ namespace FoxTrader.UI.Control
             m_cursorEnd = a_start;
         }
 
-        /// <summary>Handler invoked on mouse click (left) event</summary>
-        /// <param name="c_x">X coordinate</param>
-        /// <param name="c_y">Y coordinate</param>
-        /// <param name="c_down">If set to <c>true</c> mouse button is down</param>
-        protected override void OnMouseClickedLeft(int c_x, int c_y, bool c_down)
+        public override void OnMouseDown(MouseButtonEventArgs c_mouseButtonEventArgs)
         {
-            base.OnMouseClickedLeft(c_x, c_y, c_down);
+            base.OnMouseDown(c_mouseButtonEventArgs);
 
             if (m_selectAll)
             {
@@ -552,26 +485,24 @@ namespace FoxTrader.UI.Control
                 return;
             }
 
-            var a_cursorPosition = GetClosestCharacter(c_x, c_y);
+            CursorPos = GetClosestCharacter(c_mouseButtonEventArgs.Position);
 
-            if (c_down)
+            if (!Keyboard.GetState().IsKeyDown(Key.ShiftLeft))
             {
-                CursorPos = a_cursorPosition;
-
-                if (!FoxTraderWindow.Instance.IsShiftDown)
-                {
-                    CursorEnd = a_cursorPosition;
-                }
-
-                FoxTraderWindow.Instance.MouseFocus = this;
+                CursorEnd = CursorPos;
             }
-            else
+
+            GetCanvas().MouseFocus = this;
+        }
+
+        public override void OnMouseUp(MouseButtonEventArgs c_mouseButtonEventArgs)
+        {
+            base.OnMouseUp(c_mouseButtonEventArgs);
+
+            if (GetCanvas().MouseFocus == this)
             {
-                if (FoxTraderWindow.Instance.MouseFocus == this)
-                {
-                    CursorPos = a_cursorPosition;
-                    FoxTraderWindow.Instance.MouseFocus = null;
-                }
+                CursorPos = GetClosestCharacter(c_mouseButtonEventArgs.Position);
+                GetCanvas().MouseFocus = null;
             }
         }
 
@@ -580,16 +511,16 @@ namespace FoxTrader.UI.Control
         /// <param name="c_y">Y coordinate</param>
         /// <param name="c_dx">X change</param>
         /// <param name="c_dy">Y change</param>
-        protected override void OnMouseMoved(MouseState c_mouseState, int c_x, int c_y, int c_dx, int c_dy)
+        public override void OnMouseMoved(MouseMoveEventArgs c_mouseEventArgs)
         {
-            base.OnMouseMoved(c_mouseState, c_x, c_y, c_dx, c_dy);
+            base.OnMouseMoved(c_mouseEventArgs);
 
-            if (FoxTraderWindow.Instance.MouseFocus != this)
+            if (GetCanvas().MouseFocus != this)
             {
                 return;
             }
 
-            var a_cursorPosition = GetClosestCharacter(c_x, c_y);
+            var a_cursorPosition = GetClosestCharacter(c_mouseEventArgs.Position);
 
             CursorPos = a_cursorPosition;
         }
@@ -628,9 +559,9 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Lays out the control's interior according to alignment, padding, dock etc</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void Layout(SkinBase c_skin)
+        protected override void OnLayout(SkinBase c_skin)
         {
-            base.Layout(c_skin);
+            base.OnLayout(c_skin);
 
             RefreshCursorBounds();
         }
@@ -638,10 +569,7 @@ namespace FoxTrader.UI.Control
         /// <summary>Handler for the return key</summary>
         protected virtual void OnReturn()
         {
-            if (SubmitPressed != null)
-            {
-                SubmitPressed.Invoke(this);
-            }
+            SubmitPressed?.Invoke(this, null);
         }
     }
 }

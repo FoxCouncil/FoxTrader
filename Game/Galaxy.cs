@@ -1,44 +1,57 @@
 ﻿using System.Collections.Generic;
 using FoxTrader.Game.Utils;
+using static FoxTrader.Constants;
 
 namespace FoxTrader.Game
 {
-    class Galaxy : ITickable
+    class Galaxy : ITickable, IMapObject
     {
-        private Universe m_universe;
-        private readonly int m_index;
+        public Vector2 Position
+        {
+            get;
+            set;
+        }
 
-        private readonly string m_name;
+        public int Index
+        {
+            get;
+        }
 
-        private readonly Vector3 m_position;
+        public string Name
+        {
+            get;
+            set;
+        }
 
-        private readonly List<System> m_systems;
+        public List<System> Systems
+        {
+            get;
+        }
+
+        public Universe Universe
+        {
+            get;
+        }
 
         public Galaxy(Universe c_universe, int c_index)
         {
-            m_universe = c_universe;
-            m_index = c_index;
+            Universe = c_universe;
+            Index = c_index;
 
-            m_name = Generator.Name();
-            m_position = Vector3.Random(Constants.kGalaxySizeMax);
+            Name = Generator.Name();
+            Position = Vector2.Random(kUniverseSizeMax);
 
-            m_systems = new List<System>(Constants.kSystemsMax);
+            Systems = new List<System>(kSystemsMax);
 
-            for (var a_idx = 0; a_idx <= Constants.kSystemsMax; a_idx++)
+            for (var a_idx = 0; a_idx <= kSystemsMax; a_idx++)
             {
-                m_systems.Add(new System(this, a_idx));
+                Systems.Add(new System(this, a_idx));
             }
         }
 
-        public Vector3 Position => m_position;
-
-        public int Index => m_index;
-
-        public string Name => m_name;
-
         public void Tick()
         {
-            m_systems.ForEach(c_system => c_system.Tick());
+            Systems.ForEach(c_system => c_system.Tick());
         }
     }
 }

@@ -21,7 +21,7 @@ namespace FoxTrader.UI.Control
             m_label = new LabelClickable(this);
             m_label.Alignment = Pos.Bottom | Pos.Left;
             m_label.Text = "Radio Button";
-            m_label.Clicked += RadioButton.Press;
+            m_label.Clicked += (c_control, c_args) => RadioButton.OnClicked(c_args);
             m_label.IsTabable = false;
             m_label.KeyboardInputEnabled = false;
             m_label.AutoSizeToContents = true;
@@ -46,7 +46,7 @@ namespace FoxTrader.UI.Control
             get;
         }
 
-        protected override void Layout(SkinBase c_skin)
+        protected override void OnLayout(SkinBase c_skin)
         {
             // ugly stuff because we don't have anchoring without docking (docking resizes children)
             if (m_label.Height > RadioButton.Height) // usually radio is smaller than label so it gets repositioned to avoid clipping with negative Y
@@ -58,14 +58,14 @@ namespace FoxTrader.UI.Control
 
             SizeToChildren();
 
-            base.Layout(c_skin);
+            base.OnLayout(c_skin);
         }
 
         /// <summary>Renders the focus overlay</summary>
         /// <param name="c_skin">Skin to use</param>
         protected override void RenderFocus(SkinBase c_skin)
         {
-            if (FoxTraderWindow.Instance.KeyboardFocus != this)
+            if (GetCanvas().KeyboardFocus != this)
             {
                 return;
             }
@@ -76,19 +76,6 @@ namespace FoxTrader.UI.Control
             }
 
             c_skin.DrawKeyboardHighlight(this, RenderBounds, 0);
-        }
-
-        /// <summary>Handler for Space keyboard event</summary>
-        /// <param name="c_down">Indicates whether the key was pressed or released</param>
-        /// <returns>True if handled</returns>
-        protected override bool OnKeySpace(bool c_down)
-        {
-            if (c_down)
-            {
-                RadioButton.IsChecked = !RadioButton.IsChecked;
-            }
-
-            return true;
         }
 
         /// <summary>Selects the radio button</summary>

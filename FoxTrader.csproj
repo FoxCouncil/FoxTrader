@@ -84,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="Game\IMapObject.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -91,7 +92,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="UI\Control\MapControl.cs" />
+    <Compile Include="UI\Control\MapControlButton.cs" />
     <Compile Include="UI\GameFont.cs" />
+    <Compile Include="UI\Input\GameControlDevices.cs" />
     <Compile Include="Views\GameView.cs" />
     <Compile Include="Views\NewGameView.cs" />
     <Compile Include="Window.cs" />
@@ -140,7 +143,7 @@
     <Compile Include="UI\ControlInternal\UpDownButton_Down.cs" />
     <Compile Include="UI\ControlInternal\UpDownButton_Up.cs" />
     <Compile Include="UI\Control\Button.cs" />
-    <Compile Include="UI\Control\Canvas.cs" />
+    <Compile Include="UI\Canvas.cs" />
     <Compile Include="UI\Control\CheckBox.cs" />
     <Compile Include="UI\Control\CollapsibleCategory.cs" />
     <Compile Include="UI\Control\CollapsibleList.cs" />
@@ -305,7 +308,7 @@
   <Target Name="MATPrerequisite" BeforeTargets="PrepareForBuild" Condition="!Exists('$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.ResxResources.targets')" Label="MultilingualAppToolkit">
     <Warning Text="$(MSBuildProjectFile) is Multilingual build enabled, but the Multilingual App Toolkit is unavailable during the build. If building with Visual Studio, please check to ensure that toolkit is properly installed." />
   </Target>
-  <Import Project="packages\Resource.Embedder.1.1.1.0\build\Resource.Embedder.targets" Condition="Exists('packages\Resource.Embedder.1.1.1.0\build\Resource.Embedder.targets')" />
+  <Import Project="packages\Resource.Embedder.1.1.1.0\build\Resource.Embedder.targets" Condition="Exists('packages\Resource.Embedder.1.1.1.0\build\Resource.Embedder.targets') And '$(Configuration)' == 'Release'" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
@@ -314,8 +317,8 @@
     <Error Condition="!Exists('packages\MSBuild.ILMerge.Task.1.0.2\build\MSBuild.ILMerge.Task.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MSBuild.ILMerge.Task.1.0.2\build\MSBuild.ILMerge.Task.props'))" />
     <Error Condition="!Exists('packages\MSBuild.ILMerge.Task.1.0.2\build\MSBuild.ILMerge.Task.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MSBuild.ILMerge.Task.1.0.2\build\MSBuild.ILMerge.Task.targets'))" />
   </Target>
-  <Import Project="packages\MSBuild.ILMerge.Task.1.0.2\build\MSBuild.ILMerge.Task.targets" Condition="Exists('packages\MSBuild.ILMerge.Task.1.0.2\build\MSBuild.ILMerge.Task.targets')" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <Import Project="packages\MSBuild.ILMerge.Task.1.0.2\build\MSBuild.ILMerge.Task.targets" Condition="Exists('packages\MSBuild.ILMerge.Task.1.0.2\build\MSBuild.ILMerge.Task.targets') And '$(Configuration)' == 'Release'" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

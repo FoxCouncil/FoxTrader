@@ -18,7 +18,7 @@ namespace FoxTrader.UI.ControlInternal
 
         /// <summary>Lays out the control's interior according to alignment, padding, dock etc</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void Layout(SkinBase c_skin)
+        protected override void OnLayout(SkinBase c_skin)
         {
             SetBounds(0, 0, GetCanvas().Width, GetCanvas().Height);
         }
