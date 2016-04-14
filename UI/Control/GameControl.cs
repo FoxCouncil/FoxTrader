@@ -18,9 +18,9 @@ namespace FoxTrader.UI.Control
     internal class GameControl : IDisposable
     {
         private readonly Dictionary<string, GameControlEventHandler> m_accelerators;
-        private readonly float[] m_lastClickedTime = new float[kMaxMouseButtons];
 
         private readonly List<GameControl> m_children;
+        private readonly long[] m_lastClickedTime = new long[kMaxMouseButtons];
         private GameControl m_actualParent;
         private Rectangle m_bounds;
         private bool m_cacheTextureDirty;
@@ -1258,20 +1258,13 @@ namespace FoxTrader.UI.Control
         /// <summary>Updating logic implementation</summary>
         internal virtual void DoUpdate()
         {
-            if (m_children.Count <= 0)
+            if (m_children.Count == 0 || IsHidden)
             {
                 return;
             }
-            //Now render my kids
-            foreach (var a_childControl in m_children.ToList())
-            {
-                /*if (a_childControl.IsHidden)
-                    {
-                        continue;
-                    }*/
 
-                a_childControl.DoUpdate();
-            }
+            // Now render my kids
+            m_children.ToList().ForEach(c_child => c_child.DoUpdate());
         }
 
         /// <summary>Rendering logic implementation</summary>
@@ -1510,7 +1503,10 @@ namespace FoxTrader.UI.Control
         {
             var a_buttonIdx = (int)c_mouseButtonEventArgs.Button;
 
-            if (m_lastClickedTime[a_buttonIdx] < kMouseDoubleClickSpeed)
+            var a_timeNow = DateTime.UtcNow.Ticks;
+            var a_timeDifference = new TimeSpan(a_timeNow - m_lastClickedTime[a_buttonIdx]);
+
+            if (a_timeDifference.TotalSeconds > kMouseDoubleClickSpeed)
             {
                 OnClicked(c_mouseButtonEventArgs);
             }
@@ -1519,7 +1515,9 @@ namespace FoxTrader.UI.Control
                 OnDoubleClicked(c_mouseButtonEventArgs);
             }
 
-            m_lastClickedTime[a_buttonIdx] = Neutral.GetTimeInSeconds();
+            Console.WriteLine(@"{0} - {1} = {2}", a_timeNow, m_lastClickedTime[a_buttonIdx], a_timeDifference.TotalSeconds);
+
+            m_lastClickedTime[a_buttonIdx] = DateTime.UtcNow.Ticks;
 
             MouseUp?.Invoke(this, c_mouseButtonEventArgs);
         }

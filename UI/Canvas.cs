@@ -13,36 +13,17 @@ namespace FoxTrader.UI.Control
     /// <summary>Base class to display UI elements, handles drawing and colors..</summary>
     internal class Canvas : GameControl
     {
-        private readonly KeyData m_keyData = new KeyData();
         private readonly List<IDisposable> m_disposeQueue; // dictionary for faster access?
+
+        private readonly GameControlDevices m_gameControlDevices;
+        private readonly KeyData m_keyData = new KeyData();
 
         // These are not created by us, so no disposing
         internal GameControl m_firstTab;
+        private Point m_lastClickedPosition;
         internal GameControl m_nextTab;
 
-        private readonly GameControlDevices m_gameControlDevices;
-
         private float m_scale;
-        private Point m_lastClickedPosition;
-
-
-        public GameControl MouseFocus
-        {
-            get;
-            internal set;
-        }
-
-        public GameControl HoveredControl
-        {
-            get;
-            internal set;
-        }
-
-        public GameControl KeyboardFocus
-        {
-            get;
-            internal set;
-        }
 
         /// <summary>Initializes a new instance of the <see cref="Canvas" /> class</summary>
         public Canvas()
@@ -64,6 +45,89 @@ namespace FoxTrader.UI.Control
             m_disposeQueue = new List<IDisposable>();
         }
 
+        public GameControl MouseFocus
+        {
+            get;
+            internal set;
+        }
+
+        public GameControl HoveredControl
+        {
+            get;
+            internal set;
+        }
+
+        public GameControl KeyboardFocus
+        {
+            get;
+            internal set;
+        }
+
+        // Stupid Keyboard Logic, lol
+        public bool ShiftKeyToggled
+        {
+            get;
+            internal set;
+        }
+
+        public bool CtrlKeyToggled
+        {
+            get;
+            internal set;
+        }
+
+        public bool MetaKeyToggled
+        {
+            get;
+            internal set;
+        }
+
+        public bool AltKeyToggled
+        {
+            get;
+            internal set;
+        }
+
+        /// <summary>Scale for rendering</summary>
+        public float Scale
+        {
+            get
+            {
+                return m_scale;
+            }
+            set
+            {
+                if (m_scale == value)
+                {
+                    return;
+                }
+
+                m_scale = value;
+
+                if (Skin?.Renderer != null)
+                {
+                    Skin.Renderer.Scale = m_scale;
+                }
+
+                OnScaleChanged();
+                Redraw();
+            }
+        }
+
+        /// <summary>Background color</summary>
+        public Color BackgroundColor
+        {
+            get;
+            set;
+        }
+
+        /// <summary>In most situations you will be rendering the canvas every frame. But in some situations you will only want to render when there have been changes. You can do this by checking NeedsRedraw</summary>
+        public bool NeedsRedraw
+        {
+            get;
+            set;
+        }
+
         private void HookKeyboard()
         {
             m_gameControlDevices.Keyboard.KeyDown += (c_sender, c_args) =>
@@ -73,7 +137,19 @@ namespace FoxTrader.UI.Control
                     return;
                 }
 
-                HoveredControl.OnKeyDown(c_args);
+                if (c_args.Key == Key.ShiftLeft)
+                {
+                    ShiftKeyToggled = true;
+                }
+
+                if (KeyboardFocus != null)
+                {
+                    KeyboardFocus.OnKeyDown(c_args);
+                }
+                else
+                {
+                    HoveredControl.OnKeyDown(c_args);
+                }
             };
 
             m_gameControlDevices.Keyboard.KeyUp += (c_sender, c_args) =>
@@ -81,6 +157,11 @@ namespace FoxTrader.UI.Control
                 if (IsHidden || !KeyboardInputEnabled)
                 {
                     return;
+                }
+
+                if (c_args.Key == Key.ShiftLeft)
+                {
+                    ShiftKeyToggled = false;
                 }
 
                 if (MouseFocus is Button && c_args.Key == Key.Space)
@@ -123,19 +204,6 @@ namespace FoxTrader.UI.Control
                     HoveredControl = a_hoveredControl;
                     HoveredControl?.OnMouseOver(c_args);
                 }
-
-                if (MouseFocus == null)
-                {
-                    return;
-                }
-
-                if (HoveredControl != null)
-                {
-                    HoveredControl.Redraw();
-                    HoveredControl = null;
-                }
-
-                HoveredControl = MouseFocus;
             };
 
             m_gameControlDevices.Mouse.ButtonDown += (c_sender, c_args) =>
@@ -211,46 +279,6 @@ namespace FoxTrader.UI.Control
             }
         }
 
-        /// <summary>Scale for rendering</summary>
-        public float Scale
-        {
-            get
-            {
-                return m_scale;
-            }
-            set
-            {
-                if (m_scale == value)
-                {
-                    return;
-                }
-
-                m_scale = value;
-
-                if (Skin?.Renderer != null)
-                {
-                    Skin.Renderer.Scale = m_scale;
-                }
-
-                OnScaleChanged();
-                Redraw();
-            }
-        }
-
-        /// <summary>Background color</summary>
-        public Color BackgroundColor
-        {
-            get;
-            set;
-        }
-
-        /// <summary>In most situations you will be rendering the canvas every frame. But in some situations you will only want to render when there have been changes. You can do this by checking NeedsRedraw</summary>
-        public bool NeedsRedraw
-        {
-            get;
-            set;
-        }
-
         public override void Dispose()
         {
             ProcessDelayedDeletes();
@@ -296,6 +324,12 @@ namespace FoxTrader.UI.Control
             {
                 a_render.DrawColor = BackgroundColor;
                 a_render.DrawFilledRect(RenderBounds);
+            }
+
+            if (ShiftKeyToggled)
+            {
+                a_render.DrawColor = Color.Blue;
+                a_render.DrawFilledRect(new Rectangle(0, 0, 100, 100));
             }
 
             DoRender(Skin);
@@ -364,9 +398,7 @@ namespace FoxTrader.UI.Control
 
             if (KeyboardFocus == null)
             {
-                return;
             }
-
 
             // Key Repeat On OpenTK??
             /*var a_time = Platform.Neutral.GetTimeInSeconds();
@@ -418,40 +450,5 @@ namespace FoxTrader.UI.Control
                 m_disposeQueue.Clear();
             }
         }
-
-        /*
-
-        /// <summary>Handles keyboard events. Called from Input subsystems</summary>
-        /// <returns>True if handled</returns>
-        public bool Input_Key(Key c_key, bool c_isButtonDown)
-        {
-            return FoxTraderWindow.Instance.OnKeyEvent(c_key, c_isButtonDown);
-        }
-
-        /// <summary>Handles keyboard events. Called from Input subsystems</summary>
-        /// <returns>True if handled</returns>
-        public bool Input_Character(char c_char)
-        {
-            if (IsHidden || char.IsControl(c_char))
-            {
-                return false;
-            }
-
-            //Handle Accelerators
-            if (FoxTraderWindow.Instance.HandleAccelerator(c_char))
-            {
-                return true;
-            }
-
-            //Handle characters
-            if (FoxTraderWindow.Instance.KeyboardFocus == null || FoxTraderWindow.Instance.KeyboardFocus.GetCanvas() != this || !FoxTraderWindow.Instance.KeyboardFocus.IsVisible || FoxTraderWindow.Instance.IsControlDown)
-            {
-                return false;
-            }
-
-            return FoxTraderWindow.Instance.KeyboardFocus.InputChar(c_char);
-        }
-
-      */
     }
 }

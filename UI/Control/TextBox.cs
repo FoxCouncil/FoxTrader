@@ -486,7 +486,7 @@ namespace FoxTrader.UI.Control
 
             CursorPos = GetClosestCharacter(c_mouseButtonEventArgs.Position);
 
-            if (!Keyboard.GetState().IsKeyDown(Key.ShiftLeft))
+            if (!GetCanvas().ShiftKeyToggled)
             {
                 CursorEnd = CursorPos;
             }
