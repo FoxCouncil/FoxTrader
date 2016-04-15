@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using FoxTrader.Game.Utils;
+using FoxTrader.Interfaces;
 using static FoxTrader.Constants;
 
 namespace FoxTrader.Game

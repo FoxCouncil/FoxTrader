@@ -84,7 +84,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
-    <Compile Include="Game\IMapObject.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -95,6 +94,7 @@
     <Compile Include="UI\Control\MapControlButton.cs" />
     <Compile Include="UI\GameFont.cs" />
     <Compile Include="UI\Input\GameControlDevices.cs" />
+    <Compile Include="UI\VertexHelpers.cs" />
     <Compile Include="Views\GameView.cs" />
     <Compile Include="Views\NewGameView.cs" />
     <Compile Include="Window.cs" />

@@ -1,4 +1,5 @@
-﻿using static FoxTrader.Constants;
+﻿using FoxTrader.Interfaces;
+using static FoxTrader.Constants;
 
 namespace FoxTrader.Game
 {

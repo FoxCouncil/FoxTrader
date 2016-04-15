@@ -7,8 +7,8 @@ using System.Drawing.Text;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Resources;
 using System.Runtime.InteropServices;
+using FoxTrader.Properties;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 using PixelFormat = System.Drawing.Imaging.PixelFormat;
@@ -21,64 +21,61 @@ namespace FoxTrader.UI
 
         private static int m_lastTextureID;
         private readonly Graphics m_graphicsContext; // TODO: Platformize...
+        private readonly bool m_restoreRenderState;
 
         private readonly Dictionary<Tuple<string, GameFont>, TextRenderer> m_stringCache;
-        private readonly int m_vertexSize;
-        private readonly Vertex[] m_vertices;
+
+        private readonly StringFormat m_stringFormat;
+
+        private readonly int m_quadVertexSize;
+        private readonly Vertex[] m_quadVertices;
+        private int m_quadVerticesCount;
+
+        private readonly int m_lineVerticesSize;
+        private readonly Vertex[] m_lineVertices;
+        private int m_lineVerticesCount;
+
         private bool m_clipEnabled;
 
-        private Color m_color;
+        private Dictionary<string, GameFont> m_fontStore;
         private int m_prevAlphaFunc;
         private float m_prevAlphaRef;
         private int m_prevBlendDst;
         private int m_prevBlendSrc;
-        private readonly bool m_restoreRenderState;
-
-        private readonly StringFormat m_stringFormat;
+        private PrivateFontCollection m_privateFontCollection;
         private bool m_textureEnabled;
 
         private bool m_wasBlendEnabled;
         private bool m_wasDepthTestEnabled;
         private bool m_wasTexture2DEnabled;
-        private PrivateFontCollection m_privateFontCollection;
-        private Dictionary<string, GameFont> m_fontStore;
 
         public Renderer(bool c_restoreRenderState = true)
         {
             RenderOffset = Point.Empty;
             Scale = 1.0f;
 
-            m_vertices = new Vertex[Constants.kMaxVertices];
-            m_vertexSize = Marshal.SizeOf(m_vertices[0]);
+            m_quadVertices = new Vertex[Constants.kMaxQuadVertices];
+            m_quadVertexSize = Marshal.SizeOf(m_quadVertices[0]);
+
+            m_lineVertices = new Vertex[Constants.kMaxLineVertices];
+            m_lineVerticesSize = Marshal.SizeOf(m_lineVertices[0]);
+
             m_stringCache = new Dictionary<Tuple<string, GameFont>, TextRenderer>();
+
             m_graphicsContext = Graphics.FromImage(new Bitmap(1024, 1024, PixelFormat.Format32bppArgb));
+
             m_stringFormat = new StringFormat(StringFormat.GenericTypographic);
             m_stringFormat.FormatFlags |= StringFormatFlags.MeasureTrailingSpaces;
+
             m_restoreRenderState = c_restoreRenderState;
 
             InitFonts();
-        }
-
-        public static char TranslateChar(Key c_key)
-        {
-            if (c_key >= Key.A && c_key <= Key.Z)
-            {
-                return (char)('a' + ((int)c_key - (int)Key.A));
-            }
-
-            return ' ';
         }
 
         /// <summary>Returns number of cached strings in the text cache</summary>
         public int TextCacheSize => m_stringCache.Count;
 
         public int DrawCallCount
-        {
-            get;
-            private set;
-        }
-
-        public int VertexCount
         {
             get;
             private set;
@@ -92,20 +89,47 @@ namespace FoxTrader.UI
 
         public Color DrawColor
         {
-            get
-            {
-                return m_color;
-            }
-            set
-            {
-                m_color = value;
-            }
+            get;
+            set;
         }
+
+        public float Scale
+        {
+            get;
+            set;
+        }
+
+        /// <summary>Rendering offset. No need to touch it usually</summary>
+        public Point RenderOffset
+        {
+            get;
+            set;
+        }
+
+        /// <summary>Clipping rectangle</summary>
+        public Rectangle ClipRegion
+        {
+            get;
+            set;
+        }
+
+        /// <summary>Indicates whether the clip region is visible</summary>
+        public bool ClipRegionVisible => ClipRegion.Width > 0 && ClipRegion.Height > 0;
 
         public void Dispose()
         {
             FlushTextCache();
             GC.SuppressFinalize(this);
+        }
+
+        public static char TranslateChar(Key c_key)
+        {
+            if (c_key >= Key.A && c_key <= Key.Z)
+            {
+                return (char)('a' + ((int)c_key - (int)Key.A));
+            }
+
+            return ' ';
         }
 
         public void Begin()
@@ -130,8 +154,10 @@ namespace FoxTrader.UI
             GL.Disable(EnableCap.DepthTest);
             GL.Disable(EnableCap.Texture2D);
 
-            VertexCount = 0;
+            m_quadVerticesCount = 0;
+
             DrawCallCount = 0;
+
             m_clipEnabled = false;
             m_textureEnabled = false;
             m_lastTextureID = -1;
@@ -186,33 +212,68 @@ namespace FoxTrader.UI
             m_stringCache.Clear();
         }
 
-        private unsafe void Flush()
+        private void Flush()
         {
-            if (VertexCount == 0)
+            FlushLines();
+            FlushQuads();
+        }
+
+        private unsafe void FlushLines()
+        {
+            if (m_lineVerticesCount == 0)
             {
                 return;
             }
 
-            fixed (short* a_ptr1 = &m_vertices[0].X)
+            fixed (short* a_ptr1 = &m_lineVertices[0].X)
             {
-                fixed (byte* a_ptr2 = &m_vertices[0].R)
+                fixed (byte* a_ptr2 = &m_lineVertices[0].R)
                 {
-                    fixed (float* a_ptr3 = &m_vertices[0].U)
+                    fixed (float* a_ptr3 = &m_lineVertices[0].U)
                     {
-                        GL.VertexPointer(2, VertexPointerType.Short, m_vertexSize, (IntPtr)a_ptr1);
-                        GL.ColorPointer(4, ColorPointerType.UnsignedByte, m_vertexSize, (IntPtr)a_ptr2);
-                        GL.TexCoordPointer(2, TexCoordPointerType.Float, m_vertexSize, (IntPtr)a_ptr3);
+                        GL.VertexPointer(2, VertexPointerType.Short, m_lineVerticesSize, (IntPtr)a_ptr1);
+                        GL.ColorPointer(4, ColorPointerType.UnsignedByte, m_lineVerticesSize, (IntPtr)a_ptr2);
+                        GL.TexCoordPointer(2, TexCoordPointerType.Float, m_lineVerticesSize, (IntPtr)a_ptr3);
 
 #pragma warning disable 618
-                        GL.DrawArrays(BeginMode.Quads, 0, VertexCount);
+                        GL.DrawArrays(BeginMode.Lines, 0, m_lineVerticesCount);
 #pragma warning restore 618
                     }
                 }
             }
 
             DrawCallCount++;
-            VertexTotalCount = VertexCount;
-            VertexCount = 0;
+            VertexTotalCount += m_lineVerticesCount;
+            m_lineVerticesCount = 0;
+        }
+
+        private unsafe void FlushQuads()
+        {
+            if (m_quadVerticesCount == 0)
+            {
+                return;
+            }
+
+            fixed (short* a_ptr1 = &m_quadVertices[0].X)
+            {
+                fixed (byte* a_ptr2 = &m_quadVertices[0].R)
+                {
+                    fixed (float* a_ptr3 = &m_quadVertices[0].U)
+                    {
+                        GL.VertexPointer(2, VertexPointerType.Short, m_quadVertexSize, (IntPtr)a_ptr1);
+                        GL.ColorPointer(4, ColorPointerType.UnsignedByte, m_quadVertexSize, (IntPtr)a_ptr2);
+                        GL.TexCoordPointer(2, TexCoordPointerType.Float, m_quadVertexSize, (IntPtr)a_ptr3);
+
+#pragma warning disable 618
+                        GL.DrawArrays(BeginMode.Quads, 0, m_quadVerticesCount);
+#pragma warning restore 618
+                    }
+                }
+            }
+
+            DrawCallCount++;
+            VertexTotalCount += m_quadVerticesCount;
+            m_quadVerticesCount = 0;
         }
 
         public void DrawFilledRect(Rectangle c_rect)
@@ -272,13 +333,52 @@ namespace FoxTrader.UI
             DrawRect(c_rect, c_u1, c_v1, c_u2, c_v2);
         }
 
-        private void DrawRect(Rectangle c_rect, float c_u1 = 0, float c_v1 = 0, float c_u2 = 1, float c_v2 = 1)
+        private void DrawPointsRect(Point c_firstPoint, Point c_secondPoint)
         {
-            if (VertexCount + 4 >= Constants.kMaxVertices)
+            if (m_quadVerticesCount + 4 >= Constants.kMaxQuadVertices)
             {
-                Flush();
+                FlushQuads();
             }
 
+            var a_quadVertexArray = VertexHelpers.TwoPointsToQuadVertexArray(c_firstPoint, c_secondPoint, DrawColor);
+
+            DrawQuadVertex(a_quadVertexArray);
+        }
+
+        private void DrawRect(Rectangle c_rect, float c_u1 = 0, float c_v1 = 0, float c_u2 = 1, float c_v2 = 1)
+        {
+            if (m_quadVerticesCount + 4 >= Constants.kMaxQuadVertices)
+            {
+                FlushQuads();
+            }
+
+            if (ClipLogic(c_rect, ref c_u1, ref c_v1, ref c_u2, ref c_v2))
+                return;
+
+            var a_quadVertexArray = VertexHelpers.RectToQuadVertexArray(c_rect, c_u1, c_v1, c_u2, c_v2, DrawColor);
+
+            DrawQuadVertex(a_quadVertexArray);
+        }
+
+        private void DrawQuadVertex(IReadOnlyList<Vertex> c_quadVertices)
+        {
+            if (c_quadVertices.Count != 4)
+            {
+                throw new ArgumentException("Not a quad vertex array...shame....shame...");
+            }
+
+            var a_quadVerticesIndex = m_quadVerticesCount;
+
+            m_quadVertices[a_quadVerticesIndex++] = c_quadVertices[0];
+            m_quadVertices[a_quadVerticesIndex++] = c_quadVertices[1];
+            m_quadVertices[a_quadVerticesIndex++] = c_quadVertices[2];
+            m_quadVertices[a_quadVerticesIndex++] = c_quadVertices[3];
+
+            m_quadVerticesCount += 4;
+        }
+
+        private bool ClipLogic(Rectangle c_rect, ref float c_u1, ref float c_v1, ref float c_u2, ref float c_v2)
+        {
             if (m_clipEnabled)
             {
                 // cpu scissors test
@@ -293,7 +393,7 @@ namespace FoxTrader.UI
 
                     if (c_rect.Height <= 0)
                     {
-                        return;
+                        return true;
                     }
 
                     var a_dv = a_delta / (float)a_oldHeight;
@@ -310,7 +410,7 @@ namespace FoxTrader.UI
 
                     if (c_rect.Height <= 0)
                     {
-                        return;
+                        return true;
                     }
 
                     var a_dv = a_delta / (float)a_oldHeight;
@@ -327,7 +427,7 @@ namespace FoxTrader.UI
 
                     if (c_rect.Width <= 0)
                     {
-                        return;
+                        return true;
                     }
 
                     var a_du = a_delta / (float)a_oldWidth;
@@ -344,7 +444,7 @@ namespace FoxTrader.UI
 
                     if (c_rect.Width <= 0)
                     {
-                        return;
+                        return true;
                     }
 
                     var a_du = a_delta / (float)a_oldWidth;
@@ -353,47 +453,7 @@ namespace FoxTrader.UI
                 }
             }
 
-            var a_vertexIndex = VertexCount;
-            m_vertices[a_vertexIndex].X = (short)c_rect.X;
-            m_vertices[a_vertexIndex].Y = (short)c_rect.Y;
-            m_vertices[a_vertexIndex].U = c_u1;
-            m_vertices[a_vertexIndex].V = c_v1;
-            m_vertices[a_vertexIndex].R = m_color.R;
-            m_vertices[a_vertexIndex].G = m_color.G;
-            m_vertices[a_vertexIndex].B = m_color.B;
-            m_vertices[a_vertexIndex].A = m_color.A;
-
-            a_vertexIndex++;
-            m_vertices[a_vertexIndex].X = (short)(c_rect.X + c_rect.Width);
-            m_vertices[a_vertexIndex].Y = (short)c_rect.Y;
-            m_vertices[a_vertexIndex].U = c_u2;
-            m_vertices[a_vertexIndex].V = c_v1;
-            m_vertices[a_vertexIndex].R = m_color.R;
-            m_vertices[a_vertexIndex].G = m_color.G;
-            m_vertices[a_vertexIndex].B = m_color.B;
-            m_vertices[a_vertexIndex].A = m_color.A;
-
-            a_vertexIndex++;
-            m_vertices[a_vertexIndex].X = (short)(c_rect.X + c_rect.Width);
-            m_vertices[a_vertexIndex].Y = (short)(c_rect.Y + c_rect.Height);
-            m_vertices[a_vertexIndex].U = c_u2;
-            m_vertices[a_vertexIndex].V = c_v2;
-            m_vertices[a_vertexIndex].R = m_color.R;
-            m_vertices[a_vertexIndex].G = m_color.G;
-            m_vertices[a_vertexIndex].B = m_color.B;
-            m_vertices[a_vertexIndex].A = m_color.A;
-
-            a_vertexIndex++;
-            m_vertices[a_vertexIndex].X = (short)c_rect.X;
-            m_vertices[a_vertexIndex].Y = (short)(c_rect.Y + c_rect.Height);
-            m_vertices[a_vertexIndex].U = c_u1;
-            m_vertices[a_vertexIndex].V = c_v2;
-            m_vertices[a_vertexIndex].R = m_color.R;
-            m_vertices[a_vertexIndex].G = m_color.G;
-            m_vertices[a_vertexIndex].B = m_color.B;
-            m_vertices[a_vertexIndex].A = m_color.A;
-
-            VertexCount += 4;
+            return false;
         }
 
         private void InitFonts()
@@ -401,7 +461,7 @@ namespace FoxTrader.UI
             // Load Internal Fonts
             m_privateFontCollection = new PrivateFontCollection();
 
-            ResourceSet a_resourceSet = Properties.Resources.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
+            var a_resourceSet = Resources.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
 
             foreach (DictionaryEntry a_entry in a_resourceSet)
             {
@@ -740,29 +800,6 @@ namespace FoxTrader.UI
             return a_pixel;
         }
 
-        public float Scale
-        {
-            get;
-            set;
-        }
-
-        /// <summary>Rendering offset. No need to touch it usually</summary>
-        public Point RenderOffset
-        {
-            get;
-            set;
-        }
-
-        /// <summary>Clipping rectangle</summary>
-        public Rectangle ClipRegion
-        {
-            get;
-            set;
-        }
-
-        /// <summary>Indicates whether the clip region is visible</summary>
-        public bool ClipRegionVisible => ClipRegion.Width > 0 && ClipRegion.Height > 0;
-
 #if DEBUG
         ~Renderer()
         {
@@ -770,19 +807,20 @@ namespace FoxTrader.UI
             //Debug.Print(String.Format("IDisposable object finalized: {0}", GetType()));
         }
 #endif
+
         /// <summary>Draws a line</summary>
         /// <param name="c_x"></param>
         /// <param name="c_y"></param>
         /// <param name="c_a"></param>
         /// <param name="c_b"></param>
-        public virtual void DrawLine(int c_x, int c_y, int c_a, int c_b)
+        public void DrawLine(int c_x, int c_y, int c_a, int c_b)
         {
-
+            DrawPointsRect(new Point(TranslateX(c_x), TranslateY(c_y)), new Point(TranslateX(c_a), TranslateY(c_b)));
         }
 
         /// <summary>Draws "missing image" default texture</summary>
         /// <param name="c_rect">Target rectangle</param>
-        public virtual void DrawMissingImage(Rectangle c_rect)
+        public void DrawMissingImage(Rectangle c_rect)
         {
             //DrawColor = Color.FromArgb(255, rnd.Next(0,255), rnd.Next(0,255), rnd.Next(0, 255));
             DrawColor = Color.Red;
@@ -791,7 +829,7 @@ namespace FoxTrader.UI
 
         /// <summary>Draws a lined rectangle. Used for keyboard focus overlay</summary>
         /// <param name="c_rect">Target rectangle</param>
-        public virtual void DrawLinedRect(Rectangle c_rect)
+        public void DrawLinedRect(Rectangle c_rect)
         {
             DrawFilledRect(new Rectangle(c_rect.X, c_rect.Y, c_rect.Width, 1));
             DrawFilledRect(new Rectangle(c_rect.X, c_rect.Y + c_rect.Height - 1, c_rect.Width, 1));
@@ -803,7 +841,7 @@ namespace FoxTrader.UI
         /// <summary>Draws a single pixel. Very slow, do not use</summary>
         /// <param name="c_x">X</param>
         /// <param name="c_y">Y</param>
-        public virtual void DrawPixel(int c_x, int c_y)
+        public void DrawPixel(int c_x, int c_y)
         {
             DrawFilledRect(new Rectangle(c_x, c_y, 1, 1));
         }
@@ -813,7 +851,7 @@ namespace FoxTrader.UI
         /// <param name="c_x">X</param>
         /// <param name="c_y">Y</param>
         /// <returns>Pixel color</returns>
-        public virtual Color PixelColor(Texture c_texture, uint c_x, uint c_y)
+        public Color PixelColor(Texture c_texture, uint c_x, uint c_y)
         {
             return PixelColor(c_texture, c_x, c_y, Color.White);
         }
@@ -821,7 +859,7 @@ namespace FoxTrader.UI
         /// <summary>Draws a round-corner rectangle</summary>
         /// <param name="c_rect">Target rectangle</param>
         /// <param name="c_slight"></param>
-        public virtual void DrawShavedCornerRect(Rectangle c_rect, bool c_slight = false)
+        public void DrawShavedCornerRect(Rectangle c_rect, bool c_slight = false)
         {
             // Draw INSIDE the w/h.
             c_rect.Width -= 1;

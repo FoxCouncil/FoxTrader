@@ -55,6 +55,9 @@ namespace FoxTrader.Views
             var a_testTextBox = new TextBox(a_controlsParent) { Y = 10 };
             Align.PlaceDownLeft(a_testTextBox, a_comboBoxLanguage, 5);
 
+            var a_testNumericUpDown = new NumericUpDown(a_controlsParent) { Y = 10 };
+            Align.PlaceDownLeft(a_testNumericUpDown, a_testTextBox, 5);
+
             m_buttonBack = new Button(a_controlsParent) { Text = I18N.GetString("Back") };
             m_buttonBack.SetSize(kMainMenuButtonWidth, kMainMenuButtonHeight);
             m_buttonBack.Clicked += (c_senderControl, c_args) =>

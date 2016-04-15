@@ -93,7 +93,10 @@ namespace FoxTrader
             "ackmet", "urgoe", "ywert", "iger", "ipto"
         };
 
-        public const int kMaxVertices = 1024;
+        // Render Constants
+        public const int kMaxQuadVertices = 1024;
+        public const int kMaxLineVertices = 1024;
+
         public const int kMaxUIControlSize = 4096; // What's 1024 times 2?
         public const int kDefaultWinWidth = 1024; // Old skool
         public const int kDefaultWinHeight = 768;  // Old skool
