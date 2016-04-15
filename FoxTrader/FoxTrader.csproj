@@ -39,7 +39,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\win\debug\</OutputPath>
+    <OutputPath>..\bin\win\debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -50,7 +50,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\win\release\</OutputPath>
+    <OutputPath>..\bin\win\release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -69,11 +69,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
-      <HintPath>packages\OpenTK.1.1.2225.0\lib\net20\OpenTK.dll</HintPath>
+      <HintPath>..\packages\OpenTK.1.1.2225.0\lib\net20\OpenTK.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -242,7 +242,6 @@
     </EmbeddedResource>
     <None Include="Content\Graphics\Brand\FoxTrader.hqx" />
     <None Include="Content\Graphics\Brand\FoxTrader.icns" />
-    <None Include="ILMerge.props" />
     <None Include="OpenTK.dll.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -289,7 +288,6 @@
     <Content Include="Content\Graphics\Brand\64x64.png" />
     <Content Include="Content\Graphics\Brand\96x96.png" />
     <Content Include="Content\Graphics\UI\FoxTraderSkin.png" />
-    <Content Include="ILMergeOrder.txt" />
     <None Include="Content\Graphics\Brand\FoxTrader.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -307,16 +305,16 @@
   <Target Name="MATPrerequisite" BeforeTargets="PrepareForBuild" Condition="!Exists('$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.ResxResources.targets')" Label="MultilingualAppToolkit">
     <Warning Text="$(MSBuildProjectFile) is Multilingual build enabled, but the Multilingual App Toolkit is unavailable during the build. If building with Visual Studio, please check to ensure that toolkit is properly installed." />
   </Target>
-  <Import Project="packages\Resource.Embedder.1.1.1.0\build\Resource.Embedder.targets" Condition="Exists('packages\Resource.Embedder.1.1.1.0\build\Resource.Embedder.targets') And '$(Configuration)' == 'Release'" />
+  <Import Project="..\packages\Resource.Embedder.1.1.1.0\build\Resource.Embedder.targets" Condition="Exists('..\packages\Resource.Embedder.1.1.1.0\build\Resource.Embedder.targets') And '$(Configuration)' == 'Release'" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('packages\Resource.Embedder.1.1.1.0\build\Resource.Embedder.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Resource.Embedder.1.1.1.0\build\Resource.Embedder.targets'))" />
-    <Error Condition="!Exists('packages\MSBuild.ILMerge.Task.1.0.2\build\MSBuild.ILMerge.Task.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MSBuild.ILMerge.Task.1.0.2\build\MSBuild.ILMerge.Task.props'))" />
-    <Error Condition="!Exists('packages\MSBuild.ILMerge.Task.1.0.2\build\MSBuild.ILMerge.Task.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MSBuild.ILMerge.Task.1.0.2\build\MSBuild.ILMerge.Task.targets'))" />
+    <Error Condition="!Exists('..\packages\Resource.Embedder.1.1.1.0\build\Resource.Embedder.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Resource.Embedder.1.1.1.0\build\Resource.Embedder.targets'))" />
+    <Error Condition="!Exists('..\packages\MSBuild.ILMerge.Task.1.0.2\build\MSBuild.ILMerge.Task.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSBuild.ILMerge.Task.1.0.2\build\MSBuild.ILMerge.Task.props'))" />
+    <Error Condition="!Exists('..\packages\MSBuild.ILMerge.Task.1.0.2\build\MSBuild.ILMerge.Task.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSBuild.ILMerge.Task.1.0.2\build\MSBuild.ILMerge.Task.targets'))" />
   </Target>
-  <Import Project="packages\MSBuild.ILMerge.Task.1.0.2\build\MSBuild.ILMerge.Task.targets" Condition="Exists('packages\MSBuild.ILMerge.Task.1.0.2\build\MSBuild.ILMerge.Task.targets') And '$(Configuration)' == 'Release'" />
+  <Import Project="..\packages\MSBuild.ILMerge.Task.1.0.2\build\MSBuild.ILMerge.Task.targets" Condition="Exists('packages\MSBuild.ILMerge.Task.1.0.2\build\MSBuild.ILMerge.Task.targets') And '$(Configuration)' == 'Release'" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

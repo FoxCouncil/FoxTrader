@@ -65,14 +65,14 @@
     <Compile Include="UIUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FoxTrader.csproj">
+    <None Include="OpenTK.dll.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FoxTrader\FoxTrader.csproj">
       <Project>{4d76c505-6aaf-403e-bdb5-dcb778a8f8ab}</Project>
       <Name>FoxTrader</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="OpenTK.dll.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

@@ -1,11 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoxTrader", "FoxTrader.csproj", "{4D76C505-6AAF-403E-BDB5-DCB778A8F8AB}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoxTrader.UnitTests", "FoxTrader.UnitTests\FoxTrader.UnitTests.csproj", "{56EF7075-103A-4A98-919C-F5025DDBBEAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoxTrader", "FoxTrader\FoxTrader.csproj", "{4D76C505-6AAF-403E-BDB5-DCB778A8F8AB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution Files", "{8F24D3BE-89B4-44BC-A236-6DEAE4C120D3}"
+	ProjectSection(SolutionItems) = preProject
+		ILMerge.props = ILMerge.props
+		ILMergeOrder.txt = ILMergeOrder.txt
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,18 +24,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4D76C505-6AAF-403E-BDB5-DCB778A8F8AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4D76C505-6AAF-403E-BDB5-DCB778A8F8AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4D76C505-6AAF-403E-BDB5-DCB778A8F8AB}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{4D76C505-6AAF-403E-BDB5-DCB778A8F8AB}.Debug|x64.Build.0 = Debug|Any CPU
-		{4D76C505-6AAF-403E-BDB5-DCB778A8F8AB}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{4D76C505-6AAF-403E-BDB5-DCB778A8F8AB}.Debug|x86.Build.0 = Debug|Any CPU
-		{4D76C505-6AAF-403E-BDB5-DCB778A8F8AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4D76C505-6AAF-403E-BDB5-DCB778A8F8AB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4D76C505-6AAF-403E-BDB5-DCB778A8F8AB}.Release|x64.ActiveCfg = Release|Any CPU
-		{4D76C505-6AAF-403E-BDB5-DCB778A8F8AB}.Release|x64.Build.0 = Release|Any CPU
-		{4D76C505-6AAF-403E-BDB5-DCB778A8F8AB}.Release|x86.ActiveCfg = Release|Any CPU
-		{4D76C505-6AAF-403E-BDB5-DCB778A8F8AB}.Release|x86.Build.0 = Release|Any CPU
 		{56EF7075-103A-4A98-919C-F5025DDBBEAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{56EF7075-103A-4A98-919C-F5025DDBBEAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56EF7075-103A-4A98-919C-F5025DDBBEAB}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -41,6 +36,18 @@ Global
 		{56EF7075-103A-4A98-919C-F5025DDBBEAB}.Release|x64.Build.0 = Release|Any CPU
 		{56EF7075-103A-4A98-919C-F5025DDBBEAB}.Release|x86.ActiveCfg = Release|Any CPU
 		{56EF7075-103A-4A98-919C-F5025DDBBEAB}.Release|x86.Build.0 = Release|Any CPU
+		{4D76C505-6AAF-403E-BDB5-DCB778A8F8AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D76C505-6AAF-403E-BDB5-DCB778A8F8AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D76C505-6AAF-403E-BDB5-DCB778A8F8AB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4D76C505-6AAF-403E-BDB5-DCB778A8F8AB}.Debug|x64.Build.0 = Debug|Any CPU
+		{4D76C505-6AAF-403E-BDB5-DCB778A8F8AB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4D76C505-6AAF-403E-BDB5-DCB778A8F8AB}.Debug|x86.Build.0 = Debug|Any CPU
+		{4D76C505-6AAF-403E-BDB5-DCB778A8F8AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D76C505-6AAF-403E-BDB5-DCB778A8F8AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D76C505-6AAF-403E-BDB5-DCB778A8F8AB}.Release|x64.ActiveCfg = Release|Any CPU
+		{4D76C505-6AAF-403E-BDB5-DCB778A8F8AB}.Release|x64.Build.0 = Release|Any CPU
+		{4D76C505-6AAF-403E-BDB5-DCB778A8F8AB}.Release|x86.ActiveCfg = Release|Any CPU
+		{4D76C505-6AAF-403E-BDB5-DCB778A8F8AB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
