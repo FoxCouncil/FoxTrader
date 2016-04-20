@@ -10,7 +10,6 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using FoxTrader.Properties;
 using OpenTK.Graphics.OpenGL;
-using OpenTK.Input;
 using PixelFormat = System.Drawing.Imaging.PixelFormat;
 
 namespace FoxTrader.UI
@@ -120,16 +119,6 @@ namespace FoxTrader.UI
         {
             FlushTextCache();
             GC.SuppressFinalize(this);
-        }
-
-        public static char TranslateChar(Key c_key)
-        {
-            if (c_key >= Key.A && c_key <= Key.Z)
-            {
-                return (char)('a' + ((int)c_key - (int)Key.A));
-            }
-
-            return ' ';
         }
 
         public void Begin()

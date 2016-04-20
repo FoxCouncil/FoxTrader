@@ -4,7 +4,6 @@ using System.Linq;
 using FoxTrader.Game;
 using FoxTrader.UI;
 using FoxTrader.UI.Control;
-using FoxTrader.UI.Skin;
 using static FoxTrader.Constants;
 
 namespace FoxTrader.Views
@@ -72,7 +71,7 @@ namespace FoxTrader.Views
             m_menuControl.SetSize(700, 700);
         }
 
-        protected override void OnLayout(SkinBase c_skin)
+        protected override void OnLayout(Skin c_skin)
         {
             base.OnLayout(c_skin);
 

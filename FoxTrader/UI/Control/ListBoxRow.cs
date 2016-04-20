@@ -1,6 +1,5 @@
 using System.Drawing;
 using FoxTrader.UI.Control.Layout;
-using FoxTrader.UI.Skin;
 using OpenTK.Input;
 
 namespace FoxTrader.UI.Control
@@ -35,7 +34,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Renders the control using specified skin</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void Render(SkinBase c_skin)
+        protected override void Render(Skin c_skin)
         {
             c_skin.DrawListBoxLine(this, IsSelected, EvenRow);
         }

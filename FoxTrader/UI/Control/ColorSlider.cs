@@ -1,5 +1,4 @@
 using System.Drawing;
-using FoxTrader.UI.Skin;
 using OpenTK.Input;
 
 namespace FoxTrader.UI.Control
@@ -49,7 +48,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Renders the control using specified skin</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void Render(SkinBase c_skin)
+        protected override void Render(Skin c_skin)
         {
             // TODO: Is there any way to move this into skin? Not for now, no idea how we'll "actually" render these
             if (m_texture == null)

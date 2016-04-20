@@ -8,7 +8,6 @@ using FoxTrader.UI.Anim.Size;
 using FoxTrader.UI.ControlInternal;
 using FoxTrader.UI.DragDrop;
 using FoxTrader.UI.Platform;
-using FoxTrader.UI.Skin;
 using OpenTK.Input;
 using static FoxTrader.Constants;
 
@@ -36,7 +35,7 @@ namespace FoxTrader.UI.Control
         private Padding m_padding;
         private GameControl m_parent;
         private Rectangle m_renderBounds;
-        private SkinBase m_skin;
+        private Skin m_skin;
         private GameControl m_toolTip;
 
         /// <summary>Initializes a new instance of the <see cref="GameControl" /> class</summary>
@@ -247,7 +246,7 @@ namespace FoxTrader.UI.Control
         }
 
         /// <summary>Current skin</summary>
-        protected SkinBase Skin
+        protected Skin Skin
         {
             get
             {
@@ -504,7 +503,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Renders the focus overlay</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected virtual void RenderFocus(SkinBase c_skin)
+        protected virtual void RenderFocus(Skin c_skin)
         {
             if (GetCanvas().KeyboardFocus != this)
             {
@@ -980,7 +979,7 @@ namespace FoxTrader.UI.Control
         /// <summary>Sets the control's skin</summary>
         /// <param name="c_skin">New skin</param>
         /// <param name="c_changeChildren">Deterines whether to change children skin</param>
-        public virtual void SetSkin(SkinBase c_skin, bool c_changeChildren = false)
+        public virtual void SetSkin(Skin c_skin, bool c_changeChildren = false)
         {
             if (m_skin == c_skin)
             {
@@ -1269,7 +1268,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Rendering logic implementation</summary>
         /// <param name="c_skin">Skin to use</param>
-        internal virtual void DoRender(SkinBase c_skin)
+        internal virtual void DoRender(Skin c_skin)
         {
             if (m_skin != null)
             {
@@ -1312,13 +1311,13 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Renders under the actual control (shadows etc)</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected virtual void RenderUnder(SkinBase c_skin)
+        protected virtual void RenderUnder(Skin c_skin)
         {
         }
 
         /// <summary>Renders over the actual control (overlays)</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected virtual void RenderOver(SkinBase c_skin)
+        protected virtual void RenderOver(Skin c_skin)
         {
         }
 
@@ -1401,14 +1400,14 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Renders the control using specified skin</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected virtual void Render(SkinBase c_skin)
+        protected virtual void Render(Skin c_skin)
         {
         }
 
         /// <summary>Recursive rendering logic</summary>
         /// <param name="c_skin">Skin to use</param>
         /// <param name="c_clipRect">Clipping rectangle</param>
-        protected virtual void RenderRecursive(SkinBase c_skin, Rectangle c_clipRect)
+        protected virtual void RenderRecursive(Skin c_skin, Rectangle c_clipRect)
         {
             var a_renderer = c_skin.Renderer;
             var a_oldRenderOffset = a_renderer.RenderOffset;
@@ -1458,12 +1457,18 @@ namespace FoxTrader.UI.Control
         public virtual void OnKeyDown(KeyboardKeyEventArgs c_keyboardKeyEventArgs)
         {
             KeyDown?.Invoke(this, c_keyboardKeyEventArgs);
+
+            OnKeyPress(c_keyboardKeyEventArgs);
         }
 
-        public virtual void OnKeyUp(KeyboardKeyEventArgs c_keyboardKeyEvent)
+        public virtual void OnKeyPress(KeyboardKeyEventArgs c_keyboardKeyEventArgs)
         {
-            KeyPress?.Invoke(this, c_keyboardKeyEvent);
-            KeyUp?.Invoke(this, c_keyboardKeyEvent);
+            KeyPress?.Invoke(this, c_keyboardKeyEventArgs);
+        }
+
+        public virtual void OnKeyUp(KeyboardKeyEventArgs c_keyboardKeyEventArgs)
+        {
+            KeyUp?.Invoke(this, c_keyboardKeyEventArgs);
         }
 
         public virtual void OnMouseWheel(MouseWheelEventArgs c_mouseWheelEventArgs)
@@ -1551,13 +1556,13 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Lays out the control's interior according to alignment, padding, dock etc</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected virtual void OnLayout(SkinBase c_skin)
+        protected virtual void OnLayout(Skin c_skin)
         {
         }
 
         /// <summary>Recursively lays out the control's interior according to alignment, margin, padding, dock etc</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected virtual void RecurseLayout(SkinBase c_skin)
+        protected virtual void RecurseLayout(Skin c_skin)
         {
             if (m_skin != null)
             {
@@ -1698,7 +1703,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Function invoked after layout</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected virtual void PostLayout(SkinBase c_skin)
+        protected virtual void PostLayout(Skin c_skin)
         {
         }
 

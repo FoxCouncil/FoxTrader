@@ -1,6 +1,6 @@
 using System.Drawing;
 
-namespace FoxTrader.UI.Skin.Texturing
+namespace FoxTrader.UI.Texturing
 {
     public struct SubRect
     {

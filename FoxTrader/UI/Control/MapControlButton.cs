@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
 using FoxTrader.Interfaces;
-using FoxTrader.UI.Skin;
 
 namespace FoxTrader.UI.Control
 {
@@ -24,7 +23,7 @@ namespace FoxTrader.UI.Control
             // AutoSizeToContents = true;
         }
 
-        protected override void Render(SkinBase c_skin)
+        protected override void Render(Skin c_skin)
         {
             var a_renderer = c_skin.Renderer;
 
@@ -36,7 +35,7 @@ namespace FoxTrader.UI.Control
             a_renderer.EndClip();
             a_renderer.DrawColor = Color.White;
             a_renderer.DrawLinedRect(new Rectangle(new Point(a_baseX - (a_size / 2), a_baseY - (a_size / 2)), new Size(a_size - 1, a_size - 1)));
-            a_renderer.DrawLine(a_baseX, a_baseY, a_baseX + 15, a_baseY-15);
+            a_renderer.DrawLine(a_baseX, a_baseY, a_baseX + 15, a_baseY - 15);
             a_renderer.StartClip();
         }
 

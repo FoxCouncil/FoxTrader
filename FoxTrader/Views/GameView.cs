@@ -1,7 +1,6 @@
 ﻿using FoxTrader.Game;
 using FoxTrader.UI;
 using FoxTrader.UI.Control;
-using FoxTrader.UI.Skin;
 using static FoxTrader.Constants;
 
 namespace FoxTrader.Views
@@ -34,7 +33,7 @@ namespace FoxTrader.Views
             m_mapControl = new MapControl(this);
         }
 
-        protected override void Render(SkinBase c_skin)
+        protected override void Render(Skin c_skin)
         {
             base.Render(c_skin);
 

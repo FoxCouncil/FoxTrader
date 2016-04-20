@@ -1,5 +1,4 @@
 using System.Drawing;
-using FoxTrader.UI.Skin;
 using OpenTK.Input;
 
 namespace FoxTrader.UI.Control
@@ -66,10 +65,7 @@ namespace FoxTrader.UI.Control
 
             Invalidate();
 
-            if (ColorChanged != null)
-            {
-                ColorChanged.Invoke(this);
-            }
+            ColorChanged?.Invoke(this);
         }
 
         /// <summary>Handler invoked on mouse moved event</summary>
@@ -79,33 +75,35 @@ namespace FoxTrader.UI.Control
         /// <param name="c_dy">Y change</param>
         public override void OnMouseMoved(MouseMoveEventArgs c_mouseEventArgs)
         {
-            if (m_isDepressed)
+            if (!m_isDepressed)
             {
-                m_cursorPosition = CanvasPosToLocal(c_mouseEventArgs.Position);
-
-                //Do we have clamp?
-                if (m_cursorPosition.X < 0)
-                {
-                    m_cursorPosition.X = 0;
-                }
-
-                if (m_cursorPosition.X > Width)
-                {
-                    m_cursorPosition.X = Width;
-                }
-
-                if (m_cursorPosition.Y < 0)
-                {
-                    m_cursorPosition.Y = 0;
-                }
-
-                if (m_cursorPosition.Y > Height)
-                {
-                    m_cursorPosition.Y = Height;
-                }
-
-                ColorChanged?.Invoke(this);
+                return;
             }
+
+            m_cursorPosition = CanvasPosToLocal(c_mouseEventArgs.Position);
+
+            //Do we have clamp?
+            if (m_cursorPosition.X < 0)
+            {
+                m_cursorPosition.X = 0;
+            }
+
+            if (m_cursorPosition.X > Width)
+            {
+                m_cursorPosition.X = Width;
+            }
+
+            if (m_cursorPosition.Y < 0)
+            {
+                m_cursorPosition.Y = 0;
+            }
+
+            if (m_cursorPosition.Y > Height)
+            {
+                m_cursorPosition.Y = Height;
+            }
+
+            ColorChanged?.Invoke(this);
         }
 
         /// <summary>Handler invoked on mouse click (left) event</summary>
@@ -156,7 +154,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Renders the control using specified skin</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void Render(SkinBase c_skin)
+        protected override void Render(Skin c_skin)
         {
             if (m_texture == null)
             {

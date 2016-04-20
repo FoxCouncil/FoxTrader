@@ -216,12 +216,9 @@
     <Compile Include="UI\Platform\Neutral.cs" />
     <Compile Include="UI\Renderer.cs" />
     <Compile Include="UI\TextRenderer.cs" />
-    <Compile Include="UI\Skin\SimpleSkin.cs" />
-    <Compile Include="UI\Skin\SkinBase.cs" />
-    <Compile Include="UI\Skin\SkinColors.cs" />
-    <Compile Include="UI\Skin\TexturedSkin.cs" />
-    <Compile Include="UI\Skin\Texturing\Bordered.cs" />
-    <Compile Include="UI\Skin\Texturing\Single.cs" />
+    <Compile Include="UI\Skin.cs" />
+    <Compile Include="UI\Texturing\Bordered.cs" />
+    <Compile Include="UI\Texturing\Single.cs" />
     <Compile Include="UI\Texture.cs" />
     <Compile Include="UI\ToolTip.cs" />
     <Compile Include="UI\Util.cs" />
@@ -297,9 +294,7 @@
     <XliffResource Include="MultilingualResources\FoxTrader.ja-JP.xlf" />
     <XliffResource Include="MultilingualResources\FoxTrader.qps-ploc.xlf" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.ResxResources.targets" Label="MultilingualAppToolkit" Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.ResxResources.targets')" />
   <Target Name="MATPrerequisite" BeforeTargets="PrepareForBuild" Condition="!Exists('$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.ResxResources.targets')" Label="MultilingualAppToolkit">

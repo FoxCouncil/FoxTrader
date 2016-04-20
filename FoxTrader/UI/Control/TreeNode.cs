@@ -1,6 +1,5 @@
 using System.Linq;
 using FoxTrader.UI.ControlInternal;
-using FoxTrader.UI.Skin;
 using OpenTK.Input;
 using static FoxTrader.Constants;
 
@@ -161,7 +160,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Renders the control using specified skin</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void Render(SkinBase c_skin)
+        protected override void Render(Skin c_skin)
         {
             var a_bottom = 0;
             if (m_innerControl.Children.Count > 0)
@@ -174,7 +173,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Lays out the control's interior according to alignment, padding, dock etc</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void OnLayout(SkinBase c_skin)
+        protected override void OnLayout(Skin c_skin)
         {
             if (m_toggleButton != null)
             {
@@ -201,7 +200,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Function invoked after layout</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void PostLayout(SkinBase c_skin)
+        protected override void PostLayout(Skin c_skin)
         {
             if (SizeToChildren(false, true))
             {

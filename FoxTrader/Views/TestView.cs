@@ -3,7 +3,6 @@ using FoxTrader.Game;
 using FoxTrader.Game.Utils;
 using FoxTrader.UI;
 using FoxTrader.UI.Control;
-using FoxTrader.UI.Skin;
 using OpenTK.Input;
 using static FoxTrader.Constants;
 
@@ -82,7 +81,7 @@ namespace FoxTrader.Views
             m_label5.Alignment = Pos.Left | Pos.CenterV;
         }
 
-        protected override void Render(SkinBase c_skin)
+        protected override void Render(Skin c_skin)
         {
             m_label5.Text = $"[ {Time.SpaceTime:r} ]";
 

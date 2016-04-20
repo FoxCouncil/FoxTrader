@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using FoxTrader.UI.Skin;
 using static FoxTrader.Constants;
 
 namespace FoxTrader.UI.Control.Layout
@@ -163,7 +162,7 @@ namespace FoxTrader.UI.Control.Layout
 
         /// <summary>Lays out the control's interior according to alignment, padding, dock etc</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void OnLayout(SkinBase c_skin)
+        protected override void OnLayout(Skin c_skin)
         {
             base.OnLayout(c_skin);
 
@@ -179,7 +178,7 @@ namespace FoxTrader.UI.Control.Layout
             }
         }
 
-        protected override void PostLayout(SkinBase c_skin)
+        protected override void PostLayout(Skin c_skin)
         {
             base.PostLayout(c_skin);
             if (m_sizeToContents)

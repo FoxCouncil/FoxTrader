@@ -1,5 +1,4 @@
 using FoxTrader.UI.Control;
-using FoxTrader.UI.Skin;
 
 namespace FoxTrader.UI.ControlInternal
 {
@@ -16,7 +15,7 @@ namespace FoxTrader.UI.ControlInternal
 
         /// <summary>Renders the control using specified skin</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void Render(SkinBase c_skin)
+        protected override void Render(Skin c_skin)
         {
             if (ShouldDrawBackground)
             {
@@ -26,7 +25,7 @@ namespace FoxTrader.UI.ControlInternal
 
         /// <summary>Lays out the control's interior according to alignment, padding, dock etc</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void OnLayout(SkinBase c_skin)
+        protected override void OnLayout(Skin c_skin)
         {
             MoveTo(X, Y);
         }

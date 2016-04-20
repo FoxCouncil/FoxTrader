@@ -1,4 +1,3 @@
-using FoxTrader.UI.Skin;
 using static FoxTrader.Constants;
 
 namespace FoxTrader.UI.Control
@@ -46,7 +45,7 @@ namespace FoxTrader.UI.Control
             get;
         }
 
-        protected override void OnLayout(SkinBase c_skin)
+        protected override void OnLayout(Skin c_skin)
         {
             // ugly stuff because we don't have anchoring without docking (docking resizes children)
             if (m_label.Height > RadioButton.Height) // usually radio is smaller than label so it gets repositioned to avoid clipping with negative Y
@@ -63,7 +62,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Renders the focus overlay</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void RenderFocus(SkinBase c_skin)
+        protected override void RenderFocus(Skin c_skin)
         {
             if (GetCanvas().KeyboardFocus != this)
             {

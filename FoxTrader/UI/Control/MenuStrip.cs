@@ -1,4 +1,3 @@
-using FoxTrader.UI.Skin;
 using static FoxTrader.Constants;
 
 namespace FoxTrader.UI.Control
@@ -25,20 +24,20 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Renders under the actual control (shadows etc)</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void RenderUnder(SkinBase c_skin)
+        protected override void RenderUnder(Skin c_skin)
         {
         }
 
         /// <summary>Renders the control using specified skin</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void Render(SkinBase c_skin)
+        protected override void Render(Skin c_skin)
         {
             c_skin.DrawMenuStrip(this);
         }
 
         /// <summary>Lays out the control's interior according to alignment, padding, dock etc</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void OnLayout(SkinBase c_skin)
+        protected override void OnLayout(Skin c_skin)
         {
             //TODO: We don't want to do vertical sizing the same as Menu, do nothing for now
         }

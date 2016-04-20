@@ -114,6 +114,7 @@ namespace FoxTrader
         public const int kMainMenuButtonHeight = 32;
 
         public const float kKeyRepeatDelay = .5f;
+        public const float kKeyRepeatRate = .03f;
         public const float kMouseDoubleClickSpeed = .5f;
 
         public const string kDefaultDebugLanguage = "qps-ploc";

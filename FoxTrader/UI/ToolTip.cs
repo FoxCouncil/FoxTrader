@@ -1,6 +1,5 @@
 using System.Drawing;
 using FoxTrader.UI.Control;
-using FoxTrader.UI.Skin;
 using OpenTK.Input;
 
 namespace FoxTrader.UI
@@ -39,7 +38,7 @@ namespace FoxTrader.UI
 
         /// <summary>Renders the currently visible tooltip</summary>
         /// <param name="c_skin">A skin to render in</param>
-        public static void RenderToolTip(SkinBase c_skin)
+        public static void RenderToolTip(Skin c_skin)
         {
             if (m_toolTip != null)
             {

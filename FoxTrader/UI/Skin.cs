@@ -1,283 +1,30 @@
+using System;
 using System.Drawing;
 using System.IO;
 using FoxTrader.UI.Control;
-using FoxTrader.UI.Skin.Texturing;
+using FoxTrader.UI.Texturing;
 using static FoxTrader.Constants;
+using Single = FoxTrader.UI.Texturing.Single;
 
-namespace FoxTrader.UI.Skin
+namespace FoxTrader.UI
 {
-    public struct SkinTextures
+    /// <summary>Base skin</summary>
+    internal class Skin : IDisposable
     {
-        public Bordered m_statusBar;
-        public Bordered m_selection;
-        public Bordered m_shadow;
-        public Bordered m_tooltip;
-
-        public struct PanelTexture
-        {
-            public Bordered m_normal;
-            public Bordered m_bright;
-            public Bordered m_dark;
-            public Bordered m_highlight;
-        }
-
-        public struct WindowTexture
-        {
-            public Bordered m_normal;
-            public Bordered m_inactive;
-            public Single m_close;
-            public Single m_closeHover;
-            public Single m_closeDown;
-            public Single m_closeDisabled;
-        }
-
-        public struct CheckBoxTexture
-        {
-            public struct Active
-            {
-                public Single m_normal;
-                public Single m_checked;
-            }
-
-            public struct Disabled
-            {
-                public Single m_normal;
-                public Single m_checked;
-            }
-
-            public Active m_active;
-            public Disabled m_disabled;
-        }
-
-        public struct RadioButtonTexture
-        {
-            public struct Active
-            {
-                public Single m_normal;
-                public Single m_checked;
-            }
-
-            public struct Disabled
-            {
-                public Single m_normal;
-                public Single m_checked;
-            }
-
-            public Active m_active;
-            public Disabled m_disabled;
-        }
-
-        public struct TextBoxTexture
-        {
-            public Bordered m_normal;
-            public Bordered m_focus;
-            public Bordered m_disabled;
-        }
-
-        public struct TreeTexture
-        {
-            public Bordered m_background;
-            public Single m_minus;
-            public Single m_plus;
-        }
-
-        public struct ProgressBarTexture
-        {
-            public Bordered m_back;
-            public Bordered m_front;
-        }
-
-        public struct ScrollerTexture
-        {
-            public Bordered m_trackV;
-            public Bordered m_trackH;
-            public Bordered m_buttonVNormal;
-            public Bordered m_buttonVHover;
-            public Bordered m_buttonVDown;
-            public Bordered m_buttonVDisabled;
-            public Bordered m_buttonHNormal;
-            public Bordered m_buttonHHover;
-            public Bordered m_buttonHDown;
-            public Bordered m_buttonHDisabled;
-
-            public struct ButtonTexture
-            {
-                public Bordered[] m_normal;
-                public Bordered[] m_hover;
-                public Bordered[] m_down;
-                public Bordered[] m_disabled;
-            }
-
-            public ButtonTexture m_button;
-        }
-
-        public struct MenuTexture
-        {
-            public Single m_rightArrow;
-            public Single m_check;
-
-            public Bordered m_strip;
-            public Bordered m_background;
-            public Bordered m_backgroundWithMargin;
-            public Bordered m_hover;
-        }
-
-        public struct InputTexture
-        {
-            public struct ButtonTexture
-            {
-                public Bordered m_normal;
-                public Bordered m_hovered;
-                public Bordered m_disabled;
-                public Bordered m_pressed;
-            }
-
-            public struct ComboBoxTexture
-            {
-                public Bordered m_normal;
-                public Bordered m_hover;
-                public Bordered m_down;
-                public Bordered m_disabled;
-
-                public struct ButtonTexture
-                {
-                    public Single m_normal;
-                    public Single m_hover;
-                    public Single m_down;
-                    public Single m_disabled;
-                }
-
-                public ButtonTexture m_button;
-            }
-
-            public struct SliderTexture
-            {
-                public struct HTexture
-                {
-                    public Single m_normal;
-                    public Single m_hover;
-                    public Single m_down;
-                    public Single m_disabled;
-                }
-
-                public struct VTexture
-                {
-                    public Single m_normal;
-                    public Single m_hover;
-                    public Single m_down;
-                    public Single m_disabled;
-                }
-
-                public HTexture m_h;
-                public VTexture m_v;
-            }
-
-            public struct ListBoxTexture
-            {
-                public Bordered m_background;
-                public Bordered m_hovered;
-                public Bordered m_evenLine;
-                public Bordered m_oddLine;
-                public Bordered m_evenLineSelected;
-                public Bordered m_oddLineSelected;
-            }
-
-            public struct UpDownTexture
-            {
-                public struct UpTexture
-                {
-                    public Single m_normal;
-                    public Single m_hover;
-                    public Single m_down;
-                    public Single m_disabled;
-                }
-
-                public struct DownTexture
-                {
-                    public Single m_normal;
-                    public Single m_hover;
-                    public Single m_down;
-                    public Single m_disabled;
-                }
-
-                public UpTexture m_up;
-                public DownTexture m_down;
-            }
-
-            public ButtonTexture m_button;
-            public ComboBoxTexture m_comboBox;
-            public SliderTexture m_slider;
-            public ListBoxTexture m_listBox;
-            public UpDownTexture m_upDown;
-        }
-
-        public struct TabTexture
-        {
-            public struct BottomTexture
-            {
-                public Bordered m_inactive;
-                public Bordered m_active;
-            }
-
-            public struct TopTexture
-            {
-                public Bordered m_inactive;
-                public Bordered m_active;
-            }
-
-            public struct LeftTexture
-            {
-                public Bordered m_inactive;
-                public Bordered m_active;
-            }
-
-            public struct RightTexture
-            {
-                public Bordered m_inactive;
-                public Bordered m_active;
-            }
-
-            public BottomTexture m_bottom;
-            public TopTexture m_top;
-            public LeftTexture m_left;
-            public RightTexture m_right;
-
-            public Bordered m_control;
-            public Bordered m_headerBar;
-        }
-
-        public struct CategoryListTexture
-        {
-            public Bordered m_outer;
-            public Bordered m_inner;
-            public Bordered m_header;
-        }
-
-        public PanelTexture m_panel;
-        public WindowTexture m_window;
-        public CheckBoxTexture m_checkBox;
-        public RadioButtonTexture m_radioButton;
-        public TextBoxTexture m_textBox;
-        public TreeTexture m_tree;
-        public ProgressBarTexture m_progressBar;
-        public ScrollerTexture m_scroller;
-        public MenuTexture m_menu;
-        public InputTexture m_input;
-        public TabTexture m_tab;
-        public CategoryListTexture m_categoryList;
-    }
-
-    /// <summary>Base textured skin</summary>
-    internal class TexturedSkin : SkinBase
-    {
+        protected readonly Renderer m_renderer;
         private readonly Texture m_texture;
+        public SkinColors m_colors;
+        private GameFont m_defaultFont;
         private SkinTextures m_textures;
 
-        /// <summary>Initializes a new instance of the <see cref="TexturedSkin" /> class</summary>
+        /// <summary>Initializes a new instance of the <see cref="Skin" /> class</summary>
         /// <param name="c_renderer">Renderer to use</param>
-        /// <param name="c_textureName">Name of the skin texture map</param>
-        public TexturedSkin(Renderer c_renderer, string c_textureName) : base(c_renderer)
+        /// <param name="c_textureName"></param>
+        public Skin(Renderer c_renderer, string c_textureName)
         {
+            m_defaultFont = new GameFont(c_renderer);
+            m_renderer = c_renderer;
+
             m_texture = new Texture(Renderer);
             m_texture.Load(c_textureName);
 
@@ -285,8 +32,10 @@ namespace FoxTrader.UI.Skin
             InitializeTextures();
         }
 
-        public TexturedSkin(Renderer c_renderer, Stream c_textureData) : base(c_renderer)
+        public Skin(Renderer c_renderer, Stream c_textureData)
         {
+            m_defaultFont = new GameFont(c_renderer);
+            m_renderer = c_renderer;
             m_texture = new Texture(Renderer);
             m_texture.LoadStream(c_textureData);
 
@@ -294,11 +43,49 @@ namespace FoxTrader.UI.Skin
             InitializeTextures();
         }
 
+        /// <summary>Default font to use when rendering text if none specified</summary>
+        public GameFont DefaultFont
+        {
+            get
+            {
+                return m_defaultFont;
+            }
+            set
+            {
+                m_defaultFont.Dispose();
+                m_defaultFont = value;
+            }
+        }
+
+        /// <summary>Renderer used</summary>
+        public Renderer Renderer => m_renderer;
+
         /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources</summary>
-        public override void Dispose()
+        public virtual void Dispose()
         {
             m_texture.Dispose();
-            base.Dispose();
+            m_defaultFont.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
+#if DEBUG
+        ~Skin()
+        {
+            throw new InvalidOperationException($"IDisposable object finalized: {GetType()}");
+            //Debug.Print(String.Format("IDisposable object finalized: {0}", GetType()));
+        }
+#endif
+
+        /// <summary>Releases the specified font</summary>
+        /// <param name="c_font">Font to release</param>
+        protected virtual void ReleaseFont(GameFont c_font)
+        {
+            if (c_font == null)
+            {
+                return;
+            }
+
+            m_renderer?.FreeFont(c_font);
         }
 
         private void InitializeColors()
@@ -491,7 +278,7 @@ namespace FoxTrader.UI.Skin
             m_textures.m_categoryList.m_header = new Bordered(m_texture, 320, 352, 63, 31, Margin.kEight);
         }
 
-        public override void DrawButton(GameControl c_control, bool c_depressed, bool c_hovered, bool c_disabled)
+        public void DrawButton(GameControl c_control, bool c_depressed, bool c_hovered, bool c_disabled)
         {
             if (c_disabled)
             {
@@ -512,12 +299,12 @@ namespace FoxTrader.UI.Skin
             m_textures.m_input.m_button.m_normal.Draw(Renderer, c_control.RenderBounds);
         }
 
-        public override void DrawMenuRightArrow(GameControl c_control)
+        public void DrawMenuRightArrow(GameControl c_control)
         {
             m_textures.m_menu.m_rightArrow.Draw(Renderer, c_control.RenderBounds);
         }
 
-        public override void DrawMenuItem(GameControl c_control, bool c_submenuOpen, bool c_isChecked)
+        public void DrawMenuItem(GameControl c_control, bool c_submenuOpen, bool c_isChecked)
         {
             if (c_submenuOpen || c_control.IsHovered)
             {
@@ -530,12 +317,12 @@ namespace FoxTrader.UI.Skin
             }
         }
 
-        public override void DrawMenuStrip(GameControl c_control)
+        public void DrawMenuStrip(GameControl c_control)
         {
             m_textures.m_menu.m_strip.Draw(Renderer, c_control.RenderBounds);
         }
 
-        public override void DrawMenu(GameControl c_control, bool c_paddingDisabled)
+        public void DrawMenu(GameControl c_control, bool c_paddingDisabled)
         {
             if (!c_paddingDisabled)
             {
@@ -546,7 +333,7 @@ namespace FoxTrader.UI.Skin
             m_textures.m_menu.m_background.Draw(Renderer, c_control.RenderBounds);
         }
 
-        public override void DrawShadow(GameControl c_control)
+        public void DrawShadow(GameControl c_control)
         {
             var a_r = c_control.RenderBounds;
             a_r.X -= 4;
@@ -556,7 +343,7 @@ namespace FoxTrader.UI.Skin
             m_textures.m_shadow.Draw(Renderer, a_r);
         }
 
-        public override void DrawRadioButton(GameControl c_control, bool c_selected, bool c_depressed)
+        public void DrawRadioButton(GameControl c_control, bool c_selected, bool c_depressed)
         {
             if (c_selected)
             {
@@ -582,7 +369,7 @@ namespace FoxTrader.UI.Skin
             }
         }
 
-        public override void DrawCheckBox(GameControl c_control, bool c_selected, bool c_depressed)
+        public void DrawCheckBox(GameControl c_control, bool c_selected, bool c_depressed)
         {
             if (c_selected)
             {
@@ -608,7 +395,7 @@ namespace FoxTrader.UI.Skin
             }
         }
 
-        public override void DrawGroupBox(GameControl c_control, int c_textStart, int c_textHeight, int c_textWidth)
+        public void DrawGroupBox(GameControl c_control, int c_textStart, int c_textHeight, int c_textWidth)
         {
             var a_rect = c_control.RenderBounds;
 
@@ -637,7 +424,7 @@ namespace FoxTrader.UI.Skin
             Renderer.DrawFilledRect(new Rectangle((a_rect.X + a_rect.Width) - 1, a_rect.Y + 1, 1, a_rect.Height - 1));
         }
 
-        public override void DrawTextBox(GameControl c_control)
+        public void DrawTextBox(GameControl c_control)
         {
             if (c_control.IsDisabled)
             {
@@ -655,7 +442,7 @@ namespace FoxTrader.UI.Skin
             }
         }
 
-        public override void DrawTabButton(GameControl c_control, bool c_active, Pos c_dir)
+        public void DrawTabButton(GameControl c_control, bool c_active, Pos c_dir)
         {
             if (c_active)
             {
@@ -707,17 +494,17 @@ namespace FoxTrader.UI.Skin
             }
         }
 
-        public override void DrawTabControl(GameControl c_control)
+        public void DrawTabControl(GameControl c_control)
         {
             m_textures.m_tab.m_control.Draw(Renderer, c_control.RenderBounds);
         }
 
-        public override void DrawTabTitleBar(GameControl c_control)
+        public void DrawTabTitleBar(GameControl c_control)
         {
             m_textures.m_tab.m_headerBar.Draw(Renderer, c_control.RenderBounds);
         }
 
-        public override void DrawWindow(GameControl c_control, int c_topHeight, bool c_inFocus)
+        public void DrawWindow(GameControl c_control, int c_topHeight, bool c_inFocus)
         {
             if (c_inFocus)
             {
@@ -729,14 +516,14 @@ namespace FoxTrader.UI.Skin
             }
         }
 
-        public override void DrawHighlight(GameControl c_control)
+        public void DrawHighlight(GameControl c_control)
         {
             var a_rect = c_control.RenderBounds;
             Renderer.DrawColor = Color.FromArgb(255, 255, 100, 255);
             Renderer.DrawFilledRect(a_rect);
         }
 
-        public override void DrawScrollBar(GameControl c_control, bool c_horizontal, bool c_depressed)
+        public void DrawScrollBar(GameControl c_control, bool c_horizontal, bool c_depressed)
         {
             if (c_horizontal)
             {
@@ -748,7 +535,7 @@ namespace FoxTrader.UI.Skin
             }
         }
 
-        public override void DrawScrollBarBar(GameControl c_control, bool c_depressed, bool c_hovered, bool c_horizontal)
+        public void DrawScrollBarBar(GameControl c_control, bool c_depressed, bool c_hovered, bool c_horizontal)
         {
             if (!c_horizontal)
             {
@@ -795,7 +582,7 @@ namespace FoxTrader.UI.Skin
             m_textures.m_scroller.m_buttonHNormal.Draw(Renderer, c_control.RenderBounds);
         }
 
-        public override void DrawProgressBar(GameControl c_control, bool c_horizontal, float c_progress)
+        public void DrawProgressBar(GameControl c_control, bool c_horizontal, float c_progress)
         {
             var a_rect = c_control.RenderBounds;
 
@@ -814,12 +601,12 @@ namespace FoxTrader.UI.Skin
             }
         }
 
-        public override void DrawListBox(GameControl c_control)
+        public void DrawListBox(GameControl c_control)
         {
             m_textures.m_input.m_listBox.m_background.Draw(Renderer, c_control.RenderBounds);
         }
 
-        public override void DrawListBoxLine(GameControl c_control, bool c_selected, bool c_even)
+        public void DrawListBoxLine(GameControl c_control, bool c_selected, bool c_even)
         {
             if (c_selected)
             {
@@ -875,7 +662,7 @@ namespace FoxTrader.UI.Skin
             }
         }
 
-        public override void DrawSlider(GameControl c_control, bool c_horizontal, int c_numNotches, int c_barSize)
+        public void DrawSlider(GameControl c_control, bool c_horizontal, int c_numNotches, int c_barSize)
         {
             var a_rect = c_control.RenderBounds;
             Renderer.DrawColor = Color.FromArgb(100, 0, 0, 0);
@@ -899,7 +686,7 @@ namespace FoxTrader.UI.Skin
             Renderer.DrawFilledRect(a_rect);
         }
 
-        public override void DrawComboBox(GameControl c_control, bool c_down, bool c_open)
+        public void DrawComboBox(GameControl c_control, bool c_down, bool c_open)
         {
             if (c_control.IsDisabled)
             {
@@ -922,7 +709,7 @@ namespace FoxTrader.UI.Skin
             m_textures.m_input.m_comboBox.m_normal.Draw(Renderer, c_control.RenderBounds);
         }
 
-        public override void DrawKeyboardHighlight(GameControl c_control, Rectangle c_r, int c_offset)
+        public void DrawKeyboardHighlight(GameControl c_control, Rectangle c_r, int c_offset)
         {
             var a_rect = c_r;
 
@@ -955,12 +742,12 @@ namespace FoxTrader.UI.Skin
             }
         }
 
-        public override void DrawToolTip(GameControl c_control)
+        public void DrawToolTip(GameControl c_control)
         {
             m_textures.m_tooltip.Draw(Renderer, c_control.RenderBounds);
         }
 
-        public override void DrawScrollButton(GameControl c_control, Pos c_direction, bool c_depressed, bool c_hovered, bool c_disabled)
+        public void DrawScrollButton(GameControl c_control, Pos c_direction, bool c_depressed, bool c_hovered, bool c_disabled)
         {
             var a_i = 0;
             if (c_direction == Pos.Top)
@@ -997,7 +784,7 @@ namespace FoxTrader.UI.Skin
             m_textures.m_scroller.m_button.m_normal[a_i].Draw(Renderer, c_control.RenderBounds);
         }
 
-        public override void DrawComboBoxArrow(GameControl c_control, bool c_hovered, bool c_down, bool c_open, bool c_disabled)
+        public void DrawComboBoxArrow(GameControl c_control, bool c_hovered, bool c_down, bool c_open, bool c_disabled)
         {
             if (c_disabled)
             {
@@ -1020,7 +807,7 @@ namespace FoxTrader.UI.Skin
             m_textures.m_input.m_comboBox.m_button.m_normal.Draw(Renderer, c_control.RenderBounds);
         }
 
-        public override void DrawNumericUpDownButton(GameControl c_control, bool c_depressed, bool c_up)
+        public void DrawNumericUpDownButton(GameControl c_control, bool c_depressed, bool c_up)
         {
             if (c_up)
             {
@@ -1067,12 +854,12 @@ namespace FoxTrader.UI.Skin
             m_textures.m_input.m_upDown.m_down.m_normal.DrawCenter(Renderer, c_control.RenderBounds);
         }
 
-        public override void DrawStatusBar(GameControl c_control)
+        public void DrawStatusBar(GameControl c_control)
         {
             m_textures.m_statusBar.Draw(Renderer, c_control.RenderBounds);
         }
 
-        public override void DrawTreeButton(GameControl c_control, bool c_open)
+        public void DrawTreeButton(GameControl c_control, bool c_open)
         {
             var a_rect = c_control.RenderBounds;
 
@@ -1086,22 +873,34 @@ namespace FoxTrader.UI.Skin
             }
         }
 
-        public override void DrawTreeControl(GameControl c_control)
+        public void DrawTreeControl(GameControl c_control)
         {
             m_textures.m_tree.m_background.Draw(Renderer, c_control.RenderBounds);
         }
 
-        public override void DrawTreeNode(GameControl c_ctrl, bool c_open, bool c_selected, int c_labelHeight, int c_labelWidth, int c_halfWay, int c_lastBranch, bool c_isRoot)
+        public void DrawTreeNode(GameControl c_ctrl, bool c_open, bool c_selected, int c_labelHeight, int c_labelWidth, int c_halfWay, int c_lastBranch, bool c_isRoot)
         {
             if (c_selected)
             {
                 m_textures.m_selection.Draw(Renderer, new Rectangle(17, 0, c_labelWidth + 2, c_labelHeight - 1));
             }
 
-            base.DrawTreeNode(c_ctrl, c_open, c_selected, c_labelHeight, c_labelWidth, c_halfWay, c_lastBranch, c_isRoot);
+            Renderer.DrawColor = m_colors.m_tree.m_lines;
+
+            if (!c_isRoot)
+            {
+                Renderer.DrawFilledRect(new Rectangle(8, c_halfWay, 16 - 9, 1));
+            }
+
+            if (!c_open)
+            {
+                return;
+            }
+
+            Renderer.DrawFilledRect(new Rectangle(14 + 7, c_labelHeight + 1, 1, c_lastBranch + c_halfWay - c_labelHeight));
         }
 
-        public override void DrawColorDisplay(GameControl c_control, Color c_color)
+        public void DrawColorDisplay(GameControl c_control, Color c_color)
         {
             var a_rect = c_control.RenderBounds;
 
@@ -1123,7 +922,7 @@ namespace FoxTrader.UI.Skin
             Renderer.DrawLinedRect(a_rect);
         }
 
-        public override void DrawModalControl(GameControl c_control)
+        public void DrawModalControl(GameControl c_control)
         {
             if (!c_control.ShouldDrawBackground)
             {
@@ -1134,14 +933,14 @@ namespace FoxTrader.UI.Skin
             Renderer.DrawFilledRect(a_rect);
         }
 
-        public override void DrawMenuDivider(GameControl c_control)
+        public void DrawMenuDivider(GameControl c_control)
         {
             var a_rect = c_control.RenderBounds;
             Renderer.DrawColor = Color.FromArgb(100, 0, 0, 0);
             Renderer.DrawFilledRect(a_rect);
         }
 
-        public override void DrawWindowCloseButton(GameControl c_control, bool c_depressed, bool c_hovered, bool c_disabled)
+        public void DrawWindowCloseButton(GameControl c_control, bool c_depressed, bool c_hovered, bool c_disabled)
         {
             if (c_disabled)
             {
@@ -1164,7 +963,7 @@ namespace FoxTrader.UI.Skin
             m_textures.m_window.m_close.Draw(Renderer, c_control.RenderBounds);
         }
 
-        public override void DrawSliderButton(GameControl c_control, bool c_depressed, bool c_horizontal)
+        public void DrawSliderButton(GameControl c_control, bool c_depressed, bool c_horizontal)
         {
             if (!c_horizontal)
             {
@@ -1211,12 +1010,12 @@ namespace FoxTrader.UI.Skin
             m_textures.m_input.m_slider.m_h.m_normal.DrawCenter(Renderer, c_control.RenderBounds);
         }
 
-        public override void DrawCategoryHolder(GameControl c_control)
+        public void DrawCategoryHolder(GameControl c_control)
         {
             m_textures.m_categoryList.m_outer.Draw(Renderer, c_control.RenderBounds);
         }
 
-        public override void DrawCategoryInner(GameControl c_control, bool c_collapsed)
+        public void DrawCategoryInner(GameControl c_control, bool c_collapsed)
         {
             if (c_collapsed)
             {
@@ -1226,6 +1025,139 @@ namespace FoxTrader.UI.Skin
             {
                 m_textures.m_categoryList.m_inner.Draw(Renderer, c_control.RenderBounds);
             }
+        }
+
+        /// <summary>Sets the default text font</summary>
+        /// <param name="c_faceName">Font name. Meaning can vary depending on the renderer</param>
+        /// <param name="c_size">Font size</param>
+        public void SetDefaultFont(string c_faceName, int c_size = 10)
+        {
+            m_defaultFont.FaceName = c_faceName;
+            m_defaultFont.Size = c_size;
+        }
+
+        public void DrawDebugOutlines(GameControl c_control)
+        {
+            m_renderer.DrawColor = c_control.PaddingOutlineColor;
+            var a_inner = new Rectangle(c_control.Bounds.Left + c_control.Padding.m_left, c_control.Bounds.Top + c_control.Padding.m_top, c_control.Bounds.Width - c_control.Padding.m_right - c_control.Padding.m_left, c_control.Bounds.Height - c_control.Padding.m_bottom - c_control.Padding.m_top);
+            m_renderer.DrawLinedRect(a_inner);
+
+            m_renderer.DrawColor = c_control.MarginOutlineColor;
+            var a_outer = new Rectangle(c_control.Bounds.Left - c_control.Margin.m_left, c_control.Bounds.Top - c_control.Margin.m_top, c_control.Bounds.Width + c_control.Margin.m_right + c_control.Margin.m_left, c_control.Bounds.Height + c_control.Margin.m_bottom + c_control.Margin.m_top);
+            m_renderer.DrawLinedRect(a_outer);
+
+            m_renderer.DrawColor = c_control.BoundsOutlineColor;
+            m_renderer.DrawLinedRect(c_control.Bounds);
+        }
+
+        public void DrawPropertyRow(GameControl c_control, int c_iWidth, bool c_bBeingEdited, bool c_hovered)
+        {
+            var a_rect = c_control.RenderBounds;
+
+            if (c_bBeingEdited)
+            {
+                m_renderer.DrawColor = m_colors.m_properties.m_columnSelected;
+            }
+            else if (c_hovered)
+            {
+                m_renderer.DrawColor = m_colors.m_properties.m_columnHover;
+            }
+            else
+            {
+                m_renderer.DrawColor = m_colors.m_properties.m_columnNormal;
+            }
+
+            m_renderer.DrawFilledRect(new Rectangle(0, a_rect.Y, c_iWidth, a_rect.Height));
+
+            if (c_bBeingEdited)
+            {
+                m_renderer.DrawColor = m_colors.m_properties.m_lineSelected;
+            }
+            else if (c_hovered)
+            {
+                m_renderer.DrawColor = m_colors.m_properties.m_lineHover;
+            }
+            else
+            {
+                m_renderer.DrawColor = m_colors.m_properties.m_lineNormal;
+            }
+
+            m_renderer.DrawFilledRect(new Rectangle(c_iWidth, a_rect.Y, 1, a_rect.Height));
+
+            a_rect.Y += a_rect.Height - 1;
+            a_rect.Height = 1;
+
+            m_renderer.DrawFilledRect(a_rect);
+        }
+
+        public void DrawPropertyTreeNode(GameControl c_control, int c_borderLeft, int c_borderTop)
+        {
+            var a_rect = c_control.RenderBounds;
+
+            m_renderer.DrawColor = m_colors.m_properties.m_border;
+
+            m_renderer.DrawFilledRect(new Rectangle(a_rect.X, a_rect.Y, c_borderLeft, a_rect.Height));
+            m_renderer.DrawFilledRect(new Rectangle(a_rect.X + c_borderLeft, a_rect.Y, a_rect.Width - c_borderLeft, c_borderTop));
+        }
+
+        public void DrawArrowDown(Rectangle c_rect)
+        {
+            var a_x = (c_rect.Width / 5.0f);
+            var a_y = (c_rect.Height / 5.0f);
+
+            m_renderer.DrawFilledRect(Util.FloatRect(c_rect.X + a_x * 0.0f, c_rect.Y + a_y * 1.0f, a_x, a_y * 1.0f));
+            m_renderer.DrawFilledRect(Util.FloatRect(c_rect.X + a_x * 1.0f, c_rect.Y + a_y * 1.0f, a_x, a_y * 2.0f));
+            m_renderer.DrawFilledRect(Util.FloatRect(c_rect.X + a_x * 2.0f, c_rect.Y + a_y * 1.0f, a_x, a_y * 3.0f));
+            m_renderer.DrawFilledRect(Util.FloatRect(c_rect.X + a_x * 3.0f, c_rect.Y + a_y * 1.0f, a_x, a_y * 2.0f));
+            m_renderer.DrawFilledRect(Util.FloatRect(c_rect.X + a_x * 4.0f, c_rect.Y + a_y * 1.0f, a_x, a_y * 1.0f));
+        }
+
+        public void DrawArrowUp(Rectangle c_rect)
+        {
+            var a_x = (c_rect.Width / 5.0f);
+            var a_y = (c_rect.Height / 5.0f);
+
+            m_renderer.DrawFilledRect(Util.FloatRect(c_rect.X + a_x * 0.0f, c_rect.Y + a_y * 3.0f, a_x, a_y * 1.0f));
+            m_renderer.DrawFilledRect(Util.FloatRect(c_rect.X + a_x * 1.0f, c_rect.Y + a_y * 2.0f, a_x, a_y * 2.0f));
+            m_renderer.DrawFilledRect(Util.FloatRect(c_rect.X + a_x * 2.0f, c_rect.Y + a_y * 1.0f, a_x, a_y * 3.0f));
+            m_renderer.DrawFilledRect(Util.FloatRect(c_rect.X + a_x * 3.0f, c_rect.Y + a_y * 2.0f, a_x, a_y * 2.0f));
+            m_renderer.DrawFilledRect(Util.FloatRect(c_rect.X + a_x * 4.0f, c_rect.Y + a_y * 3.0f, a_x, a_y * 1.0f));
+        }
+
+        public void DrawArrowLeft(Rectangle c_rect)
+        {
+            var a_x = (c_rect.Width / 5.0f);
+            var a_y = (c_rect.Height / 5.0f);
+
+            m_renderer.DrawFilledRect(Util.FloatRect(c_rect.X + a_x * 3.0f, c_rect.Y + a_y * 0.0f, a_x * 1.0f, a_y));
+            m_renderer.DrawFilledRect(Util.FloatRect(c_rect.X + a_x * 2.0f, c_rect.Y + a_y * 1.0f, a_x * 2.0f, a_y));
+            m_renderer.DrawFilledRect(Util.FloatRect(c_rect.X + a_x * 1.0f, c_rect.Y + a_y * 2.0f, a_x * 3.0f, a_y));
+            m_renderer.DrawFilledRect(Util.FloatRect(c_rect.X + a_x * 2.0f, c_rect.Y + a_y * 3.0f, a_x * 2.0f, a_y));
+            m_renderer.DrawFilledRect(Util.FloatRect(c_rect.X + a_x * 3.0f, c_rect.Y + a_y * 4.0f, a_x * 1.0f, a_y));
+        }
+
+        public void DrawArrowRight(Rectangle c_rect)
+        {
+            var a_x = (c_rect.Width / 5.0f);
+            var a_y = (c_rect.Height / 5.0f);
+
+            m_renderer.DrawFilledRect(Util.FloatRect(c_rect.X + a_x * 1.0f, c_rect.Y + a_y * 0.0f, a_x * 1.0f, a_y));
+            m_renderer.DrawFilledRect(Util.FloatRect(c_rect.X + a_x * 1.0f, c_rect.Y + a_y * 1.0f, a_x * 2.0f, a_y));
+            m_renderer.DrawFilledRect(Util.FloatRect(c_rect.X + a_x * 1.0f, c_rect.Y + a_y * 2.0f, a_x * 3.0f, a_y));
+            m_renderer.DrawFilledRect(Util.FloatRect(c_rect.X + a_x * 1.0f, c_rect.Y + a_y * 3.0f, a_x * 2.0f, a_y));
+            m_renderer.DrawFilledRect(Util.FloatRect(c_rect.X + a_x * 1.0f, c_rect.Y + a_y * 4.0f, a_x * 1.0f, a_y));
+        }
+
+        public void DrawCheck(Rectangle c_rect)
+        {
+            var a_x = (c_rect.Width / 5.0f);
+            var a_y = (c_rect.Height / 5.0f);
+
+            m_renderer.DrawFilledRect(Util.FloatRect(c_rect.X + a_x * 0.0f, c_rect.Y + a_y * 3.0f, a_x * 2, a_y * 2));
+            m_renderer.DrawFilledRect(Util.FloatRect(c_rect.X + a_x * 1.0f, c_rect.Y + a_y * 4.0f, a_x * 2, a_y * 2));
+            m_renderer.DrawFilledRect(Util.FloatRect(c_rect.X + a_x * 2.0f, c_rect.Y + a_y * 3.0f, a_x * 2, a_y * 2));
+            m_renderer.DrawFilledRect(Util.FloatRect(c_rect.X + a_x * 3.0f, c_rect.Y + a_y * 1.0f, a_x * 2, a_y * 2));
+            m_renderer.DrawFilledRect(Util.FloatRect(c_rect.X + a_x * 4.0f, c_rect.Y + a_y * 0.0f, a_x * 2, a_y * 2));
         }
     }
 }

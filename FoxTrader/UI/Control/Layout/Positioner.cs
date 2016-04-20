@@ -1,4 +1,3 @@
-using FoxTrader.UI.Skin;
 using static FoxTrader.Constants;
 
 namespace FoxTrader.UI.Control.Layout
@@ -22,7 +21,7 @@ namespace FoxTrader.UI.Control.Layout
 
         /// <summary>Function invoked after layout</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void PostLayout(SkinBase c_skin)
+        protected override void PostLayout(Skin c_skin)
         {
             foreach (var a_child in Children) // ok?
             {

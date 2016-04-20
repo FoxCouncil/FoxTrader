@@ -1,6 +1,5 @@
 using System.Drawing;
 using FoxTrader.UI.ControlInternal;
-using FoxTrader.UI.Skin;
 using OpenTK.Input;
 using static FoxTrader.Constants;
 
@@ -67,7 +66,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Renders the control using specified skin</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void Render(SkinBase c_skin)
+        protected override void Render(Skin c_skin)
         {
             c_skin.DrawComboBox(this, IsDepressed, IsOpen);
         }
@@ -126,7 +125,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Lays out the control's interior according to alignment, padding, dock etc</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void OnLayout(SkinBase c_skin)
+        protected override void OnLayout(Skin c_skin)
         {
             m_button.SetRelativePosition(Pos.Right | Pos.CenterV, 4, 0);
             base.OnLayout(c_skin);
@@ -181,33 +180,33 @@ namespace FoxTrader.UI.Control
             switch (c_keyboardKeyEventArgs.Key)
             {
                 case Key.Down:
-                    {
-                        var a_idx = m_menu.Children.FindIndex(c_x => c_x == m_selectedItem);
+                {
+                    var a_idx = m_menu.Children.FindIndex(c_x => c_x == m_selectedItem);
 
-                        if (a_idx + 1 < m_menu.Children.Count)
-                        {
-                            OnItemSelected(m_menu.Children[a_idx + 1]);
-                        }
+                    if (a_idx + 1 < m_menu.Children.Count)
+                    {
+                        OnItemSelected(m_menu.Children[a_idx + 1]);
                     }
-                    break;
+                }
+                break;
 
                 case Key.Up:
-                    {
-                        var a_idx = m_menu.Children.FindLastIndex(c_x => c_x == m_selectedItem);
+                {
+                    var a_idx = m_menu.Children.FindLastIndex(c_x => c_x == m_selectedItem);
 
-                        if (a_idx - 1 >= 0)
-                        {
-                            OnItemSelected(m_menu.Children[a_idx - 1]);
-                        }
+                    if (a_idx - 1 >= 0)
+                    {
+                        OnItemSelected(m_menu.Children[a_idx - 1]);
                     }
-                    break;
+                }
+                break;
             }
 
         }
 
         /// <summary>Renders the focus overlay</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void RenderFocus(SkinBase c_skin)
+        protected override void RenderFocus(Skin c_skin)
         {
         }
     }

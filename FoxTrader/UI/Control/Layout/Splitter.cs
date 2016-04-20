@@ -1,5 +1,4 @@
 using System;
-using FoxTrader.UI.Skin;
 using static FoxTrader.Constants;
 
 namespace FoxTrader.UI.Control.Layout
@@ -54,12 +53,12 @@ namespace FoxTrader.UI.Control.Layout
 
         /// <summary>Lays out the control's interior according to alignment, padding, dock etc</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void OnLayout(SkinBase c_skin)
+        protected override void OnLayout(Skin c_skin)
         {
             LayoutVertical(c_skin);
         }
 
-        protected virtual void LayoutVertical(SkinBase c_skin)
+        protected virtual void LayoutVertical(Skin c_skin)
         {
             var a_w = Width;
             var a_h = Height;
@@ -91,7 +90,7 @@ namespace FoxTrader.UI.Control.Layout
             }
         }
 
-        protected virtual void LayoutHorizontal(SkinBase c_skin)
+        protected virtual void LayoutHorizontal(Skin c_skin)
         {
             throw new NotImplementedException();
         }

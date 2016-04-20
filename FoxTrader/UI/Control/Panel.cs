@@ -2,7 +2,6 @@ using System;
 using System.Drawing;
 using FoxTrader.UI.ControlInternal;
 using FoxTrader.UI.DragDrop;
-using FoxTrader.UI.Skin;
 using static FoxTrader.Constants;
 
 namespace FoxTrader.UI.Control
@@ -126,7 +125,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Renders the control using specified skin</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void Render(SkinBase c_skin)
+        protected override void Render(Skin c_skin)
         {
         }
 
@@ -140,40 +139,40 @@ namespace FoxTrader.UI.Control
             switch (c_pos)
             {
                 case Pos.Left:
-                    if (m_left == null)
-                    {
-                        m_left = new Panel(this);
-                        m_left.SetupChildPanel(c_pos);
-                    }
-                    a_dock = m_left;
-                    break;
+                if (m_left == null)
+                {
+                    m_left = new Panel(this);
+                    m_left.SetupChildPanel(c_pos);
+                }
+                a_dock = m_left;
+                break;
 
                 case Pos.Right:
-                    if (m_right == null)
-                    {
-                        m_right = new Panel(this);
-                        m_right.SetupChildPanel(c_pos);
-                    }
-                    a_dock = m_right;
-                    break;
+                if (m_right == null)
+                {
+                    m_right = new Panel(this);
+                    m_right.SetupChildPanel(c_pos);
+                }
+                a_dock = m_right;
+                break;
 
                 case Pos.Top:
-                    if (m_top == null)
-                    {
-                        m_top = new Panel(this);
-                        m_top.SetupChildPanel(c_pos);
-                    }
-                    a_dock = m_top;
-                    break;
+                if (m_top == null)
+                {
+                    m_top = new Panel(this);
+                    m_top.SetupChildPanel(c_pos);
+                }
+                a_dock = m_top;
+                break;
 
                 case Pos.Bottom:
-                    if (m_bottom == null)
-                    {
-                        m_bottom = new Panel(this);
-                        m_bottom.SetupChildPanel(c_pos);
-                    }
-                    a_dock = m_bottom;
-                    break;
+                if (m_bottom == null)
+                {
+                    m_bottom = new Panel(this);
+                    m_bottom.SetupChildPanel(c_pos);
+                }
+                a_dock = m_bottom;
+                break;
             }
 
             if (a_dock != null)
@@ -455,7 +454,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Renders over the actual control (overlays)</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void RenderOver(SkinBase c_skin)
+        protected override void RenderOver(Skin c_skin)
         {
             if (!m_drawHover)
             {

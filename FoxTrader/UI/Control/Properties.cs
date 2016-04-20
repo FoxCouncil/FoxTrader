@@ -1,7 +1,6 @@
 using System.Windows.Forms;
 using FoxTrader.UI.Control.Property;
 using FoxTrader.UI.ControlInternal;
-using FoxTrader.UI.Skin;
 using static FoxTrader.Constants;
 using Text = FoxTrader.UI.Control.Property.Text;
 
@@ -33,7 +32,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Function invoked after layout</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void PostLayout(SkinBase c_skin)
+        protected override void PostLayout(Skin c_skin)
         {
             m_splitterBar.Height = 0;
 

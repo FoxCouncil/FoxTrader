@@ -1,6 +1,5 @@
 using System.Drawing;
 using FoxTrader.UI.Control;
-using FoxTrader.UI.Skin;
 
 namespace FoxTrader.UI.ControlInternal
 {
@@ -76,7 +75,7 @@ namespace FoxTrader.UI.ControlInternal
 
         /// <summary>Renders the control using specified skin</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void Render(SkinBase c_skin)
+        protected override void Render(Skin c_skin)
         {
             c_skin.DrawColorDisplay(this, Color);
         }

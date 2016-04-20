@@ -1,5 +1,4 @@
 using FoxTrader.UI.Control;
-using FoxTrader.UI.Skin;
 using static FoxTrader.Constants;
 
 namespace FoxTrader.UI.ControlInternal
@@ -38,7 +37,7 @@ namespace FoxTrader.UI.ControlInternal
 
         /// <summary>Renders the control using specified skin</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void Render(SkinBase c_skin)
+        protected override void Render(Skin c_skin)
         {
             c_skin.DrawScrollButton(this, m_direction, IsDepressed, IsHovered, IsDisabled);
         }

@@ -1,7 +1,6 @@
 using System;
 using System.Drawing;
 using FoxTrader.UI.ControlInternal;
-using FoxTrader.UI.Skin;
 using OpenTK.Input;
 
 namespace FoxTrader.UI.Control
@@ -195,7 +194,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Renders the focus overlay</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void RenderFocus(SkinBase c_skin)
+        protected override void RenderFocus(Skin c_skin)
         {
             if (GetCanvas().KeyboardFocus != this || !IsTabable)
             {

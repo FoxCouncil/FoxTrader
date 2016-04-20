@@ -1,7 +1,6 @@
 using System.Drawing;
 using System.Linq;
 using FoxTrader.UI.ControlInternal;
-using FoxTrader.UI.Skin;
 using OpenTK.Input;
 using static FoxTrader.Constants;
 
@@ -138,7 +137,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Renders the control using specified skin</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void Render(SkinBase c_skin)
+        protected override void Render(Skin c_skin)
         {
             var a_hasFocus = IsOnTop;
 
@@ -149,7 +148,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Renders under the actual control (shadows etc)</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void RenderUnder(SkinBase c_skin)
+        protected override void RenderUnder(Skin c_skin)
         {
             base.RenderUnder(c_skin);
             c_skin.DrawShadow(this);
@@ -163,7 +162,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Renders the focus overlay</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void RenderFocus(SkinBase c_skin)
+        protected override void RenderFocus(Skin c_skin)
         {
         }
     }

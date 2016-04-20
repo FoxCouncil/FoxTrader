@@ -1,7 +1,6 @@
 using System;
 using System.Drawing;
 using FoxTrader.UI.Platform;
-using FoxTrader.UI.Skin;
 using OpenTK.Input;
 using static FoxTrader.Constants;
 
@@ -133,7 +132,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Renders the focus overlay</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void RenderFocus(SkinBase c_skin)
+        protected override void RenderFocus(Skin c_skin)
         {
             // nothing
         }
@@ -193,7 +192,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Renders the control using specified skin</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void Render(SkinBase c_skin)
+        protected override void Render(Skin c_skin)
         {
             base.Render(c_skin);
 
@@ -291,9 +290,9 @@ namespace FoxTrader.UI.Control
             RefreshCursorBounds();
         }
 
-        public override void OnKeyDown(KeyboardKeyEventArgs c_keyboardKeyEventArgs)
+        public override void OnKeyPress(KeyboardKeyEventArgs c_keyboardKeyEventArgs)
         {
-            base.OnKeyDown(c_keyboardKeyEventArgs);
+            base.OnKeyPress(c_keyboardKeyEventArgs);
 
             switch (c_keyboardKeyEventArgs.Key)
             {
@@ -391,9 +390,9 @@ namespace FoxTrader.UI.Control
 
                 default:
                 {
-                    var a_filteredCharacter = Renderer.TranslateChar(c_keyboardKeyEventArgs.Key);
+                    var a_filteredCharacter = TranslateChar(c_keyboardKeyEventArgs.Key);
 
-                    if (a_filteredCharacter == '\t')
+                    if (a_filteredCharacter == '\t' || a_filteredCharacter == char.MinValue)
                     {
                         return;
                     }
@@ -558,7 +557,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Lays out the control's interior according to alignment, padding, dock etc</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void OnLayout(SkinBase c_skin)
+        protected override void OnLayout(Skin c_skin)
         {
             base.OnLayout(c_skin);
 
@@ -569,6 +568,16 @@ namespace FoxTrader.UI.Control
         protected virtual void OnReturn()
         {
             SubmitPressed?.Invoke(this, null);
+        }
+
+        private char TranslateChar(Key c_key)
+        {
+            if (c_key >= Key.A && c_key <= Key.Z)
+            {
+                return (char)('a' + ((int)c_key - (int)Key.A));
+            }
+
+            return char.MinValue;
         }
     }
 }

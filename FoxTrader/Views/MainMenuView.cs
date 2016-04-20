@@ -3,7 +3,6 @@ using System.Reflection;
 using FoxTrader.Game;
 using FoxTrader.UI;
 using FoxTrader.UI.Control;
-using FoxTrader.UI.Skin;
 using static FoxTrader.Constants;
 
 namespace FoxTrader.Views
@@ -86,7 +85,7 @@ namespace FoxTrader.Views
             Align.PlaceDownLeft(m_buttonQuit, m_buttonOptions, 25);
         }
 
-        protected override void OnLayout(SkinBase c_skin)
+        protected override void OnLayout(Skin c_skin)
         {
             base.OnLayout(c_skin);
 

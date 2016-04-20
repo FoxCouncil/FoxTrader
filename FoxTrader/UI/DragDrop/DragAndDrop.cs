@@ -3,7 +3,6 @@ using System.Drawing;
 using System.Windows.Forms;
 using FoxTrader.UI.Control;
 using FoxTrader.UI.Platform;
-using FoxTrader.UI.Skin;
 using OpenTK.Input;
 using MouseEventArgs = OpenTK.Input.MouseEventArgs;
 
@@ -219,7 +218,7 @@ namespace FoxTrader.UI.DragDrop
             c_hoveredControl.Redraw();
         }
 
-        internal static void RenderOverlay(Canvas c_canvas, SkinBase c_skin)
+        internal static void RenderOverlay(Canvas c_canvas, Skin c_skin)
         {
             if (m_currentPackage == null || m_currentPackage.m_drawControl == null)
             {

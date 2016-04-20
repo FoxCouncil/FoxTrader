@@ -1,5 +1,4 @@
 using FoxTrader.UI.ControlInternal;
-using FoxTrader.UI.Skin;
 using OpenTK.Input;
 using static FoxTrader.Constants;
 
@@ -130,7 +129,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Renders the control using specified skin</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void Render(SkinBase c_skin)
+        protected override void Render(Skin c_skin)
         {
             c_skin.DrawCategoryInner(this, m_headerButton.ToggleState);
 
@@ -155,7 +154,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Function invoked after layout</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void PostLayout(SkinBase c_skin)
+        protected override void PostLayout(Skin c_skin)
         {
             if (IsCollapsed)
             {

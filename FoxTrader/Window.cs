@@ -7,7 +7,6 @@ using FoxTrader.Game;
 using FoxTrader.UI;
 using FoxTrader.UI.Control;
 using FoxTrader.UI.Input;
-using FoxTrader.UI.Skin;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using static FoxTrader.Constants;
@@ -20,7 +19,7 @@ namespace FoxTrader
 
         private static FoxTraderWindow m_gameWindowInstance;
 
-        private SkinBase m_skin;
+        private Skin m_skin;
         private StatusBar m_statusBar;
 
         private readonly List<long> m_frameTime;
@@ -72,7 +71,7 @@ namespace FoxTrader
             }
         }
 
-        public SkinBase Skin => m_skin;
+        public Skin Skin => m_skin;
 
         public GameControlDevices GetGameControlDevices()
         {
@@ -87,7 +86,7 @@ namespace FoxTrader
 
             Renderer = new Renderer();
 
-            m_skin = new TexturedSkin(Renderer, "png_FoxTraderSkin") { DefaultFont = Renderer.GetFont(kDefaultGameFontName) };
+            m_skin = new Skin(Renderer, "png_FoxTraderSkin") { DefaultFont = Renderer.GetFont(kDefaultGameFontName) };
 
             m_canvas = new Canvas();
 

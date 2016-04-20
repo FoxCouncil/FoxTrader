@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using FoxTrader.Game;
-using FoxTrader.UI.Skin;
 using OpenTK.Input;
 using static FoxTrader.Constants;
 
@@ -301,7 +300,7 @@ namespace FoxTrader.UI.Control
             m_mapPosition.Y = (a_mapMaxSize / 2) - Height / 2 * -1;
         }
 
-        protected override void OnLayout(SkinBase c_skin)
+        protected override void OnLayout(Skin c_skin)
         {
             base.OnLayout(c_skin);
 
@@ -320,7 +319,7 @@ namespace FoxTrader.UI.Control
             m_mapOffset.Y = Height / 2;
         }
 
-        protected override void Render(SkinBase c_skin)
+        protected override void Render(Skin c_skin)
         {
             base.Render(c_skin);
 
@@ -389,7 +388,7 @@ namespace FoxTrader.UI.Control
             }
         }
 
-        private void RenderGrid(SkinBase c_skin)
+        private void RenderGrid(Skin c_skin)
         {
             c_skin.Renderer.DrawColor = Color.FromArgb(24, 255, 255, 255);
 
@@ -434,7 +433,7 @@ namespace FoxTrader.UI.Control
             }
         }
 
-        private void RenderMapBackground(SkinBase c_skin)
+        private void RenderMapBackground(Skin c_skin)
         {
             const int intensityValue = 128;
 

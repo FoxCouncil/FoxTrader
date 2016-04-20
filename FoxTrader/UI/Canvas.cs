@@ -5,7 +5,6 @@ using System.Linq;
 using FoxTrader.UI.Anim;
 using FoxTrader.UI.DragDrop;
 using FoxTrader.UI.Input;
-using FoxTrader.UI.Skin;
 using OpenTK.Input;
 
 namespace FoxTrader.UI.Control
@@ -142,18 +141,35 @@ namespace FoxTrader.UI.Control
                     ShiftKeyToggled = true;
                 }
 
+                var a_integerKey = (int)c_args.Key;
+
+                if (m_keyData.KeyState[a_integerKey])
+                {
+                    return;
+                }
+
+                m_keyData.KeyState[a_integerKey] = true;
+                m_keyData.NextRepeat[a_integerKey] = Platform.Neutral.GetTimeInSeconds() + Constants.kKeyRepeatDelay;
+                m_keyData.KeyEventArgs[a_integerKey] = c_args;
+
                 if (KeyboardFocus != null)
                 {
+                    m_keyData.Target = KeyboardFocus;
                     KeyboardFocus.OnKeyDown(c_args);
                 }
                 else
                 {
+                    m_keyData.Target = HoveredControl;
                     HoveredControl.OnKeyDown(c_args);
                 }
             };
 
             m_gameControlDevices.Keyboard.KeyUp += (c_sender, c_args) =>
             {
+                var a_integerKey = (int)c_args.Key;
+
+                m_keyData.KeyState[a_integerKey] = false;
+
                 if (IsHidden || !KeyboardInputEnabled)
                 {
                     return;
@@ -171,7 +187,16 @@ namespace FoxTrader.UI.Control
                     a_button?.OnClicked(new MouseButtonEventArgs());
                 }
 
-                HoveredControl.OnKeyUp(c_args);
+                m_keyData.Target = null;
+
+                if (KeyboardFocus != null)
+                {
+                    KeyboardFocus.OnKeyUp(c_args);
+                }
+                else
+                {
+                    HoveredControl.OnKeyUp(c_args);
+                }
             };
         }
 
@@ -345,7 +370,7 @@ namespace FoxTrader.UI.Control
 
         /// <summary>Renders the control using specified skin</summary>
         /// <param name="c_skin">Skin to use</param>
-        protected override void Render(SkinBase c_skin)
+        protected override void Render(Skin c_skin)
         {
             base.Render(c_skin);
 
@@ -400,24 +425,27 @@ namespace FoxTrader.UI.Control
             {
             }
 
-            // Key Repeat On OpenTK??
-            /*var a_time = Platform.Neutral.GetTimeInSeconds();
+
+            var a_time = Platform.Neutral.GetTimeInSeconds();
 
             for (var a_idx = 0; a_idx < 1024; a_idx++)
             {
-                if (m_keyData.m_keyState[a_idx] && m_keyData.m_target != KeyboardFocus)
+                if (m_keyData.KeyState[a_idx])
                 {
-                    m_keyData.m_keyState[a_idx] = false;
-                    continue;
+                    if (m_keyData.Target != KeyboardFocus && m_keyData.Target != HoveredControl)
+                    {
+                        m_keyData.KeyState[a_idx] = false;
+                        continue;
+                    }
                 }
 
-                if (m_keyData.m_keyState[a_idx] && a_time > m_keyData.m_nextRepeat[a_idx])
+                if (m_keyData.KeyState[a_idx] && a_time > m_keyData.NextRepeat[a_idx])
                 {
-                    m_keyData.m_nextRepeat[a_idx] = Platform.Neutral.GetTimeInSeconds() + kKeyRepeatDelay;
+                    m_keyData.NextRepeat[a_idx] = Platform.Neutral.GetTimeInSeconds() + Constants.kKeyRepeatRate;
 
-                    KeyboardFocus?.OnKeyDown((Key)a_idx);
+                    KeyboardFocus?.OnKeyPress(m_keyData.KeyEventArgs[a_idx]);
                 }
-            }*/
+            }
         }
 
         /// <summary>Adds given control to the delete queue and detaches it from canvas. Don't call from Dispose, it modifies child list</summary>
