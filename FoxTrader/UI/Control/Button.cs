@@ -16,10 +16,24 @@ namespace FoxTrader.UI.Control
         /// <param name="c_parentControl">Parent control</param>
         internal Button(GameControl c_parentControl) : base(c_parentControl)
         {
-            SetSize(100, 20);
             MouseInputEnabled = true;
             Alignment = Pos.Center;
             TextPadding = new Padding(3, 3, 3, 3);
+
+            UpdateTextColorState(false);
+        }
+
+        public override bool IsDisabled
+        {
+            get
+            {
+                return base.IsDisabled;
+            }
+            set
+            {
+                base.IsDisabled = value;
+                UpdateTextColorState(false);
+            }
         }
 
         /// <summary>Indicates whether the button is depressed</summary>
@@ -101,8 +115,6 @@ namespace FoxTrader.UI.Control
         /// <param name="c_skin">Skin to use</param>
         protected override void Render(Skin c_skin)
         {
-            base.Render(c_skin);
-
             if (!ShouldDrawBackground)
             {
                 return;
@@ -118,6 +130,8 @@ namespace FoxTrader.UI.Control
             var a_bDrawHovered = IsHovered && ShouldDrawHover;
 
             c_skin.DrawButton(this, a_drawDepressed, a_bDrawHovered, IsDisabled);
+
+            RenderText(c_skin.Renderer);
         }
 
         /// <summary>Internal OnPressed implementation</summary>
@@ -134,7 +148,7 @@ namespace FoxTrader.UI.Control
         /// <summary>Sets the button's image</summary>
         /// <param name="c_textureName">Texture name. Null to remove</param>
         /// <param name="c_center">Determines whether the image should be centered</param>
-        public virtual void SetImage(string c_textureName, bool c_center = false)
+        public void SetImage(string c_textureName, bool c_center = false)
         {
             if (string.IsNullOrEmpty(c_textureName))
             {
@@ -150,10 +164,10 @@ namespace FoxTrader.UI.Control
 
             m_image.ImageName = c_textureName;
             m_image.SizeToContents();
-            m_image.SetPosition(Math.Max(Padding.m_left, 2), 2);
+            m_image.SetPosition(Math.Max(Padding.Left, 2), 2);
             m_centerImage = c_center;
 
-            TextPadding = new Padding(m_image.Right + 2, TextPadding.m_top, TextPadding.m_right, TextPadding.m_bottom);
+            TextPadding = new Padding(m_image.Right + 2, TextPadding.Top, TextPadding.Right, TextPadding.Bottom);
         }
 
         /// <summary>Sizes to contents</summary>
@@ -187,6 +201,20 @@ namespace FoxTrader.UI.Control
             }
         }
 
+        public override void OnMouseOver(MouseMoveEventArgs c_mouseEventArgs)
+        {
+            base.OnMouseOver(c_mouseEventArgs);
+
+            UpdateTextColorState(true);
+        }
+
+        public override void OnMouseOut(MouseMoveEventArgs c_mouseEventArgs)
+        {
+            base.OnMouseOut(c_mouseEventArgs);
+
+            UpdateTextColorState(false);
+        }
+
         public override void OnMouseDown(MouseButtonEventArgs c_mouseButtonEventArgs)
         {
             base.OnMouseDown(c_mouseButtonEventArgs);
@@ -204,10 +232,8 @@ namespace FoxTrader.UI.Control
             m_isDepressed = false;
         }
 
-        public override void OnMouseMoved(MouseMoveEventArgs c_mouseEventArgs)
+        private void UpdateTextColorState(bool c_isHovered)
         {
-            base.OnMouseMoved(c_mouseEventArgs);
-
             if (IsDisabled)
             {
                 TextColor = Skin.m_colors.m_button.m_disabled;
@@ -221,7 +247,7 @@ namespace FoxTrader.UI.Control
                 return;
             }
 
-            if (IsHovered)
+            if (c_isHovered)
             {
                 TextColor = Skin.m_colors.m_button.m_hover;
                 return;

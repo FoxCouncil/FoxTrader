@@ -79,6 +79,16 @@ namespace FoxTrader.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] fnt_regular {
+            get {
+                object obj = ResourceManager.GetObject("fnt_regular", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Game Options.
         /// </summary>
         internal static string GameOptions {
@@ -234,6 +244,16 @@ namespace FoxTrader.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap png_gamefont_regular {
+            get {
+                object obj = ResourceManager.GetObject("png_gamefont_regular", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Quit.
         /// </summary>
         internal static string QuitGame {
@@ -248,76 +268,6 @@ namespace FoxTrader.Properties {
         internal static string SaveGame {
             get {
                 return ResourceManager.GetString("SaveGame", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] ttf_Roboto_Black {
-            get {
-                object obj = ResourceManager.GetObject("ttf_Roboto_Black", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] ttf_Roboto_Light {
-            get {
-                object obj = ResourceManager.GetObject("ttf_Roboto_Light", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] ttf_Roboto_Medium {
-            get {
-                object obj = ResourceManager.GetObject("ttf_Roboto_Medium", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] ttf_Roboto_Regular {
-            get {
-                object obj = ResourceManager.GetObject("ttf_Roboto_Regular", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] ttf_Roboto_Thin {
-            get {
-                object obj = ResourceManager.GetObject("ttf_Roboto_Thin", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] ttf_RobotoCondensed_Light {
-            get {
-                object obj = ResourceManager.GetObject("ttf_RobotoCondensed_Light", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] ttf_RobotoCondensed_Regular {
-            get {
-                object obj = ResourceManager.GetObject("ttf_RobotoCondensed_Regular", resourceCulture);
-                return ((byte[])(obj));
             }
         }
         

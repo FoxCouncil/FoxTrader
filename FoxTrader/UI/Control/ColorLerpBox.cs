@@ -173,7 +173,7 @@ namespace FoxTrader.UI.Control
                     }
                 }
 
-                m_texture = new Texture(c_skin.Renderer);
+                m_texture = new Texture();
                 m_texture.Width = Width;
                 m_texture.Height = Height;
                 m_texture.LoadRaw(Width, Height, a_pixelData);

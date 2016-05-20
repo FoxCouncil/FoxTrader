@@ -16,7 +16,7 @@ namespace FoxTrader.UI
                 return;
             }
 
-            var a_newX = a_parentControl.Padding.m_left + (((a_parentControl.Width - a_parentControl.Padding.m_left - a_parentControl.Padding.m_right) - c_control.Width) / 2);
+            var a_newX = a_parentControl.Padding.Left + (((a_parentControl.Width - a_parentControl.Padding.Left - a_parentControl.Padding.Right) - c_control.Width) / 2);
             var a_newY = (a_parentControl.Height - c_control.Height) / 2;
             c_control.SetPosition(a_newX, a_newY);
         }
@@ -29,7 +29,7 @@ namespace FoxTrader.UI
 
             if (a_parentControl != null)
             {
-                c_control.SetPosition(a_parentControl.Padding.m_left, c_control.Y);
+                c_control.SetPosition(a_parentControl.Padding.Left, c_control.Y);
             }
         }
 
@@ -41,7 +41,7 @@ namespace FoxTrader.UI
 
             if (a_parentControl != null)
             {
-                c_control.SetPosition(a_parentControl.Padding.m_left + (((a_parentControl.Width - a_parentControl.Padding.m_left - a_parentControl.Padding.m_right) - c_control.Width) / 2), c_control.Y);
+                c_control.SetPosition(a_parentControl.Padding.Left + (((a_parentControl.Width - a_parentControl.Padding.Left - a_parentControl.Padding.Right) - c_control.Width) / 2), c_control.Y);
             }
         }
 
@@ -53,7 +53,7 @@ namespace FoxTrader.UI
 
             if (a_parentControl != null)
             {
-                c_control.SetPosition(a_parentControl.Width - c_control.Width - a_parentControl.Padding.m_right, c_control.Y);
+                c_control.SetPosition(a_parentControl.Width - c_control.Width - a_parentControl.Padding.Right, c_control.Y);
             }
         }
 

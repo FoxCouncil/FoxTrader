@@ -1,5 +1,4 @@
 using System;
-using System.Drawing;
 using System.Linq;
 using OpenTK.Input;
 using static FoxTrader.Constants;
@@ -127,14 +126,6 @@ namespace FoxTrader.UI.Control
         protected virtual void HBarMoved(GameControl c_control)
         {
             Invalidate();
-        }
-
-        /// <summary>Handler invoked when control children's bounds change</summary>
-        /// <param name="c_oldChildBounds"></param>
-        /// <param name="c_child"></param>
-        protected override void OnChildBoundsChanged(Rectangle c_oldChildBounds, GameControl c_child)
-        {
-            UpdateScrollBars();
         }
 
         /// <summary>Lays out the control's interior according to alignment, padding, dock etc</summary>

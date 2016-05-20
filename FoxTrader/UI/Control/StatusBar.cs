@@ -11,7 +11,7 @@ namespace FoxTrader.UI.Control
         {
             Height = 22;
             Dock = Pos.Bottom;
-            Padding = Padding.m_two;
+            Padding = Padding.kTwo;
             Alignment = Pos.Left | Pos.CenterV;
         }
 

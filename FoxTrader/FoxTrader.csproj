@@ -92,7 +92,11 @@
     </Compile>
     <Compile Include="UI\Control\MapControl.cs" />
     <Compile Include="UI\Control\MapControlButton.cs" />
-    <Compile Include="UI\GameFont.cs" />
+    <Compile Include="UI\Font\GameFontCharacter.cs" />
+    <Compile Include="UI\Font\GameFontKerning.cs" />
+    <Compile Include="UI\Font\GameFont.cs" />
+    <Compile Include="UI\Font\GameFontLoader.cs" />
+    <Compile Include="UI\Font\Structures.cs" />
     <Compile Include="UI\Input\GameControlDevices.cs" />
     <Compile Include="UI\VertexHelpers.cs" />
     <Compile Include="Views\GameView.cs" />
@@ -137,7 +141,6 @@
     <Compile Include="UI\ControlInternal\SliderBar.cs" />
     <Compile Include="UI\ControlInternal\SplitterBar.cs" />
     <Compile Include="UI\ControlInternal\TabControlInner.cs" />
-    <Compile Include="UI\ControlInternal\Text.cs" />
     <Compile Include="UI\ControlInternal\TreeNodeLabel.cs" />
     <Compile Include="UI\ControlInternal\TreeToggleButton.cs" />
     <Compile Include="UI\ControlInternal\UpDownButton_Down.cs" />
@@ -215,7 +218,6 @@
     <Compile Include="UI\Padding.cs" />
     <Compile Include="UI\Platform\Neutral.cs" />
     <Compile Include="UI\Renderer.cs" />
-    <Compile Include="UI\TextRenderer.cs" />
     <Compile Include="UI\Skin.cs" />
     <Compile Include="UI\Texturing\Bordered.cs" />
     <Compile Include="UI\Texturing\Single.cs" />
@@ -237,6 +239,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Content\Fonts\gamefont-regular.fnt" />
     <None Include="Content\Graphics\Brand\FoxTrader.hqx" />
     <None Include="Content\Graphics\Brand\FoxTrader.icns" />
     <None Include="OpenTK.dll.config" />
@@ -275,6 +278,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Fonts\Apache License.txt" />
+    <Content Include="Content\Fonts\gamefont-regular.png" />
     <Content Include="Content\Graphics\Brand\128x128.png" />
     <Content Include="Content\Graphics\Brand\16x16.png" />
     <Content Include="Content\Graphics\Brand\24x24.png" />

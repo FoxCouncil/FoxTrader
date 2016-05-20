@@ -17,7 +17,7 @@ namespace FoxTrader.UI.Control
             }
 
             SetSize(128, 32);
-            TextPadding = Padding.m_three;
+            TextPadding = Padding.kThree;
             IsHorizontal = true;
 
             Alignment = Pos.Center;

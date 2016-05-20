@@ -14,7 +14,7 @@ namespace FoxTrader.UI.Control
         public ResizableControl(GameControl c_parentControl) : base(c_parentControl)
         {
             m_resizer = new Resizer[10];
-            MinimumSize = new Point(5, 5);
+            MinimumSize = new Size(5, 5);
             ClampMovement = false;
 
             m_resizer[2] = new Resizer(this) { Dock = Pos.Bottom, ResizeDir = Pos.Bottom, Target = this };
@@ -109,13 +109,13 @@ namespace FoxTrader.UI.Control
             var a_minSize = MinimumSize;
 
             // Clamp Minimum Size
-            if (c_width < a_minSize.X)
+            if (c_width < a_minSize.Width)
             {
-                c_width = a_minSize.X;
+                c_width = a_minSize.Width;
             }
-            if (c_height < a_minSize.Y)
+            if (c_height < a_minSize.Height)
             {
-                c_height = a_minSize.Y;
+                c_height = a_minSize.Height;
             }
 
             // Clamp to parent's window

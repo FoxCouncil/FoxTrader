@@ -1,4 +1,3 @@
-using System.Windows.Forms;
 using FoxTrader.UI.ControlInternal;
 using static FoxTrader.Constants;
 
@@ -27,17 +26,14 @@ namespace FoxTrader.UI.Control
             m_verticalSplitter = new SplitterBar(this);
             m_verticalSplitter.SetPosition(0, 128);
             m_verticalSplitter.Dragged += OnVerticalMoved;
-            m_verticalSplitter.Cursor = Cursors.SizeNS;
 
             m_horizontalSplitter = new SplitterBar(this);
             m_horizontalSplitter.SetPosition(128, 0);
             m_horizontalSplitter.Dragged += OnHorizontalMoved;
-            m_horizontalSplitter.Cursor = Cursors.SizeWE;
 
             m_centerSplitter = new SplitterBar(this);
             m_centerSplitter.SetPosition(128, 128);
             m_centerSplitter.Dragged += OnCenterMoved;
-            m_centerSplitter.Cursor = Cursors.SizeAll;
 
             m_horizontalValue = 0.5f;
             m_verticalValue = 0.5f;

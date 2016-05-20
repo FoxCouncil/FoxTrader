@@ -16,7 +16,7 @@ namespace FoxTrader.UI.Control
             DragAndDrop_SetPackage(true, "TabButtonMove");
             Alignment = Pos.Top | Pos.Left;
             TextPadding = new Padding(5, 3, 3, 3);
-            Padding = Padding.m_two;
+            Padding = Padding.kTwo;
             KeyboardInputEnabled = true;
         }
 

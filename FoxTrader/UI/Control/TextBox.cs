@@ -1,43 +1,54 @@
+﻿//   !!  // FoxTrader - TextBox.cs
+// *.-". // Created: 25-04-2016 [8:41 PM]
+//  | |  // ʇɟǝʃʎdoƆ 2016 FoxCouncil 
+
+#region Usings
+
 using System;
 using System.Drawing;
 using FoxTrader.UI.Platform;
 using OpenTK.Input;
 using static FoxTrader.Constants;
 
+#endregion
+
 namespace FoxTrader.UI.Control
 {
-    /// <summary>Text box (editable)</summary>
+    /// <summary>A generic do gooder text box</summary>
     internal class TextBox : Label
     {
         private Rectangle m_caretBounds;
-        private int m_cursorEnd;
 
+        private int m_cursorEnd;
         private int m_cursorPos;
 
         private float m_lastInputTime;
         private bool m_selectAll;
-
         private Rectangle m_selectionBounds;
 
         /// <summary>Initializes a new instance of the <see cref="TextBox" /> class</summary>
         /// <param name="c_parentControl">Parent control</param>
         public TextBox(GameControl c_parentControl) : base(c_parentControl)
         {
-            SetSize(200, 20);
+            m_cursorPos = 0;
+            m_cursorEnd = 0;
+            m_selectAll = false;
+            SizeToContents();
 
             MouseInputEnabled = true;
             KeyboardInputEnabled = true;
 
             Alignment = Pos.Left | Pos.CenterV;
-            TextPadding = new Padding(4, 2, 4, 2);
-
-            m_cursorPos = 0;
-            m_cursorEnd = 0;
-            m_selectAll = false;
-
+            Text = string.Empty;
+            TextDisplayColumns = 10;
+            TextDisplayRows = 1;
+            TextPadding = Padding.kFour;
             TextColor = Color.FromArgb(255, 50, 50, 50); // TODO: From Skin
-
             IsTabable = true;
+
+            MinimumSize = new Size(200, MinimumSize.Height);
+            MaximumSize = new Size(200, MaximumSize.Height);
+            Height = Font.FontSize;
 
             AddAccelerator("Ctrl + C", OnCopy);
             AddAccelerator("Ctrl + X", OnCut);
@@ -48,6 +59,8 @@ namespace FoxTrader.UI.Control
             {
                 OnSelectAll(this);
             };
+
+            RefreshCursorBounds();
         }
 
         protected override bool AccelOnlyFocus => true;
@@ -115,6 +128,18 @@ namespace FoxTrader.UI.Control
             }
         }
 
+        public int TextDisplayRows
+        {
+            get;
+            set;
+        }
+
+        public int TextDisplayColumns
+        {
+            get;
+            set;
+        }
+
         /// <summary>Invoked when the text has changed</summary>
         public event TextEventHandler TextChanged;
 
@@ -152,10 +177,7 @@ namespace FoxTrader.UI.Control
                 m_cursorEnd = TextLength;
             }
 
-            if (TextChanged != null)
-            {
-                TextChanged.Invoke(this);
-            }
+            TextChanged?.Invoke(this);
         }
 
         /// <summary>Inserts text at current cursor position, erasing selection if any</summary>
@@ -194,19 +216,20 @@ namespace FoxTrader.UI.Control
         /// <param name="c_skin">Skin to use</param>
         protected override void Render(Skin c_skin)
         {
-            base.Render(c_skin);
-
             if (ShouldDrawBackground)
             {
                 c_skin.DrawTextBox(this);
             }
+
+            // Draw the text
+            base.Render(c_skin);
 
             if (!HasFocus)
             {
                 return;
             }
 
-            if (m_cursorPos != m_cursorEnd)
+            if (HasSelection)
             {
                 c_skin.Renderer.DrawColor = Color.FromArgb(200, 50, 170, 255);
                 c_skin.Renderer.DrawFilledRect(m_selectionBounds);
@@ -221,26 +244,33 @@ namespace FoxTrader.UI.Control
             }
         }
 
-        protected virtual void RefreshCursorBounds()
+        private void RefreshCursorBounds()
         {
-            m_lastInputTime = Neutral.GetTimeInSeconds();
+            CalculateTextOffset();
 
-            MakeCaretVisible();
+            m_lastInputTime = Neutral.GetTimeInSeconds();
 
             var a_pointA = GetCharacterPosition(m_cursorPos);
             var a_pointB = GetCharacterPosition(m_cursorEnd);
 
-            m_selectionBounds.X = Math.Min(a_pointA.X, a_pointB.X);
-            m_selectionBounds.Y = TextY - 1;
-            m_selectionBounds.Width = Math.Max(a_pointA.X, a_pointB.X) - m_selectionBounds.X;
-            m_selectionBounds.Height = TextHeight + 2;
-
-            m_caretBounds.X = a_pointA.X;
-            m_caretBounds.Y = TextY - 1;
+            m_caretBounds.X = TextOffset.X + a_pointA.X;
+            m_caretBounds.Y = TextOffset.Y;
             m_caretBounds.Width = 1;
-            m_caretBounds.Height = TextHeight + 2;
+            m_caretBounds.Height = Font.FontSize;
 
-            Redraw();
+            m_selectionBounds.X = TextOffset.X + Math.Min(a_pointA.X, a_pointB.X);
+            m_selectionBounds.Y = TextOffset.Y;
+            m_selectionBounds.Width = Math.Max(a_pointA.X, a_pointB.X) - m_selectionBounds.X + TextOffset.X;
+            m_selectionBounds.Height = Font.FontSize;
+
+            if (TextSize.Width >= Width)
+            {
+                TextOffset = new Point(Width - TextSize.Width, TextOffset.Y);
+            }
+            else
+            {
+                TextOffset = new Point(4, TextOffset.Y);
+            }
         }
 
         /// <summary>Handler for Paste event</summary>
@@ -341,8 +371,6 @@ namespace FoxTrader.UI.Control
                     {
                         m_cursorEnd = m_cursorPos;
                     }
-
-                    RefreshCursorBounds();
                 }
                 break;
 
@@ -357,8 +385,6 @@ namespace FoxTrader.UI.Control
                     {
                         m_cursorEnd = m_cursorPos;
                     }
-
-                    RefreshCursorBounds();
                 }
                 break;
 
@@ -370,8 +396,6 @@ namespace FoxTrader.UI.Control
                     {
                         m_cursorEnd = m_cursorPos;
                     }
-
-                    RefreshCursorBounds();
                 }
                 break;
 
@@ -383,14 +407,18 @@ namespace FoxTrader.UI.Control
                     {
                         m_cursorEnd = m_cursorPos;
                     }
+                }
+                break;
 
-                    RefreshCursorBounds();
+                case Key.Space:
+                {
+                    InsertText(" ");
                 }
                 break;
 
                 default:
                 {
-                    var a_filteredCharacter = TranslateChar(c_keyboardKeyEventArgs.Key);
+                    var a_filteredCharacter = TranslateChar(c_keyboardKeyEventArgs.Key, c_keyboardKeyEventArgs.Shift);
 
                     if (a_filteredCharacter == '\t' || a_filteredCharacter == char.MinValue)
                     {
@@ -401,6 +429,8 @@ namespace FoxTrader.UI.Control
                 }
                 break;
             }
+
+            RefreshCursorBounds();
         }
 
         public override void OnKeyUp(KeyboardKeyEventArgs c_keyboardKeyEventArgs)
@@ -443,7 +473,7 @@ namespace FoxTrader.UI.Control
         /// <summary>Deletes text</summary>
         /// <param name="c_startPos">Starting cursor position</param>
         /// <param name="c_length">Length in characters</param>
-        public virtual void DeleteText(int c_startPos, int c_length)
+        public void DeleteText(int c_startPos, int c_length)
         {
             var a_string = Text;
 
@@ -460,7 +490,7 @@ namespace FoxTrader.UI.Control
         }
 
         /// <summary>Deletes selected text</summary>
-        public virtual void EraseSelection()
+        public void EraseSelection()
         {
             var a_start = Math.Min(m_cursorPos, m_cursorEnd);
             var a_end = Math.Max(m_cursorPos, m_cursorEnd);
@@ -523,58 +553,34 @@ namespace FoxTrader.UI.Control
             CursorPos = a_cursorPosition;
         }
 
-        protected virtual void MakeCaretVisible()
-        {
-            var a_caretPosition = GetCharacterPosition(m_cursorPos).X - TextX;
-
-            // If the caret is already in a semi-good position, leave it.
-            {
-                var a_realCaretPos = a_caretPosition + TextX;
-
-                if (a_realCaretPos > Width * 0.1f && a_realCaretPos < Width * 0.9f)
-                {
-                    return;
-                }
-            }
-
-            // The ideal position is for the caret to be right in the middle
-            var a_idealX = (int)(-a_caretPosition + Width * 0.5f);
-
-            // Don't show too much whitespace to the right
-            if (a_idealX + TextWidth < Width - TextPadding.m_right)
-            {
-                a_idealX = -TextWidth + (Width - TextPadding.m_right);
-            }
-
-            // Or the left
-            if (a_idealX > TextPadding.m_left)
-            {
-                a_idealX = TextPadding.m_left;
-            }
-
-            SetTextPosition(a_idealX, TextY);
-        }
-
         /// <summary>Lays out the control's interior according to alignment, padding, dock etc</summary>
         /// <param name="c_skin">Skin to use</param>
         protected override void OnLayout(Skin c_skin)
         {
+            SizeToContents();
+
             base.OnLayout(c_skin);
 
             RefreshCursorBounds();
         }
 
         /// <summary>Handler for the return key</summary>
-        protected virtual void OnReturn()
+        protected void OnReturn()
         {
             SubmitPressed?.Invoke(this, null);
         }
 
-        private char TranslateChar(Key c_key)
+        private char TranslateChar(Key c_key, bool c_isShiftKeyPressed = false)
         {
+            if (c_key >= Key.Number0 && c_key <= Key.Number9)
+            {
+                return Convert.ToString((int)c_key - (int)Key.Number0)[0];
+            }
+
             if (c_key >= Key.A && c_key <= Key.Z)
             {
-                return (char)('a' + ((int)c_key - (int)Key.A));
+                var a_normalizedChar = (int)c_key - (int)Key.A;
+                return (char)((c_isShiftKeyPressed ? 'A' : 'a') + a_normalizedChar);
             }
 
             return char.MinValue;

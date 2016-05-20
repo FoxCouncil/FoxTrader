@@ -1,3 +1,9 @@
+﻿//   !!  // FoxTrader - GameControl.cs
+// *.-". // Created: 01-02-2016 [9:36 PM]
+//  | |  // ʇɟǝʃʎdoƆ 2016 FoxCouncil 
+
+#region Usings
+
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -5,11 +11,12 @@ using System.Linq;
 using System.Windows.Forms;
 using FoxTrader.UI.Anim;
 using FoxTrader.UI.Anim.Size;
-using FoxTrader.UI.ControlInternal;
 using FoxTrader.UI.DragDrop;
 using FoxTrader.UI.Platform;
 using OpenTK.Input;
 using static FoxTrader.Constants;
+
+#endregion
 
 namespace FoxTrader.UI.Control
 {
@@ -49,7 +56,7 @@ namespace FoxTrader.UI.Control
 
             m_hidden = false;
             m_bounds = new Rectangle(0, 0, 10, 10);
-            m_padding = Padding.m_zero;
+            m_padding = Padding.kZero;
             m_margin = Margin.kZero;
 
             RestrictToParent = false;
@@ -141,12 +148,7 @@ namespace FoxTrader.UI.Control
                     return false;
                 }
 
-                if (Parent != null)
-                {
-                    return Parent.IsVisible;
-                }
-
-                return true;
+                return Parent == null || Parent.IsVisible;
             }
         }
 
@@ -357,7 +359,7 @@ namespace FoxTrader.UI.Control
         }
 
         /// <summary>Indicates whether the control is disabled</summary>
-        public bool IsDisabled
+        public virtual bool IsDisabled
         {
             get;
             set;
@@ -427,18 +429,18 @@ namespace FoxTrader.UI.Control
         }
 
         /// <summary>Size restriction</summary>
-        public Point MinimumSize
+        public Size MinimumSize
         {
             get;
             set;
-        } = new Point(1, 1);
+        } = new Size(1, 1);
 
         /// <summary>Size restriction</summary>
-        public Point MaximumSize
+        public Size MaximumSize
         {
             get;
             set;
-        } = new Point(kMaxUIControlSize, kMaxUIControlSize);
+        } = new Size(kMaxUIControlSize, kMaxUIControlSize);
 
         public Color PaddingOutlineColor
         {
@@ -530,12 +532,6 @@ namespace FoxTrader.UI.Control
             if (a_label != null)
             {
                 return "[Label: " + a_label.Text + "]";
-            }
-
-            var a_text = this as Text;
-            if (a_text != null)
-            {
-                return "[Text: " + a_text.String + "]";
             }
 
             return GetType().ToString();
@@ -833,24 +829,24 @@ namespace FoxTrader.UI.Control
             {
                 var a_parentControl = Parent;
 
-                if (c_x - Padding.m_left < a_parentControl.Margin.m_left)
+                if (c_x - Padding.Left < a_parentControl.Margin.m_left)
                 {
-                    c_x = a_parentControl.Margin.m_left + Padding.m_left;
+                    c_x = a_parentControl.Margin.m_left + Padding.Left;
                 }
 
-                if (c_y - Padding.m_top < a_parentControl.Margin.m_top)
+                if (c_y - Padding.Top < a_parentControl.Margin.m_top)
                 {
-                    c_y = a_parentControl.Margin.m_top + Padding.m_top;
+                    c_y = a_parentControl.Margin.m_top + Padding.Top;
                 }
 
-                if (c_x + Width + Padding.m_right > a_parentControl.Width - a_parentControl.Margin.m_right)
+                if (c_x + Width + Padding.Right > a_parentControl.Width - a_parentControl.Margin.m_right)
                 {
-                    c_x = a_parentControl.Width - a_parentControl.Margin.m_right - Width - Padding.m_right;
+                    c_x = a_parentControl.Width - a_parentControl.Margin.m_right - Width - Padding.Right;
                 }
 
-                if (c_y + Height + Padding.m_bottom > a_parentControl.Height - a_parentControl.Margin.m_bottom)
+                if (c_y + Height + Padding.Bottom > a_parentControl.Height - a_parentControl.Margin.m_bottom)
                 {
-                    c_y = a_parentControl.Height - a_parentControl.Margin.m_bottom - Height - Padding.m_bottom;
+                    c_y = a_parentControl.Height - a_parentControl.Margin.m_bottom - Height - Padding.Bottom;
                 }
             }
 
@@ -871,6 +867,14 @@ namespace FoxTrader.UI.Control
         public virtual void SetPosition(int c_x, int c_y)
         {
             SetBounds(c_x, c_y, Width, Height);
+        }
+
+        /// <summary>Sets the control size</summary>
+        /// <param name="c_size">The size object to set the control to</param>
+        /// <returns>True if bounds changed</returns>
+        public virtual bool SetSize(Size c_size)
+        {
+            return SetBounds(X, Y, c_size.Width, c_size.Height);
         }
 
         /// <summary>Sets the control size</summary>
@@ -909,22 +913,44 @@ namespace FoxTrader.UI.Control
         /// <returns>True if bounds changed</returns>
         public virtual bool SetBounds(int c_x, int c_y, int c_width, int c_height)
         {
-            if (m_bounds.X == c_x && m_bounds.Y == c_y && m_bounds.Width == c_width && m_bounds.Height == c_height)
+            var a_newBounds = new Rectangle(c_x, c_y, c_width, c_height);
+            var a_oldBounds = Bounds;
+
+            if (a_newBounds == a_oldBounds)
             {
                 return false;
             }
 
-            var a_oldBounds = Bounds;
-
             m_bounds.X = c_x;
             m_bounds.Y = c_y;
 
-            m_bounds.Width = c_width;
-            m_bounds.Height = c_height;
+            if (a_newBounds.Size.Width > MaximumSize.Width)
+            {
+                m_bounds.Width = MaximumSize.Width;
+            }
+            else if (a_newBounds.Size.Width < MinimumSize.Width)
+            {
+                m_bounds.Width = MinimumSize.Width;
+            }
+            else
+            {
+                m_bounds.Width = c_width;
+            }
+
+            if (a_newBounds.Size.Height > MaximumSize.Height)
+            {
+                m_bounds.Height = MaximumSize.Height;
+            }
+            else if (a_newBounds.Size.Height < MinimumSize.Height)
+            {
+                m_bounds.Height = MinimumSize.Height;
+            }
+            else
+            {
+                m_bounds.Height = c_height;
+            }
 
             OnBoundsChanged(a_oldBounds);
-
-            BoundsChanged?.Invoke(this);
 
             return true;
         }
@@ -945,32 +971,32 @@ namespace FoxTrader.UI.Control
 
             if (0 != (c_position & Pos.Left))
             {
-                a_x = a_padding.m_left + c_xPadding;
+                a_x = a_padding.Left + c_xPadding;
             }
 
             if (0 != (c_position & Pos.Right))
             {
-                a_x = a_width - Width - a_padding.m_right - c_xPadding;
+                a_x = a_width - Width - a_padding.Right - c_xPadding;
             }
 
             if (0 != (c_position & Pos.CenterH))
             {
-                a_x = (int)(a_padding.m_left + c_xPadding + (a_width - Width - a_padding.m_left - a_padding.m_right) * 0.5f);
+                a_x = (int)(a_padding.Left + c_xPadding + (a_width - Width - a_padding.Left - a_padding.Right) * 0.5f);
             }
 
             if (0 != (c_position & Pos.Top))
             {
-                a_y = a_padding.m_top + c_yPadding;
+                a_y = a_padding.Top + c_yPadding;
             }
 
             if (0 != (c_position & Pos.Bottom))
             {
-                a_y = a_height - Height - a_padding.m_bottom - c_yPadding;
+                a_y = a_height - Height - a_padding.Bottom - c_yPadding;
             }
 
             if (0 != (c_position & Pos.CenterV))
             {
-                a_y = (int)(a_padding.m_top + c_yPadding + (a_height - Height - a_padding.m_bottom - a_padding.m_top) * 0.5f);
+                a_y = (int)(a_padding.Top + c_yPadding + (a_height - Height - a_padding.Bottom - a_padding.Top) * 0.5f);
             }
 
             SetPosition(a_x, a_y);
@@ -1209,8 +1235,8 @@ namespace FoxTrader.UI.Control
         {
             var a_size = GetChildrenSize();
 
-            a_size.X += Padding.m_right;
-            a_size.Y += Padding.m_bottom;
+            a_size.X += Padding.Right;
+            a_size.Y += Padding.Bottom;
 
             return SetSize(c_width ? a_size.X : Width, c_height ? a_size.Y : Height);
         }
@@ -1367,7 +1393,7 @@ namespace FoxTrader.UI.Control
         /// <param name="c_oldBounds">Old bounds</param>
         protected virtual void OnBoundsChanged(Rectangle c_oldBounds)
         {
-            Parent?.OnChildBoundsChanged(c_oldBounds, this);
+            // Parent?.OnChildBoundsChanged(c_oldBounds, this);
 
             if (m_bounds.Width != c_oldBounds.Width || m_bounds.Height != c_oldBounds.Height)
             {
@@ -1386,11 +1412,6 @@ namespace FoxTrader.UI.Control
             {
                 a_childControl.OnScaleChanged();
             }
-        }
-
-        /// <summary>Handler invoked when control children's bounds change</summary>
-        protected virtual void OnChildBoundsChanged(Rectangle c_oldChildBounds, GameControl c_child)
-        {
         }
 
         /// <summary>Allows control to run logic</summary>
@@ -1583,10 +1604,10 @@ namespace FoxTrader.UI.Control
             var a_bounds = RenderBounds;
 
             // Adjust bounds for padding
-            a_bounds.X += m_padding.m_left;
-            a_bounds.Width -= m_padding.m_left + m_padding.m_right;
-            a_bounds.Y += m_padding.m_top;
-            a_bounds.Height -= m_padding.m_top + m_padding.m_bottom;
+            a_bounds.X += m_padding.Left;
+            a_bounds.Width -= m_padding.Left + m_padding.Right;
+            a_bounds.Y += m_padding.Top;
+            a_bounds.Height -= m_padding.Top + m_padding.Bottom;
 
             foreach (var a_childControl in m_children)
             {

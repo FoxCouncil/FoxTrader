@@ -25,8 +25,7 @@ namespace FoxTrader.Views
 
             var a_controlsParent = m_menuControl;
 
-            m_labelLanguage = new Label(a_controlsParent) { AutoSizeToContents = true, Text = I18N.GetString("Language") };
-            m_labelLanguage.TextColor = Color.White;
+            m_labelLanguage = new Label(a_controlsParent) { AutoSizeToContents = true, Text = I18N.GetString("Language"), TextColor = Color.White };
             m_labelLanguage.SetPosition(10, 10);
 
             var a_comboBoxLanguage = new ComboBox(a_controlsParent);
@@ -51,11 +50,11 @@ namespace FoxTrader.Views
                 Invalidate();
             };
 
-            var a_testTextBox = new TextBox(a_controlsParent) { Y = 10 };
+            var a_testTextBox = new TextBox(a_controlsParent) { Y = 10, TextColor = Color.Red };
             Align.PlaceDownLeft(a_testTextBox, a_comboBoxLanguage, 5);
 
-            var a_testNumericUpDown = new NumericUpDown(a_controlsParent) { Y = 10 };
-            Align.PlaceDownLeft(a_testNumericUpDown, a_testTextBox, 5);
+            // var a_testNumericUpDown = new NumericUpDown(a_controlsParent) { Y = 10 };
+            // Align.PlaceDownLeft(a_testNumericUpDown, a_testTextBox, 5);
 
             m_buttonBack = new Button(a_controlsParent) { Text = I18N.GetString("Back") };
             m_buttonBack.SetSize(kMainMenuButtonWidth, kMainMenuButtonHeight);

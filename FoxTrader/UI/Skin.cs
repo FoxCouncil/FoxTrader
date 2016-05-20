@@ -2,6 +2,7 @@ using System;
 using System.Drawing;
 using System.IO;
 using FoxTrader.UI.Control;
+using FoxTrader.UI.Font;
 using FoxTrader.UI.Texturing;
 using static FoxTrader.Constants;
 using Single = FoxTrader.UI.Texturing.Single;
@@ -22,10 +23,10 @@ namespace FoxTrader.UI
         /// <param name="c_textureName"></param>
         public Skin(Renderer c_renderer, string c_textureName)
         {
-            m_defaultFont = new GameFont(c_renderer);
+            m_defaultFont = GameFont.LoadFont("regular");
             m_renderer = c_renderer;
 
-            m_texture = new Texture(Renderer);
+            m_texture = new Texture();
             m_texture.Load(c_textureName);
 
             InitializeColors();
@@ -34,9 +35,9 @@ namespace FoxTrader.UI
 
         public Skin(Renderer c_renderer, Stream c_textureData)
         {
-            m_defaultFont = new GameFont(c_renderer);
+            m_defaultFont = GameFont.LoadFont("regular");
             m_renderer = c_renderer;
-            m_texture = new Texture(Renderer);
+            m_texture = new Texture();
             m_texture.LoadStream(c_textureData);
 
             InitializeColors();
@@ -52,7 +53,6 @@ namespace FoxTrader.UI
             }
             set
             {
-                m_defaultFont.Dispose();
                 m_defaultFont = value;
             }
         }
@@ -64,7 +64,6 @@ namespace FoxTrader.UI
         public virtual void Dispose()
         {
             m_texture.Dispose();
-            m_defaultFont.Dispose();
             GC.SuppressFinalize(this);
         }
 
@@ -75,18 +74,6 @@ namespace FoxTrader.UI
             //Debug.Print(String.Format("IDisposable object finalized: {0}", GetType()));
         }
 #endif
-
-        /// <summary>Releases the specified font</summary>
-        /// <param name="c_font">Font to release</param>
-        protected virtual void ReleaseFont(GameFont c_font)
-        {
-            if (c_font == null)
-            {
-                return;
-            }
-
-            m_renderer?.FreeFont(c_font);
-        }
 
         private void InitializeColors()
         {
@@ -1027,19 +1014,10 @@ namespace FoxTrader.UI
             }
         }
 
-        /// <summary>Sets the default text font</summary>
-        /// <param name="c_faceName">Font name. Meaning can vary depending on the renderer</param>
-        /// <param name="c_size">Font size</param>
-        public void SetDefaultFont(string c_faceName, int c_size = 10)
-        {
-            m_defaultFont.FaceName = c_faceName;
-            m_defaultFont.Size = c_size;
-        }
-
         public void DrawDebugOutlines(GameControl c_control)
         {
             m_renderer.DrawColor = c_control.PaddingOutlineColor;
-            var a_inner = new Rectangle(c_control.Bounds.Left + c_control.Padding.m_left, c_control.Bounds.Top + c_control.Padding.m_top, c_control.Bounds.Width - c_control.Padding.m_right - c_control.Padding.m_left, c_control.Bounds.Height - c_control.Padding.m_bottom - c_control.Padding.m_top);
+            var a_inner = new Rectangle(c_control.Bounds.Left + c_control.Padding.Left, c_control.Bounds.Top + c_control.Padding.Top, c_control.Bounds.Width - c_control.Padding.Right - c_control.Padding.Left, c_control.Bounds.Height - c_control.Padding.Bottom - c_control.Padding.Top);
             m_renderer.DrawLinedRect(a_inner);
 
             m_renderer.DrawColor = c_control.MarginOutlineColor;

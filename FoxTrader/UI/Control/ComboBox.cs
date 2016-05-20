@@ -69,6 +69,7 @@ namespace FoxTrader.UI.Control
         protected override void Render(Skin c_skin)
         {
             c_skin.DrawComboBox(this, IsDepressed, IsOpen);
+            RenderText(c_skin.Renderer);
         }
 
         /// <summary>Internal Pressed implementation</summary>

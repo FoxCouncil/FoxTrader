@@ -14,7 +14,7 @@ namespace FoxTrader.UI.Control
         public ImagePanel(GameControl c_parentControl) : base(c_parentControl)
         {
             m_uv = new float[4];
-            m_texture = new Texture(Skin.Renderer);
+            m_texture = new Texture();
             SetUV(0, 0, 1, 1);
             MouseInputEnabled = false;
             m_drawColor = Color.White;

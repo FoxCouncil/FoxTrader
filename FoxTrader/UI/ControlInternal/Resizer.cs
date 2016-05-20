@@ -80,9 +80,9 @@ namespace FoxTrader.UI.ControlInternal
                 // Conform to minimum size here so we don't
                 // go all weird when we snap it in the base conrt
 
-                if (a_bounds.Width < a_min.X)
+                if (a_bounds.Width < a_min.Width)
                 {
-                    var a_diff = a_min.X - a_bounds.Width;
+                    var a_diff = a_min.Width - a_bounds.Width;
                     a_bounds.Width += a_diff;
                     a_bounds.X -= a_diff;
                 }
@@ -96,9 +96,9 @@ namespace FoxTrader.UI.ControlInternal
                 // Conform to minimum size here so we don't
                 // go all weird when we snap it in the base conrt
 
-                if (a_bounds.Height < a_min.Y)
+                if (a_bounds.Height < a_min.Height)
                 {
-                    var a_diff = a_min.Y - a_bounds.Height;
+                    var a_diff = a_min.Height - a_bounds.Height;
                     a_bounds.Height += a_diff;
                     a_bounds.Y -= a_diff;
                 }
@@ -117,9 +117,9 @@ namespace FoxTrader.UI.ControlInternal
 
                 a_bounds.Width = a_pCursorPos.X + a_woff;
 
-                if (a_bounds.Width < a_min.X)
+                if (a_bounds.Width < a_min.Width)
                 {
-                    a_bounds.Width = a_min.X;
+                    a_bounds.Width = a_min.Width;
                 }
 
                 a_diff -= a_bounds.Width;
@@ -134,9 +134,9 @@ namespace FoxTrader.UI.ControlInternal
 
                 a_bounds.Height = a_pCursorPos.Y + a_hoff;
 
-                if (a_bounds.Height < a_min.Y)
+                if (a_bounds.Height < a_min.Height)
                 {
-                    a_bounds.Height = a_min.Y;
+                    a_bounds.Height = a_min.Height;
                 }
 
                 a_diff -= a_bounds.Height;

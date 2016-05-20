@@ -1,26 +1,37 @@
+﻿//   !!  // FoxTrader - Label.cs
+// *.-". // Created: 25-04-2016 [8:41 PM]
+//  | |  // ʇɟǝʃʎdoƆ 2016 FoxCouncil 
+
+#region Usings
+
+using System;
 using System.Drawing;
-using FoxTrader.UI.ControlInternal;
+using FoxTrader.UI.Font;
 using static FoxTrader.Constants;
+
+#endregion
 
 namespace FoxTrader.UI.Control
 {
     /// <summary>Static text label</summary>
     internal class Label : GameControl
     {
-        private readonly Text m_text;
         private Pos m_align;
         private bool m_autoSizeToContents;
+        private GameFont m_font;
+        private string m_text = string.Empty;
         private Padding m_textPadding;
 
         /// <summary>Initializes a new instance of the <see cref="Label" /> class</summary>
         /// <param name="c_parentControl">Parent control</param>
         public Label(GameControl c_parentControl) : base(c_parentControl)
         {
-            m_text = new Text(this);
-
             MouseInputEnabled = false;
             Alignment = Pos.Left | Pos.Top;
             AutoSizeToContents = false;
+            TextOffset = Point.Empty;
+            TextPadding = Padding.kZero;
+            TextColor = Color.Black;
         }
 
         /// <summary>Text alignment</summary>
@@ -42,7 +53,7 @@ namespace FoxTrader.UI.Control
         {
             get
             {
-                return m_text.String;
+                return TextOverride != string.Empty ? TextOverride : m_text;
             }
             set
             {
@@ -55,11 +66,11 @@ namespace FoxTrader.UI.Control
         {
             get
             {
-                return m_text.Font;
+                return m_font ?? Skin.DefaultFont;
             }
             set
             {
-                m_text.Font = value;
+                m_font = value;
 
                 if (m_autoSizeToContents)
                 {
@@ -73,55 +84,34 @@ namespace FoxTrader.UI.Control
         /// <summary>Text color</summary>
         public Color TextColor
         {
-            get
-            {
-                return m_text.TextColor;
-            }
-            set
-            {
-                m_text.TextColor = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>Override text color (used by tooltips)</summary>
         public Color TextColorOverride
         {
-            get
-            {
-                return m_text.TextColorOverride;
-            }
-            set
-            {
-                m_text.TextColorOverride = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>Text override - used to display different string</summary>
         public string TextOverride
         {
-            get
-            {
-                return m_text.TextOverride;
-            }
-            set
-            {
-                m_text.TextOverride = value;
-            }
+            get;
+            set;
+        } = string.Empty;
+
+        public Point TextOffset
+        {
+            get;
+            set;
         }
 
-        /// <summary>Width of the text (in pixels)</summary>
-        public int TextWidth => m_text.Width;
-
-        /// <summary>Height of the text (in pixels)</summary>
-        public int TextHeight => m_text.Height;
-
-        public int TextX => m_text.X;
-        public int TextY => m_text.Y;
+        public Size TextSize => Font.MeasureFont(Text);
 
         /// <summary>Text length (in characters)</summary>
         public int TextLength => m_text.Length;
-
-        public int TextRight => m_text.Right;
 
         /// <summary>Determines if the control should autosize to its text</summary>
         public bool AutoSizeToContents
@@ -153,21 +143,27 @@ namespace FoxTrader.UI.Control
             }
         }
 
-        /// <summary>Returns index of the character closest to specified point (in canvas coordinates)</summary>
-        /// <param name="c_x"></param>
-        /// <param name="c_y"></param>
-        /// <returns></returns>
-        protected int GetClosestCharacter(Point c_point)
+        protected void RenderText(Renderer c_renderer)
         {
-            return m_text.GetClosestCharacter(m_text.CanvasPosToLocal(c_point));
-        }
+            var a_charList = Font.GetCharacterList(Text);
 
-        /// <summary>Sets the position of the internal text control</summary>
-        /// <param name="c_x"></param>
-        /// <param name="c_y"></param>
-        protected void SetTextPosition(int c_x, int c_y)
-        {
-            m_text.SetPosition(c_x, c_y);
+            var a_xCoordinate = TextOffset.X;
+            var a_yCoordinate = TextOffset.Y;
+            var a_previousChar = ' ';
+
+            foreach (var a_char in a_charList)
+            {
+                var a_charTexture = a_char.CharTexture;
+
+                var a_kerning = Font.GetKerning(a_previousChar, a_char.Char);
+
+                c_renderer.DrawColor = TextColorOverride != Color.Empty ? TextColorOverride : TextColor;
+                c_renderer.DrawTexturedRect(a_charTexture, new Rectangle(a_xCoordinate + a_char.Offset.X + a_kerning, a_yCoordinate + a_char.Offset.Y, a_charTexture.Width, a_charTexture.Height));
+
+                a_xCoordinate += a_char.XAdvance + a_kerning;
+
+                a_previousChar = a_char.Char;
+            }
         }
 
         /// <summary>Handler for text changed event</summary>
@@ -181,6 +177,11 @@ namespace FoxTrader.UI.Control
         {
             base.OnLayout(c_skin);
 
+            CalculateTextOffset();
+        }
+
+        protected void CalculateTextOffset()
+        {
             var a_align = m_align;
 
             if (m_autoSizeToContents)
@@ -188,28 +189,28 @@ namespace FoxTrader.UI.Control
                 SizeToContents();
             }
 
-            var a_x = m_textPadding.m_left + Padding.m_left;
-            var a_y = m_textPadding.m_top + Padding.m_top;
+            var a_x = m_textPadding.Left + Padding.Left;
+            var a_y = m_textPadding.Top + Padding.Top;
 
             if (0 != (a_align & Pos.Right))
             {
-                a_x = Width - m_text.Width - m_textPadding.m_right - Padding.m_right;
+                a_x = Width - TextSize.Width - m_textPadding.Right - Padding.Right;
             }
             if (0 != (a_align & Pos.CenterH))
             {
-                a_x = (int)((m_textPadding.m_left + Padding.m_left) + ((Width - m_text.Width - m_textPadding.m_left - Padding.m_left - m_textPadding.m_right - Padding.m_right) * 0.5f));
+                a_x = (int)((m_textPadding.Left + Padding.Left) + ((Width - TextSize.Width - m_textPadding.Left - Padding.Left - m_textPadding.Right - Padding.Right) * 0.5f));
             }
 
             if (0 != (a_align & Pos.CenterV))
             {
-                a_y = (int)((m_textPadding.m_top + Padding.m_top) + ((Height - m_text.Height) * 0.5f) - m_textPadding.m_bottom - Padding.m_bottom);
+                a_y = (int)((m_textPadding.Top + Padding.Top) + ((Height - TextSize.Height) * 0.5f) - m_textPadding.Bottom - Padding.Bottom);
             }
             if (0 != (a_align & Pos.Bottom))
             {
-                a_y = Height - m_text.Height - m_textPadding.m_bottom - Padding.m_bottom;
+                a_y = Height - TextSize.Height - m_textPadding.Bottom - Padding.Bottom;
             }
 
-            m_text.SetPosition(a_x, a_y);
+            TextOffset = new Point(a_x, a_y);
         }
 
         /// <summary>Sets the label text</summary>
@@ -222,7 +223,7 @@ namespace FoxTrader.UI.Control
                 return;
             }
 
-            m_text.String = c_str;
+            m_text = c_str;
 
             if (m_autoSizeToContents)
             {
@@ -240,26 +241,60 @@ namespace FoxTrader.UI.Control
 
         public virtual void SizeToContents()
         {
-            m_text.SetPosition(m_textPadding.m_left + Padding.m_left, m_textPadding.m_top + Padding.m_top);
-            m_text.SizeToContents();
-
-            SetSize(m_text.Width + Padding.m_left + Padding.m_right + m_textPadding.m_left + m_textPadding.m_right, m_text.Height + Padding.m_top + Padding.m_bottom + m_textPadding.m_top + m_textPadding.m_bottom);
+            SetSize(TextSize.Width + Padding.Left + Padding.Right + TextPadding.Left + TextPadding.Right, TextSize.Height + Padding.Top + Padding.Bottom + TextPadding.Top + TextPadding.Bottom);
             InvalidateParent();
         }
 
-        /// <summary>Gets the coordinates of specified character</summary>
-        /// <param name="c_index">Character index</param>
-        /// <returns>Character coordinates (local)</returns>
-        public virtual Point GetCharacterPosition(int c_index)
+        /// <summary>Gets the coordinates of specified character in the text</summary>
+        /// <param name="c_idx">Character index</param>
+        /// <returns>Character position in local coordinates</returns>
+        public Point GetCharacterPosition(int c_idx)
         {
-            var a_p = m_text.GetCharacterPosition(c_index);
-            return new Point(a_p.X + m_text.X, a_p.Y + m_text.Y);
+            if (Text.Length == 0 || c_idx == 0)
+            {
+                return new Point(0, 0);
+            }
+
+            if (c_idx >= Text.Length)
+            {
+            }
+
+            var a_sub = Text.Substring(0, c_idx);
+            var a_p = new Point(Skin.Renderer.MeasureText(Font, a_sub));
+
+            return a_p;
+        }
+
+        /// <summary>Searches for a character closest to given point</summary>
+        /// <param name="c_point">Point</param>
+        /// <returns>Character index</returns>
+        public int GetClosestCharacter(Point c_point)
+        {
+            var a_distance = kMaxUIControlSize;
+            var a_c = 0;
+
+            for (var a_i = 0; a_i < Text.Length + 1; a_i++)
+            {
+                var a_cp = GetCharacterPosition(a_i);
+                var a_dist = Math.Abs(a_cp.X - c_point.X); // TODO: handle multiline
+
+                if (a_dist > a_distance)
+                {
+                    continue;
+                }
+
+                a_distance = a_dist;
+                a_c = a_i;
+            }
+
+            return a_c;
         }
 
         /// <summary>Renders the control using specified skin</summary>
         /// <param name="c_skin">Skin to use</param>
         protected override void Render(Skin c_skin)
         {
+            RenderText(c_skin.Renderer);
         }
     }
 }

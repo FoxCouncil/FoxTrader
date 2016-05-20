@@ -134,6 +134,7 @@ namespace FoxTrader.UI.Control
         protected override void Render(Skin c_skin)
         {
             c_skin.DrawMenuItem(this, IsMenuOpen, IsCheckable ? m_checked : false);
+            RenderText(c_skin.Renderer);
         }
 
         /// <summary>Lays out the control's interior according to alignment, padding, dock etc</summary>

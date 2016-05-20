@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using FoxTrader.UI.Font;
 
 namespace FoxTrader.UI.Control
 {
@@ -77,7 +78,7 @@ namespace FoxTrader.UI.Control
 
             // Does the whole word fit in?
             var a_stringSize = Skin.Renderer.MeasureText(c_font, c_text);
-            if (a_spaceLeft > a_stringSize.X)
+            if (a_spaceLeft > a_stringSize.Width)
             {
                 CreateLabel(c_text, c_block, ref c_x, ref c_y, ref c_lineHeight, true);
                 return;
@@ -85,7 +86,7 @@ namespace FoxTrader.UI.Control
 
             // If the first word is bigger than the line, just give up.
             var a_wordSize = Skin.Renderer.MeasureText(c_font, a_spaced[0]);
-            if (a_wordSize.X >= a_spaceLeft)
+            if (a_wordSize.Width >= a_spaceLeft)
             {
                 CreateLabel(a_spaced[0], c_block, ref c_x, ref c_y, ref c_lineHeight, true);
                 if (a_spaced[0].Length >= c_text.Length)
@@ -102,7 +103,7 @@ namespace FoxTrader.UI.Control
             for (var a_i = 0; a_i < a_spaced.Length; a_i++)
             {
                 a_wordSize = Skin.Renderer.MeasureText(c_font, a_newString + a_spaced[a_i]);
-                if (a_wordSize.X > a_spaceLeft)
+                if (a_wordSize.Width > a_spaceLeft)
                 {
                     CreateLabel(a_newString, c_block, ref c_x, ref c_y, ref c_lineHeight, true);
                     c_x = 0;
@@ -135,12 +136,12 @@ namespace FoxTrader.UI.Control
 
             if (c_lineHeight == -1)
             {
-                c_lineHeight = a_p.Y;
+                c_lineHeight = a_p.Height;
             }
 
             if (!c_noSplit)
             {
-                if (c_x + a_p.X > Width)
+                if (c_x + a_p.Width > Width)
                 {
                     SplitLabel(c_text, a_font, c_block, ref c_x, ref c_y, ref c_lineHeight);
                     return;
@@ -148,7 +149,7 @@ namespace FoxTrader.UI.Control
             }
 
             // Wrap
-            if (c_x + a_p.X >= Width)
+            if (c_x + a_p.Width >= Width)
             {
                 CreateNewline(ref c_x, ref c_y, c_lineHeight);
             }

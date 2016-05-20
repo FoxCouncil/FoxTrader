@@ -168,7 +168,7 @@ namespace FoxTrader.UI.Control
                 a_bottom = m_innerControl.Children.Last().Y + m_innerControl.Y;
             }
 
-            c_skin.DrawTreeNode(this, m_innerControl.IsVisible, IsSelected, m_title.Height, m_title.TextRight, (int)(m_toggleButton.Y + m_toggleButton.Height * 0.5f), a_bottom, m_treeControl == Parent); // IsRoot
+            c_skin.DrawTreeNode(this, m_innerControl.IsVisible, IsSelected, m_title.Height, m_title.X, (int)(m_toggleButton.Y + m_toggleButton.Height * 0.5f), a_bottom, m_treeControl == Parent); // IsRoot
         }
 
         /// <summary>Lays out the control's interior according to alignment, padding, dock etc</summary>

@@ -86,7 +86,7 @@ namespace FoxTrader
 
             Renderer = new Renderer();
 
-            m_skin = new Skin(Renderer, "png_FoxTraderSkin") { DefaultFont = Renderer.GetFont(kDefaultGameFontName) };
+            m_skin = new Skin(Renderer, "png_FoxTraderSkin");
 
             m_canvas = new Canvas();
 
@@ -179,8 +179,6 @@ namespace FoxTrader
                 m_fps = 1000f * m_frameTime.Count / m_frameTime.Sum();
 
                 m_stopwatch.Restart();
-
-                FlushTextCache();
             }
 
             Time.Tick();
@@ -238,15 +236,6 @@ namespace FoxTrader
             }
 
             return false;
-        }
-
-        private void FlushTextCache()
-        {
-            if (Renderer.TextCacheSize > 1000)
-            {
-                Log.Info($"Flushing text cache: {Renderer.TextCacheSize}", "WINDOW");
-                Renderer.FlushTextCache();
-            }
         }
 
         public override void Dispose()

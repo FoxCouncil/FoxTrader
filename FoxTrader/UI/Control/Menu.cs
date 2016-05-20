@@ -14,7 +14,7 @@ namespace FoxTrader.UI.Control
         public Menu(GameControl c_parentControl) : base(c_parentControl)
         {
             SetBounds(0, 0, 10, 10);
-            Padding = Padding.m_two;
+            Padding = Padding.kTwo;
             IconMarginDisabled = false;
 
             AutoHideBars = true;
@@ -101,7 +101,7 @@ namespace FoxTrader.UI.Control
         public virtual MenuItem AddItem(string c_text, string c_iconName, string c_accelerator = "")
         {
             var a_menuItem = new MenuItem(this);
-            a_menuItem.Padding = Padding.m_four;
+            a_menuItem.Padding = Padding.kFour;
             a_menuItem.SetText(c_text);
             a_menuItem.SetImage(c_iconName);
             a_menuItem.SetAccelerator(c_accelerator);

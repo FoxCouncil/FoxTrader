@@ -22,7 +22,7 @@ namespace FoxTrader.UI.Control
 
             m_innerControl = new GameControl(this);
             m_innerControl.Dock = Pos.Fill;
-            m_innerControl.Margin = new Margin(5, TextHeight + 5, 5, 5);
+            m_innerControl.Margin = new Margin(5, TextSize.Height + 5, 5, 5);
             //Margin = new Margin(5, 5, 5, 5);
         }
 
@@ -41,7 +41,7 @@ namespace FoxTrader.UI.Control
         /// <param name="c_skin">Skin to use</param>
         protected override void Render(Skin c_skin)
         {
-            c_skin.DrawGroupBox(this, TextX, TextHeight, TextWidth);
+            c_skin.DrawGroupBox(this, TextOffset.X, TextSize.Width, TextSize.Width);
         }
 
         /// <summary>Sizes to contents</summary>
@@ -55,9 +55,10 @@ namespace FoxTrader.UI.Control
         {
             m_innerControl.SizeToChildren();
             SizeToChildren();
-            if (Width < TextWidth + TextPadding.m_right + TextPadding.m_left)
+
+            if (Width < TextSize.Width + TextPadding.Right + TextPadding.Left)
             {
-                Width = TextWidth + TextPadding.m_right + TextPadding.m_left;
+                Width = TextSize.Width + TextPadding.Right + TextPadding.Left;
             }
         }
     }

@@ -82,7 +82,7 @@ namespace FoxTrader.UI.Control.Layout
                     if (null == m_columns[a_i])
                     {
                         m_columns[a_i] = new Label(this);
-                        m_columns[a_i].Padding = Padding.m_three;
+                        m_columns[a_i].Padding = Padding.kThree;
                         m_columns[a_i].Margin = new Margin(0, 0, 2, 0); // to separate them slightly
 
                         if (a_i == c_columnCount - 1)

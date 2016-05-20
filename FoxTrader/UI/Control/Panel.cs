@@ -26,7 +26,7 @@ namespace FoxTrader.UI.Control
         /// <param name="c_parentControl">Parent control</param>
         public Panel(GameControl c_parentControl) : base(c_parentControl)
         {
-            Padding = Padding.m_one;
+            Padding = Padding.kOne;
             SetSize(200, 200);
         }
 

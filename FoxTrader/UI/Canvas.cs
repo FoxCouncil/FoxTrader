@@ -160,7 +160,7 @@ namespace FoxTrader.UI.Control
                 else
                 {
                     m_keyData.Target = HoveredControl;
-                    HoveredControl.OnKeyDown(c_args);
+                    HoveredControl?.OnKeyDown(c_args);
                 }
             };
 
@@ -195,7 +195,7 @@ namespace FoxTrader.UI.Control
                 }
                 else
                 {
-                    HoveredControl.OnKeyUp(c_args);
+                    HoveredControl?.OnKeyUp(c_args);
                 }
             };
         }

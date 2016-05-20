@@ -1,34 +1,57 @@
-﻿using System;
+﻿//   !!  // FoxTrader - Padding.cs
+// *.-". // Created: 01-02-2016 [9:35 PM]
+//  | |  // ʇɟǝʃʎdoƆ 2016 FoxCouncil 
+
+#region Usings
+
+using System;
+
+#endregion
 
 namespace FoxTrader.UI
 {
-    /// <summary>Represents inner spacing</summary>
+    /// <summary>Represents some kind of inner spacing</summary>
     public struct Padding : IEquatable<Padding>
     {
-        public readonly int m_top;
-        public readonly int m_bottom;
-        public readonly int m_left;
-        public readonly int m_right;
+        public int Top
+        {
+            get;
+        }
+
+        public int Bottom
+        {
+            get;
+        }
+
+        public int Left
+        {
+            get;
+        }
+
+        public int Right
+        {
+            get;
+        }
 
         // common values
-        public static Padding m_zero = new Padding(0, 0, 0, 0);
-        public static Padding m_one = new Padding(1, 1, 1, 1);
-        public static Padding m_two = new Padding(2, 2, 2, 2);
-        public static Padding m_three = new Padding(3, 3, 3, 3);
-        public static Padding m_four = new Padding(4, 4, 4, 4);
-        public static Padding m_five = new Padding(5, 5, 5, 5);
+        public static readonly Padding kZero = new Padding(0, 0, 0, 0);
+        public static readonly Padding kOne = new Padding(1, 1, 1, 1);
+        public static readonly Padding kTwo = new Padding(2, 2, 2, 2);
+        public static readonly Padding kThree = new Padding(3, 3, 3, 3);
+        public static readonly Padding kFour = new Padding(4, 4, 4, 4);
+        public static readonly Padding kFive = new Padding(5, 5, 5, 5);
 
         public Padding(int c_left, int c_top, int c_right, int c_bottom)
         {
-            m_top = c_top;
-            m_bottom = c_bottom;
-            m_left = c_left;
-            m_right = c_right;
+            Top = c_top;
+            Bottom = c_bottom;
+            Left = c_left;
+            Right = c_right;
         }
 
         public bool Equals(Padding c_other)
         {
-            return c_other.m_top == m_top && c_other.m_bottom == m_bottom && c_other.m_left == m_left && c_other.m_right == m_right;
+            return c_other.Top == Top && c_other.Bottom == Bottom && c_other.Left == Left && c_other.Right == Right;
         }
 
         public static bool operator ==(Padding c_lhs, Padding c_rhs)
@@ -60,11 +83,11 @@ namespace FoxTrader.UI
         {
             unchecked
             {
-                var a_result = m_top;
+                var a_result = Top;
 
-                a_result = (a_result * 397) ^ m_bottom;
-                a_result = (a_result * 397) ^ m_left;
-                a_result = (a_result * 397) ^ m_right;
+                a_result = (a_result * 397) ^ Bottom;
+                a_result = (a_result * 397) ^ Left;
+                a_result = (a_result * 397) ^ Right;
 
                 return a_result;
             }
